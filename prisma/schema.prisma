@@ -45,10 +45,10 @@ model Cabins {
 model Settings {
   id                  Int      @id @default(autoincrement())
   created_at          DateTime @default(now()) @db.Timestamptz()
-  minBookingLength    Int
-  maxBookingLength    Int
-  maxGuestsPerBooking Int
-  breakfastPrice      Float
+  minBookingLength    Int?
+  maxBookingLength    Int?
+  maxGuestsPerBooking Int?
+  breakfastPrice      Float?
 }
 
 model Guests {
