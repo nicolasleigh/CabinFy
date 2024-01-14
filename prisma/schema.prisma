@@ -1,0 +1,61 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Bookings {
+  id           Int      @id @default(autoincrement())
+  created_at   DateTime @default(now()) @db.Timestamptz()
+  startDate    DateTime @db.Timestamp()
+  endDate      DateTime @db.Timestamp()
+  numNights    Int
+  numGuests    Int
+  cabinPrice   Float
+  extrasPrice  Float
+  totalPrice   Float
+  status       String
+  hasBreakfast Boolean
+  isPaid       Boolean  @default(false)
+  observation  String?
+  cabinId      Int
+  cabin        Cabins   @relation(fields: [cabinId], references: [id])
+  guestId      Int
+  guest        Guests   @relation(fields: [guestId], references: [id])
+}
+
+model Cabins {
+  id           Int        @id @default(autoincrement())
+  created_at   DateTime   @default(now()) @db.Timestamptz()
+  name         String
+  maxCapacity  Int
+  regularPrice Int
+  discount     Int
+  description  String
+  image        String
+  Bookings     Bookings[]
+}
+
+model Settings {
+  id                  Int      @id @default(autoincrement())
+  created_at          DateTime @default(now()) @db.Timestamptz()
+  minBookingLength    Int
+  maxBookingLength    Int
+  maxGuestsPerBooking Int
+  breakfastPrice      Float
+}
+
+model Guests {
+  id         Int        @id @default(autoincrement())
+  created_at DateTime   @default(now()) @db.Timestamptz()
+  fullName   String
+  email      String
+  nationalId String?
+  Bookings   Bookings[]
+}
