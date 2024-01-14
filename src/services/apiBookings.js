@@ -50,7 +50,7 @@ export async function getBooking(id) {
   return data;
 }
 
-// Returns all BOOKINGS that are were created after the given date. Useful to get bookings created in the last 30 days, for example.
+// Returns all BOOKINGS that were created after the given date. Useful to get bookings created in the last 30 days, for example.
 export async function getBookingsAfterDate(date) {
   const { data, error } = await supabase
     .from('bookings')
@@ -59,14 +59,14 @@ export async function getBookingsAfterDate(date) {
     .lte('created_at', getToday({ end: true }));
 
   if (error) {
-    console.error(error);
-    throw new Error('Bookings could not get loaded');
+    // console.error(error);
+    throw new Error('Bookings could not be loaded');
   }
 
   return data;
 }
 
-// Returns all STAYS that are were created after the given date
+// Returns all STAYS that were created after the given date
 export async function getStaysAfterDate(date) {
   const { data, error } = await supabase
     .from('bookings')
@@ -75,7 +75,7 @@ export async function getStaysAfterDate(date) {
     .lte('startDate', getToday());
 
   if (error) {
-    console.error(error);
+    // console.error(error);
     throw new Error('Bookings could not get loaded');
   }
 
@@ -97,8 +97,8 @@ export async function getStaysTodayActivity() {
   // (stay.status === 'checked-in' && isToday(new Date(stay.endDate)))
 
   if (error) {
-    console.error(error);
-    throw new Error('Bookings could not get loaded');
+    // console.error(error);
+    throw new Error('Bookings could not be loaded');
   }
   return data;
 }
@@ -110,10 +110,10 @@ export async function updateBooking(id, obj) {
     .eq('id', id)
     .select()
     .single();
-  console.log(id);
+  // console.log(id);
 
   if (error) {
-    console.error(error);
+    // console.error(error);
     throw new Error('Booking could not be updated');
   }
   return data;

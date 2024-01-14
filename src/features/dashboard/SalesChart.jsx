@@ -62,7 +62,7 @@ function SalesChart({ bookings, numDays }) {
     start: subDays(new Date(), numDays - 1),
     end: new Date(),
   });
-  console.log(allDates);
+  // console.log(allDates);
 
   const data = allDates.map((date) => {
     return {
@@ -76,7 +76,7 @@ function SalesChart({ bookings, numDays }) {
     };
   });
 
-  console.log(data);
+  // console.log(data);
 
   const colors = isDarkMode
     ? {
@@ -124,8 +124,8 @@ function SalesChart({ bookings, numDays }) {
           <Area
             dataKey='extrasSales'
             type='monotone'
-            stroke={colors.totalSales.stroke}
-            fill={colors.totalSales.fill}
+            stroke={colors.extrasSales.stroke}
+            fill={colors.extrasSales.fill}
             strokeWidth={2}
             name='Extras sales'
             unit='$'
