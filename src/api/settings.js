@@ -7,6 +7,5 @@ export const getSettings = async () => {
 
 export const updateSetting = async (setting) => {
   const { data } = await client.patch('/api/settings', setting);
-  console.log(data);
   return data;
 };

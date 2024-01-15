@@ -9,6 +9,7 @@ import Modal from '../../ui/Modal';
 import ConfirmDelete from '../../ui/ConfirmDelete';
 import Table from '../../ui/Table';
 import Menus from '../../ui/Menus';
+import { useDuplicateCabin } from './useDuplicateCabin';
 
 // const TableRow = styled.div`
 //   display: grid;
@@ -52,7 +53,10 @@ const Discount = styled.div`
 function CabinRow({ cabin }) {
   const [showForm, setShowForm] = useState(false);
   const { isDeleting, deleteCabin } = useDeleteCabin();
-  const { isCreating, createCabin } = useCreateCabin();
+  // const { isCreating, createCabin } = useCreateCabin();
+  const { isDuplicating, duplicateCabin } = useDuplicateCabin();
+
+  const imageURL = import.meta.env.VITE_IMAGE_URL;
 
   const {
     id: cabinId,
@@ -65,20 +69,15 @@ function CabinRow({ cabin }) {
   } = cabin;
 
   function handleDuplicate() {
-    createCabin({
-      name: `Copy of ${name}`,
-      maxCapacity,
-      regularPrice,
-      discount,
-      image,
-      description,
+    duplicateCabin({
+      id: cabinId,
     });
   }
 
   return (
     <>
       <Table.Row>
-        <Img src={image} />
+        <Img src={imageURL + image} />
         <Cabin>{name}</Cabin>
         <div>Fits up to {maxCapacity} guests</div>
         <Price>{formatCurrency(regularPrice)}</Price>
@@ -95,7 +94,7 @@ function CabinRow({ cabin }) {
                 <Menus.Button
                   icon={<HiSquare2Stack />}
                   onClick={handleDuplicate}
-                  disabled={isCreating}
+                  disabled={isDuplicating}
                 >
                   Duplicate
                 </Menus.Button>
