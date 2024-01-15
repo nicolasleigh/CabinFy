@@ -1,5 +1,5 @@
 import { NextFunction, Request, Response } from 'express';
-import prisma from '../../prisma/client';
+import prisma from '../../prisma/client.js';
 
 export const getSettings = async (
   req: Request,

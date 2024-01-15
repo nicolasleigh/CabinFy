@@ -1,7 +1,7 @@
-import auth from './auth';
-import bookings from './bookings';
-import cabins from './cabins';
-import settings from './settings';
+import auth from './auth.js';
+import bookings from './bookings.js';
+import cabins from './cabins.js';
+import settings from './settings.js';
 
 const mountRoutes = (app: any) => {
   app.use('/api/auth', auth);

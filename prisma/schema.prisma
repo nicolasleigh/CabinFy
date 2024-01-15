@@ -35,9 +35,9 @@ model Cabins {
   created_at   DateTime   @default(now()) @db.Timestamptz()
   name         String
   maxCapacity  Int
-  regularPrice Int
-  discount     Int
-  description  String
+  regularPrice Float
+  discount     Float?
+  description  String?
   image        String
   Bookings     Bookings[]
 }
