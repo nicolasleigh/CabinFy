@@ -210,8 +210,8 @@ export const guests = [
   {
     fullName: 'Mei Chen',
     email: 'mei@gmail.com',
-    nationality: 'Taiwan',
-    nationalID: '3456117890',
-    countryFlag: 'https://flagcdn.com/tw.svg',
+    nationality: 'China',
+    nationalID: '102934756',
+    countryFlag: 'https://flagcdn.com/cn.svg',
   },
 ];

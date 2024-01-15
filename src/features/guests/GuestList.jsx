@@ -1,8 +1,10 @@
 import styled from 'styled-components';
-import { useGuests } from 'features/guests/useGuests';
-import Pagination from 'ui/Pagination';
-import Spinner from 'ui/Spinner';
+// import { useGuests } from 'features/guests/useGuests';
+// import Pagination from '.ui/Pagination';
+import Spinner from '../../ui/Spinner';
 import GuestListItem from './GuestListItem';
+import Pagination from '../../ui/Pagination';
+import { useGuests } from './useGuests';
 
 const StyledGuestList = styled.div`
   border: 1px solid var(--color-grey-200);
@@ -29,11 +31,12 @@ const PaginationContainer = styled.div`
 `;
 
 function GuestList({ onClick }) {
-  const { isLoading, guests, count } = useGuests();
+  // const { isLoading, guests, count } = useGuests();
+  const { isLoading, guests } = useGuests();
 
   if (isLoading) return <Spinner />;
-  if (count === undefined) return null;
-  if (count === 0) return <p>No guests found...</p>;
+  // if (count === undefined) return null;
+  // if (count === 0) return <p>No guests found...</p>;
 
   return (
     <StyledGuestList>
@@ -48,9 +51,9 @@ function GuestList({ onClick }) {
         ))}
       </List>
 
-      <PaginationContainer>
+      {/* <PaginationContainer>
         <Pagination count={count} />
-      </PaginationContainer>
+      </PaginationContainer> */}
     </StyledGuestList>
   );
 }
