@@ -9,3 +9,8 @@ export const createGuest = async (guest) => {
   const { data } = await client.post('/api/guests', guest);
   return data;
 };
+
+export const deleteGuest = async (id) => {
+  const { data } = await client.delete(`/api/guests/${id}`);
+  return data;
+};

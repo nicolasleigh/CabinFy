@@ -53,8 +53,8 @@ function App() {
               <Route path='users' element={<Users />} />
               <Route path='settings' element={<Settings />} />
               <Route path='account' element={<Account />} />
-              {/* <Route path='guests' element={<CreateGuestForm />} /> */}
-              <Route path='guests' element={<GuestList />} />
+              <Route path='guests' element={<CreateGuestForm />} />
+              {/* <Route path='guests' element={<GuestList />} /> */}
             </Route>
             <Route path='login' element={<Login />} />
             <Route path='*' element={<PageNotFound />} />
