@@ -34,7 +34,10 @@ export const resizeImage = async (
 ) => {
   const filePath = path.join(__dirname, `../../uploads/${uuid()}.webp`);
 
-  await sharp(req.file?.buffer).resize(300, 300).webp().toFile(filePath);
+  await sharp(req.file?.buffer)
+    .resize(720, 480)
+    .webp({ lossless: true })
+    .toFile(filePath);
 
   req.body.filePath = filePath;
   next();

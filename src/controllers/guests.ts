@@ -25,3 +25,17 @@ export const createGuest = async (
   });
   res.json(guest);
 };
+
+export const deleteGuest = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  const { id } = req.params;
+  const guest = await prisma.guests.delete({
+    where: {
+      id: Number(id),
+    },
+  });
+  res.json(guest);
+};
