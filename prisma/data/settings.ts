@@ -1,8 +1,8 @@
 export const settings = [
   {
-    maxBookingLength: 14,
+    maxBookingLength: 30,
     minBookingLength: 1,
-    maxGuestsPerBooking: 6,
-    breakfastPrice: 30,
+    maxGuestsPerBooking: 10,
+    breakfastPrice: 40,
   },
 ];

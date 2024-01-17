@@ -66,7 +66,7 @@ export const cabins = [
     name: '008',
     maxCapacity: 10,
     regularPrice: 1000,
-    discount: 0,
+    discount: 200,
     image: '995c9ac7-3117-4041-829e-a21bd65b97eb.webp',
     description:
       "Experience the epitome of luxury and grandeur with your large group or multiple families in our grand cabin 008. This cabin offers a lavish retreat that caters to all your needs and desires. The cabin features an opulent design and boasts of high-end finishes, intricate details and the finest quality wood throughout. Inside, the cabin features multiple grand living areas with fireplaces, a formal dining area, and a gourmet kitchen that is a chef's dream. The bedrooms are designed for ultimate comfort and luxury, with plush beds and en-suite spa-inspired bathrooms. Step outside and immerse yourself in the beauty of nature from your private deck, featuring a luxurious hot tub and ample seating areas for ultimate relaxation and enjoyment.",
@@ -75,7 +75,7 @@ export const cabins = [
     name: '009',
     maxCapacity: 8,
     regularPrice: 700,
-    discount: 0,
+    discount: 80,
     image: 'c86cc8f4-6fc8-468c-9f30-33dd88417053.webp',
     description:
       'Inside, the cabin features warm and inviting interiors crafted from quality wood, multiple living areas with fireplace, and a fully-equipped kitchen. The bedrooms are comfortable and equipped with en-suite bathrooms. The cabin has a private deck with a hot tub and outdoor seating area, perfect for taking in the natural surroundings.',

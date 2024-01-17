@@ -43,6 +43,17 @@ export const bookings = [
     isPaid: false,
     numGuests: 2,
   },
+  {
+    created_at: fromToday(-1, true),
+    startDate: fromToday(0),
+    endDate: fromToday(7),
+    cabinId: 1,
+    guestId: 31,
+    hasBreakfast: false,
+    observation: '',
+    isPaid: false,
+    numGuests: 2,
+  },
 
   // CABIN 002
   {
@@ -77,6 +88,17 @@ export const bookings = [
     observation: '',
     isPaid: false,
     numGuests: 2,
+  },
+  {
+    created_at: fromToday(-9, true),
+    startDate: fromToday(7),
+    endDate: fromToday(13),
+    cabinId: 2,
+    guestId: 32,
+    hasBreakfast: false,
+    observation: '',
+    isPaid: true,
+    numGuests: 1,
   },
 
   // CABIN 003
@@ -113,6 +135,17 @@ export const bookings = [
     isPaid: true,
     numGuests: 4,
   },
+  {
+    created_at: fromToday(-9, true),
+    startDate: fromToday(-9),
+    endDate: fromToday(-1),
+    cabinId: 3,
+    guestId: 33,
+    hasBreakfast: true,
+    observation: '',
+    isPaid: true,
+    numGuests: 2,
+  },
 
   // CABIN 004
   {
@@ -148,6 +181,17 @@ export const bookings = [
     isPaid: true,
     numGuests: 1,
   },
+  {
+    created_at: fromToday(0, true),
+    startDate: fromToday(1),
+    endDate: fromToday(5),
+    cabinId: 4,
+    guestId: 34,
+    hasBreakfast: true,
+    observation: '',
+    isPaid: false,
+    numGuests: 3,
+  },
 
   // CABIN 005
   {
@@ -182,6 +226,17 @@ export const bookings = [
     observation: '',
     isPaid: true,
     numGuests: 6,
+  },
+  {
+    created_at: fromToday(-2, true),
+    startDate: fromToday(3),
+    endDate: fromToday(10),
+    cabinId: 5,
+    guestId: 35,
+    hasBreakfast: true,
+    observation: '',
+    isPaid: true,
+    numGuests: 2,
   },
 
   // CABIN 006
@@ -219,6 +274,17 @@ export const bookings = [
     isPaid: true,
     numGuests: 6,
   },
+  {
+    created_at: fromToday(-7, true),
+    startDate: fromToday(-2),
+    endDate: fromToday(7),
+    cabinId: 6,
+    guestId: 36,
+    hasBreakfast: false,
+    observation: '',
+    isPaid: true,
+    numGuests: 5,
+  },
 
   // CABIN 007
   {
@@ -253,6 +319,17 @@ export const bookings = [
     observation: '',
     isPaid: true,
     numGuests: 6,
+  },
+  {
+    created_at: fromToday(-32, true),
+    startDate: fromToday(17),
+    endDate: fromToday(37),
+    cabinId: 7,
+    guestId: 37,
+    hasBreakfast: false,
+    observation: '',
+    isPaid: false,
+    numGuests: 1,
   },
 
   // CABIN 008
@@ -290,5 +367,112 @@ export const bookings = [
     observation: '',
     isPaid: true,
     numGuests: 7,
+  },
+  {
+    created_at: fromToday(-12, true),
+    startDate: fromToday(3),
+    endDate: fromToday(19),
+    cabinId: 8,
+    guestId: 38,
+    hasBreakfast: false,
+    observation: '',
+    isPaid: false,
+    numGuests: 6,
+  },
+
+  // 009
+  {
+    created_at: fromToday(-3, true),
+    startDate: fromToday(-3),
+    endDate: fromToday(0),
+    cabinId: 9,
+    guestId: 25,
+    hasBreakfast: false,
+    observation:
+      '',
+    isPaid: false,
+    numGuests: 3,
+  },
+  {
+    created_at: fromToday(-1, true),
+    startDate: fromToday(4),
+    endDate: fromToday(7),
+    cabinId: 9,
+    guestId: 26,
+    hasBreakfast: false,
+    observation:
+      '',
+    isPaid: false,
+    numGuests: 3,
+  },
+  {
+    created_at: fromToday(-3, true),
+    startDate: fromToday(6),
+    endDate: fromToday(11),
+    cabinId: 9,
+    guestId: 27,
+    hasBreakfast: true,
+    observation: '',
+    isPaid: true,
+    numGuests: 2,
+  },
+  {
+    created_at: fromToday(-7, true),
+    startDate: fromToday(-6),
+    endDate: fromToday(-2),
+    cabinId: 9,
+    guestId: 39,
+    hasBreakfast: true,
+    observation: '',
+    isPaid: true,
+    numGuests: 2,
+  },
+
+  // 010
+  {
+    created_at: fromToday(-6, true),
+    startDate: fromToday(8),
+    endDate: fromToday(18),
+    cabinId: 10,
+    guestId: 28,
+    hasBreakfast: false,
+    observation:
+      '',
+    isPaid: false,
+    numGuests: 3,
+  },
+  {
+    created_at: fromToday(-2, true),
+    startDate: fromToday(4),
+    endDate: fromToday(7),
+    cabinId: 10,
+    guestId: 29,
+    hasBreakfast: true,
+    observation:
+      '',
+    isPaid: false,
+    numGuests: 3,
+  },
+  {
+    created_at: fromToday(-30, true),
+    startDate: fromToday(-16),
+    endDate: fromToday(-11),
+    cabinId: 10,
+    guestId: 30,
+    hasBreakfast: false,
+    observation: '',
+    isPaid: true,
+    numGuests: 2,
+  },
+  {
+    created_at: fromToday(0, true),
+    startDate: fromToday(2),
+    endDate: fromToday(16),
+    cabinId: 10,
+    guestId: 40,
+    hasBreakfast: true,
+    observation: '',
+    isPaid: false,
+    numGuests: 3,
   },
 ];

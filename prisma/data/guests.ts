@@ -1,13 +1,5 @@
 export const guests = [
   {
-    fullName: 'Jonas Schmedtmann',
-    email: 'hello@jonas.io',
-  },
-  {
-    fullName: 'Jonathan Smith',
-    email: 'johnsmith@test.eu',
-  },
-  {
     fullName: 'Jonatan Johansson',
     email: 'jonatan@example.com',
   },
@@ -28,20 +20,8 @@ export const guests = [
     email: 'emma@gmail.com',
   },
   {
-    fullName: 'Mohammed Ali',
-    email: 'mohammedali@yahoo.com',
-  },
-  {
     fullName: 'Maria Rodriguez',
     email: 'maria@gmail.com',
-  },
-  {
-    fullName: '李小梅',
-    email: 'li.mei@hotmail.com',
-  },
-  {
-    fullName: 'Khadija Ahmed',
-    email: 'khadija@gmail.com',
   },
   {
     fullName: 'Gabriel Silva',
@@ -50,10 +30,6 @@ export const guests = [
   {
     fullName: 'Maria Gomez',
     email: 'maria@example.com',
-  },
-  {
-    fullName: 'Ahmed Hassan',
-    email: 'ahmed@gmail.com',
   },
   {
     fullName: 'John Doe',
@@ -76,20 +52,12 @@ export const guests = [
     email: 'ramesh@gmail.com',
   },
   {
-    fullName: 'Fatimah Al-Sayed',
-    email: 'fatimah@gmail.com',
-  },
-  {
     fullName: 'Nina Williams',
     email: 'nina@hotmail.com',
   },
   {
     fullName: 'Taro Tanaka',
     email: 'taro@gmail.com',
-  },
-  {
-    fullName: 'Abdul Rahman',
-    email: 'abdul@gmail.com',
   },
   {
     fullName: 'Julie Nguyen',
@@ -112,27 +80,84 @@ export const guests = [
     email: 'juan@yahoo.com',
   },
   {
-    fullName: 'Ibrahim Ahmed',
-    email: 'ibrahim@yahoo.com',
+    fullName: '焦玫如',
+    email: 'jiao.ru@gmail.com',
   },
   {
-    fullName: '程小梅',
-    email: 'mei@gmail.com',
+    fullName: '孟姬微',
+    email: 'meng.wei@gmail.com',
   },
   {
-    fullName: '李小华',
-    email: 'hua@gmail.com',
+    fullName: '姚杉岭',
+    email: 'yao.lin@gmail.com',
   },
   {
-    fullName: '李小军',
-    email: 'jun@gmail.com',
+    fullName: '王琼歆',
+    email: 'wang.qiong@gmail.com',
   },
   {
-    fullName: '黄小波',
-    email: 'bo@gmail.com',
+    fullName: '成娜倩',
+    email: 'cheng.na@gmail.com',
   },
   {
-    fullName: '黄小红',
-    email: 'hong@gmail.com',
+    fullName: '石熠漫',
+    email: 'shi.man@gmail.com',
+  },
+  {
+    fullName: '缪霁愉',
+    email: 'miao.yu@gmail.com',
+  },
+  {
+    fullName: '怀均治',
+    email: 'huai.jun@gmail.com',
+  },
+  {
+    fullName: '江建革',
+    email: 'jiang.ge@gmail.com',
+  },
+  {
+    fullName: '郦晗翠',
+    email: 'li.cui@gmail.com',
+  },
+  {
+    fullName: '费创昭',
+    email: 'fei.zhao@hotmail.com',
+  },
+  {
+    fullName: '苗蔓海',
+    email: 'miao.hai@hotmail.com',
+  },
+  {
+    fullName: '缪运阔',
+    email: 'yun.kuo@hotmail.com',
+  },
+  {
+    fullName: '滑任想',
+    email: 'hua.xiang@hotmail.com',
+  },
+  {
+    fullName: '薛日杉',
+    email: 'xue.shan@hotmail.com',
+  },
+  {
+    fullName: '萧栋',
+    email: 'xiao.dong@hotmail.com',
+  },
+  {
+    fullName: '卓清斐',
+    email: 'zhuo.qin@hotmail.com',
+  },
+  {
+    fullName: '褚嘉珏',
+    email: 'zhu.jia@hotmail.com',
+  },
+  {
+    fullName: '苗桔李',
+    email: 'miao.li@hotmail.com',
+  },
+  {
+    fullName: '宋鹰隽',
+    email: 'song.ying@hotmail.com',
   },
 ];
+// 40 guests
