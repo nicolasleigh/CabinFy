@@ -143,8 +143,8 @@ function prepareData(startData, stays) {
 
 function DurationChart({ confirmedStays }) {
   const { isDarkMode } = useDarkMode();
-  const startDate = isDarkMode ? startDataDark : startDataLight;
-  const data = prepareData(startDate, confirmedStays);
+  const startData = isDarkMode ? startDataDark : startDataLight;
+  const data = prepareData(startData, confirmedStays);
 
   return (
     <ChartBox>
@@ -157,7 +157,7 @@ function DurationChart({ confirmedStays }) {
             dataKey='value'
             innerRadius={85}
             outerRadius={110}
-            cx='40%'
+            cx='45%'
             cy='50%'
             paddingAngle={3}
           >
@@ -173,9 +173,9 @@ function DurationChart({ confirmedStays }) {
           <Legend
             verticalAlign='middle'
             align='right'
-            width='30%'
+            width='35%'
             layout='vertical'
-            iconSize={15}
+            iconSize={10}
             iconType='circle'
           />
         </PieChart>

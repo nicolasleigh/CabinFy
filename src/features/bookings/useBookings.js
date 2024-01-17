@@ -1,7 +1,8 @@
 import { useQuery, useQueryClient } from '@tanstack/react-query';
-import { getBookings } from '../../services/apiBookings';
+// import { getBookings } from '../../services/apiBookings';
 import { useSearchParams } from 'react-router-dom';
 import { PAGE_SIZE } from '../../utils/constans';
+import { getBookings } from '../../api/bookings';
 
 export function useBookings() {
   const queryClient = useQueryClient();
@@ -26,7 +27,7 @@ export function useBookings() {
   // QUERY
   const {
     isLoading,
-    data: { data: bookings, count } = {}, // initially the data will not yet exist, use an empty object as a default value, so that it can be destructured
+    data: { bookings, count } = {}, // initially the data will not yet exist, use an empty object as a default value, so that it can be destructured
     error,
   } = useQuery({
     queryKey: ['bookings', filter, sortBy, page],
@@ -46,5 +47,6 @@ export function useBookings() {
       queryKey: ['bookings', filter, sortBy, page - 1],
       queryFn: () => getBookings({ filter, sortBy, page: page - 1 }),
     });
+  // console.log('bookings', bookings);
   return { isLoading, error, bookings, count };
 }
