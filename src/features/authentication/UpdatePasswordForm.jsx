@@ -5,6 +5,7 @@ import FormRow from '../../ui/FormRow';
 import Input from '../../ui/Input';
 
 import { useUpdateUser } from './useUpdateUser';
+const passwordLength = import.meta.env.VITE_PASS_LENGTH;
 
 function UpdatePasswordForm() {
   const { register, handleSubmit, formState, getValues, reset } = useForm();
@@ -19,7 +20,7 @@ function UpdatePasswordForm() {
   return (
     <Form onSubmit={handleSubmit(onSubmit)}>
       <FormRow
-        label='New Password (min 8 chars)'
+        label={`New Password (min ${passwordLength} chars)`}
         error={errors?.password?.message}
       >
         <Input
@@ -30,8 +31,8 @@ function UpdatePasswordForm() {
           {...register('password', {
             required: 'This field is required',
             minLength: {
-              value: 8,
-              message: 'Password needs a minimum of 8 characters',
+              value: passwordLength,
+              message: ` Password needs a minimum of ${passwordLength}  characters`,
             },
           })}
         />

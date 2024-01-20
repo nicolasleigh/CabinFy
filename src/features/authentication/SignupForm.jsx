@@ -6,15 +6,16 @@ import Input from '../../ui/Input';
 import { useSignup } from './useSignup';
 
 // Email regex: /\S+@\S+\.\S+/
+const passwordLength = import.meta.env.VITE_PASS_LENGTH;
 
 function SignupForm() {
   const { signup, isLoading } = useSignup();
   const { register, formState, getValues, handleSubmit, reset } = useForm();
   const { errors } = formState;
 
-  function onSubmit({ fullName, email, password }) {
+  function onSubmit({ username, email, password }) {
     signup(
-      { fullName, email, password },
+      { username, email, password },
       {
         onSettled: () => reset(),
       }
@@ -23,12 +24,12 @@ function SignupForm() {
 
   return (
     <Form onSubmit={handleSubmit(onSubmit)}>
-      <FormRow label='Full name' error={errors?.fullName?.message}>
+      <FormRow label='Full name' error={errors?.username?.message}>
         <Input
           type='text'
-          id='fullName'
+          id='username'
           disabled={isLoading}
-          {...register('fullName', { required: 'This field is required' })}
+          {...register('username', { required: 'This field is required' })}
         />
       </FormRow>
 
@@ -48,7 +49,7 @@ function SignupForm() {
       </FormRow>
 
       <FormRow
-        label='Password (min 8 characters)'
+        label={`Password (min ${passwordLength} characters)`}
         error={errors?.password?.message}
       >
         <Input
@@ -58,8 +59,8 @@ function SignupForm() {
           {...register('password', {
             required: 'This field is required',
             minLength: {
-              value: 8,
-              message: 'Password needs a minimum of 8 characters',
+              value: passwordLength,
+              message: `Password needs a minimum of ${passwordLength} characters`,
             },
           })}
         />

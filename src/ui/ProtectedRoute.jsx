@@ -3,6 +3,7 @@ import { useUser } from '../features/authentication/useUser';
 import Spinner from './Spinner';
 import { useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
+import { useQueryClient } from '@tanstack/react-query';
 
 const FullPage = styled.div`
   height: 100vh;
@@ -13,10 +14,12 @@ const FullPage = styled.div`
 `;
 
 function ProtectedRoute({ children }) {
+  const queryClient = useQueryClient();
   const navigate = useNavigate();
 
   // 1. Load the authenticated user
   const { isLoading, isAuthenticated } = useUser();
+  // const { role } = queryClient.getQueryData({ queryKey: ['user'] });
 
   // 2. If there is NO authenticated user, redirect to the /login
   useEffect(

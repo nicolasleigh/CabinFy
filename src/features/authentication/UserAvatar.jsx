@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { useUser } from './useUser';
+// import { useUser } from './useUser';
 
 const StyledUserAvatar = styled.div`
   display: flex;
@@ -21,16 +22,18 @@ const Avatar = styled.img`
 `;
 
 function UserAvatar() {
+  const imageURL = import.meta.env.VITE_IMAGE_URL;
+
   const { user } = useUser();
-  const { fullName, avatar } = user.user_metadata;
+  const { username, avatar } = user;
 
   return (
     <StyledUserAvatar>
       <Avatar
-        src={avatar || 'default-user.jpg'}
-        alt={`Avatar of ${fullName}`}
+        src={avatar ? imageURL + avatar : 'default-user.jpg'}
+        alt={`Avatar of ${username}`}
       />
-      <span>{fullName}</span>
+      <span>{username}</span>
     </StyledUserAvatar>
   );
 }

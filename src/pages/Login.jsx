@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import LoginForm from '../features/authentication/LoginForm';
 import Logo from '../ui/Logo';
 import Heading from '../ui/Heading';
+import Cookies from 'js-cookie';
 
 const LoginLayout = styled.main`
   min-height: 100vh;
@@ -14,6 +15,8 @@ const LoginLayout = styled.main`
 `;
 
 function Login() {
+  const token = Cookies.get('userUid');
+  console.log(token);
   return (
     <LoginLayout>
       <Logo />

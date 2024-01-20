@@ -17,10 +17,10 @@ function LoginForm() {
     login(
       { email, password },
       {
-        onSettled: () => {
-          setEmail('');
-          setPassword('');
-        },
+        // onSettled: () => {
+        //   setEmail('');
+        //   setPassword('');
+        // },
       }
     );
   }
