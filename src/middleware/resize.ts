@@ -42,3 +42,16 @@ export const resizeImage = async (
   req.body.filePath = filePath;
   next();
 };
+
+export const resizeAvatar = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  const filePath = path.join(__dirname, `../../uploads/${uuid()}.webp`);
+
+  await sharp(req.file?.buffer).resize(240, 240).webp().toFile(filePath);
+
+  req.body.filePath = filePath;
+  next();
+};

@@ -10,6 +10,21 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+model Users {
+  id         Int      @id @default(autoincrement())
+  created_at DateTime @default(now()) @db.Timestamptz()
+  updated_at DateTime @updatedAt @db.Timestamptz()
+  email      String   @unique
+  password   String
+  role       Role     @default(USER)
+  username   String?
+  phone      String?
+  salt       String
+  ip         String?  @db.Inet
+  uid        String   @unique @default(uuid())
+  avatar     String?
+}
+
 model Bookings {
   id           Int      @id @default(autoincrement())
   created_at   DateTime @default(now()) @db.Timestamptz()
@@ -58,4 +73,9 @@ model Guests {
   email      String
   nationalId String?
   Bookings   Bookings[]
+}
+
+enum Role {
+  USER
+  ADMIN
 }
