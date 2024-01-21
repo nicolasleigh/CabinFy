@@ -14,3 +14,15 @@ export const logOut = async () => {
   const { data } = await client.get('/auth/logout');
   return data;
 };
+
+export const forgetPassword = async (user) => {
+  const { data } = await client.post('/auth/forget-password', user);
+  return data;
+};
+
+export const resetPassword = async ({ uid, token, password }) => {
+  const { data } = await client.post(`/auth/reset-password/${uid}/${token}`, {
+    password,
+  });
+  return data;
+};

@@ -2,7 +2,7 @@ import { client } from './client';
 
 export const getUser = async () => {
   const { data } = await client.get('/api/users');
-  console.log(data);
+  // console.log(data);
   return data;
 };
 

@@ -1,8 +1,8 @@
 import styled from 'styled-components';
-import LoginForm from '../features/authentication/LoginForm';
 import Logo from '../ui/Logo';
 import Heading from '../ui/Heading';
 import Cookies from 'js-cookie';
+import SignupForm from '../features/authentication/SignupForm';
 
 const LoginLayout = styled.main`
   min-height: 100vh;
@@ -14,16 +14,16 @@ const LoginLayout = styled.main`
   background-color: var(--color-grey-50);
 `;
 
-function Login() {
-  // const token = Cookies.get('userUid');
-  // console.log(token);
+function Signup() {
+  const token = Cookies.get('userUid');
+  console.log(token);
   return (
     <LoginLayout>
       <Logo />
-      <Heading as='h4'>Log in to your account</Heading>
-      <LoginForm />
+      <Heading as='h4'>Sign up</Heading>
+      <SignupForm />
     </LoginLayout>
   );
 }
 
-export default Login;
+export default Signup;

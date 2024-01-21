@@ -4,40 +4,52 @@ import Form from '../../ui/Form';
 import FormRow from '../../ui/FormRow';
 import Input from '../../ui/Input';
 import { useSignup } from './useSignup';
+import FormRowVertical from '../../ui/FormRowVertical';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { useQueryClient } from '@tanstack/react-query';
+import ButtonGroup from '../../ui/ButtonGroup';
+import ButtonLink from '../../ui/ButtonLink';
 
 // Email regex: /\S+@\S+\.\S+/
 const passwordLength = import.meta.env.VITE_PASS_LENGTH;
 
 function SignupForm() {
   const { signup, isLoading } = useSignup();
+  const { state } = useLocation();
   const { register, formState, getValues, handleSubmit, reset } = useForm();
   const { errors } = formState;
+  const navigate = useNavigate();
+  const queryClient = useQueryClient();
 
   function onSubmit({ username, email, password }) {
     signup(
       { username, email, password },
       {
-        onSettled: () => reset(),
+        onSettled: () => {
+          queryClient.invalidateQueries(['user']);
+          navigate('/');
+        },
       }
     );
   }
 
   return (
     <Form onSubmit={handleSubmit(onSubmit)}>
-      <FormRow label='Full name' error={errors?.username?.message}>
+      <FormRowVertical label='Full name' error={errors?.username?.message}>
         <Input
           type='text'
           id='username'
           disabled={isLoading}
           {...register('username', { required: 'This field is required' })}
         />
-      </FormRow>
+      </FormRowVertical>
 
-      <FormRow label='Email address' error={errors?.email?.message}>
+      <FormRowVertical label='Email address' error={errors?.email?.message}>
         <Input
           type='email'
           id='email'
           disabled={isLoading}
+          defaultValue={state?.email || ''}
           {...register('email', {
             required: 'This field is required',
             pattern: {
@@ -46,9 +58,9 @@ function SignupForm() {
             },
           })}
         />
-      </FormRow>
+      </FormRowVertical>
 
-      <FormRow
+      <FormRowVertical
         label={`Password (min ${passwordLength} characters)`}
         error={errors?.password?.message}
       >
@@ -64,33 +76,12 @@ function SignupForm() {
             },
           })}
         />
-      </FormRow>
+      </FormRowVertical>
 
-      <FormRow label='Repeat password' error={errors?.passwordConfirm?.message}>
-        <Input
-          type='password'
-          id='passwordConfirm'
-          disabled={isLoading}
-          {...register('passwordConfirm', {
-            required: 'This field is required',
-            validate: (value) =>
-              value === getValues().password || 'Passwords need to match',
-          })}
-        />
-      </FormRow>
-
-      <FormRow>
-        {/* type is an HTML attribute! */}
-        <Button
-          variation='secondary'
-          type='reset'
-          disabled={isLoading}
-          onClick={reset}
-        >
-          Cancel
-        </Button>
+      <FormRowVertical>
         <Button disabled={isLoading}>Create new user</Button>
-      </FormRow>
+      </FormRowVertical>
+      <ButtonLink to='/login'>log in</ButtonLink>
     </Form>
   );
 }

@@ -18,6 +18,10 @@ import ProtectedRoute from './ui/ProtectedRoute';
 import { DarkModeProvider } from './context/DarkModeContext';
 import GuestList from './features/guests/GuestList';
 import CreateGuestForm from './features/guests/CreateGuestForm';
+import Logup from './pages/Signup';
+import Signup from './pages/Signup';
+import ResetPassword from './pages/ResetPassword';
+import ForgetPassword from './pages/ForgetPassword';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -50,13 +54,19 @@ function App() {
               <Route path='bookings/:bookingId' element={<Booking />} />
               <Route path='checkin/:bookingId' element={<Checkin />} />
               <Route path='cabins' element={<Cabins />} />
-              <Route path='users' element={<Users />} />
+              {/* <Route path='users' element={<Users />} /> */}
               <Route path='settings' element={<Settings />} />
               <Route path='account' element={<Account />} />
               <Route path='guests' element={<CreateGuestForm />} />
               {/* <Route path='guests' element={<GuestList />} /> */}
             </Route>
             <Route path='login' element={<Login />} />
+            <Route path='signup' element={<Signup />} />
+            <Route
+              path='reset-password/:uid/:token'
+              element={<ResetPassword />}
+            />
+            <Route path='forget-password' element={<ForgetPassword />} />
             <Route path='*' element={<PageNotFound />} />
           </Routes>
         </BrowserRouter>
