@@ -57,6 +57,7 @@ model Cabins {
   description  String?
   image        String
   Bookings     Bookings[]
+  images       Json?
 }
 
 model Settings {
@@ -70,9 +71,15 @@ model Settings {
 
 model Guests {
   id         Int        @id @default(autoincrement())
+  uid        String     @unique @default(uuid())
   created_at DateTime   @default(now()) @db.Timestamptz()
+  updated_at DateTime   @updatedAt @db.Timestamptz()
   fullName   String
-  email      String
+  email      String     @unique
+  phone      String?
+  password   String     @default("")
+  salt       String
+  ip         String?    @db.Inet
   nationalId String?
   Bookings   Bookings[]
 }

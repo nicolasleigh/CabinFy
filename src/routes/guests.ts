@@ -5,5 +5,6 @@ const router = express.Router();
 router.get('/', getGuests);
 router.post('/', createGuest);
 router.delete('/:id', deleteGuest);
+router.post('/signup');
 
 export default router;

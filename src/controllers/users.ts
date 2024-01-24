@@ -21,7 +21,6 @@ export const getUser = async (
   res: Response,
   next: NextFunction
 ) => {
-  // console.log(req.user);
   return res.json(req.user);
 };
 
