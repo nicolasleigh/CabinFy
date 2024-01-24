@@ -102,7 +102,7 @@ function BookingRow({
           <Menus.List id={bookingId}>
             <Menus.Button
               icon={<HiEye />}
-              onClick={() => navigate(`/bookings/${bookingId}`)}
+              onClick={() => navigate(`/admin/bookings/${bookingId}`)}
             >
               See details
             </Menus.Button>
@@ -110,7 +110,7 @@ function BookingRow({
             {status === 'unconfirmed' && (
               <Menus.Button
                 icon={<HiArrowDownOnSquare />}
-                onClick={() => navigate(`/checkin/${bookingId}`)}
+                onClick={() => navigate(`/admin/checkin/${bookingId}`)}
               >
                 Check in
               </Menus.Button>

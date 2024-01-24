@@ -57,10 +57,10 @@ function LoginForm() {
           </Button>
         </FormRowVertical>
         <ButtonGroup between>
-          <ButtonLink to='/signup' state={{ email }}>
+          <ButtonLink to='/admin/signup' state={{ email }}>
             sign up
           </ButtonLink>
-          <ButtonLink to='/forget-password' state={{ email }}>
+          <ButtonLink to='/admin/forget-password' state={{ email }}>
             forget password?
           </ButtonLink>
         </ButtonGroup>

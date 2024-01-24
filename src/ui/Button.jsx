@@ -46,12 +46,36 @@ const variations = {
       background-color: var(--color-red-800);
     }
   `,
+  gradient: css`
+    color: var(--color-red-100);
+
+    background: rgb(246, 32, 32);
+    background: linear-gradient(
+      275deg,
+      rgba(246, 32, 32, 0.97) 0%,
+      rgba(253, 45, 96, 0.91) 100%
+    );
+
+    transition: all 0.3s ease-in-out;
+
+    &:hover {
+      opacity: 0.9;
+      background: rgb(246, 32, 32);
+      background: linear-gradient(
+        275deg,
+        rgba(253, 45, 96, 0.91) 0%,
+        rgba(246, 32, 32, 0.97) 100%
+      );
+    }
+  `,
 };
 
 const Button = styled.button`
   border: none;
   border-radius: var(--border-radius-sm);
   box-shadow: var(--shadow-sm);
+  transition: background-color 0.6s ease-in-out;
+
   &:disabled {
     background-color: var(--color-grey-400);
     &:hover {

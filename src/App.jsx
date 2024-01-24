@@ -22,6 +22,11 @@ import Logup from './pages/Signup';
 import Signup from './pages/Signup';
 import ResetPassword from './pages/ResetPassword';
 import ForgetPassword from './pages/ForgetPassword';
+import Home from './pages/Home';
+import GuestLayout from './ui/GuestLayout';
+import Cabin from './pages/Cabin';
+import GuestSignup from './pages/GuestSignup';
+import { ContextProvider } from './context';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -34,63 +39,75 @@ const queryClient = new QueryClient({
 function App() {
   return (
     <DarkModeProvider>
-      <QueryClientProvider client={queryClient}>
-        <ReactQueryDevtools initialIsOpen={false} />
-        <GlobalStyles />
-        <BrowserRouter>
-          <Routes>
-            <Route
-              path='/'
-              element={
-                <ProtectedRoute>
-                  <AppLayout />
-                </ProtectedRoute>
-              }
-            >
-              <Route index element={<Navigate replace to='dashboard' />} />
-              {/* <Route index element={<Dashboard />} /> */}
-              <Route path='dashboard' element={<Dashboard />} />
-              <Route path='bookings' element={<Bookings />} />
-              <Route path='bookings/:bookingId' element={<Booking />} />
-              <Route path='checkin/:bookingId' element={<Checkin />} />
-              <Route path='cabins' element={<Cabins />} />
-              {/* <Route path='users' element={<Users />} /> */}
-              <Route path='settings' element={<Settings />} />
-              <Route path='account' element={<Account />} />
-              <Route path='guests' element={<CreateGuestForm />} />
-              {/* <Route path='guests' element={<GuestList />} /> */}
-            </Route>
-            <Route path='login' element={<Login />} />
-            <Route path='signup' element={<Signup />} />
-            <Route
-              path='reset-password/:uid/:token'
-              element={<ResetPassword />}
-            />
-            <Route path='forget-password' element={<ForgetPassword />} />
-            <Route path='*' element={<PageNotFound />} />
-          </Routes>
-        </BrowserRouter>
-        <Toaster
-          position='top-center'
-          gutter={12}
-          containerStyle={{ margin: '8px' }}
-          toastOptions={{
-            success: {
-              duration: 3000,
-            },
-            error: {
-              duration: 5000,
-            },
-            style: {
-              fontSize: '16px',
-              maxWidth: '500px',
-              padding: '16px 24px',
-              backgroundColor: 'var(--color-grey-0)',
-              color: 'var(--color-grey-700)',
-            },
-          }}
-        />
-      </QueryClientProvider>
+      <ContextProvider>
+        <QueryClientProvider client={queryClient}>
+          <ReactQueryDevtools initialIsOpen={false} />
+          <GlobalStyles />
+          <BrowserRouter>
+            <Routes>
+              <Route
+                path='/admin'
+                element={
+                  <ProtectedRoute>
+                    <AppLayout />
+                  </ProtectedRoute>
+                }
+              >
+                <Route index element={<Navigate replace to='dashboard' />} />
+                {/* <Route index element={<Dashboard />} /> */}
+                <Route path='dashboard' element={<Dashboard />} />
+                <Route path='bookings' element={<Bookings />} />
+                <Route path='bookings/:bookingId' element={<Booking />} />
+                <Route path='checkin/:bookingId' element={<Checkin />} />
+                <Route path='cabins' element={<Cabins />} />
+                {/* <Route path='users' element={<Users />} /> */}
+                <Route path='settings' element={<Settings />} />
+                <Route path='account' element={<Account />} />
+                <Route path='guests' element={<CreateGuestForm />} />
+                {/* <Route path='guests' element={<GuestList />} /> */}
+              </Route>
+              <Route path='/admin/login' element={<Login />} />
+              <Route path='/admin/signup' element={<Signup />} />
+              <Route
+                path='/admin/reset-password/:uid/:token'
+                element={<ResetPassword />}
+              />
+              <Route
+                path='/admin/forget-password'
+                element={<ForgetPassword />}
+              />
+
+              <Route path='/' element={<GuestLayout />}>
+                <Route index element={<Navigate replace to='home' />} />
+                <Route path='home' element={<Home />} />
+                <Route path='cabin/:cabinId' element={<Cabin />} />
+                {/* <Route path='signup' element={<GuestSignup />} /> */}
+              </Route>
+              <Route path='*' element={<PageNotFound />} />
+            </Routes>
+          </BrowserRouter>
+          <Toaster
+            position='top-center'
+            gutter={12}
+            containerStyle={{ margin: '8px' }}
+            toastOptions={{
+              success: {
+                duration: 3000,
+              },
+              error: {
+                duration: 5000,
+              },
+              style: {
+                fontSize: '16px',
+                maxWidth: '500px',
+                padding: '16px 24px',
+                backgroundColor: 'var(--color-grey-0)',
+                color: 'var(--color-grey-700)',
+              },
+            }}
+          />
+        </QueryClientProvider>
+      </ContextProvider>
     </DarkModeProvider>
   );
 }

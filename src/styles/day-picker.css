@@ -1,0 +1,8 @@
+.rdp {
+  --rdp-cell-size: 50px; /* Size of the day cells. */
+  display: flex;
+  justify-content: center;
+}
+
+.rdp-tfoot {
+}

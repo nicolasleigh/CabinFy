@@ -10,7 +10,7 @@ export function useLogout() {
     mutationFn: logOutApi,
     onSuccess: () => {
       queryClient.removeQueries();
-      navigate('/login', { replace: true });
+      navigate('/admin/login', { replace: true });
     },
   });
   return { logout, isLoading };

@@ -24,7 +24,7 @@ function ResetPassForm() {
       {
         onSettled: () => {
           queryClient.invalidateQueries(['user']);
-          navigate('/');
+          navigate('/admin');
         },
       }
     );

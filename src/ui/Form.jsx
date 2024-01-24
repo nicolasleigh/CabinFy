@@ -17,6 +17,11 @@ const Form = styled.form`
     css`
       width: 80rem;
     `}
+  ${(props) =>
+    props.type === 'modal-small' &&
+    css`
+      width: 44rem;
+    `}
     
   overflow: hidden;
   font-size: 1.4rem;

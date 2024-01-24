@@ -29,8 +29,13 @@ const GlobalStyles = createGlobalStyle`
   --color-indigo-700: #4338ca;
 
   --color-red-100: #fee2e2;
-  --color-red-700: #b91c1c;
-  --color-red-800: #991b1b;
+--color-red-200: #ffa8a8;
+--color-red-300: #ff8787;
+--color-red-400: #ff6b6b;
+--color-red-500: #fa5252;
+--color-red-600: #f03e3e;
+--color-red-700: #b91c1c;
+--color-red-800: #991b1b;
 
   --backdrop-color: rgba(255, 255, 255, 0.1);
 
@@ -67,6 +72,11 @@ const GlobalStyles = createGlobalStyle`
 --color-indigo-700: #e0e7ff;
 
 --color-red-100: #fee2e2;
+--color-red-200: #ffa8a8;
+--color-red-300: #ff8787;
+--color-red-400: #ff6b6b;
+--color-red-500: #fa5252;
+--color-red-600: #f03e3e;
 --color-red-700: #b91c1c;
 --color-red-800: #991b1b;
 
@@ -95,6 +105,7 @@ const GlobalStyles = createGlobalStyle`
   --border-radius-sm: 5px;
   --border-radius-md: 7px;
   --border-radius-lg: 9px;
+  --border-radius-xl: 14px;
 
 
 }

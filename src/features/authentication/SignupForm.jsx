@@ -27,7 +27,7 @@ function SignupForm() {
       {
         onSettled: () => {
           queryClient.invalidateQueries(['user']);
-          navigate('/');
+          navigate('/admin');
         },
       }
     );
@@ -81,7 +81,7 @@ function SignupForm() {
       <FormRowVertical>
         <Button disabled={isLoading}>Create new user</Button>
       </FormRowVertical>
-      <ButtonLink to='/login'>log in</ButtonLink>
+      <ButtonLink to='/admin/login'>log in</ButtonLink>
     </Form>
   );
 }
