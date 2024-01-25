@@ -1,8 +1,11 @@
 import { NextFunction, Request, Response } from 'express';
 import prisma from '../../prisma/client.js';
 import crypto from 'node:crypto';
-import { salt } from '../auth/signUp.js';
+import { salt } from '../auth/signup-admin.js';
 import { v4 as uuid } from 'uuid';
+import jwt from 'jsonwebtoken';
+
+export const accessExpTime = '2m';
 
 export const getGuests = async (
   req: Request,
@@ -13,21 +16,20 @@ export const getGuests = async (
   res.json(guests);
 };
 
-export const createGuest = async (
-  req: Request,
-  res: Response,
-  next: NextFunction
-) => {
-  const { fullName, email, nationalId } = req.body;
-  const guest = await prisma.guests.create({
-    data: {
-      fullName,
-      email,
-      nationalId,
-    },
-  });
-  res.json(guest);
-};
+// export const createGuest = async (
+//   req: Request,
+//   res: Response,
+//   next: NextFunction
+// ) => {
+//   const { fullName, email, nationalId } = req.body;
+//   const guest = await prisma.guests.create({
+//     data: {
+//       fullName,
+//       email,
+//     },
+//   });
+//   res.json(guest);
+// };
 
 export const deleteGuest = async (
   req: Request,
@@ -48,7 +50,7 @@ export const signupGuest = async (
   res: Response,
   next: NextFunction
 ) => {
-  const { fullName, email, password, user } = req.body;
+  const { fullName, email, password } = req.body;
   const ip = req.ip;
   const exist = await prisma.guests.findUnique({
     where: {
@@ -68,7 +70,7 @@ export const signupGuest = async (
       if (err) {
         return next(err);
       }
-      const user = await prisma.guests.create({
+      const guest = await prisma.guests.create({
         data: {
           fullName,
           email: email.toLowerCase(),
@@ -78,13 +80,116 @@ export const signupGuest = async (
           uid: uuid(),
         },
       });
-      req.logIn(user, (err) => {
-        if (err) {
-          return next(err);
-        }
-        // res.redirect('/');
-        return res.json(user);
+
+      req.login(guest, { session: false }, async (error) => {
+        if (error) return next(error);
+
+        const accessToken = jwt.sign(
+          { uid: guest.uid, email: guest.email, fullName: guest.fullName },
+          process.env.JWT_ACCESS_SECRET!,
+          {
+            expiresIn: accessExpTime,
+          }
+        );
+        const refreshToken = jwt.sign(
+          { uid: guest.uid },
+          process.env.JWT_REFRESH_SECRET!,
+          {
+            expiresIn: '30d',
+          }
+        );
+        res.cookie('jwt', refreshToken, {
+          httpOnly: true,
+          // secure: true,   //! for https
+          maxAge: 30 * 24 * 60 * 60 * 1000,
+        });
+
+        const data = {
+          uid: guest.uid,
+          fullName: guest.fullName,
+          email: guest.email,
+          accessToken,
+        };
+
+        return res.json(data);
       });
     }
   );
+};
+
+export const loginGuest = (req: Request, res: Response, next: NextFunction) => {
+  // @ts-ignore
+  const { uid, email, fullName } = req.user;
+  const accessToken = jwt.sign(
+    { uid, email, fullName },
+    process.env.JWT_ACCESS_SECRET!,
+    {
+      expiresIn: accessExpTime,
+    }
+  );
+  const refreshToken = jwt.sign({ uid }, process.env.JWT_REFRESH_SECRET!, {
+    expiresIn: '30d',
+  });
+  res.cookie('jwt', refreshToken, {
+    httpOnly: true,
+    // secure: true,   //! for https
+    maxAge: 30 * 24 * 60 * 60 * 1000,
+  });
+
+  const data = {
+    uid,
+    email,
+    fullName,
+    accessToken,
+  };
+
+  return res.json(data);
+};
+
+export const getRefreshToken = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  const refreshToken = req.cookies.jwt;
+  if (!refreshToken) {
+    return res.status(401).json({ error: 'You are not authenticated!' });
+  }
+  let payload: any;
+  try {
+    payload = jwt.verify(refreshToken, process.env.JWT_REFRESH_SECRET!);
+  } catch (err) {
+    return res.status(401).json({ error: 'You are not authenticated!' });
+  }
+  const guest = await prisma.guests.findUnique({
+    where: {
+      uid: payload.uid,
+    },
+  });
+  if (!guest) {
+    return res.status(401).json({ error: 'You are not authenticated!' });
+  }
+  const accessToken = jwt.sign(
+    { uid: guest.uid, email: guest.email, fullName: guest.fullName },
+    process.env.JWT_ACCESS_SECRET!,
+    {
+      expiresIn: accessExpTime,
+    }
+  );
+  const data = {
+    uid: guest.uid,
+    fullName: guest.fullName,
+    email: guest.email,
+    accessToken,
+  };
+  return res.json(data);
+};
+
+export const logoutGuest = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  res.clearCookie('jwt');
+  res.json({ message: 'You are logged out!' });
 };

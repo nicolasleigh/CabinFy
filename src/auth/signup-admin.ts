@@ -40,12 +40,18 @@ export const signUp = async (
           uid: uuid(),
         },
       });
-      req.logIn(user, (err) => {
+      req.login(user, (err) => {
         if (err) {
           return next(err);
         }
-        // res.redirect('/');
-        return res.json(user);
+        const data = {
+          uid: user.uid,
+          username: user.username,
+          avatar: user.avatar,
+          email: user.email,
+          role: user.role,
+        };
+        return res.json(data);
       });
     }
   );

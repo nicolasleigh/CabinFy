@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from 'express';
 import prisma from '../../prisma/client.js';
-import { salt } from '../auth/signUp.js';
+import { salt } from '../auth/signup-admin.js';
 import crypto from 'node:crypto';
 import { Resend } from 'resend';
 
