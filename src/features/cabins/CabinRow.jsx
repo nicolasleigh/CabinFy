@@ -10,6 +10,7 @@ import ConfirmDelete from '../../ui/ConfirmDelete';
 import Table from '../../ui/Table';
 import Menus from '../../ui/Menus';
 import { useDuplicateCabin } from './useDuplicateCabin';
+import { imageBaseUrl } from '../../App';
 
 // const TableRow = styled.div`
 //   display: grid;
@@ -56,8 +57,6 @@ function CabinRow({ cabin }) {
   // const { isCreating, createCabin } = useCreateCabin();
   const { isDuplicating, duplicateCabin } = useDuplicateCabin();
 
-  const imageURL = import.meta.env.VITE_IMAGE_URL;
-
   const {
     id: cabinId,
     name,
@@ -77,7 +76,7 @@ function CabinRow({ cabin }) {
   return (
     <>
       <Table.Row>
-        <Img src={imageURL + image} />
+        <Img src={imageBaseUrl + image} />
         <Cabin>{name}</Cabin>
         <div>Fits up to {maxCapacity} guests</div>
         <Price>{formatCurrency(regularPrice)}</Price>

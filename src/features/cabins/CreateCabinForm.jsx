@@ -1,7 +1,7 @@
 import Input from '../../ui/Input';
 import Form from '../../ui/Form';
 import Button from '../../ui/Button';
-import FileInput from '../../ui/FileInput';
+import { FileInput, FileInputMultiple } from '../../ui/FileInput';
 import Textarea from '../../ui/Textarea';
 import { useForm } from 'react-hook-form';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
@@ -23,11 +23,11 @@ function CreateCabinForm({ cabinToEdit = {}, onCloseModal }) {
     defaultValues: isEditSession ? editValues : {},
   });
   const { errors } = formState;
-  console.log(errors);
+  // console.log(errors);
 
   function onSubmit(data) {
     const image = typeof data.image === 'string' ? data.image : data.image[0];
-    // console.log(data);
+    console.log(data);
     if (isEditSession)
       editCabin(
         { newCabinData: { ...data, image }, id: editId },
@@ -40,7 +40,17 @@ function CreateCabinForm({ cabinToEdit = {}, onCloseModal }) {
       );
     else
       createCabin(
-        { ...data, image: data.image[0] },
+        {
+          ...data,
+          image: data.image[0],
+          // images: data.images,
+          images: [
+            data.images[0],
+            data.images[1],
+            data.images[2],
+            data.images[3],
+          ],
+        },
         {
           onSuccess: () => {
             reset();
@@ -70,16 +80,16 @@ function CreateCabinForm({ cabinToEdit = {}, onCloseModal }) {
         />
       </FormRow>
 
-      <FormRow label='Maximum capacity' error={errors?.maxCapacity?.message}>
+      <FormRow label='Bedroom quantity' error={errors?.bedroom?.message}>
         <Input
           type='number'
-          id='maxCapacity'
+          id='bedroom'
           disabled={isWorking}
-          {...register('maxCapacity', {
+          {...register('bedroom', {
             required: 'This field is required',
             min: {
               value: 1,
-              message: 'Capacity should be at least 1',
+              message: 'Bedroom quantity should be at least 1',
             },
           })}
         />
@@ -124,18 +134,26 @@ function CreateCabinForm({ cabinToEdit = {}, onCloseModal }) {
           id='description'
           disabled={isWorking}
           defaultValue=''
-          {...register('description', {
-            required: 'This field is required',
-          })}
+          {...register('description')}
         />
       </FormRow>
 
-      <FormRow label='Cabin photo'>
+      <FormRow label='Cover photo' error={errors?.image?.message}>
         <FileInput
           id='image'
           accept='image/*'
           {...register('image', {
             required: isEditSession ? false : 'This field is required',
+          })}
+        />
+      </FormRow>
+      <FormRow label='Additional photos' error={errors?.images?.message}>
+        <FileInputMultiple
+          id='image'
+          accept='image/*'
+          {...register('images', {
+            required: isEditSession ? false : 'This field is required',
+            validate: (value) => value.length === 4 || '4 photos are required',
           })}
         />
       </FormRow>

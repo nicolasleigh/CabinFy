@@ -8,6 +8,7 @@ import { useState } from 'react';
 import { useSignupModal } from '../hooks';
 import { useOutsideClick } from '../hooks/useOutsideClick';
 import FormRowVertical from '../ui/FormRowVertical';
+import { useSignup } from '../features/guests/useSignup';
 
 const Overlay = styled.div`
   position: fixed;
@@ -37,6 +38,8 @@ const passwordLength = import.meta.env.VITE_PASS_LENGTH;
 
 export default function GuestSignup() {
   const { isOpen, setIsOpen } = useSignupModal();
+  const { signup, isLoading } = useSignup();
+
   const {
     register,
     formState: { errors },
@@ -46,18 +49,18 @@ export default function GuestSignup() {
   } = useForm();
   const ref = useOutsideClick(() => setIsOpen(false));
 
-  const onSubmit = ({ username, email, password }) => {
-    console.log(username, email, password);
+  const onSubmit = ({ fullName, email, password }) => {
+    signup({ fullName, email, password });
   };
   if (!isOpen) return null;
   return (
     <Overlay>
       <StyledModal ref={ref}>
         <Form type='modal-small' onSubmit={handleSubmit(onSubmit)}>
-          <FormRowVertical label='Full name' error={errors?.username?.message}>
+          <FormRowVertical label='Full name' error={errors?.fullName?.message}>
             <Input
-              id='username'
-              {...register('username', { required: 'This field is required' })}
+              id='fullName'
+              {...register('fullName', { required: 'This field is required' })}
             />
           </FormRowVertical>
 

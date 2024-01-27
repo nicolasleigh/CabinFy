@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { useUser } from './useUser';
+import { imageBaseUrl } from '../../App';
 // import { useUser } from './useUser';
 
 const StyledUserAvatar = styled.div`
@@ -22,15 +23,13 @@ const Avatar = styled.img`
 `;
 
 function UserAvatar() {
-  const imageURL = import.meta.env.VITE_IMAGE_URL;
-
   const { user } = useUser();
   const { username, avatar } = user;
 
   return (
     <StyledUserAvatar>
       <Avatar
-        src={avatar ? imageURL + avatar : '/default-user.jpg'}
+        src={avatar ? imageBaseUrl + avatar : '/default-user.jpg'}
         alt={`Avatar of ${username}`}
       />
       <span>{username}</span>

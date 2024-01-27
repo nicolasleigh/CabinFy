@@ -1,8 +1,10 @@
 import styled from 'styled-components';
 import { FaStar } from 'react-icons/fa6';
+import { Link } from 'react-router-dom';
 
-const CardLayout = styled.div`
+const CardLayout = styled(Link)`
   width: 100%;
+  height: 40rem;
   display: flex;
   flex-direction: column;
   gap: 1.2rem;
@@ -60,9 +62,9 @@ const CardPriceText = styled.span`
   color: var(--color-grey-400);
 `;
 
-export default function Card({ src, name, bed, price, rate }) {
+export default function Card({ id, src, name, bed, price, rate }) {
   return (
-    <CardLayout>
+    <CardLayout to={`/cabin/${id}`}>
       <CardImg src={src} alt={src} />
       <CardTextBox>
         <CardNameBox>
@@ -74,7 +76,7 @@ export default function Card({ src, name, bed, price, rate }) {
         </CardNameBox>
         <CardTextBed>
           {bed}
-          {Number(bed) === 1 ? <span>bed</span> : <span>beds</span>}
+          {Number(bed) === 1 ? <span>bedroom</span> : <span>bedrooms</span>}
         </CardTextBed>
         <CardPrice>
           {price}

@@ -1,6 +1,8 @@
 import { client } from './client';
+// import Cookies from 'js-cookie';
 
 export const createBooking = async (booking) => {
+  console.log(booking);
   const { data } = await client.post('/api/bookings', booking);
   return data;
 };

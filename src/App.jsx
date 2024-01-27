@@ -36,6 +36,8 @@ const queryClient = new QueryClient({
   },
 });
 
+export const imageBaseUrl = import.meta.env.VITE_IMAGE_URL;
+
 function App() {
   return (
     <DarkModeProvider>

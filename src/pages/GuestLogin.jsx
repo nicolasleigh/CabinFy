@@ -8,6 +8,7 @@ import { useState } from 'react';
 import { useLoginModal, useSignupModal } from '../hooks';
 import { useOutsideClick } from '../hooks/useOutsideClick';
 import FormRowVertical from '../ui/FormRowVertical';
+import { useLogin } from '../features/guests/useLogin';
 
 const Overlay = styled.div`
   position: fixed;
@@ -37,6 +38,7 @@ const passwordLength = import.meta.env.VITE_PASS_LENGTH;
 
 export default function GuestLogin() {
   const { isOpen, setIsOpen } = useLoginModal();
+  const { login, isLoading } = useLogin();
   const {
     register,
     formState: { errors },
@@ -45,8 +47,8 @@ export default function GuestLogin() {
   } = useForm();
   const ref = useOutsideClick(() => setIsOpen(false));
 
-  const onSubmit = ({ username, email, password }) => {
-    console.log(username, email, password);
+  const onSubmit = ({ email, password }) => {
+    login({ email, password });
   };
   if (!isOpen) return null;
   return (

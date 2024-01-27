@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { IoMdStar } from 'react-icons/io';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useParams } from 'react-router-dom';
 import { IoWifiOutline } from 'react-icons/io5';
 import { LuBath } from 'react-icons/lu';
 import { TbToolsKitchen2 } from 'react-icons/tb';
@@ -16,13 +16,19 @@ import { PiFlowerTulipBold } from 'react-icons/pi';
 import { IoWifiSharp } from 'react-icons/io5';
 import DayPick from '../ui/DayPick';
 import { es } from 'date-fns/locale';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Modal from '../ui/Modal';
 import CreateCabinForm from '../features/cabins/CreateCabinForm';
 import GuestsReviews from '../ui/GuestsReviews';
 import { useCreateBooking } from '../features/bookings/useCreateBooking';
 import GuestSignup from './GuestSignup';
 import GuestLogin from './GuestLogin';
+import { useQueryClient } from '@tanstack/react-query';
+import { imageBaseUrl } from '../App';
+import { useCabin } from '../features/cabins/useCabin';
+import { useSettings } from '../features/settings/useSettings';
+import { differenceInDays, set } from 'date-fns';
+import { formatCurrency } from '../utils/helpers';
 
 const ImageSection = styled.section`
   display: grid;
@@ -264,6 +270,11 @@ const TotalPriceBox = styled.div`
     text-decoration: underline;
     text-underline-offset: 0.2rem;
   }
+
+  .beforeDiscount {
+    text-decoration: line-through;
+    text-decoration-thickness: 2px;
+  }
 `;
 
 const BookingBox = styled.div`
@@ -362,12 +373,61 @@ export default function Cabin() {
   const [selectedRange, setSelectedRange] = useState();
   const [fromValue, setFromValue] = useState('');
   const [toValue, setToValue] = useState('');
+  const [totalPrice, setTotalPrice] = useState(0);
+  const [priceBeforeDiscount, setPriceBeforeDiscount] = useState(0);
+  const { cabin, isLoading: isLoadingCabin } = useCabin();
+  const { settings, isLoading: isLoadingSettings } = useSettings();
+  const { image, images, bedroom, discount, name, regularPrice } = cabin || {
+    images: [],
+  };
+  const {
+    minBookingLength,
+    maxBookingLength,
+    maxGuestsPerBooking,
+    breakfastPrice,
+  } = settings || {};
+
+  const numOfNights =
+    differenceInDays(selectedRange?.to, selectedRange?.from) + 1;
+
+  useEffect(() => {
+    setTotalPrice(0);
+    setPriceBeforeDiscount(0);
+    if (numOfNights) {
+      setTotalPrice(
+        regularPrice * numOfNights * (1 - discount / 100) +
+          (breakfast ? breakfastPrice : 0) * guestsNumber
+      );
+      setPriceBeforeDiscount(
+        regularPrice * numOfNights +
+          (breakfast ? breakfastPrice : 0) * guestsNumber
+      );
+    }
+  }, [
+    numOfNights,
+    guestsNumber,
+    breakfast,
+    breakfastPrice,
+    discount,
+    regularPrice,
+  ]);
 
   const { createBooking, isLoading } = useCreateBooking();
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    createBooking({ guestsNumber, breakfast, selectedRange });
+    createBooking({
+      guestsNumber,
+      breakfast,
+      selectedRange,
+      numOfNights,
+      totalPrice,
+      extrasPrice: breakfast ? breakfastPrice * guestsNumber : 0,
+      cabinPrice: regularPrice * numOfNights,
+      cabinId: cabin.id,
+      isPaid: false,
+      status: 'unconfirmed',
+    });
   };
   return (
     <>
@@ -375,12 +435,12 @@ export default function Cabin() {
       <GuestLogin />
 
       <ImageSection>
-        <ImageLeft src={'/cabin-001.webp'} />
+        <ImageLeft src={imageBaseUrl + image} />
         <ImageRight>
-          <ImageRightCell src={'/cabin-002.webp'} />
-          <ImageRightCell src={'/cabin-003.webp'} />
-          <ImageRightCell src={'/cabin-004.webp'} />
-          <ImageRightCell src={'/cabin-005.webp'} />
+          <ImageRightCell src={imageBaseUrl + images[0]?.fileName} />
+          <ImageRightCell src={imageBaseUrl + images[1]?.fileName} />
+          <ImageRightCell src={imageBaseUrl + images[2]?.fileName} />
+          <ImageRightCell src={imageBaseUrl + images[3]?.fileName} />
         </ImageRight>
       </ImageSection>
 
@@ -388,7 +448,17 @@ export default function Cabin() {
         <TextSection>
           <Location>
             <div>Located in: ArrowHead, California</div>
-            <div>1 bed &bull; ¥ 50 discount</div>
+
+            <div>
+              {bedroom}{' '}
+              {Number(bedroom) === 1 ? (
+                <span>bedroom</span>
+              ) : (
+                <span>bedrooms</span>
+              )}{' '}
+              {Boolean(discount) && <span> &bull; {discount}% discount</span>}{' '}
+              &bull; {formatCurrency(regularPrice)} night
+            </div>
           </Location>
 
           <GuestsFavorite>
@@ -560,6 +630,7 @@ export default function Cabin() {
               setFromValue={setFromValue}
               toValue={toValue}
               setToValue={setToValue}
+              maxBookingLength={maxBookingLength}
             />
             <GuestsNumberBox>
               <Label>Number of Guests</Label>
@@ -575,6 +646,7 @@ export default function Cabin() {
                 <Button
                   type='button'
                   onClick={() => setGuestsNumber((cur) => cur + 1)}
+                  disabled={guestsNumber === maxGuestsPerBooking}
                 >
                   +
                 </Button>
@@ -607,7 +679,10 @@ export default function Cabin() {
             </BreakfastBox>
             <TotalPriceBox>
               <Label>Total Price</Label>
-              <div>$1,290</div>
+              <div className='beforeDiscount'>
+                {Boolean(discount) && formatCurrency(priceBeforeDiscount)}
+              </div>
+              <div>{formatCurrency(totalPrice)}</div>
             </TotalPriceBox>
             <BookingBox>
               <Booking>Booking</Booking>

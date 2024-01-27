@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import Card from '../ui/Card';
 import GuestSignup from './GuestSignup';
 import GuestLogin from './GuestLogin';
+import { useCabins } from '../features/cabins/useCabins';
 
 const HomeLayout = styled.div`
   display: grid;
@@ -10,6 +11,8 @@ const HomeLayout = styled.div`
   row-gap: 3.4rem;
   height: 100vh;
 `;
+
+const imageURL = import.meta.env.VITE_IMAGE_URL;
 
 export default function Home() {
   const imgArr = [
@@ -84,12 +87,30 @@ export default function Home() {
       rate: '4.8',
     },
   ];
+
+  const { cabins, isLoading } = useCabins();
+  console.log(cabins);
   return (
     <>
       <GuestSignup />
       <GuestLogin />
       <HomeLayout>
-        {imgArr.map((e) => {
+        {cabins &&
+          cabins.map((e) => {
+            return (
+              <Card
+                key={e.id}
+                id={e.id}
+                src={imageURL + e.image}
+                name={e.name}
+                bed={e.bedroom}
+                price={'$' + e.regularPrice}
+                rate='4.6'
+                images={e.images}
+              />
+            );
+          })}
+        {/* {imgArr.map((e) => {
           return (
             <Card
               key={e.name}
@@ -100,7 +121,7 @@ export default function Home() {
               rate={e.rate}
             />
           );
-        })}
+        })} */}
       </HomeLayout>
     </>
   );

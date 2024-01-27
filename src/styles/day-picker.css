@@ -2,7 +2,39 @@
   --rdp-cell-size: 50px; /* Size of the day cells. */
   display: flex;
   justify-content: center;
+  --rdp-accent-color: var(--color-red-400);
+  --rdp-outline: 2px solid var(--rdp-accent-color); /* Outline border for focused elements */
+  --rdp-outline-selected: 3px solid var(--rdp-accent-color);
+}
+
+.DayPicker-wrapper {
+  outline: none;
 }
 
 .rdp-tfoot {
+}
+
+/* .rdp-day_selected {
+  background-color: var(--color-red-300);
+  outline: none;
+  border: none;
+} */
+/* .rdp-day_selected:hover {
+  background-color: var(--color-red-400);
+} */
+/* .rdp-day_selected:active {
+  outline: none;
+  border: none;
+} */
+/* .rdp-day_selected:focus {
+  outline: none;
+  border: none;
+} */
+
+.rdp-button:hover:not([disabled]):not(.rdp-day_selected) {
+  background-color: var(--color-red-100);
+}
+.rdp-button:focus {
+  outline: none;
+  border: none;
 }

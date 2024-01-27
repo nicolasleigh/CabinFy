@@ -50,6 +50,7 @@ export default function DayPick({
   setToValue,
   fromValue,
   toValue,
+  maxBookingLength,
 }) {
   // const [selectedRange, setSelectedRange] = useState();
   // const [fromValue, setFromValue] = useState('');
@@ -96,16 +97,23 @@ export default function DayPick({
     }
   };
 
-  function isPastDate(date) {
+  const isPastDate = (date) => {
     return differenceInCalendarDays(date, new Date()) < 0;
-  }
+  };
+
+  const isGreaterThanMaxBookingLength = (date) => {
+    return (
+      differenceInCalendarDays(selectedRange?.to, selectedRange?.from) + 1 >
+      maxBookingLength
+    );
+  };
 
   return (
     <DayPicker
       mode='range'
       selected={selectedRange}
       onSelect={handleRangeSelect}
-      disabled={isPastDate}
+      disabled={[isPastDate]}
       locale={zhCN}
       footer={
         <InputGroup>

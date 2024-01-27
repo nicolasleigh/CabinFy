@@ -2,7 +2,6 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { createBooking as createBookingApi } from '../../api/bookings';
 import toast from 'react-hot-toast';
 
-// haven't used this hook yet
 export const useCreateBooking = () => {
   const queryClient = useQueryClient();
 
