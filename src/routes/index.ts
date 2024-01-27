@@ -4,6 +4,7 @@ import bookings from './bookings.js';
 import cabins from './cabins.js';
 import guests from './guests.js';
 import settings from './settings.js';
+import reviews from './reviews.js';
 
 const mountRoutes = (app: any) => {
   app.use('/auth', auth);
@@ -12,6 +13,7 @@ const mountRoutes = (app: any) => {
   app.use('/api/cabins', cabins);
   app.use('/api/settings', settings);
   app.use('/api/guests', guests);
+  app.use('/api/reviews', reviews);
 };
 
 export default mountRoutes;

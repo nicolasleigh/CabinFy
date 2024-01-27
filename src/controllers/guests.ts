@@ -6,9 +6,9 @@ import { v4 as uuid } from 'uuid';
 import jwt from 'jsonwebtoken';
 
 export const accessTokenExp = '2m';
-export const refreshTokenExp = '30d';
+// export const refreshTokenExp = '30d';
 export const accessCookieExp = 2 * 60 * 1000;
-export const refreshCookieExp = 30 * 24 * 60 * 60 * 1000;
+// export const refreshCookieExp = 30 * 24 * 60 * 60 * 1000;
 
 export const getGuests = async (
   req: Request,
@@ -94,20 +94,20 @@ export const signupGuest = async (
             expiresIn: accessTokenExp,
           }
         );
-        const refreshToken = jwt.sign(
-          { uid: guest.uid },
-          process.env.JWT_REFRESH_SECRET!,
-          {
-            expiresIn: refreshTokenExp,
-          }
-        );
-        res.cookie('jwt-refresh', refreshToken, {
-          httpOnly: true,
-          // secure: true,   //! for https
-          maxAge: refreshCookieExp,
-        });
+        // const refreshToken = jwt.sign(
+        //   { uid: guest.uid },
+        //   process.env.JWT_REFRESH_SECRET!,
+        //   {
+        //     expiresIn: refreshTokenExp,
+        //   }
+        // );
+        // res.cookie('jwt-refresh', refreshToken, {
+        //   httpOnly: true,
+        //   // secure: true,   //! for https
+        //   maxAge: refreshCookieExp,
+        // });
         res.cookie('jwt-access', accessToken, {
-          httpOnly: true,
+          httpOnly: false,
           // secure: true,   //! for https
           maxAge: accessCookieExp,
         });
@@ -135,16 +135,16 @@ export const loginGuest = (req: Request, res: Response, next: NextFunction) => {
       expiresIn: accessTokenExp,
     }
   );
-  const refreshToken = jwt.sign({ uid }, process.env.JWT_REFRESH_SECRET!, {
-    expiresIn: refreshTokenExp,
-  });
-  res.cookie('jwt-refresh', refreshToken, {
-    httpOnly: true,
-    // secure: true,   //! for https
-    maxAge: refreshCookieExp,
-  });
+  // const refreshToken = jwt.sign({ uid }, process.env.JWT_REFRESH_SECRET!, {
+  //   expiresIn: refreshTokenExp,
+  // });
+  // res.cookie('jwt-refresh', refreshToken, {
+  //   httpOnly: true,
+  //   // secure: true,   //! for https
+  //   maxAge: refreshCookieExp,
+  // });
   res.cookie('jwt-access', accessToken, {
-    httpOnly: true,
+    httpOnly: false,
     // secure: true,   //! for https
     maxAge: accessCookieExp,
   });
@@ -159,49 +159,49 @@ export const loginGuest = (req: Request, res: Response, next: NextFunction) => {
   return res.json(data);
 };
 
-export const getRefreshToken = async (
-  req: Request,
-  res: Response,
-  next: NextFunction
-) => {
-  const refreshToken = req.cookies.jwt;
-  if (!refreshToken) {
-    return res.status(401).json({ error: 'You are not authenticated!' });
-  }
-  let payload: any;
-  try {
-    payload = jwt.verify(refreshToken, process.env.JWT_REFRESH_SECRET!);
-  } catch (err) {
-    return res.status(401).json({ error: 'You are not authenticated!' });
-  }
-  const guest = await prisma.guests.findUnique({
-    where: {
-      uid: payload.uid,
-    },
-  });
-  if (!guest) {
-    return res.status(401).json({ error: 'You are not authenticated!' });
-  }
-  const accessToken = jwt.sign(
-    { uid: guest.uid, email: guest.email, fullName: guest.fullName },
-    process.env.JWT_ACCESS_SECRET!,
-    {
-      expiresIn: accessTokenExp,
-    }
-  );
-  res.cookie('jwt-access', accessToken, {
-    httpOnly: true,
-    // secure: true,   //! for https
-    maxAge: accessCookieExp,
-  });
-  const data = {
-    uid: guest.uid,
-    fullName: guest.fullName,
-    email: guest.email,
-    // accessToken,
-  };
-  return res.json(data);
-};
+// export const getRefreshToken = async (
+//   req: Request,
+//   res: Response,
+//   next: NextFunction
+// ) => {
+//   const refreshToken = req.cookies.jwt;
+//   if (!refreshToken) {
+//     return res.status(401).json({ error: 'You are not authenticated!' });
+//   }
+//   let payload: any;
+//   try {
+//     payload = jwt.verify(refreshToken, process.env.JWT_REFRESH_SECRET!);
+//   } catch (err) {
+//     return res.status(401).json({ error: 'You are not authenticated!' });
+//   }
+//   const guest = await prisma.guests.findUnique({
+//     where: {
+//       uid: payload.uid,
+//     },
+//   });
+//   if (!guest) {
+//     return res.status(401).json({ error: 'You are not authenticated!' });
+//   }
+//   const accessToken = jwt.sign(
+//     { uid: guest.uid, email: guest.email, fullName: guest.fullName },
+//     process.env.JWT_ACCESS_SECRET!,
+//     {
+//       expiresIn: accessTokenExp,
+//     }
+//   );
+//   res.cookie('jwt-access', accessToken, {
+//     httpOnly: false,
+//     // secure: true,   //! for https
+//     maxAge: accessCookieExp,
+//   });
+//   const data = {
+//     uid: guest.uid,
+//     fullName: guest.fullName,
+//     email: guest.email,
+//     // accessToken,
+//   };
+//   return res.json(data);
+// };
 
 export const logoutGuest = async (
   req: Request,

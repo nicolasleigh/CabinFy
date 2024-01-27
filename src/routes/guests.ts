@@ -2,7 +2,7 @@ import express from 'express';
 import {
   deleteGuest,
   getGuests,
-  getRefreshToken,
+  // getRefreshToken,
   loginGuest,
   logoutGuest,
   signupGuest,
@@ -11,7 +11,7 @@ import passport from 'passport';
 const router = express.Router();
 
 router.get('/', getGuests);
-router.get('/token', getRefreshToken);
+// router.get('/token', getRefreshToken);
 // router.post('/', createGuest);
 router.delete('/:id', deleteGuest);
 router.get('/logout', logoutGuest);
