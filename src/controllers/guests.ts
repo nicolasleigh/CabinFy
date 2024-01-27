@@ -5,7 +5,10 @@ import { salt } from '../auth/signup-admin.js';
 import { v4 as uuid } from 'uuid';
 import jwt from 'jsonwebtoken';
 
-export const accessExpTime = '2m';
+export const accessTokenExp = '2m';
+export const refreshTokenExp = '30d';
+export const accessCookieExp = 2 * 60 * 1000;
+export const refreshCookieExp = 30 * 24 * 60 * 60 * 1000;
 
 export const getGuests = async (
   req: Request,
@@ -88,27 +91,32 @@ export const signupGuest = async (
           { uid: guest.uid, email: guest.email, fullName: guest.fullName },
           process.env.JWT_ACCESS_SECRET!,
           {
-            expiresIn: accessExpTime,
+            expiresIn: accessTokenExp,
           }
         );
         const refreshToken = jwt.sign(
           { uid: guest.uid },
           process.env.JWT_REFRESH_SECRET!,
           {
-            expiresIn: '30d',
+            expiresIn: refreshTokenExp,
           }
         );
-        res.cookie('jwt', refreshToken, {
+        res.cookie('jwt-refresh', refreshToken, {
           httpOnly: true,
           // secure: true,   //! for https
-          maxAge: 30 * 24 * 60 * 60 * 1000,
+          maxAge: refreshCookieExp,
+        });
+        res.cookie('jwt-access', accessToken, {
+          httpOnly: true,
+          // secure: true,   //! for https
+          maxAge: accessCookieExp,
         });
 
         const data = {
           uid: guest.uid,
           fullName: guest.fullName,
           email: guest.email,
-          accessToken,
+          // accessToken,
         };
 
         return res.json(data);
@@ -124,23 +132,28 @@ export const loginGuest = (req: Request, res: Response, next: NextFunction) => {
     { uid, email, fullName },
     process.env.JWT_ACCESS_SECRET!,
     {
-      expiresIn: accessExpTime,
+      expiresIn: accessTokenExp,
     }
   );
   const refreshToken = jwt.sign({ uid }, process.env.JWT_REFRESH_SECRET!, {
-    expiresIn: '30d',
+    expiresIn: refreshTokenExp,
   });
-  res.cookie('jwt', refreshToken, {
+  res.cookie('jwt-refresh', refreshToken, {
     httpOnly: true,
     // secure: true,   //! for https
-    maxAge: 30 * 24 * 60 * 60 * 1000,
+    maxAge: refreshCookieExp,
+  });
+  res.cookie('jwt-access', accessToken, {
+    httpOnly: true,
+    // secure: true,   //! for https
+    maxAge: accessCookieExp,
   });
 
   const data = {
     uid,
     email,
     fullName,
-    accessToken,
+    // accessToken,
   };
 
   return res.json(data);
@@ -173,14 +186,19 @@ export const getRefreshToken = async (
     { uid: guest.uid, email: guest.email, fullName: guest.fullName },
     process.env.JWT_ACCESS_SECRET!,
     {
-      expiresIn: accessExpTime,
+      expiresIn: accessTokenExp,
     }
   );
+  res.cookie('jwt-access', accessToken, {
+    httpOnly: true,
+    // secure: true,   //! for https
+    maxAge: accessCookieExp,
+  });
   const data = {
     uid: guest.uid,
     fullName: guest.fullName,
     email: guest.email,
-    accessToken,
+    // accessToken,
   };
   return res.json(data);
 };
@@ -190,6 +208,7 @@ export const logoutGuest = async (
   res: Response,
   next: NextFunction
 ) => {
-  res.clearCookie('jwt');
+  res.clearCookie('jwt-refresh');
+  res.clearCookie('jwt-access');
   res.json({ message: 'You are logged out!' });
 };

@@ -10,22 +10,48 @@ export const getCabins = async (
   res.json(cabins);
 };
 
+export const getCabin = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  const cabin = await prisma.cabins.findUnique({
+    where: { id: parseInt(req.params.id) },
+  });
+  res.json(cabin);
+};
+
 export const createCabin = async (
   req: Request,
   res: Response,
   next: NextFunction
 ) => {
-  const { name, description, maxCapacity, regularPrice, discount, filePath } =
-    req.body;
-  const fileName = filePath.split('/').pop();
+  const {
+    name,
+    description,
+    bedroom,
+    regularPrice,
+    discount,
+    filePaths,
+    coverPath,
+  } = req.body;
+  console.log(filePaths, coverPath);
+  const coverName = coverPath.split('/').pop();
+  const fileNameJson = [
+    { fileName: filePaths[0].split('/').pop() },
+    { fileName: filePaths[1].split('/').pop() },
+    { fileName: filePaths[2].split('/').pop() },
+    { fileName: filePaths[3].split('/').pop() },
+  ];
   const cabin = await prisma.cabins.create({
     data: {
       name,
       description,
-      maxCapacity: parseInt(maxCapacity),
+      bedroom: parseInt(bedroom),
       regularPrice: parseFloat(regularPrice),
       discount: parseFloat(discount),
-      image: fileName,
+      image: coverName,
+      images: fileNameJson,
     },
   });
   res.json(cabin);
@@ -36,7 +62,7 @@ export const updateCabin = async (
   res: Response,
   next: NextFunction
 ) => {
-  const { name, description, maxCapacity, regularPrice, discount, filePath } =
+  const { name, description, bedroom, regularPrice, discount, filePath } =
     req.body;
   let fileName;
   if (filePath) fileName = filePath.split('/').pop();
@@ -46,7 +72,7 @@ export const updateCabin = async (
     data: {
       name,
       description,
-      maxCapacity: parseInt(maxCapacity),
+      bedroom: parseInt(bedroom),
       regularPrice: parseFloat(regularPrice),
       discount: parseFloat(discount),
       image: fileName,
@@ -69,7 +95,7 @@ export const duplicateCabin = async (
       data: {
         name: cabin.name + ' Copy',
         description: cabin.description,
-        maxCapacity: cabin.maxCapacity,
+        bedroom: cabin.bedroom,
         regularPrice: cabin.regularPrice,
         discount: cabin.discount,
         image: cabin.image,

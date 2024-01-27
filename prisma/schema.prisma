@@ -30,6 +30,7 @@ model Users {
 model Bookings {
   id           Int      @id @default(autoincrement())
   created_at   DateTime @default(now()) @db.Timestamptz()
+  updated_at   DateTime @updatedAt @db.Timestamptz()
   startDate    DateTime @db.Date()
   endDate      DateTime @db.Date()
   numNights    Int
@@ -37,27 +38,28 @@ model Bookings {
   cabinPrice   Float
   extrasPrice  Float
   totalPrice   Float
-  status       String
+  status       String   @default("unconfirmed")
   hasBreakfast Boolean
   isPaid       Boolean  @default(false)
-  observation  String?
   cabinId      Int
   cabin        Cabins?  @relation(fields: [cabinId], references: [id], onDelete: Cascade)
-  guestId      Int
-  guest        Guests   @relation(fields: [guestId], references: [id])
+  guestId      String
+  guest        Guests   @relation(fields: [guestId], references: [uid])
 }
 
 model Cabins {
   id           Int        @id @default(autoincrement())
   created_at   DateTime   @default(now()) @db.Timestamptz()
+  updated_at   DateTime   @updatedAt @db.Timestamptz()
   name         String
-  maxCapacity  Int
+  bedroom      Int
   regularPrice Float
   discount     Float?
   description  String?
   image        String
   Bookings     Bookings[]
   images       Json?
+  Reviews      Reviews[]
 }
 
 model Settings {
@@ -81,6 +83,19 @@ model Guests {
   salt       String
   ip         String?    @db.Inet
   Bookings   Bookings[]
+  Reviews    Reviews[]
+}
+
+model Reviews {
+  id         Int      @id @default(autoincrement())
+  created_at DateTime @default(now()) @db.Timestamptz()
+  updated_at DateTime @updatedAt @db.Timestamptz()
+  rating     Int
+  comment    String?
+  guestId    String
+  guest      Guests   @relation(fields: [guestId], references: [uid])
+  cabinId    Int
+  cabin      Cabins   @relation(fields: [cabinId], references: [id])
 }
 
 enum Role {

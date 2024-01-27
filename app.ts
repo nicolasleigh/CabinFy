@@ -5,6 +5,7 @@ import 'dotenv/config';
 import mountRoutes from './src/routes/index.js';
 import passport from 'passport';
 import session from 'express-session';
+import cookieParser from 'cookie-parser';
 import { config } from './src/utils/sessionConfig.js';
 
 export const app = express();
@@ -37,6 +38,7 @@ if (app.get('env') === 'production') {
 
 app.use(cors({ origin: true, credentials: true }));
 app.use(express.json());
+app.use(cookieParser());
 app.use(morgan('dev'));
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static('uploads'));

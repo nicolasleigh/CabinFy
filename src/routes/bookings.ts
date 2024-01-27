@@ -18,7 +18,11 @@ router.get('/stays-after-date', getStaysAfterDate);
 router.get('/today-activity', getTodayActivity);
 router.get('/:id', getBooking);
 router.patch('/:id', updateBooking);
-router.post('/', passport.authenticate('jwt', { session: false }));
+router.post(
+  '/',
+  passport.authenticate('jwt', { session: false }),
+  createBooking
+);
 router.delete('/:id', deleteBooking);
 
 export default router;

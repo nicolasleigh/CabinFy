@@ -1,40 +1,37 @@
 import { NextFunction, Request, Response } from 'express';
 import prisma from '../../prisma/client.js';
 import { RequestHandler } from 'express';
-import { DateValues } from 'date-fns';
+import { DateValues, differenceInDays } from 'date-fns';
 
 export const createBooking = async (
   req: Request,
   res: Response,
   next: NextFunction
 ) => {
+  const { uid, email, fullName } = req.user;
   const {
     cabinId,
-    guestId,
-    startDate,
-    endDate,
-    hasBreakfast,
-    numGuests,
-    numNights,
+    selectedRange: { from, to },
+    breakfast,
+    guestsNumber,
     totalPrice,
     cabinPrice,
     extrasPrice,
     isPaid,
-    observation,
     status,
+    numOfNights,
   } = req.body;
   const booking = await prisma.bookings.create({
     data: {
       cabinId: parseInt(cabinId),
-      guestId: parseInt(guestId),
-      startDate,
-      endDate,
-      hasBreakfast,
+      guestId: uid,
+      startDate: from,
+      endDate: to,
+      hasBreakfast: breakfast,
       isPaid,
-      numGuests: parseInt(numGuests),
-      numNights: parseInt(numNights),
+      numGuests: parseInt(guestsNumber),
+      numNights: numOfNights,
       status,
-      observation,
       cabinPrice: parseFloat(cabinPrice),
       extrasPrice: parseFloat(extrasPrice),
       totalPrice: parseFloat(totalPrice),

@@ -103,11 +103,20 @@ passport.use(
   )
 );
 
+const cookieExtractor = (req: any) => {
+  let jwt = null;
+  if (req && req.cookies) {
+    jwt = req.cookies['jwt-access'];
+  }
+  return jwt;
+};
+
 passport.use(
   new JwtStrategy(
     {
       secretOrKey: process.env.JWT_ACCESS_SECRET,
-      jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
+      // jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
+      jwtFromRequest: cookieExtractor,
     },
     async (payload, done) => {
       try {
