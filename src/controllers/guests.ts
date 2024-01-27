@@ -19,6 +19,14 @@ export const getGuests = async (
   res.json(guests);
 };
 
+export const getGuest = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  res.json(req.user);
+};
+
 // export const createGuest = async (
 //   req: Request,
 //   res: Response,

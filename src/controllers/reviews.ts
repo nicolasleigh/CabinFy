@@ -2,7 +2,11 @@ import prisma from '../../prisma/client.js';
 import { Request, Response } from 'express';
 
 export const getReviews = async (req: Request, res: Response) => {
+  const { cabinId } = req.params;
   const reviews = await prisma.reviews.findMany({
+    where: {
+      cabinId: parseInt(cabinId),
+    },
     include: {
       guest: {
         select: {
@@ -16,10 +20,11 @@ export const getReviews = async (req: Request, res: Response) => {
 };
 
 export const createReview = async (req: Request, res: Response) => {
-  const { guestId, cabinId, rating, comment } = req.body;
+  const { uid } = req.user;
+  const { cabinId, rating, comment } = req.body;
   const review = await prisma.reviews.create({
     data: {
-      guestId: guestId,
+      guestId: uid,
       cabinId: parseInt(cabinId),
       rating: parseInt(rating),
       comment,

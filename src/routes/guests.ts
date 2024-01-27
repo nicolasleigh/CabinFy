@@ -1,6 +1,7 @@
 import express from 'express';
 import {
   deleteGuest,
+  getGuest,
   getGuests,
   // getRefreshToken,
   loginGuest,
@@ -11,6 +12,11 @@ import passport from 'passport';
 const router = express.Router();
 
 router.get('/', getGuests);
+router.get(
+  '/single',
+  passport.authenticate('jwt', { session: false }),
+  getGuest
+);
 // router.get('/token', getRefreshToken);
 // router.post('/', createGuest);
 router.delete('/:id', deleteGuest);

@@ -8,7 +8,7 @@ export const createBooking = async (
   res: Response,
   next: NextFunction
 ) => {
-  const { uid, email, fullName } = req.user;
+  const { uid } = req.user;
   const {
     cabinId,
     selectedRange: { from, to },
