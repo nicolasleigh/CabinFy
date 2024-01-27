@@ -56,7 +56,7 @@ const variations = {
       rgba(253, 45, 96, 0.91) 100%
     );
 
-    transition: all 0.3s ease-in-out;
+    transition: all 0.2s ease-out;
 
     &:hover {
       opacity: 0.9;
@@ -74,7 +74,14 @@ const Button = styled.button`
   border: none;
   border-radius: var(--border-radius-sm);
   box-shadow: var(--shadow-sm);
-  transition: background-color 0.6s ease-in-out;
+  /* transition: background-color 0.6s ease-in-out; */
+
+  &:focus {
+    outline: none;
+  }
+  &:active {
+    transform: translateY(2px);
+  }
 
   &:disabled {
     background-color: var(--color-grey-400);

@@ -12,7 +12,11 @@ export const useCreateBooking = () => {
       queryClient.invalidateQueries({ queryKey: ['bookings'] });
     },
     onError: (err) => {
-      toast.error(err.message);
+      toast.error(
+        err.response.data === 'Unauthorized'
+          ? 'Please login before booking!'
+          : err.message
+      );
     },
   });
 

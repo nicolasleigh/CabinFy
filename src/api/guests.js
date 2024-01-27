@@ -5,6 +5,11 @@ export const getGuests = async () => {
   return data;
 };
 
+export const getGuest = async () => {
+  const { data } = await client.get('/api/guests/single');
+  return data;
+};
+
 export const createGuest = async (guest) => {
   const { data } = await client.post('/api/guests', guest);
   return data;
