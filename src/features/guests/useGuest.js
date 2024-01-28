@@ -8,7 +8,7 @@ export const useGuest = () => {
     error,
   } = useQuery({
     queryFn: getGuest,
-    queryKey: ['guest', guest.uid],
+    queryKey: ['guest'],
   });
 
   return { isLoading, guest, error };

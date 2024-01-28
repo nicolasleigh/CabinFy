@@ -6,6 +6,7 @@ import { useCreateBooking } from './useCreateBooking';
 import { differenceInDays } from 'date-fns';
 import { useSettings } from '../settings/useSettings';
 import BookingBreakfastBox from '../../ui/BookingBreakfastBox';
+import toast from 'react-hot-toast';
 
 const Button = styled.button`
   border-radius: 50%;
@@ -61,16 +62,22 @@ const TotalPriceBox = styled.div`
   justify-content: space-between;
   padding: 2rem 3rem;
 
-  div {
-    font-size: 2rem;
-    font-weight: 400;
-    text-decoration: underline;
-    text-underline-offset: 0.2rem;
-  }
-
   .beforeDiscount {
-    text-decoration: line-through;
+    /* text-decoration: line-through;
     text-decoration-thickness: 2px;
+    text-decoration-color: var(--color-grey-400); */
+    background: rgb(134, 24, 1);
+    background: linear-gradient(
+      85deg,
+      rgba(134, 24, 1, 0.9318321078431373) 0%,
+      rgba(226, 11, 11, 0.8702074579831933) 100%
+    );
+    background-repeat: no-repeat;
+    background-size: 100% 18%;
+    background-position: 50% 50%;
+
+    font-size: 2rem;
+    /* font-weight: 400; */
   }
 `;
 
@@ -104,6 +111,21 @@ const Form = styled.form`
   margin-top: 2rem;
 `;
 
+const FancyText = styled.div`
+  background: rgb(246, 40, 32);
+  background: linear-gradient(
+    85deg,
+    rgba(246, 40, 32, 0.6601234243697479) 0%,
+    rgba(253, 45, 152, 0.8898153011204482) 100%
+  );
+  background-repeat: no-repeat;
+  background-size: 100% 18%;
+  background-position: 0 90%;
+
+  font-size: 2rem;
+  font-weight: 400;
+`;
+
 const FormSection = styled.div``;
 
 export default function BookingForm({
@@ -135,6 +157,11 @@ export default function BookingForm({
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    if (!selectedRange?.from || !selectedRange?.to) {
+      toast.error('Please select a date range');
+      return;
+    }
     createBooking({
       guestsNumber,
       breakfast,
@@ -211,7 +238,7 @@ export default function BookingForm({
           <div className='beforeDiscount'>
             {Boolean(discount) && formatCurrency(priceBeforeDiscount)}
           </div>
-          <div>{formatCurrency(totalPrice)}</div>
+          <FancyText>{formatCurrency(totalPrice)}</FancyText>
         </TotalPriceBox>
         <BookingBox>
           <Booking>Booking</Booking>

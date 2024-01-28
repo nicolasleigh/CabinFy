@@ -3,11 +3,12 @@ import { logIn as logInApi } from '../../api/guests';
 import { toast } from 'react-hot-toast';
 
 export function useLogin() {
+  const queryClient = useQueryClient();
   const { mutate: login, isLoading } = useMutation({
     mutationFn: logInApi,
-    onSuccess: (user) => {
-      console.log(user);
-      toast.success('User successfully logged in!');
+    onSuccess: (guest) => {
+      queryClient.setQueryData(['guest'], guest);
+      toast.success('Guest successfully logged in!');
     },
     onError: (err) => {
       toast.error('Email or password are incorrect');
@@ -15,5 +16,3 @@ export function useLogin() {
   });
   return { login, isLoading };
 }
-
-//! todo: set token in localStorage

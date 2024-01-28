@@ -19,6 +19,7 @@ const Featured = styled.div`
   grid-template-columns: repeat(2, 1fr);
   grid-template-rows: auto 1fr;
   padding: 2rem 2.3rem;
+  margin-top: 2rem;
 
   > * {
     &:first-child {
@@ -33,6 +34,10 @@ const IconWithText = styled.div`
   display: flex;
   align-items: center;
   gap: 1.6rem;
+
+  svg {
+    font-size: 2.2rem;
+  }
 `;
 
 export default function FeatureIcon() {

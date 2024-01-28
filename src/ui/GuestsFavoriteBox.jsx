@@ -7,6 +7,7 @@ import { Link } from 'react-router-dom';
 const GuestsFavorite = styled.div`
   display: flex;
   padding: 2rem 2.3rem;
+  margin-top: 2rem;
   gap: 2rem;
   font-size: 1.4rem;
   align-items: center;
@@ -25,7 +26,8 @@ const Favorite = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  color: var(--color-red-700);
+  color: var(--color-red-600);
+  font-weight: 600;
 `;
 
 const Star = styled.div`
@@ -71,10 +73,15 @@ const Review = styled.div`
 const Text = styled.p`
   font-size: 1.4rem;
   font-weight: 600;
+  text-align: center;
 `;
 
-export default function GuestsFavoriteBox() {
-  return (
+export default function GuestsFavoriteBox({ reviews }) {
+  const averageRating =
+    reviews?.reduce((acc, review) => {
+      return acc + review?.rating;
+    }, 0) / reviews?.length;
+  return averageRating >= 3 ? (
     <GuestsFavorite>
       <Favorite>
         <span>🎉</span>
@@ -85,7 +92,7 @@ export default function GuestsFavoriteBox() {
         <Modal.Open opens='reviews'>
           <ReviewLayout>
             <Star>
-              <p>5.0</p>
+              <p>{Math.ceil(averageRating * 10) / 10}</p>
               <p>
                 <IoMdStar />
                 <IoMdStar />
@@ -95,7 +102,7 @@ export default function GuestsFavoriteBox() {
               </p>
             </Star>
             <Review>
-              <p>27</p>
+              <p>{reviews?.length}</p>
               <p>Reviews</p>
             </Review>
           </ReviewLayout>
@@ -105,5 +112,5 @@ export default function GuestsFavoriteBox() {
         </Modal.Window>
       </Modal>
     </GuestsFavorite>
-  );
+  ) : null;
 }

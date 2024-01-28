@@ -57,6 +57,12 @@ const ReviewBox = styled.div`
   column-gap: 1rem;
   row-gap: 2rem;
   padding: 2rem 2.3rem;
+  margin-top: 2rem;
+`;
+
+const NameSection = styled.div`
+  font-size: 3rem;
+  font-weight: 600;
 `;
 
 export default function Cabin() {
@@ -75,6 +81,7 @@ export default function Cabin() {
     <>
       <GuestSignup />
       <GuestLogin />
+      <NameSection>{cabin?.name}</NameSection>
 
       <ImageSection>
         <ImageLeft src={imageBaseUrl + image} />
@@ -93,7 +100,7 @@ export default function Cabin() {
             discount={discount}
             regularPrice={regularPrice}
           />
-          <GuestsFavoriteBox />
+          <GuestsFavoriteBox reviews={reviews} />
           <FeatureIcon />
           <ReviewBox>
             <GuestReviewItem reviews={reviews} limit={4} />

@@ -1,6 +1,7 @@
 import { Outlet } from 'react-router-dom';
 import { styled } from 'styled-components';
 import GuestHeader from './GuestHeader';
+import GuestFooter from './GuestFooter';
 
 const StyledGuestLayout = styled.div`
   display: flex;
@@ -12,7 +13,7 @@ const StyledGuestLayout = styled.div`
 
 const Main = styled.main`
   background-color: var(--color-grey-100);
-  padding: 4rem 4.8rem 6.4rem;
+  padding: 2rem 4.8rem 3rem;
   overflow: scroll;
 `;
 
@@ -32,6 +33,7 @@ function GuestLayout() {
         <Container>
           <Outlet />
         </Container>
+        <GuestFooter />
       </Main>
     </StyledGuestLayout>
   );

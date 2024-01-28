@@ -10,6 +10,7 @@ const HomeLayout = styled.div`
   column-gap: 2.4rem;
   row-gap: 3.4rem;
   height: 100vh;
+  margin-top: 2rem;
 `;
 
 const imageURL = import.meta.env.VITE_IMAGE_URL;
