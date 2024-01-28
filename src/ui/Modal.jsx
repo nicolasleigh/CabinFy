@@ -21,6 +21,8 @@ const StyledModal = styled.div`
   box-shadow: var(--shadow-lg);
   padding: 3.2rem 4rem;
   transition: all 0.5s;
+  max-height: 80vh;
+  overflow: scroll;
 `;
 
 const Overlay = styled.div`
@@ -33,6 +35,7 @@ const Overlay = styled.div`
   backdrop-filter: blur(4px);
   z-index: 1000;
   transition: all 0.5s;
+  overflow: scroll;
 `;
 
 const Button = styled.button`
@@ -67,6 +70,15 @@ function Modal({ children }) {
 
   const close = () => setOpenName('');
   const open = setOpenName;
+
+  useEffect(() => {
+    if (openName) {
+      document.body.style.overflow = 'hidden';
+    }
+    return () => {
+      document.body.style.overflow = 'unset';
+    };
+  }, [openName]);
 
   return (
     <ModalContext.Provider value={{ openName, close, open }}>
