@@ -6,15 +6,21 @@ import GuestFooter from './GuestFooter';
 const StyledGuestLayout = styled.div`
   display: flex;
   flex-direction: column;
+  background-color: var(--color-grey-100);
   /* grid-template-columns: 26rem 1fr; */
   /* grid-template-rows: auto 1fr; */
-  height: 100vh;
+  /* height: 100vh; */
 `;
 
 const Main = styled.main`
   background-color: var(--color-grey-100);
   padding: 2rem 4.8rem 3rem;
-  overflow: scroll;
+  margin-top: 6rem;
+  /* overflow: scroll; */
+
+  @media (max-width: 450px) {
+    padding: 2rem 1.2rem 3rem;
+  }
 `;
 
 const Container = styled.div`
@@ -33,8 +39,8 @@ function GuestLayout() {
         <Container>
           <Outlet />
         </Container>
-        <GuestFooter />
       </Main>
+      <GuestFooter />
     </StyledGuestLayout>
   );
 }

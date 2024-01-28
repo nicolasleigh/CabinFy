@@ -101,6 +101,25 @@ const Booking = styled.button`
     rgba(253, 45, 96, 0.9262298669467787) 100%
   );
   color: var(--color-grey-100);
+  @keyframes pulse {
+    0% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(0.98);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
+
+  &:focus {
+    outline: none;
+  }
+
+  &:active {
+    animation: pulse 0.5s ease;
+  }
 `;
 const Form = styled.form`
   display: flex;

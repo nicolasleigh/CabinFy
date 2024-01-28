@@ -4,7 +4,9 @@ import { Link } from 'react-router-dom';
 
 const CardLayout = styled(Link)`
   width: 100%;
-  height: 40rem;
+  /* background-color: red; */
+  /* max-height: 40rem; */
+  /* display: block; */
   display: flex;
   flex-direction: column;
   gap: 1.2rem;
@@ -18,6 +20,10 @@ const CardLayout = styled(Link)`
   &:hover {
     box-shadow: var(--shadow-lg);
   }
+
+  /* @media (max-width: 1220px) {
+    max-height: 37rem;
+  } */
 `;
 
 const CardImg = styled.img`
@@ -64,7 +70,7 @@ const CardPriceText = styled.span`
 
 export default function Card({ id, src, name, bed, price, rate }) {
   return (
-    <CardLayout to={`/cabin/${id}`}>
+    <CardLayout to={`/cabin/${id}`} target='_blank' rel='noopener noreferrer'>
       <CardImg src={src} alt={src} />
       <CardTextBox>
         <CardNameBox>

@@ -1,32 +1,64 @@
 import styled from 'styled-components';
+import { FaGithub } from 'react-icons/fa';
 
 const StyledFooter = styled.footer`
-  /* background-color: var(--color-grey-0); */
-  /* padding: 1.2rem 7rem; */
   border-top: 1px solid var(--color-grey-400);
-
   display: flex;
   gap: 2.4rem;
   align-items: center;
   justify-content: space-between;
   margin: 0 auto;
-
   margin-top: 5rem;
-  padding: 3rem 0 0 0;
+  padding: 3rem;
   font-size: 1.4rem;
-  width: 90%;
+  width: 88%;
+
+  @media (max-width: 550px) {
+    width: 100%;
+    padding: 1.2rem;
+  }
+  @media (max-width: 400px) {
+    padding: 1rem 0.4rem;
+    font-size: 1rem;
+  }
 `;
 
 const Copyright = styled.div`
   color: var(--color-grey-400);
 `;
 
-const GithubIcon = styled.div`
+const GithubIconGroup = styled.div`
   display: flex;
-  gap: 1rem;
+  gap: 4rem;
   font-size: 1.4rem;
   align-items: center;
   justify-content: space-around;
+
+  div {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  span {
+    color: var(--color-grey-400);
+  }
+
+  a {
+    display: flex;
+    align-items: center;
+    font-size: 2rem;
+    color: var(--color-grey-500);
+  }
+
+  @media (max-width: 550px) {
+    gap: 1rem;
+  }
+
+  @media (max-width: 400px) {
+    font-size: 1rem;
+  }
 `;
 
 export default function GuestFooter() {
@@ -35,14 +67,33 @@ export default function GuestFooter() {
       <Copyright>
         <p>&copy; 2024 Nicolas Leigh.</p>
       </Copyright>
-      <GithubIcon>
-        <a target='_blank' rel='noopener noreferrer' href=''>
-          Frontend
-        </a>
-        <a target='_blank' rel='noopener noreferrer' href=''>
-          Backend
-        </a>
-      </GithubIcon>
+      <GithubIconGroup>
+        <div>
+          <span>Frontend:</span>
+          <a
+            target='_blank'
+            rel='noopener noreferrer'
+            href='
+        https://github.com/NicolasLi2/hotel-app-frontend
+        '
+          >
+            <FaGithub />
+          </a>
+        </div>
+
+        <div>
+          <span>Backend:</span>
+          <a
+            target='_blank'
+            rel='noopener noreferrer'
+            href='
+        https://github.com/NicolasLi2/hotel-app-backend
+        '
+          >
+            <FaGithub />
+          </a>
+        </div>
+      </GithubIconGroup>
     </StyledFooter>
   );
 }

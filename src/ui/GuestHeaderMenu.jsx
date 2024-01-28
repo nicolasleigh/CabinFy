@@ -10,6 +10,10 @@ const StyledGuestHeaderMenu = styled.nav`
   display: flex;
   gap: 0.6rem;
   padding: 0 5rem 0 0;
+
+  @media (max-width: 450px) {
+    padding: 0 1.2rem 0 0;
+  }
 `;
 
 const NavButton = styled.button`
