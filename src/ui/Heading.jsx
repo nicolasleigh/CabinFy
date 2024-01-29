@@ -6,6 +6,15 @@ const Heading = styled.h1`
     css`
       font-size: 3rem;
       font-weight: 600;
+
+      @media (max-width: 650px) {
+        font-size: 2.5rem;
+        font-weight: 500;
+      }
+      @media (max-width: 430px) {
+        font-size: 2rem;
+        font-weight: 500;
+      }
     `}
 
   ${(props) =>
@@ -26,6 +35,11 @@ const Heading = styled.h1`
       font-size: 3rem;
       font-weight: 600;
       text-align: center;
+
+      @media (max-width: 550px) {
+        font-size: 2.5rem;
+        font-weight: 500;
+      }
     `}
 `;
 

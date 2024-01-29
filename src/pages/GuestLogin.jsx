@@ -48,7 +48,15 @@ export default function GuestLogin() {
   const ref = useOutsideClick(() => setIsOpen(false));
 
   const onSubmit = ({ email, password }) => {
-    login({ email, password });
+    login(
+      { email, password },
+      {
+        onSettled: () => {
+          setIsOpen(false);
+          reset();
+        },
+      }
+    );
   };
   if (!isOpen) return null;
   return (

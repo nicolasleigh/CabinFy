@@ -2,25 +2,13 @@ import styled from 'styled-components';
 import LoginForm from '../features/authentication/LoginForm';
 import Logo from '../ui/Logo';
 import Heading from '../ui/Heading';
-import Cookies from 'js-cookie';
-
-const LoginLayout = styled.main`
-  min-height: 100vh;
-  display: grid;
-  grid-template-columns: 48rem;
-  align-content: center;
-  justify-content: center;
-  gap: 3.2rem;
-  background-color: var(--color-grey-50);
-`;
+import { LoginLayout } from '../ui/LoginLayout';
 
 function Login() {
-  // const token = Cookies.get('userUid');
-  // console.log(token);
   return (
     <LoginLayout>
-      <Logo />
-      <Heading as='h4'>Log in to your account</Heading>
+      <Logo large />
+      <Heading as='h4'>Log in as administrator</Heading>
       <LoginForm />
     </LoginLayout>
   );

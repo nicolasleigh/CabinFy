@@ -58,7 +58,7 @@ const ImageRightCell = styled.img`
 const Container = styled.div`
   display: grid;
   grid-template-columns: 3fr 2fr;
-  grid-template-rows: auto auto auto 1fr;
+  grid-template-rows: auto auto auto 1fr auto;
   column-gap: 5rem;
 
   @media (max-width: 735px) {

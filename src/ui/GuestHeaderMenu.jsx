@@ -5,6 +5,7 @@ import { styled } from 'styled-components';
 import DropDown from './DropDown';
 import { useLoginModal, useSignupModal } from '../hooks';
 import { useGuest } from '../features/guests/useGuest';
+import { useLogout } from '../features/guests/useLogout';
 
 const StyledGuestHeaderMenu = styled.nav`
   display: flex;
@@ -76,6 +77,7 @@ function GuestHeaderMenu() {
   const { setIsOpen: setSignupOpen } = useSignupModal();
   const { setIsOpen: setLoginOpen } = useLoginModal();
   const { guest, isLoading } = useGuest();
+  const { logout, isLoading: isLoggingOut } = useLogout();
 
   const shortName = guest?.fullName?.charAt(0);
 
@@ -97,7 +99,7 @@ function GuestHeaderMenu() {
         menu={[
           <MenuButton onClick={() => setSignupOpen(true)}>Sign up</MenuButton>,
           <MenuButton onClick={() => setLoginOpen(true)}>Log in</MenuButton>,
-          <MenuButton to='/3'>Log out</MenuButton>,
+          <MenuButton onClick={logout}>Log out</MenuButton>,
           <MenuButton to='/admin'>Admin user</MenuButton>,
         ]}
       />

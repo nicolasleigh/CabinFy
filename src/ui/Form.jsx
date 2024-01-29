@@ -21,6 +21,25 @@ const Form = styled.form`
     props.type === 'modal-small' &&
     css`
       width: 44rem;
+      margin: 0 auto;
+
+      @media (max-width: 750px) {
+        width: 35rem;
+      }
+      @media (max-width: 610px) {
+        width: 30rem;
+      }
+
+      @media (max-width: 510px) {
+        width: 28rem;
+      }
+
+      @media (max-width: 450px) {
+        width: 25rem;
+      }
+      @media (max-width: 380px) {
+        width: 21rem;
+      }
     `}
     
   overflow: hidden;

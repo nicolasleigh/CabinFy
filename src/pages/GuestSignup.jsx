@@ -50,7 +50,15 @@ export default function GuestSignup() {
   const ref = useOutsideClick(() => setIsOpen(false));
 
   const onSubmit = ({ fullName, email, password }) => {
-    signup({ fullName, email, password });
+    signup(
+      { fullName, email, password },
+      {
+        onSettled: () => {
+          setIsOpen(false);
+          reset();
+        },
+      }
+    );
   };
   if (!isOpen) return null;
   return (

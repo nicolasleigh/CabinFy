@@ -81,7 +81,7 @@ function SignupForm() {
       <FormRowVertical>
         <Button disabled={isLoading}>Create new user</Button>
       </FormRowVertical>
-      <ButtonLink to='/admin/login'>log in</ButtonLink>
+      <ButtonLink to='/admin/login'>Log in</ButtonLink>
     </Form>
   );
 }

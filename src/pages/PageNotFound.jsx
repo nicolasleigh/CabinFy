@@ -11,6 +11,9 @@ const StyledPageNotFound = styled.main`
   align-items: center;
   justify-content: center;
   padding: 4.8rem;
+  @media (max-width: 430px) {
+    padding: 2rem;
+  }
 `;
 
 const Box = styled.div`

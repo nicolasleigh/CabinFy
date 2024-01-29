@@ -29,3 +29,8 @@ export const logIn = async (guest) => {
   const { data } = await client.post('/api/guests/login', guest);
   return data;
 };
+
+export const logOut = async () => {
+  const { data } = await client.get('/api/guests/logout');
+  return data;
+};

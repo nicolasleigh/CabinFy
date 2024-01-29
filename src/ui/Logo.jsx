@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { useDarkMode } from '../context/DarkModeContext';
 
 const StyledLogo = styled.div`
@@ -8,20 +8,30 @@ const StyledLogo = styled.div`
 `;
 
 const Img = styled.img`
-  /* height: 9.6rem; */
   height: 2.2rem;
   width: auto;
+  margin: 0 auto;
+
+  ${(props) =>
+    props.medium &&
+    css`
+      height: 3.6rem;
+    `}
+  ${(props) =>
+    props.large &&
+    css`
+      height: 5.6rem;
+    `}
 `;
 
-function Logo() {
+function Logo({ large, medium }) {
   const { isDarkMode } = useDarkMode();
 
-  // const src = isDarkMode ? '/logo-dark.png' : ' /logo-light.png';
-  const src = '/logo.svg';
+  const src = isDarkMode ? '/logo-dark.svg' : '/logo.svg';
 
   return (
     <StyledLogo>
-      <Img src={src} alt='Logo' />
+      <Img src={src} large={large} medium={medium} alt='Logo' />
     </StyledLogo>
   );
 }

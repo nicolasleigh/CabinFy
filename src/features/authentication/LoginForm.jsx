@@ -7,6 +7,13 @@ import { useLogin } from './useLogin';
 import SpinnerMini from '../../ui/SpinnerMini';
 import ButtonLink from '../../ui/ButtonLink';
 import ButtonGroup from '../../ui/ButtonGroup';
+import styled from 'styled-components';
+import { Link } from 'react-router-dom';
+
+const BackLink = styled(ButtonLink)`
+  margin-top: 1rem;
+  display: inline-block;
+`;
 
 function LoginForm() {
   const [email, setEmail] = useState('jonas@example.com');
@@ -58,12 +65,13 @@ function LoginForm() {
         </FormRowVertical>
         <ButtonGroup between>
           <ButtonLink to='/admin/signup' state={{ email }}>
-            sign up
+            Sign up
           </ButtonLink>
           <ButtonLink to='/admin/forget-password' state={{ email }}>
-            forget password?
+            Forget password?
           </ButtonLink>
         </ButtonGroup>
+        <BackLink to='/home'>Back to guest page</BackLink>
       </Form>
     </>
   );

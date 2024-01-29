@@ -24,11 +24,15 @@ const StyledModal = styled.div`
   max-height: 80vh;
   overflow: scroll;
 
+  @media (max-width: 1000px) {
+    width: 60%;
+  }
+
   @media (max-width: 830px) {
-    width: 80%;
+    width: 70%;
   }
   @media (max-width: 500px) {
-    width: 90%;
+    width: 85%;
   }
 `;
 
