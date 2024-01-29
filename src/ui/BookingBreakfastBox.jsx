@@ -1,15 +1,11 @@
 import styled from 'styled-components';
+import { Label } from './BookingFormLabel';
 
 const BreakfastBox = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 2rem 3rem;
-`;
-
-const Label = styled.p`
-  font-size: 1.8rem;
-  font-weight: 600;
 `;
 
 const CheckboxGroup = styled.div`
@@ -26,11 +22,20 @@ const CheckboxGroup = styled.div`
       gap: 0.4rem;
     }
   }
+
+  @media (max-width: 900px) {
+    font-size: 1.3rem;
+  }
 `;
 
 const Checkbox = styled.input`
   width: 2rem;
   height: 2rem;
+
+  @media (max-width: 900px) {
+    width: 1.7rem;
+    height: 1.7rem;
+  }
 `;
 
 export default function BookingBreakfastBox({ breakfast, setBreakfast }) {

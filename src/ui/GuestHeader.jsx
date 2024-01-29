@@ -24,6 +24,10 @@ const StyledHeader = styled.header`
     @media (max-width: 450px) {
       padding-left: 1.2rem;
     }
+
+    @media (max-width: 735px) {
+      padding-left: 2.2rem;
+    }
   }
 
   .right {

@@ -7,6 +7,12 @@
   --rdp-outline-selected: 3px solid var(--rdp-accent-color);
 }
 
+@media (max-width: 900px) {
+  .rdp {
+    --rdp-cell-size: 40px;
+  }
+}
+
 .DayPicker-wrapper {
   outline: none;
 }

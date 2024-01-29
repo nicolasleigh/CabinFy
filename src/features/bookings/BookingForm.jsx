@@ -7,6 +7,7 @@ import { differenceInDays } from 'date-fns';
 import { useSettings } from '../settings/useSettings';
 import BookingBreakfastBox from '../../ui/BookingBreakfastBox';
 import toast from 'react-hot-toast';
+import { Label } from '../../ui/BookingFormLabel';
 
 const Button = styled.button`
   border-radius: 50%;
@@ -26,6 +27,11 @@ const Button = styled.button`
     border: 1px solid var(--color-grey-300);
     color: var(--color-grey-300);
   }
+
+  @media (max-width: 900px) {
+    width: 2.5rem;
+    height: 2.5rem;
+  }
 `;
 
 const ButtonGroup = styled.div`
@@ -40,6 +46,10 @@ const ButtonGroup = styled.div`
       display: flex;
       align-items: center;
       justify-content: center;
+
+      @media (max-width: 900px) {
+        font-size: 1.3rem;
+      }
     }
   }
 `;
@@ -49,11 +59,6 @@ const GuestsNumberBox = styled.div`
   align-items: center;
   justify-content: space-between;
   padding: 2rem 3rem;
-`;
-
-const Label = styled.p`
-  font-size: 1.8rem;
-  font-weight: 600;
 `;
 
 const TotalPriceBox = styled.div`
@@ -66,7 +71,7 @@ const TotalPriceBox = styled.div`
     /* text-decoration: line-through;
     text-decoration-thickness: 2px;
     text-decoration-color: var(--color-grey-400); */
-    background: rgb(134, 24, 1);
+    /* background: rgb(134, 24, 1);
     background: linear-gradient(
       85deg,
       rgba(134, 24, 1, 0.9318321078431373) 0%,
@@ -74,9 +79,13 @@ const TotalPriceBox = styled.div`
     );
     background-repeat: no-repeat;
     background-size: 100% 18%;
-    background-position: 50% 50%;
+    background-position: 50% 50%; */
+    text-decoration: line-through;
 
-    font-size: 2rem;
+    font-size: 1.7rem;
+    @media (max-width: 900px) {
+      font-size: 1.4rem;
+    }
     /* font-weight: 400; */
   }
 `;
@@ -121,6 +130,31 @@ const Booking = styled.button`
     animation: pulse 0.5s ease;
   }
 `;
+
+const FormSection = styled.div`
+  grid-column: 2/-1;
+  align-self: center;
+  grid-row: 1/-1;
+
+  @media (max-width: 830px) {
+    grid-row: 3/-1;
+  }
+
+  @media (max-width: 630px) {
+    grid-column: 1/-1;
+    grid-row: 6/7;
+    padding: 1rem 3rem 0;
+  }
+
+  @media (max-width: 510px) {
+    padding: 1rem 1rem 0;
+  }
+
+  @media (max-width: 450px) {
+    padding: 0;
+  }
+`;
+
 const Form = styled.form`
   display: flex;
   flex-direction: column;
@@ -128,6 +162,10 @@ const Form = styled.form`
   padding: 2rem 2.3rem;
   border-radius: var(--border-radius-xl);
   margin-top: 2rem;
+
+  @media (max-width: 1000px) {
+    padding: 0;
+  }
 `;
 
 const FancyText = styled.div`
@@ -143,9 +181,11 @@ const FancyText = styled.div`
 
   font-size: 2rem;
   font-weight: 400;
-`;
 
-const FormSection = styled.div``;
+  @media (max-width: 900px) {
+    font-size: 1.5rem;
+  }
+`;
 
 export default function BookingForm({
   guestsNumber,
@@ -254,10 +294,12 @@ export default function BookingForm({
         />
         <TotalPriceBox>
           <Label>Total Price</Label>
-          <div className='beforeDiscount'>
-            {Boolean(discount) && formatCurrency(priceBeforeDiscount)}
+          <div>
+            <div className='beforeDiscount'>
+              {Boolean(discount) && formatCurrency(priceBeforeDiscount)}
+            </div>
+            <FancyText>{formatCurrency(totalPrice)}</FancyText>
           </div>
-          <FancyText>{formatCurrency(totalPrice)}</FancyText>
         </TotalPriceBox>
         <BookingBox>
           <Booking>Booking</Booking>

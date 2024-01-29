@@ -9,10 +9,14 @@ import { useGuest } from '../features/guests/useGuest';
 const StyledGuestHeaderMenu = styled.nav`
   display: flex;
   gap: 0.6rem;
-  padding: 0 5rem 0 0;
+  padding-right: 5rem;
+
+  @media (max-width: 735px) {
+    padding-right: 2.2rem;
+  }
 
   @media (max-width: 450px) {
-    padding: 0 1.2rem 0 0;
+    padding-right: 1.2rem;
   }
 `;
 

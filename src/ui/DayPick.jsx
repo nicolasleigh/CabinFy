@@ -20,7 +20,7 @@ const CheckIn = styled.input`
   }
 
   &:disabled {
-    background-color: var(--color-grey-50);
+    background-color: var(--color-grey-200);
   }
 `;
 const CheckOut = styled.input`
@@ -35,7 +35,7 @@ const CheckOut = styled.input`
   }
 
   &:disabled {
-    background-color: var(--color-grey-50);
+    background-color: var(--color-grey-200);
   }
 `;
 

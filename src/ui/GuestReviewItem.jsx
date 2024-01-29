@@ -21,12 +21,18 @@ const Figure = styled.figure`
   div {
     width: 5rem;
     height: 5rem;
+    line-height: 5rem;
     border-radius: 50%;
     background-color: var(--color-grey-900);
     color: var(--color-grey-100);
     text-align: center;
     vertical-align: middle;
-    line-height: 5rem;
+
+    @media (max-width: 735px) {
+      width: 4rem;
+      height: 4rem;
+      line-height: 4rem;
+    }
   }
 
   figcaption {
@@ -39,6 +45,10 @@ const Figure = styled.figure`
     .name {
       font-size: 1.6rem;
       font-weight: 600;
+
+      @media (max-width: 735px) {
+        font-size: 1.4rem;
+      }
     }
   }
 

@@ -21,12 +21,36 @@ const Featured = styled.div`
   padding: 2rem 2.3rem;
   margin-top: 2rem;
 
+  grid-column: 1/2;
+  grid-row: 3/4;
+
   > * {
     &:first-child {
       grid-column: 1 / -1;
       font-size: 2rem;
       padding: 1rem 0;
     }
+  }
+
+  @media (max-width: 1100px) {
+    padding: 0;
+    gap: 1rem;
+
+    font-size: 1.4rem;
+  }
+
+  @media (max-width: 830px) {
+    font-size: 1.2rem;
+  }
+  @media (max-width: 735px) {
+    font-size: 1rem;
+  }
+  @media (max-width: 630px) {
+    grid-column: 1/-1;
+    font-size: 1.6rem;
+  }
+  @media (max-width: 380px) {
+    font-size: 1.3rem;
   }
 `;
 
@@ -37,6 +61,37 @@ const IconWithText = styled.div`
 
   svg {
     font-size: 2.2rem;
+  }
+
+  @media (max-width: 1100px) {
+    svg {
+      font-size: 1.8rem;
+    }
+  }
+
+  @media (max-width: 830px) {
+    svg {
+      font-size: 1.4rem;
+    }
+  }
+  @media (max-width: 735px) {
+    svg {
+      font-size: 1.2rem;
+    }
+  }
+
+  @media (max-width: 630px) {
+    padding: 0 3rem 0;
+    svg {
+      font-size: 1.8rem;
+    }
+  }
+
+  @media (max-width: 510px) {
+    padding: 0;
+    svg {
+      font-size: 1.5rem;
+    }
   }
 `;
 
@@ -50,7 +105,7 @@ export default function FeatureIcon() {
       </IconWithText>
       <IconWithText>
         <LuBath />
-        <span>Hot tub - open 24 hours</span>
+        <span>24 hours hot tub</span>
       </IconWithText>
       <IconWithText>
         <TbToolsKitchen2 />
@@ -58,7 +113,7 @@ export default function FeatureIcon() {
       </IconWithText>
       <IconWithText>
         <TbWashMachine />
-        <span>Free washer machine</span>
+        <span>Free washer</span>
       </IconWithText>
       <IconWithText>
         <BiFridge />

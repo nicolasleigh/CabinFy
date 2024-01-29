@@ -6,6 +6,20 @@ import Modal from './Modal';
 const ModalBox = styled.div`
   display: flex;
   gap: 3rem;
+
+  grid-column: 1/2;
+  grid-row: 5/6;
+
+  @media (max-width: 630px) {
+    grid-column: 1/-1;
+    grid-row: 5/6;
+
+    padding: 0 2.3rem;
+  }
+
+  @media (max-width: 450px) {
+    padding: 0;
+  }
 `;
 
 const ReviewBtn = styled.button`
@@ -19,6 +33,15 @@ const ReviewBtn = styled.button`
 
   &:focus {
     outline: none;
+  }
+
+  @media (max-width: 1100px) {
+    padding: 2rem 0 0 0;
+    font-size: 1.2rem;
+  }
+
+  @media (max-width: 630px) {
+    padding: 0;
   }
 `;
 

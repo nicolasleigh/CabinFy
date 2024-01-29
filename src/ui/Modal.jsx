@@ -23,6 +23,13 @@ const StyledModal = styled.div`
   transition: all 0.5s;
   max-height: 80vh;
   overflow: scroll;
+
+  @media (max-width: 830px) {
+    width: 80%;
+  }
+  @media (max-width: 500px) {
+    width: 90%;
+  }
 `;
 
 const Overlay = styled.div`
