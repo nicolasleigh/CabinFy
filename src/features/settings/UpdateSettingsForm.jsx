@@ -32,7 +32,7 @@ function UpdateSettingsForm() {
   // This time we are using UNCONTROLLED fields, so we will NOT store state
   return (
     <Form>
-      <FormRow label='Minimum nights/booking'>
+      <FormRow label='Minimum nights'>
         <Input
           type='number'
           defaultValue={minBookingLength}
@@ -41,7 +41,7 @@ function UpdateSettingsForm() {
           disabled={isUpdating}
         />
       </FormRow>
-      <FormRow label='Maximum nights/booking'>
+      <FormRow label='Maximum nights'>
         <Input
           type='number'
           defaultValue={maxBookingLength}
@@ -50,7 +50,7 @@ function UpdateSettingsForm() {
           id='max-nights'
         />
       </FormRow>
-      <FormRow label='Maximum guests/booking'>
+      <FormRow label='Maximum guests'>
         <Input
           type='number'
           defaultValue={maxGuestsPerBooking}

@@ -11,6 +11,9 @@ const Input = styled.input`
     outline: none;
     border-color: var(--color-brand-600);
   }
+
+  /* @media (max-width: 550px) {
+  } */
 `;
 
 export default Input;

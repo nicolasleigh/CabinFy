@@ -30,6 +30,12 @@ const Header = styled.header`
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 2rem;
+
+  @media (max-width: 500px) {
+    padding: 0.8rem 1rem;
+    gap: 1rem;
+  }
 
   svg {
     height: 3.2rem;
@@ -44,15 +50,41 @@ const Header = styled.header`
     font-size: 1.8rem;
   }
 
+  p {
+    font-size: 1.8rem;
+
+    @media (max-width: 600px) {
+      font-size: 1.6rem;
+    }
+    @media (max-width: 500px) {
+      font-size: 1.2rem;
+    }
+  }
+
   & span {
     font-family: 'Sono';
     font-size: 2rem;
     margin-left: 4px;
+
+    @media (max-width: 600px) {
+      font-size: 1.6rem;
+    }
+    @media (max-width: 500px) {
+      font-size: 1.2rem;
+    }
   }
 `;
 
 const Section = styled.section`
   padding: 3.2rem 4rem 1.2rem;
+
+  @media (max-width: 600px) {
+    padding: 2.6rem 2.8rem 1.2rem;
+  }
+
+  @media (max-width: 500px) {
+    padding: 2rem 0.8rem 0.5rem;
+  }
 `;
 
 const Guest = styled.div`
@@ -65,6 +97,10 @@ const Guest = styled.div`
   & p:first-of-type {
     font-weight: 500;
     color: var(--color-grey-700);
+  }
+
+  @media (max-width: 500px) {
+    font-size: 1.2rem;
   }
 `;
 
@@ -85,12 +121,26 @@ const Price = styled.div`
     text-transform: uppercase;
     font-size: 1.4rem;
     font-weight: 600;
+
+    @media (max-width: 500px) {
+      font-size: 1.2rem;
+    }
   }
 
   svg {
     height: 2.4rem;
     width: 2.4rem;
     color: currentColor !important;
+  }
+
+  @media (max-width: 600px) {
+    padding: 1.2rem 2.6rem;
+    font-size: 1.4rem;
+  }
+
+  @media (max-width: 500px) {
+    padding: 0.6rem 1rem;
+    font-size: 1.1rem;
   }
 `;
 
@@ -130,11 +180,11 @@ function BookingDataBox({ booking }) {
         </div>
 
         <p>
-          {format(new Date(startDate), 'EEE, MMM dd yyyy')} (
+          {format(new Date(startDate), 'yyyy-MM-dd')} (
           {isToday(new Date(startDate))
             ? 'Today'
             : formatDistanceFromNow(startDate)}
-          ) &mdash; {format(new Date(endDate), 'EEE, MMM dd yyyy')}
+          ) &mdash; {format(new Date(endDate), 'yyyy-MM-dd')}
         </p>
       </Header>
 
@@ -146,18 +196,16 @@ function BookingDataBox({ booking }) {
           </p>
           <span>&bull;</span>
           <p>{email}</p>
-          <span>&bull;</span>
-          {/* <p>National ID {nationalID}</p> */}
         </Guest>
 
-        {observations && (
+        {/* {observations && (
           <DataItem
             icon={<HiOutlineChatBubbleBottomCenterText />}
             label='Observations'
           >
             {observations}
           </DataItem>
-        )}
+        )} */}
 
         <DataItem icon={<HiOutlineCheckCircle />} label='Breakfast included?'>
           {hasBreakfast ? 'Yes' : 'No'}
@@ -178,7 +226,7 @@ function BookingDataBox({ booking }) {
       </Section>
 
       <Footer>
-        <p>Booked {format(new Date(created_at), 'EEE, MMM dd yyyy, p')}</p>
+        <p>Booked {format(new Date(created_at), 'EEEE, yyyy-MM-dd, p')}</p>
       </Footer>
     </StyledBookingDataBox>
   );
