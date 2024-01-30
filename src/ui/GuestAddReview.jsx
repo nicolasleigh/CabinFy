@@ -23,6 +23,7 @@ const Textarea = styled.textarea`
   border: 1px solid #ccc;
   border-radius: 0.25rem;
   resize: none;
+  background-color: var(--color-grey-100);
   &:focus {
     outline: none;
     border: 1px solid #333;

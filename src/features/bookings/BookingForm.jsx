@@ -15,6 +15,7 @@ const Button = styled.button`
   width: 3rem;
   height: 3rem;
   border: 1px solid var(--color-grey-400);
+  color: var(--color-grey-500);
 
   &:focus {
     outline: none;
@@ -109,7 +110,7 @@ const Booking = styled.button`
     #d72727ec 0%,
     rgba(253, 45, 96, 0.9262298669467787) 100%
   );
-  color: var(--color-grey-100);
+  color: var(--color-red-50);
   @keyframes pulse {
     0% {
       transform: scale(1);

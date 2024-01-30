@@ -20,6 +20,12 @@ const StyledHeader = styled.header`
   /* justify-content: space-between; */
   justify-content: flex-end;
 
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 100;
+
   .menuBtn {
     display: none;
   }
@@ -31,6 +37,14 @@ const StyledHeader = styled.header`
       position: absolute;
       left: 4rem;
     }
+  }
+
+  @media (max-width: 1000px) {
+    .menuBtn {
+      left: 1rem;
+    }
+
+    padding: 1.2rem 1rem;
   }
 `;
 

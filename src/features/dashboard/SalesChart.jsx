@@ -16,6 +16,10 @@ import { eachDayOfInterval, format, isSameDay, subDays } from 'date-fns';
 const StyledSalesChart = styled(DashboardBox)`
   grid-column: 1 / -1;
 
+  @media (max-width: 500px) {
+    margin-top: 2rem;
+  }
+
   /* Hack to change grid line colors */
   & .recharts-cartesian-grid-horizontal line,
   & .recharts-cartesian-grid-vertical line {
@@ -66,7 +70,7 @@ function SalesChart({ bookings, numDays }) {
 
   const data = allDates.map((date) => {
     return {
-      label: format(date, 'MMM dd'),
+      label: format(date, 'MM-dd'),
       totalSales: bookings
         .filter((booking) => isSameDay(date, new Date(booking.created_at)))
         .reduce((acc, cur) => acc + cur.totalPrice, 0),
@@ -95,8 +99,8 @@ function SalesChart({ bookings, numDays }) {
   return (
     <StyledSalesChart>
       <Heading as='h2'>
-        Sales from {format(allDates.at(0), 'MMM dd yyyy')} &mdash;{' '}
-        {format(allDates.at(-1), 'MMM dd yyyy')}
+        Sales from {format(allDates.at(0), 'yyyy-MM-dd ')} &mdash;{' '}
+        {format(allDates.at(-1), 'yyyy-MM-dd')}
       </Heading>
       <ResponsiveContainer height={300} width='100%'>
         <AreaChart data={data} height={300} width={700}>

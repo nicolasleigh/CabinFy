@@ -18,6 +18,22 @@ const StyledTodayItem = styled.li`
   &:first-child {
     border-top: 1px solid var(--color-grey-100);
   }
+
+  @media (max-width: 900px) {
+    grid-template-columns: 6rem 1fr 5rem 6rem;
+    /* gap: 0.8rem; */
+    font-size: 1.2rem;
+
+    .btn {
+      font-size: 1rem;
+      padding: 0.3rem 0.5rem;
+    }
+
+    .tag {
+      font-size: 1rem;
+      padding: 0.3rem 0.5rem;
+    }
+  }
 `;
 
 const Guest = styled.div`
@@ -28,8 +44,16 @@ function TodayItem({ activity }) {
   const { id, status, guest, numNights } = activity;
   return (
     <StyledTodayItem>
-      {status === 'unconfirmed' && <Tag type='green'>Arriving</Tag>}
-      {status === 'checked-in' && <Tag type='blue'>Departing</Tag>}
+      {status === 'unconfirmed' && (
+        <Tag className='tag' type='green'>
+          Arriving
+        </Tag>
+      )}
+      {status === 'checked-in' && (
+        <Tag className='tag' type='blue'>
+          Departing
+        </Tag>
+      )}
 
       {/* <Flag src={guests.countryFlag} alt={`Flag of ${guests.country}`} /> */}
       <Guest>{guest.fullName}</Guest>
@@ -37,6 +61,7 @@ function TodayItem({ activity }) {
 
       {status === 'unconfirmed' && (
         <Button
+          className='btn'
           size='small'
           variation='primary'
           as={Link}

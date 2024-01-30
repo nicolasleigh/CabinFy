@@ -31,6 +31,8 @@ const CheckboxGroup = styled.div`
 const Checkbox = styled.input`
   width: 2rem;
   height: 2rem;
+  color: red;
+  background-color: red;
 
   @media (max-width: 900px) {
     width: 1.7rem;

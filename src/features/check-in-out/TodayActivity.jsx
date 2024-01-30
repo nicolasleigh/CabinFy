@@ -12,12 +12,24 @@ const StyledToday = styled.div`
   border: 1px solid var(--color-grey-100);
   border-radius: var(--border-radius-md);
 
-  padding: 3.2rem;
+  padding: 2.2rem;
   display: flex;
   flex-direction: column;
   gap: 2.4rem;
   grid-column: 1 / span 2;
   padding-top: 2.4rem;
+
+  @media (max-width: 800px) {
+    gap: 1rem;
+  }
+
+  @media (max-width: 650px) {
+    grid-column: 1 / -1;
+  }
+
+  @media (max-width: 500px) {
+    margin-top: 2rem;
+  }
 `;
 
 const TodayList = styled.ul`

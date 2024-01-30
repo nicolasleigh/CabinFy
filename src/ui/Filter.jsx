@@ -33,6 +33,11 @@ const FilterButton = styled.button`
     background-color: var(--color-brand-600);
     color: var(--color-brand-50);
   }
+
+  @media (max-width: 500px) {
+    font-size: 1rem;
+    padding: 0.3rem 0.4rem;
+  }
 `;
 
 function Filter({ filterField, options }) {

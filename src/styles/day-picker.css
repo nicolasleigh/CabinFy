@@ -12,6 +12,16 @@
     --rdp-cell-size: 40px;
   }
 }
+@media (max-width: 630px) {
+  .rdp {
+    --rdp-cell-size: 50px;
+  }
+}
+@media (max-width: 450px) {
+  .rdp {
+    --rdp-cell-size: 40px;
+  }
+}
 
 .DayPicker-wrapper {
   outline: none;

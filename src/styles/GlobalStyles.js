@@ -28,7 +28,8 @@ const GlobalStyles = createGlobalStyle`
   --color-indigo-100: #e0e7ff;
   --color-indigo-700: #4338ca;
 
-  --color-red-100: #fee2e2;
+--color-red-50: #fedcdc;
+--color-red-100: #fee2e2;
 --color-red-200: #ffa8a8;
 --color-red-300: #ff8787;
 --color-red-400: #ff6b6b;
@@ -71,14 +72,15 @@ const GlobalStyles = createGlobalStyle`
 --color-indigo-100: #3730a3;
 --color-indigo-700: #e0e7ff;
 
---color-red-100: #fee2e2;
---color-red-200: #ffa8a8;
---color-red-300: #ff8787;
---color-red-400: #ff6b6b;
---color-red-500: #fa5252;
+--color-red-50: #fedcdc;
+--color-red-100: #f06595;
+--color-red-200: #e64980;
+--color-red-300: #d6336c;
+--color-red-400: #c2255c;
+--color-red-500: #a61e4d;
 --color-red-600: #f03e3e;
---color-red-700: #b91c1c;
---color-red-800: #991b1b;
+--color-red-700: #af3939;
+--color-red-800: #7d2929;
 
 --backdrop-color: rgba(0, 0, 0, 0.3);
 
@@ -194,6 +196,7 @@ img {
   max-width: 100%;
   filter: grayscale(var(--image-grayscale)) opacity(var(--image-opacity));
 }
+
 
 `;
 

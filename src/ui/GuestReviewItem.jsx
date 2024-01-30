@@ -5,12 +5,6 @@ const ReviewItem = styled.div`
   display: flex;
   flex-direction: column;
   gap: 1rem;
-
-  .review {
-    font-size: 1.4rem;
-    font-weight: 400;
-    line-height: 2.4rem;
-  }
 `;
 
 const Figure = styled.figure`
@@ -60,6 +54,11 @@ const Figure = styled.figure`
   }
 `;
 
+const Comment = styled.div`
+  font-size: 1.3rem;
+  line-height: 2.2rem;
+`;
+
 export default function GuestReviewItem({ reviews, limit }) {
   if (limit) {
     reviews = reviews?.slice(0, limit);
@@ -70,9 +69,9 @@ export default function GuestReviewItem({ reviews, limit }) {
         reviews.map((review) => {
           const fullNameArr = review.guest?.fullName?.split(' ') || [];
           let shortName;
-          fullNameArr.length >= 2
+          fullNameArr.length > 1
             ? (shortName =
-                fullNameArr[0]?.chatAt(0) + fullNameArr[1]?.chatAt(0))
+                fullNameArr[0]?.charAt(0) + fullNameArr[1]?.charAt(0))
             : (shortName = fullNameArr[0]?.charAt(0));
           return (
             <ReviewItem key={review.id}>
@@ -89,7 +88,7 @@ export default function GuestReviewItem({ reviews, limit }) {
                   </p>
                 </figcaption>
               </Figure>
-              {review.comment && <div className='review'>{review.comment}</div>}
+              {review.comment && <Comment>{review.comment}</Comment>}
             </ReviewItem>
           );
         })}

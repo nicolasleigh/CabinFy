@@ -47,7 +47,7 @@ const variations = {
     }
   `,
   gradient: css`
-    color: var(--color-red-100);
+    color: var(--color-red-50);
 
     background: rgb(246, 32, 32);
     background: linear-gradient(
