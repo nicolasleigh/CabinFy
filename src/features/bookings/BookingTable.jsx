@@ -5,20 +5,39 @@ import Empty from '../../ui/Empty';
 import { useBookings } from './useBookings';
 import Spinner from '../../ui/Spinner';
 import Pagination from '../../ui/Pagination';
+import { useEffect, useState } from 'react';
 
 function BookingTable() {
   const { bookings, isLoading, count } = useBookings();
+  const mediaMatch = window.matchMedia('(max-width: 580px)');
+  const [matches, setMatches] = useState(mediaMatch.matches);
+
+  useEffect(() => {
+    const handler = (e) => setMatches(e.matches);
+    mediaMatch.addEventListener('change', handler);
+    return () => mediaMatch.removeEventListener('change', handler);
+  });
 
   if (isLoading) return <Spinner />;
   if (!bookings.length) return <Empty resourceName='bookings' />;
 
+  // @media (max-width: 580px) {
+  //   display: none;
+  // }
+
   return (
     <Menus>
-      <Table columns='0.6fr 2fr 2.4fr 1.4fr 1fr 3.2rem'>
+      <Table
+        columns={
+          matches
+            ? '1.5fr 2fr 1.3fr 1fr 1rem'
+            : '1.5fr 2fr 2.4fr 1.3fr 1fr 1.5rem'
+        }
+      >
         <Table.Header>
           <div>Cabin</div>
           <div>Guest</div>
-          <div>Dates</div>
+          {!matches && <div>Dates</div>}
           <div>Status</div>
           <div>Amount</div>
           <div></div>

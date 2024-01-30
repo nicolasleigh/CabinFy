@@ -26,6 +26,19 @@ const StyledToggle = styled.button`
     width: 2.4rem;
     height: 2.4rem;
     color: var(--color-grey-700);
+
+    @media (max-width: 670px) {
+      width: 2rem;
+      height: 2rem;
+    }
+    @media (max-width: 580px) {
+      width: 1.8rem;
+      height: 1.8rem;
+    }
+  }
+
+  @media (max-width: 670px) {
+    padding: 0.2rem;
   }
 `;
 
@@ -62,6 +75,15 @@ const StyledButton = styled.button`
     height: 1.6rem;
     color: var(--color-grey-400);
     transition: all 0.3s;
+  }
+
+  @media (max-width: 880px) {
+    padding: 1rem 2rem;
+    font-size: 1.2rem;
+  }
+  @media (max-width: 500px) {
+    padding: 0.8rem 1.8rem;
+    font-size: 1rem;
   }
 `;
 

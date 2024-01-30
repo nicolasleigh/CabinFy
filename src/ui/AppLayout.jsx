@@ -42,6 +42,10 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   gap: 3.2rem;
+
+  @media (max-width: 580px) {
+    gap: 2.2rem;
+  }
 `;
 
 function AppLayout() {

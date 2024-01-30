@@ -20,10 +20,20 @@ import ConfirmDelete from '../../ui/ConfirmDelete';
 import { useDeleteBooking } from './useDeleteBooking';
 
 const Cabin = styled.div`
-  font-size: 1.6rem;
-  font-weight: 600;
+  font-size: 1.4rem;
   color: var(--color-grey-600);
-  font-family: 'Sono';
+
+  @media (max-width: 880px) {
+    font-size: 1.2rem;
+  }
+
+  @media (max-width: 670px) {
+    font-size: 1rem;
+  }
+
+  @media (max-width: 500px) {
+    font-size: 0.8rem;
+  }
 `;
 
 const Stacked = styled.div`
@@ -33,17 +43,52 @@ const Stacked = styled.div`
 
   & span:first-child {
     font-weight: 500;
+
+    @media (max-width: 500px) {
+      font-size: 0.8rem;
+      font-weight: 400;
+    }
   }
 
   & span:last-child {
     color: var(--color-grey-500);
     font-size: 1.2rem;
+
+    @media (max-width: 880px) {
+      font-size: 1rem;
+    }
+
+    @media (max-width: 670px) {
+      font-size: 0.8rem;
+    }
+
+    @media (max-width: 500px) {
+      font-size: 0.7rem;
+    }
+  }
+`;
+
+const Dates = styled.div`
+  @media (max-width: 580px) {
+    display: none;
   }
 `;
 
 const Amount = styled.div`
   font-family: 'Sono';
   font-weight: 500;
+
+  @media (max-width: 880px) {
+    font-size: 1.2rem;
+  }
+
+  @media (max-width: 670px) {
+    font-size: 1rem;
+  }
+  @media (max-width: 500px) {
+    font-size: 0.8rem;
+    font-weight: 400;
+  }
 `;
 
 function BookingRow({
@@ -79,18 +124,20 @@ function BookingRow({
         <span>{email}</span>
       </Stacked>
 
-      <Stacked>
-        <span>
-          {isToday(new Date(startDate))
-            ? 'Today'
-            : formatDistanceFromNow(startDate)}{' '}
-          &rarr; {numNights} night stay
-        </span>
-        <span>
-          {format(new Date(startDate), 'MMM dd yyyy')} &mdash;{' '}
-          {format(new Date(endDate), 'MMM dd yyyy')}
-        </span>
-      </Stacked>
+      <Dates>
+        <Stacked>
+          <span>
+            {isToday(new Date(startDate))
+              ? 'Today'
+              : formatDistanceFromNow(startDate)}{' '}
+            &rarr; {numNights} night stay
+          </span>
+          <span>
+            {format(new Date(startDate), 'MMM dd yyyy')} &mdash;{' '}
+            {format(new Date(endDate), 'MMM dd yyyy')}
+          </span>
+        </Stacked>
+      </Dates>
 
       <Tag type={statusToTagName[status]}>{status.replace('-', ' ')}</Tag>
 

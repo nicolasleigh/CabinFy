@@ -57,6 +57,16 @@ const PaginationButton = styled.button`
     background-color: var(--color-brand-600);
     color: var(--color-brand-50);
   }
+
+  @media (max-width: 880px) {
+    font-size: 1.2rem;
+  }
+  @media (max-width: 670px) {
+    font-size: 1rem;
+  }
+  @media (max-width: 500px) {
+    font-size: 0.8rem;
+  }
 `;
 
 function Pagination({ count }) {

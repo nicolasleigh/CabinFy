@@ -34,6 +34,11 @@ const FilterButton = styled.button`
     color: var(--color-brand-50);
   }
 
+  @media (max-width: 670px) {
+    font-size: 1.2rem;
+    padding: 0.3rem 0.6rem;
+  }
+
   @media (max-width: 500px) {
     font-size: 1rem;
     padding: 0.3rem 0.4rem;
