@@ -16,6 +16,9 @@ const StyledTable = styled.div`
   @media (max-width: 670px) {
     font-size: 1rem;
   }
+  @media (max-width: 500px) {
+    font-size: 0.8rem;
+  }
 `;
 
 const CommonRow = styled.div`

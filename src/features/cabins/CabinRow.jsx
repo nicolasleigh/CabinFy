@@ -31,24 +31,58 @@ const Img = styled.img`
   object-fit: cover;
   object-position: center;
   transform: scale(1.5) translateX(-7px);
+
+  @media (max-width: 500px) {
+    transform: scale(1.5);
+  }
 `;
 
 const Cabin = styled.div`
-  font-size: 1.6rem;
-  font-weight: 600;
+  font-size: 1.4rem;
   color: var(--color-grey-600);
-  font-family: 'Sono';
+
+  @media (max-width: 700px) {
+    font-size: 1.2rem;
+  }
+  @media (max-width: 580px) {
+    font-size: 1rem;
+  }
+  @media (max-width: 500px) {
+    font-size: 0.8rem;
+  }
+`;
+
+const Location = styled.div`
+  font-size: 1.3rem;
+  @media (max-width: 700px) {
+    font-size: 1.1rem;
+  }
+  @media (max-width: 580px) {
+    font-size: 0.8rem;
+  }
+  @media (max-width: 500px) {
+    font-size: 0.6rem;
+  }
 `;
 
 const Price = styled.div`
   font-family: 'Sono';
   font-weight: 600;
+
+  @media (max-width: 500px) {
+    font-weight: 500;
+    font-size: 0.8rem;
+  }
 `;
 
 const Discount = styled.div`
-  font-family: 'Sono';
+  /* font-family: 'Sono'; */
   font-weight: 500;
   color: var(--color-green-700);
+
+  @media (max-width: 500px) {
+    font-size: 0.8rem;
+  }
 `;
 
 function CabinRow({ cabin }) {
@@ -60,7 +94,7 @@ function CabinRow({ cabin }) {
   const {
     id: cabinId,
     name,
-    maxCapacity,
+    location,
     regularPrice,
     discount,
     image,
@@ -78,10 +112,10 @@ function CabinRow({ cabin }) {
       <Table.Row>
         <Img src={imageBaseUrl + image} />
         <Cabin>{name}</Cabin>
-        <div>Fits up to {maxCapacity} guests</div>
+        <Location>{location}</Location>
         <Price>{formatCurrency(regularPrice)}</Price>
         {discount ? (
-          <Discount>{formatCurrency(discount)}</Discount>
+          <Discount>up to {discount}%</Discount>
         ) : (
           <span>&mdash;</span>
         )}
