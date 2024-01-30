@@ -216,7 +216,7 @@ export const logoutGuest = async (
   res: Response,
   next: NextFunction
 ) => {
-  res.clearCookie('jwt-refresh');
+  // res.clearCookie('jwt-refresh');
   res.clearCookie('jwt-access');
   res.json({ message: 'You are logged out!' });
 };

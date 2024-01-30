@@ -57,6 +57,7 @@ model Cabins {
   discount     Float?
   description  String?
   image        String
+  location     String?
   Bookings     Bookings[]
   images       Json?
   Reviews      Reviews[]
