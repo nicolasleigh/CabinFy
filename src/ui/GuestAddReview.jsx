@@ -7,6 +7,7 @@ import Button from './Button';
 import toast from 'react-hot-toast';
 import { useCreateReview } from '../features/guests/useCreateReview';
 import { useParams } from 'react-router-dom';
+import { useAddReviewModal } from '../hooks';
 
 const StarBox = styled.div`
   display: flex;
@@ -50,6 +51,7 @@ export default function GuestAddReview() {
   };
 
   const { createReview, isLoading } = useCreateReview();
+  const { setSubmitted } = useAddReviewModal();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -63,6 +65,7 @@ export default function GuestAddReview() {
       cabinId,
     };
     createReview(data);
+    setSubmitted(true);
   };
 
   return (

@@ -10,6 +10,7 @@ export const useCreateReview = () => {
     onSuccess: () => {
       toast.success('Review successfully created');
       queryClient.invalidateQueries({ queryKey: ['reviews'] });
+      queryClient.invalidateQueries({ queryKey: ['rate'] });
     },
     onError: (err) => {
       toast.error(err.message);

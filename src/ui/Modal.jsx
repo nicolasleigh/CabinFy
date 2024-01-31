@@ -10,6 +10,7 @@ import { createPortal } from 'react-dom';
 import { HiXMark } from 'react-icons/hi2';
 import styled from 'styled-components';
 import { useOutsideClick } from '../hooks/useOutsideClick';
+import { useAddReviewModal } from '../hooks';
 
 const StyledModal = styled.div`
   position: fixed;
@@ -106,10 +107,15 @@ function Open({ children, opens: opensWindowName }) {
 
 function Window({ children, name }) {
   const { openName, close } = useContext(ModalContext);
+  const { submitted, setSubmitted } = useAddReviewModal();
 
   const ref = useOutsideClick(close);
 
   if (name !== openName) return null;
+  if (submitted) {
+    close();
+    setSubmitted(false);
+  }
   return createPortal(
     <Overlay>
       <StyledModal ref={ref}>

@@ -34,7 +34,7 @@ export default function Home() {
 
   // console.log(cabins);
 
-  const avgRating = rate.map((e) => {
+  const avgRating = rate?.map((e) => {
     return Math.ceil(e._avg.rating * 10) / 10;
   });
 

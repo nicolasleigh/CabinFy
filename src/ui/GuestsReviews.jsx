@@ -13,6 +13,6 @@ const Layout = styled.div`
 export default function GuestsReviews() {
   const { cabinId } = useParams();
   const { reviews, isLoading } = useReviews(cabinId);
-  console.log(reviews);
+  // console.log(reviews);
   return <Layout>{reviews && <GuestReviewItem reviews={reviews} />}</Layout>;
 }
