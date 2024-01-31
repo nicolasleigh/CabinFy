@@ -3,6 +3,7 @@ import Card from '../ui/Card';
 import GuestSignup from './GuestSignup';
 import GuestLogin from './GuestLogin';
 import { useCabins } from '../features/cabins/useCabins';
+import { useRate } from '../features/guests/useRate';
 
 const HomeLayout = styled.div`
   display: grid;
@@ -29,7 +30,15 @@ const imageURL = import.meta.env.VITE_IMAGE_URL;
 
 export default function Home() {
   const { cabins, isLoading } = useCabins();
-  console.log(cabins);
+  const { rate, isLoading: isLoadingRate } = useRate();
+
+  // console.log(cabins);
+
+  const avgRating = rate.map((e) => {
+    return Math.ceil(e._avg.rating * 10) / 10;
+  });
+
+  // console.log(avgRating);
   return (
     <>
       <GuestSignup />
@@ -44,8 +53,8 @@ export default function Home() {
                 src={imageURL + e.image}
                 name={e.name}
                 bed={e.bedroom}
-                price={'$' + e.regularPrice}
-                rate='4.6'
+                price={'CN¥ ' + e.regularPrice}
+                rate={avgRating[e.id - 1]}
                 images={e.images}
               />
             );

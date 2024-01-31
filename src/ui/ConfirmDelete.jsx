@@ -3,7 +3,7 @@ import Button from './Button';
 import Heading from './Heading';
 
 const StyledConfirmDelete = styled.div`
-  width: 40rem;
+  /* width: 40rem; */
   display: flex;
   flex-direction: column;
   gap: 1.2rem;
@@ -11,6 +11,10 @@ const StyledConfirmDelete = styled.div`
   & p {
     color: var(--color-grey-500);
     margin-bottom: 1.2rem;
+
+    @media (max-width: 700px) {
+      font-size: 1.4rem;
+    }
   }
 
   & div {

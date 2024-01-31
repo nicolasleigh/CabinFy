@@ -33,10 +33,15 @@ const Location = styled.div`
   }
 `;
 
-export default function CabinTextInfo({ bedroom, discount, regularPrice }) {
+export default function CabinTextInfo({
+  bedroom,
+  discount,
+  regularPrice,
+  location,
+}) {
   return (
     <Location>
-      <div>Located in: ArrowHead, California</div>
+      <div>Located in: {location}</div>
 
       <div>
         {bedroom}{' '}

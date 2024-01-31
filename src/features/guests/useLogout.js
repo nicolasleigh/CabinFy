@@ -10,6 +10,9 @@ export function useLogout() {
       queryClient.removeQueries(['guest']);
       toast.success('You are successfully logged out!');
     },
+    onError: () => {
+      toast.error('Something went wrong.');
+    },
   });
   return { logout, isLoading };
 }

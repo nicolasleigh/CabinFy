@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 import { format, isToday } from 'date-fns';
 import {
-  HiOutlineChatBubbleBottomCenterText,
   HiOutlineCheckCircle,
   HiOutlineCurrencyDollar,
   HiOutlineHomeModern,

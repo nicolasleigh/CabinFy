@@ -86,7 +86,7 @@ export default function Card({ id, src, name, bed, price, rate }) {
         </CardTextBed>
         <CardPrice>
           {price}
-          <CardPriceText> &bull; person &bull; night</CardPriceText>
+          <CardPriceText> &bull; night</CardPriceText>
         </CardPrice>
       </CardTextBox>
     </CardLayout>

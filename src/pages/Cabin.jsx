@@ -113,9 +113,10 @@ export default function Cabin() {
   const [breakfast, setBreakfast] = useState(true);
 
   const { cabin, isLoading: isLoadingCabin } = useCabin();
-  const { image, images, bedroom, discount, name, regularPrice } = cabin || {
-    images: [],
-  };
+  const { image, images, bedroom, discount, name, regularPrice, location } =
+    cabin || {
+      images: [],
+    };
 
   const { cabinId } = useParams();
   const { reviews, isLoading: isLoadingReview } = useReviews(cabinId);
@@ -124,7 +125,7 @@ export default function Cabin() {
     <>
       <GuestSignup />
       <GuestLogin />
-      <NameSection>{cabin?.name}</NameSection>
+      <NameSection>{name}</NameSection>
 
       <ImageSection>
         <ImageLeft src={imageBaseUrl + image} />
@@ -142,6 +143,7 @@ export default function Cabin() {
           bedroom={bedroom}
           discount={discount}
           regularPrice={regularPrice}
+          location={location}
         />
         <GuestsFavoriteBox reviews={reviews} />
         <FeatureIcon />
