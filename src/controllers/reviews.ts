@@ -32,3 +32,16 @@ export const createReview = async (req: Request, res: Response) => {
   });
   res.json(review);
 };
+
+export const getRate = async (req: Request, res: Response) => {
+  const group = await prisma.reviews.groupBy({
+    by: ['cabinId'],
+    _avg: {
+      rating: true,
+    },
+    orderBy: {
+      cabinId: 'asc',
+    },
+  });
+  res.json(group);
+};

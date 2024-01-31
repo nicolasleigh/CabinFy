@@ -5,9 +5,9 @@ import { salt } from '../auth/signup-admin.js';
 import { v4 as uuid } from 'uuid';
 import jwt from 'jsonwebtoken';
 
-export const accessTokenExp = '2m';
+export const accessTokenExp = '1d';
 // export const refreshTokenExp = '30d';
-export const accessCookieExp = 2 * 60 * 1000;
+export const accessCookieExp = 1 * 24 * 60 * 60 * 1000;
 // export const refreshCookieExp = 30 * 24 * 60 * 60 * 1000;
 
 export const getGuests = async (
