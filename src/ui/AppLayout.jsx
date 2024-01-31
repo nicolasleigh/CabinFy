@@ -59,7 +59,7 @@ function AppLayout() {
         </Container>
       </Main>
       <Footer>
-        <GuestFooter admin />
+        <GuestFooter $admin />
       </Footer>
     </StyledAppLayout>
   );

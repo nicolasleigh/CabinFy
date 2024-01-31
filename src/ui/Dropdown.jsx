@@ -2,8 +2,6 @@ import { cloneElement, useState } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { useOutsideClick } from '../hooks/useOutsideClick';
-import CreateCabinForm from '../features/cabins/CreateCabinForm';
-import Modal from './Modal';
 
 const StyledDropdown = styled.div`
   position: relative;

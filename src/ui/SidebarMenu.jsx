@@ -18,7 +18,7 @@ const StyledSidebar = styled.aside`
   transform: translateX(-100%);
 
   ${(props) =>
-    props.visible &&
+    props.$visible &&
     css`
       transform: translateX(0);
     `}
@@ -26,9 +26,9 @@ const StyledSidebar = styled.aside`
   transition: transform 0.4s ease-in-out;
 `;
 
-export const SidebarMenu = ({ visible, setShowSidebar }) => {
+export const SidebarMenu = ({ $visible, setShowSidebar }) => {
   return (
-    <StyledSidebar visible={visible}>
+    <StyledSidebar $visible={$visible}>
       <Logo />
       <MainNav setShowSidebar={setShowSidebar} />
     </StyledSidebar>

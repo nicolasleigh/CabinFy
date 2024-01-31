@@ -21,6 +21,7 @@ const Form = styled.form`
     css`
       width: 80rem;
     `}
+
   ${(props) =>
     props.type === 'modal-small' &&
     css`

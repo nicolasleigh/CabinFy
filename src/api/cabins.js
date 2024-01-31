@@ -16,7 +16,6 @@ export const createCabin = async (cabin) => {
   form.append('description', cabin.description);
   form.append('regularPrice', cabin.regularPrice);
   form.append('discount', cabin.discount);
-  // form.append('maxCapacity', cabin.maxCapacity);
   form.append('image', cabin.image);
   form.append('bedroom', cabin.bedroom);
   cabin.images.map((e) => {
@@ -42,8 +41,11 @@ export const updateCabin = async (cabin, id) => {
   form.append('description', cabin.description);
   form.append('regularPrice', cabin.regularPrice);
   form.append('discount', cabin.discount);
-  form.append('maxCapacity', cabin.maxCapacity);
   form.append('image', cabin.image);
+  form.append('bedroom', cabin.bedroom);
+  cabin.images.map((e) => {
+    form.append('images', e);
+  });
 
   const { data } = await client.patch(`/api/cabins/${id}`, form, {
     Headers: {

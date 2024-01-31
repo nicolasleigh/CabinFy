@@ -14,7 +14,7 @@ const StyledFooter = styled.footer`
   width: 88%;
 
   ${(props) =>
-    props.admin &&
+    props.$admin &&
     css`
       border-top: 1px solid var(--color-grey-50);
       margin-top: 0rem;
@@ -75,9 +75,9 @@ const GithubIconGroup = styled.div`
   }
 `;
 
-export default function GuestFooter({ admin }) {
+export default function GuestFooter({ $admin }) {
   return (
-    <StyledFooter admin={admin}>
+    <StyledFooter $admin={$admin}>
       <Copyright>
         <p>&copy; 2024 Nicolas Leigh.</p>
       </Copyright>

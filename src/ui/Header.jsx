@@ -60,7 +60,7 @@ function Header() {
         <UserAvatar />
         <HeaderMenu />
       </ButtonGroup>
-      <SidebarMenu visible={showSidebar} setShowSidebar={setShowSidebar} />
+      <SidebarMenu $visible={showSidebar} setShowSidebar={setShowSidebar} />
     </StyledHeader>
   );
 }

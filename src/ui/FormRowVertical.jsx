@@ -7,9 +7,7 @@ const StyledFormRow = styled.div`
   padding: 1.2rem 0;
 `;
 
-const Label = styled.label`
-  font-weight: 500;
-`;
+const Label = styled.label``;
 
 const Error = styled.span`
   font-size: 1.4rem;

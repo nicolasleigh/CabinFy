@@ -26,13 +26,16 @@ const StyledModal = styled.div`
   overflow: scroll;
 
   @media (max-width: 1000px) {
+    padding: 3rem 3.8rem;
     width: 60%;
   }
 
   @media (max-width: 830px) {
+    padding: 2.8rem 3.6rem;
     width: 70%;
   }
   @media (max-width: 500px) {
+    padding: 1.8rem 2rem;
     width: 85%;
   }
 `;
