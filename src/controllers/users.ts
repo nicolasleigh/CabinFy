@@ -31,24 +31,28 @@ export const updateUser = async (
 ) => {
   const { username, password } = req.body;
   if (!password) {
-    const data = await prisma.users.update({
+    try {
+      const data = await prisma.users.update({
+        // @ts-ignore
+        where: { uid: req.user?.uid },
+        data: {
+          username,
+        },
+      });
+      const user = {
+        uid: data.uid,
+        username: data.username,
+        avatar: data.avatar,
+        email: data.email,
+        role: data.role,
+      };
       // @ts-ignore
-      where: { uid: req.user?.uid },
-      data: {
-        username,
-      },
-    });
-    const user = {
-      uid: data.uid,
-      username: data.username,
-      avatar: data.avatar,
-      email: data.email,
-      role: data.role,
-    };
-    // @ts-ignore
-    req.session.passport.user = user;
-    req.session.save();
-    return res.json({});
+      req.session.passport.user = user;
+      req.session.save();
+      return res.json({});
+    } catch (error) {
+      return res.status(400).json(error);
+    }
   }
 
   crypto.pbkdf2(
@@ -88,25 +92,29 @@ export const updateAvatar = async (
   next: NextFunction
 ) => {
   const { filePath } = req.body;
-  const fileName = filePath.split('/').pop();
-  const data = await prisma.users.update({
+  try {
+    const fileName = filePath.split('/').pop();
+    const data = await prisma.users.update({
+      // @ts-ignore
+      where: { uid: req.user.uid },
+      data: {
+        avatar: fileName,
+      },
+    });
+    const user = {
+      uid: data.uid,
+      username: data.username,
+      avatar: data.avatar,
+      email: data.email,
+      role: data.role,
+    };
     // @ts-ignore
-    where: { uid: req.user.uid },
-    data: {
-      avatar: fileName,
-    },
-  });
-  const user = {
-    uid: data.uid,
-    username: data.username,
-    avatar: data.avatar,
-    email: data.email,
-    role: data.role,
-  };
-  // @ts-ignore
-  req.session.passport.user = user;
-  req.session.save();
-  return res.json({});
+    req.session.passport.user = user;
+    req.session.save();
+    return res.json({});
+  } catch (error) {
+    return res.status(400).json(error);
+  }
 };
 
 export const forgetPassword = async (
@@ -138,7 +146,7 @@ export const forgetPassword = async (
     },
   });
   const { error } = await resend.emails.send({
-    from: 'Nicolas-Hotel@linze.me',
+    from: `Nicolas-Hotel@linze.me`,
     to: email,
     subject: 'Rest Password',
     html: `<p>Click the following link to reset your password: <br> <a href=${process.env.PASS_RESET_BASE_URL}${newUser.uid}/${token}>rest password link</a> <p>`,

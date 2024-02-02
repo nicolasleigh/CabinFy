@@ -1,13 +1,18 @@
 import { NextFunction, Request, Response } from 'express';
 import prisma from '../../prisma/client.js';
+import { cabinSchema } from '../../prisma/validation.js';
 
 export const getCabins = async (
   req: Request,
   res: Response,
   next: NextFunction
 ) => {
-  const cabins = await prisma.cabins.findMany();
-  res.json(cabins);
+  try {
+    const cabins = await prisma.cabins.findMany();
+    res.json(cabins);
+  } catch (error) {
+    res.status(400).json(error);
+  }
 };
 
 export const getCabin = async (
@@ -15,10 +20,14 @@ export const getCabin = async (
   res: Response,
   next: NextFunction
 ) => {
-  const cabin = await prisma.cabins.findUnique({
-    where: { id: parseInt(req.params.id) },
-  });
-  res.json(cabin);
+  try {
+    const cabin = await prisma.cabins.findUnique({
+      where: { id: parseInt(req.params.id) },
+    });
+    res.json(cabin);
+  } catch (error) {
+    res.status(400).json(error);
+  }
 };
 
 export const createCabin = async (
@@ -26,35 +35,42 @@ export const createCabin = async (
   res: Response,
   next: NextFunction
 ) => {
-  const {
-    name,
-    description,
-    bedroom,
-    regularPrice,
-    discount,
-    filePaths,
-    coverPath,
-  } = req.body;
-  console.log(filePaths, coverPath);
-  const coverName = coverPath.split('/').pop();
-  const fileNameJson = [
-    { fileName: filePaths[0].split('/').pop() },
-    { fileName: filePaths[1].split('/').pop() },
-    { fileName: filePaths[2].split('/').pop() },
-    { fileName: filePaths[3].split('/').pop() },
-  ];
-  const cabin = await prisma.cabins.create({
-    data: {
-      name,
-      description,
-      bedroom: parseInt(bedroom),
-      regularPrice: parseFloat(regularPrice),
-      discount: parseFloat(discount),
-      image: coverName,
-      images: fileNameJson,
-    },
-  });
-  res.json(cabin);
+  const result = cabinSchema.safeParse(req.body);
+  if (!result.success) {
+    return res.status(400).json({ error: result.error.issues[0].message });
+  }
+  const { name, location, bedroom, regularPrice, discount } = result.data;
+  const { filePaths, coverPath } = req.body;
+  let coverName;
+  let fileNameJson;
+  if (coverPath) {
+    coverName = coverPath.split('/').pop();
+  }
+  if (filePaths) {
+    fileNameJson = [
+      { fileName: filePaths[0].split('/').pop() },
+      { fileName: filePaths[1].split('/').pop() },
+      { fileName: filePaths[2].split('/').pop() },
+      { fileName: filePaths[3].split('/').pop() },
+    ];
+  }
+
+  try {
+    const cabin = await prisma.cabins.create({
+      data: {
+        name,
+        location,
+        bedroom,
+        regularPrice,
+        discount,
+        image: coverName,
+        images: fileNameJson,
+      },
+    });
+    res.json(cabin);
+  } catch (error) {
+    res.status(400).json(error);
+  }
 };
 
 export const updateCabin = async (
@@ -62,23 +78,44 @@ export const updateCabin = async (
   res: Response,
   next: NextFunction
 ) => {
-  const { name, description, bedroom, regularPrice, discount, filePath } =
-    req.body;
-  let fileName;
-  if (filePath) fileName = filePath.split('/').pop();
+  const result = cabinSchema.safeParse(req.body);
+  if (!result.success) {
+    return res.status(400).json({ error: result.error.issues[0].message });
+  }
+  const { name, location, bedroom, regularPrice, discount } = result.data;
+  const { filePaths, coverPath } = req.body;
 
-  const cabin = await prisma.cabins.update({
-    where: { id: parseInt(req.params.id) },
-    data: {
-      name,
-      description,
-      bedroom: parseInt(bedroom),
-      regularPrice: parseFloat(regularPrice),
-      discount: parseFloat(discount),
-      image: fileName,
-    },
-  });
-  res.json(cabin);
+  let coverName;
+  let fileNameJson;
+  if (coverPath) {
+    coverName = coverPath.split('/').pop();
+  }
+  if (filePaths) {
+    fileNameJson = [
+      { fileName: filePaths[0].split('/').pop() },
+      { fileName: filePaths[1].split('/').pop() },
+      { fileName: filePaths[2].split('/').pop() },
+      { fileName: filePaths[3].split('/').pop() },
+    ];
+  }
+
+  try {
+    const cabin = await prisma.cabins.update({
+      where: { id: parseInt(req.params.id) },
+      data: {
+        name,
+        location,
+        bedroom,
+        regularPrice,
+        discount,
+        image: coverName,
+        images: fileNameJson,
+      },
+    });
+    res.json(cabin);
+  } catch (error) {
+    res.status(400).json(error);
+  }
 };
 
 export const duplicateCabin = async (
@@ -89,20 +126,23 @@ export const duplicateCabin = async (
   const cabin = await prisma.cabins.findUnique({
     where: { id: parseInt(req.params.id) },
   });
-  let newCabin;
-  if (cabin) {
-    newCabin = await prisma.cabins.create({
+  if (!cabin) return res.status(404).json({ error: 'Cabin not found' });
+  try {
+    const newCabin = await prisma.cabins.create({
       data: {
         name: cabin.name + ' Copy',
-        description: cabin.description,
+        location: cabin.location,
         bedroom: cabin.bedroom,
         regularPrice: cabin.regularPrice,
         discount: cabin.discount,
         image: cabin.image,
+        images: cabin.images,
       },
     });
+    res.json(newCabin);
+  } catch (error) {
+    res.status(400).json(error);
   }
-  res.json(newCabin);
 };
 
 export const deleteCabin = async (
@@ -110,8 +150,12 @@ export const deleteCabin = async (
   res: Response,
   next: NextFunction
 ) => {
-  const cabin = await prisma.cabins.delete({
-    where: { id: parseInt(req.params.id) },
-  });
-  res.json(cabin);
+  try {
+    const cabin = await prisma.cabins.delete({
+      where: { id: parseInt(req.params.id) },
+    });
+    res.json(cabin);
+  } catch (error) {
+    res.status(400).json(error);
+  }
 };

@@ -1,6 +1,6 @@
 import express from 'express';
 import {
-  deleteGuest,
+  // deleteGuest,
   getGuest,
   getGuests,
   // getRefreshToken,
@@ -19,7 +19,7 @@ router.get(
 );
 // router.get('/token', getRefreshToken);
 // router.post('/', createGuest);
-router.delete('/:id', deleteGuest);
+// router.delete('/:id', deleteGuest);
 router.get('/logout', logoutGuest);
 router.post('/signup', signupGuest);
 router.post(

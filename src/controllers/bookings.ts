@@ -1,43 +1,68 @@
 import { NextFunction, Request, Response } from 'express';
 import prisma from '../../prisma/client.js';
-import { RequestHandler } from 'express';
-import { DateValues, differenceInDays } from 'date-fns';
+import { bookingSchema } from '../../prisma/validation.js';
 
 export const createBooking = async (
   req: Request,
   res: Response,
   next: NextFunction
 ) => {
+  // console.log(req.user);
   const { uid } = req.user;
+  if (!uid) return res.json({ error: 'Invalid user' });
+
+  const result = bookingSchema.safeParse(req.body);
+  if (!result.success) {
+    return res.status(400).json({ error: result.error.issues[0].message });
+  }
   const {
     cabinId,
-    selectedRange: { from, to },
-    breakfast,
+    fromValue,
+    toValue,
+    hasBreakfast,
     guestsNumber,
     totalPrice,
     cabinPrice,
+    discountPrice,
     extrasPrice,
     isPaid,
     status,
     numOfNights,
-  } = req.body;
-  const booking = await prisma.bookings.create({
-    data: {
-      cabinId: parseInt(cabinId),
-      guestId: uid,
-      startDate: from,
-      endDate: to,
-      hasBreakfast: breakfast,
-      isPaid,
-      numGuests: parseInt(guestsNumber),
-      numNights: numOfNights,
-      status,
-      cabinPrice: parseFloat(cabinPrice),
-      extrasPrice: parseFloat(extrasPrice),
-      totalPrice: parseFloat(totalPrice),
+  } = result.data;
+
+  const user = await prisma.guests.findUnique({
+    where: {
+      uid,
     },
   });
-  res.json(booking);
+
+  if (!user) {
+    res.status(404).json({ message: 'User not found' });
+    return;
+  }
+
+  try {
+    const booking = await prisma.bookings.create({
+      data: {
+        cabinId,
+        guestId: uid,
+        startDate: fromValue,
+        endDate: toValue,
+        hasBreakfast,
+        isPaid,
+        numGuests: guestsNumber,
+        numNights: numOfNights,
+        status,
+        cabinPrice,
+        extrasPrice,
+        discountPrice,
+        totalPrice,
+      },
+    });
+    res.json(booking);
+  } catch (error) {
+    res.status(400).json(error);
+  }
 };
 
 interface Query {
@@ -59,28 +84,32 @@ export const getBookings = async (
 ) => {
   const { filter, sortBy, page } = req.query;
 
-  const bookings = await prisma.bookings.findMany({
-    where: {
-      [filter?.field]: filter?.value,
-    },
-    orderBy: {
-      [sortBy.field]: sortBy.direction,
-    },
-    include: {
-      guest: true,
-      cabin: true,
-    },
-    skip: (page - 1) * 10,
-    take: 10,
-  });
+  try {
+    const bookings = await prisma.bookings.findMany({
+      where: {
+        [filter?.field]: filter?.value,
+      },
+      orderBy: {
+        [sortBy.field]: sortBy.direction,
+      },
+      include: {
+        guest: true,
+        cabin: true,
+      },
+      skip: (page - 1) * 10,
+      take: 10,
+    });
 
-  const count = await prisma.bookings.count({
-    where: {
-      [filter?.field]: filter?.value,
-    },
-  });
+    const count = await prisma.bookings.count({
+      where: {
+        [filter?.field]: filter?.value,
+      },
+    });
 
-  res.json({ bookings, count });
+    res.json({ bookings, count });
+  } catch (error) {
+    res.status(400).json(error);
+  }
 };
 
 export const getBooking = async (
@@ -89,16 +118,20 @@ export const getBooking = async (
   next: NextFunction
 ) => {
   const { id } = req.params;
-  const booking = await prisma.bookings.findUnique({
-    where: {
-      id: parseInt(id),
-    },
-    include: {
-      guest: true,
-      cabin: true,
-    },
-  });
-  res.json(booking);
+  try {
+    const booking = await prisma.bookings.findUnique({
+      where: {
+        id: parseInt(id),
+      },
+      include: {
+        guest: true,
+        cabin: true,
+      },
+    });
+    res.json(booking);
+  } catch (error) {
+    res.status(400).json(error);
+  }
 };
 
 export const updateBooking = async (
@@ -107,20 +140,28 @@ export const updateBooking = async (
   next: NextFunction
 ) => {
   const { id } = req.params;
-  const { isPaid, status, hasBreakfast, extrasPrice, totalPrice } = req.body;
-  const booking = await prisma.bookings.update({
-    where: {
-      id: parseInt(id),
-    },
-    data: {
-      isPaid,
-      status,
-      hasBreakfast,
-      extrasPrice: extrasPrice && parseFloat(extrasPrice),
-      totalPrice: totalPrice && parseFloat(totalPrice),
-    },
-  });
-  res.json(booking);
+  const result = bookingSchema.safeParse(req.body);
+  if (!result.success) {
+    return res.status(400).json({ error: result.error.issues[0].message });
+  }
+  const { isPaid, status, hasBreakfast, extrasPrice, totalPrice } = result.data;
+  try {
+    const booking = await prisma.bookings.update({
+      where: {
+        id: parseInt(id),
+      },
+      data: {
+        isPaid,
+        status,
+        hasBreakfast,
+        extrasPrice,
+        totalPrice,
+      },
+    });
+    res.json(booking);
+  } catch (error) {
+    res.status(400).json(error);
+  }
 };
 
 export const deleteBooking = async (
@@ -128,13 +169,18 @@ export const deleteBooking = async (
   res: Response,
   next: NextFunction
 ) => {
-  const { id } = req.params;
-  const booking = await prisma.bookings.delete({
-    where: {
-      id: parseInt(id),
-    },
-  });
-  res.json(booking);
+  try {
+    const { id } = req.params;
+
+    const booking = await prisma.bookings.delete({
+      where: {
+        id: parseInt(id),
+      },
+    });
+    res.json(booking);
+  } catch (error) {
+    res.status(400).json(error);
+  }
 };
 
 interface DateQuery {
@@ -146,20 +192,25 @@ export const getBookingsAfterDate = async (
   res: Response,
   next: NextFunction
 ) => {
-  const { date } = req.query;
-  const bookings = await prisma.bookings.findMany({
-    where: {
-      created_at: {
-        gte: date,
+  try {
+    const { date } = req.query;
+
+    const bookings = await prisma.bookings.findMany({
+      where: {
+        created_at: {
+          gte: date,
+        },
       },
-    },
-    select: {
-      created_at: true,
-      totalPrice: true,
-      extrasPrice: true,
-    },
-  });
-  res.json(bookings);
+      select: {
+        created_at: true,
+        totalPrice: true,
+        extrasPrice: true,
+      },
+    });
+    res.json(bookings);
+  } catch (error) {
+    res.status(400).json(error);
+  }
 };
 
 export const getStaysAfterDate = async (
@@ -167,19 +218,24 @@ export const getStaysAfterDate = async (
   res: Response,
   next: NextFunction
 ) => {
-  const { date } = req.query;
-  const bookings = await prisma.bookings.findMany({
-    where: {
-      created_at: {
-        gte: date,
-        lte: new Date().toISOString(),
+  try {
+    const { date } = req.query;
+
+    const bookings = await prisma.bookings.findMany({
+      where: {
+        created_at: {
+          gte: date,
+          lte: new Date().toISOString(),
+        },
       },
-    },
-    include: {
-      guest: true,
-    },
-  });
-  res.json(bookings);
+      include: {
+        guest: true,
+      },
+    });
+    res.json(bookings);
+  } catch (error) {
+    res.status(400).json(error);
+  }
 };
 
 export const getTodayActivity = async (
@@ -187,34 +243,38 @@ export const getTodayActivity = async (
   res: Response,
   next: NextFunction
 ) => {
-  const today = new Date().toISOString().slice(0, 10);
-  const bookings = await prisma.bookings.findMany({
-    where: {
-      OR: [
-        {
-          startDate: {
-            equals: new Date(today),
+  try {
+    const today = new Date().toISOString().slice(0, 10);
+    const bookings = await prisma.bookings.findMany({
+      where: {
+        OR: [
+          {
+            startDate: {
+              equals: new Date(today),
+            },
+            status: {
+              equals: 'unconfirmed',
+            },
           },
-          status: {
-            equals: 'unconfirmed',
+          {
+            endDate: {
+              equals: new Date(today),
+            },
+            status: {
+              equals: 'checked-in',
+            },
           },
-        },
-        {
-          endDate: {
-            equals: new Date(today),
-          },
-          status: {
-            equals: 'checked-in',
-          },
-        },
-      ],
-    },
-    include: {
-      guest: true,
-    },
-    orderBy: {
-      created_at: 'asc',
-    },
-  });
-  res.json(bookings);
+        ],
+      },
+      include: {
+        guest: true,
+      },
+      orderBy: {
+        created_at: 'asc',
+      },
+    });
+    res.json(bookings);
+  } catch (error) {
+    res.status(400).json(error);
+  }
 };

@@ -4,6 +4,7 @@ import crypto from 'node:crypto';
 import { salt } from '../auth/signup-admin.js';
 import { v4 as uuid } from 'uuid';
 import jwt from 'jsonwebtoken';
+import { guestSchema } from '../../prisma/validation.js';
 
 export const accessTokenExp = '1d';
 // export const refreshTokenExp = '30d';
@@ -42,26 +43,31 @@ export const getGuest = async (
 //   res.json(guest);
 // };
 
-export const deleteGuest = async (
-  req: Request,
-  res: Response,
-  next: NextFunction
-) => {
-  const { id } = req.params;
-  const guest = await prisma.guests.delete({
-    where: {
-      id: Number(id),
-    },
-  });
-  res.json(guest);
-};
+// export const deleteGuest = async (
+//   req: Request,
+//   res: Response,
+//   next: NextFunction
+// ) => {
+//   const { id } = req.params;
+//   const guest = await prisma.guests.delete({
+//     where: {
+//       id: Number(id),
+//     },
+//   });
+//   res.json(guest);
+// };
 
 export const signupGuest = async (
   req: Request,
   res: Response,
   next: NextFunction
 ) => {
-  const { fullName, email, password } = req.body;
+  const result = guestSchema.safeParse(req.body);
+  if (!result.success) {
+    return res.status(400).json({ error: result.error.issues[0].message });
+  }
+  const { fullName, email, password } = result.data;
+
   const ip = req.ip;
   const exist = await prisma.guests.findUnique({
     where: {
@@ -115,7 +121,7 @@ export const signupGuest = async (
         //   maxAge: refreshCookieExp,
         // });
         res.cookie('jwt-access', accessToken, {
-          httpOnly: false,
+          httpOnly: true,
           // secure: true,   //! for https
           maxAge: accessCookieExp,
         });
@@ -152,7 +158,7 @@ export const loginGuest = (req: Request, res: Response, next: NextFunction) => {
   //   maxAge: refreshCookieExp,
   // });
   res.cookie('jwt-access', accessToken, {
-    httpOnly: false,
+    httpOnly: true,
     // secure: true,   //! for https
     maxAge: accessCookieExp,
   });
@@ -198,7 +204,7 @@ export const loginGuest = (req: Request, res: Response, next: NextFunction) => {
 //     }
 //   );
 //   res.cookie('jwt-access', accessToken, {
-//     httpOnly: false,
+//     httpOnly: true,
 //     // secure: true,   //! for https
 //     maxAge: accessCookieExp,
 //   });

@@ -1,0 +1,2 @@
+-- AlterTable
+ALTER TABLE "Bookings" ADD COLUMN     "discountPrice" DOUBLE PRECISION NOT NULL DEFAULT 0;

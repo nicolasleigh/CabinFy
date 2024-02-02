@@ -10,7 +10,7 @@ function fromToday(numDays: number, withTime = false) {
 export const bookings = [
   // CABIN 001
   {
-    created_at: fromToday(-20, true),
+    created_at: fromToday(-4, true),
     startDate: fromToday(0),
     endDate: fromToday(7),
     cabinId: 1,
@@ -20,9 +20,9 @@ export const bookings = [
     numGuests: 2,
   },
   {
-    created_at: fromToday(-33, true),
-    startDate: fromToday(-23),
-    endDate: fromToday(-13),
+    created_at: fromToday(-14, true),
+    startDate: fromToday(-9),
+    endDate: fromToday(-2),
     cabinId: 1,
     guestId: '1fe49aed-2a44-4838-9335-abb3a8dd177d',
     hasBreakfast: true,
@@ -30,7 +30,7 @@ export const bookings = [
     numGuests: 2,
   },
   {
-    created_at: fromToday(-27, true),
+    created_at: fromToday(-10, true),
     startDate: fromToday(12),
     endDate: fromToday(18),
     cabinId: 1,
@@ -52,9 +52,9 @@ export const bookings = [
 
   // CABIN 002
   {
-    created_at: fromToday(-45, true),
-    startDate: fromToday(-45),
-    endDate: fromToday(-29),
+    created_at: fromToday(-20, true),
+    startDate: fromToday(-17),
+    endDate: fromToday(-12),
     cabinId: 2,
     guestId: '05a35e35-224f-4500-8906-8f0733c6be27',
     hasBreakfast: false,
@@ -273,8 +273,8 @@ export const bookings = [
   },
   {
     created_at: fromToday(-7, true),
-    startDate: fromToday(40),
-    endDate: fromToday(50),
+    startDate: fromToday(13),
+    endDate: fromToday(23),
     cabinId: 7,
     guestId: '42e19861-a005-4a42-a23e-932ffc194542',
     hasBreakfast: true,
@@ -282,9 +282,9 @@ export const bookings = [
     numGuests: 7,
   },
   {
-    created_at: fromToday(-55, true),
-    startDate: fromToday(32),
-    endDate: fromToday(37),
+    created_at: fromToday(-7, true),
+    startDate: fromToday(3),
+    endDate: fromToday(23),
     cabinId: 7,
     guestId: '42e19861-a005-4a42-a23e-932ffc194543',
     hasBreakfast: true,
