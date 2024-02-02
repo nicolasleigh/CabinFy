@@ -15,7 +15,7 @@ export const useCreateBooking = () => {
       toast.error(
         err.response.data === 'Unauthorized'
           ? 'Please login before booking!'
-          : err.message
+          : err.response.data.message
       );
     },
   });

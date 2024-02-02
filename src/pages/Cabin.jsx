@@ -110,7 +110,7 @@ const NameSection = styled.div`
 
 export default function Cabin() {
   const [guestsNumber, setGuestsNumber] = useState(1);
-  const [breakfast, setBreakfast] = useState(true);
+  const [hasBreakfast, setHasBreakfast] = useState(true);
 
   const { cabin, isLoading: isLoadingCabin } = useCabin();
   const { image, images, bedroom, discount, name, regularPrice, location } =
@@ -156,8 +156,8 @@ export default function Cabin() {
         <BookingForm
           guestsNumber={guestsNumber}
           setGuestsNumber={setGuestsNumber}
-          breakfast={breakfast}
-          setBreakfast={setBreakfast}
+          hasBreakfast={hasBreakfast}
+          setHasBreakfast={setHasBreakfast}
           discount={discount}
           regularPrice={regularPrice}
           cabinId={cabinId}

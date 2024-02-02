@@ -13,7 +13,7 @@ function ResetPassForm() {
   const { uid, token } = useParams();
 
   const { resetPass, isLoading } = useResetPass();
-  const { register, formState, getValues, handleSubmit, reset } = useForm();
+  const { register, formState, getValues, handleSubmit } = useForm();
   const { errors } = formState;
   const navigate = useNavigate();
   const queryClient = useQueryClient();

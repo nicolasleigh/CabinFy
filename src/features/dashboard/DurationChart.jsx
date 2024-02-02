@@ -193,7 +193,7 @@ function DurationChart({ confirmedStays }) {
             ))}
           </Pie>
           <Tooltip
-            offset={20}
+            offset={10}
             contentStyle={{
               backgroundColor: 'var(--color-grey-100)',
               border: '1px solid var(--color-grey-200)',

@@ -15,7 +15,7 @@ export function useLogin() {
         password,
       }),
     onSuccess: (user) => {
-      console.log(user);
+      // console.log(user);
       queryClient.setQueryData(['user'], user);
       navigate('/admin/dashboard', { replace: true });
     },

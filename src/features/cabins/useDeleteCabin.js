@@ -15,7 +15,8 @@ export function useDeleteCabin() {
         queryKey: ['cabins'],
       });
     },
-    onError: (err) => toast.error(err.message),
+    onError: (err) =>
+      toast.error(err.response.data.error || 'Failed to delete cabin'),
   });
 
   return { isDeleting, deleteCabin };

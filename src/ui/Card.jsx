@@ -68,17 +68,19 @@ const CardPriceText = styled.span`
   color: var(--color-grey-400);
 `;
 
-export default function Card({ id, src, name, bed, price, rate }) {
+export default function Card({ id, src, name, bed, price, rate, discount }) {
   return (
     <CardLayout to={`/cabin/${id}`} target='_blank' rel='noopener noreferrer'>
       <CardImg src={src} alt={src} />
       <CardTextBox>
         <CardNameBox>
           <div>{name}</div>
-          <CardRate>
-            <FaStar size={12} />
-            {rate}
-          </CardRate>
+          {rate && (
+            <CardRate>
+              <FaStar size={12} />
+              {rate}
+            </CardRate>
+          )}
         </CardNameBox>
         <CardTextBed>
           {bed}
@@ -86,7 +88,8 @@ export default function Card({ id, src, name, bed, price, rate }) {
         </CardTextBed>
         <CardPrice>
           {price}
-          <CardPriceText> &bull; night</CardPriceText>
+          {discount ? <span> &bull; {discount}% discount</span> : null}
+          {/* <CardPriceText> &bull; night</CardPriceText> */}
         </CardPrice>
       </CardTextBox>
     </CardLayout>

@@ -7,6 +7,25 @@ const sizes = {
     text-transform: uppercase;
     font-weight: 600;
     text-align: center;
+
+    @media (max-width: 900px) {
+      font-size: 0.8rem;
+      padding: 0.2rem 0.4rem;
+    }
+
+    /* @media (max-width: 700px) {
+      font-size: 0.3rem;
+      padding: 1rem 1.4rem;
+    }
+
+    @media (max-width: 580px) {
+      font-size: 1rem;
+      padding: 0.8rem 1.2rem;
+    }
+    @media (max-width: 500px) {
+      font-size: 0.8rem;
+      padding: 0.5rem 0.8rem;
+    } */
   `,
   medium: css`
     font-size: 1.4rem;
@@ -101,6 +120,9 @@ const Button = styled.button`
     background-color: var(--color-grey-400);
     &:hover {
       background-color: var(--color-grey-400);
+    }
+    &:active {
+      transform: translateY(0px);
     }
   }
 

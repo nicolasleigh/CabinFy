@@ -13,25 +13,25 @@ const Img = styled.img`
   margin: 0 auto;
 
   ${(props) =>
-    props.medium &&
+    props.$medium &&
     css`
       height: 3.6rem;
     `}
   ${(props) =>
-    props.large &&
+    props.$large &&
     css`
       height: 5.6rem;
     `}
 `;
 
-function Logo({ large, medium }) {
+function Logo({ $large, $medium }) {
   const { isDarkMode } = useDarkMode();
 
   const src = isDarkMode ? '/logo-dark.svg' : '/logo.svg';
 
   return (
     <StyledLogo>
-      <Img src={src} large={large} medium={medium} alt='Logo' />
+      <Img src={src} $large={$large} $medium={$medium} alt='Logo' />
     </StyledLogo>
   );
 }

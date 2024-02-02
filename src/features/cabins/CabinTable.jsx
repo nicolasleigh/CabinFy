@@ -43,10 +43,18 @@ function CabinTable() {
   const sortBy = searchParams.get('sortBy') || 'name-asc';
   const [field, direction] = sortBy.split('-');
   const modifier = direction === 'asc' ? 1 : -1;
-  const sortedCabins = filteredCabins.sort(
-    (a, b) => (a[field] - b[field]) * modifier
-  );
-  // console.log(cabins);
+  let sortedCabins;
+
+  if (typeof filteredCabins[0][field] === 'number') {
+    sortedCabins = filteredCabins.sort(
+      (a, b) => (a[field] - b[field]) * modifier
+    );
+  }
+  if (typeof filteredCabins[0][field] === 'string') {
+    sortedCabins = filteredCabins.sort(
+      (a, b) => a[field].localeCompare(b[field]) * modifier
+    );
+  }
 
   return (
     <Menus>

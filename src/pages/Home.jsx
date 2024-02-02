@@ -53,8 +53,9 @@ export default function Home() {
                 src={imageURL + e.image}
                 name={e.name}
                 bed={e.bedroom}
+                discount={e.discount}
                 price={'CN¥ ' + e.regularPrice}
-                rate={avgRating[e.id - 1]}
+                rate={avgRating?.[e.id - 1]}
                 images={e.images}
               />
             );

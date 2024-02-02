@@ -8,6 +8,7 @@ const Layout = styled.div`
   display: flex;
   flex-direction: column;
   gap: 2rem;
+  min-width: 30rem;
 `;
 
 export default function GuestsReviews() {

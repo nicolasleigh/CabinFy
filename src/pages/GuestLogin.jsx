@@ -1,14 +1,12 @@
-import styled from 'styled-components';
-import Form from '../ui/Form';
-import FormRow from '../ui/FormRow';
-import Input from '../ui/Input';
 import { useForm } from 'react-hook-form';
-import Button from '../ui/Button';
-import { useState } from 'react';
-import { useLoginModal, useSignupModal } from '../hooks';
-import { useOutsideClick } from '../hooks/useOutsideClick';
-import FormRowVertical from '../ui/FormRowVertical';
+import styled from 'styled-components';
 import { useLogin } from '../features/guests/useLogin';
+import { useLoginModal } from '../hooks';
+import { useOutsideClick } from '../hooks/useOutsideClick';
+import Button from '../ui/Button';
+import Form from '../ui/Form';
+import FormRowVertical from '../ui/FormRowVertical';
+import Input from '../ui/Input';
 
 const Overlay = styled.div`
   position: fixed;
@@ -51,7 +49,7 @@ export default function GuestLogin() {
     login(
       { email, password },
       {
-        onSettled: () => {
+        onSuccess: () => {
           setIsOpen(false);
           reset();
         },

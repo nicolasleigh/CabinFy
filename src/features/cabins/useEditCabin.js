@@ -13,7 +13,8 @@ export function useEditCabin() {
       toast.success('Cabin successfully edited');
       queryClient.invalidateQueries({ queryKey: ['cabins'] });
     },
-    onError: (err) => toast.error(err.message),
+    onError: (err) =>
+      toast.error(err.response.data.error || 'Failed to update cabin'),
   });
   return { editCabin, isEditing };
 }

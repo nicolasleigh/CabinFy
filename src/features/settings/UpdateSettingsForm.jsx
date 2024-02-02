@@ -23,10 +23,9 @@ function UpdateSettingsForm() {
   function handleUpdate(e, field) {
     const { value } = e.target;
     // console.log([field]);
-    // console.log(value);
     // console.log({ [field]: value });
     if (!value) return;
-    updateSetting({ [field]: value });
+    updateSetting({ [field]: Number(value) });
   }
 
   // This time we are using UNCONTROLLED fields, so we will NOT store state

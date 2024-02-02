@@ -9,6 +9,7 @@ import ButtonGroup from './ButtonGroup';
 import { useState } from 'react';
 import { SidebarMenu } from './SidebarMenu';
 import { useOutsideClick } from '../hooks/useOutsideClick';
+import { Link } from 'react-router-dom';
 
 const StyledHeader = styled.header`
   background-color: var(--color-grey-0);
@@ -48,6 +49,25 @@ const StyledHeader = styled.header`
   }
 `;
 
+const GuestPageBtn = styled(Link)`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: underline;
+  font-size: 1.2rem;
+  color: var(--color-grey-400);
+  margin-right: 2.4rem;
+
+  @media (max-width: 500px) {
+    font-size: 1rem;
+    margin-right: 1rem;
+  }
+  @media (max-width: 400px) {
+    font-size: 0.8rem;
+    margin-right: 0.5rem;
+  }
+`;
+
 function Header() {
   const [showSidebar, setShowSidebar] = useState(false);
   const ref = useOutsideClick(() => setShowSidebar(false));
@@ -57,6 +77,7 @@ function Header() {
         <LuMenu />
       </ButtonIcon>
       <ButtonGroup>
+        <GuestPageBtn to='/home'>Back to guest page</GuestPageBtn>
         <UserAvatar />
         <HeaderMenu />
       </ButtonGroup>

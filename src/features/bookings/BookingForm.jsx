@@ -191,8 +191,8 @@ const FancyText = styled.div`
 export default function BookingForm({
   guestsNumber,
   setGuestsNumber,
-  breakfast,
-  setBreakfast,
+  hasBreakfast,
+  setHasBreakfast,
   discount,
   regularPrice,
   cabinId,
@@ -215,6 +215,8 @@ export default function BookingForm({
   const numOfNights =
     differenceInDays(selectedRange?.to, selectedRange?.from) + 1;
 
+  const cabinPrice = regularPrice * numOfNights;
+
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -224,12 +226,15 @@ export default function BookingForm({
     }
     createBooking({
       guestsNumber,
-      breakfast,
-      selectedRange,
+      hasBreakfast,
+      // selectedRange,
+      fromValue,
+      toValue,
       numOfNights,
       totalPrice,
-      extrasPrice: breakfast ? breakfastPrice * guestsNumber : 0,
-      cabinPrice: regularPrice * numOfNights,
+      extrasPrice: hasBreakfast ? breakfastPrice * guestsNumber : 0,
+      cabinPrice,
+      discountPrice: discount ? cabinPrice * (discount / 100) : 0,
       cabinId,
       isPaid: false,
       status: 'unconfirmed',
@@ -242,17 +247,17 @@ export default function BookingForm({
     if (numOfNights) {
       setTotalPrice(
         regularPrice * numOfNights * (1 - discount / 100) +
-          (breakfast ? breakfastPrice : 0) * guestsNumber
+          (hasBreakfast ? breakfastPrice : 0) * guestsNumber
       );
       setPriceBeforeDiscount(
         regularPrice * numOfNights +
-          (breakfast ? breakfastPrice : 0) * guestsNumber
+          (hasBreakfast ? breakfastPrice : 0) * guestsNumber
       );
     }
   }, [
     numOfNights,
     guestsNumber,
-    breakfast,
+    hasBreakfast,
     breakfastPrice,
     discount,
     regularPrice,
@@ -290,8 +295,8 @@ export default function BookingForm({
           </ButtonGroup>
         </GuestsNumberBox>
         <BookingBreakfastBox
-          breakfast={breakfast}
-          setBreakfast={setBreakfast}
+          hasBreakfast={hasBreakfast}
+          setHasBreakfast={setHasBreakfast}
         />
         <TotalPriceBox>
           <Label>Total Price</Label>

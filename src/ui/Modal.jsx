@@ -114,11 +114,19 @@ function Window({ children, name }) {
 
   const ref = useOutsideClick(close);
 
+  useEffect(() => {
+    if (submitted) {
+      close();
+      setSubmitted(false);
+    }
+  }, [submitted]);
+
   if (name !== openName) return null;
-  if (submitted) {
-    close();
-    setSubmitted(false);
-  }
+
+  // if (submitted) {
+  //   close();
+  //   setSubmitted(false);
+  // }
   return createPortal(
     <Overlay>
       <StyledModal ref={ref}>

@@ -40,7 +40,7 @@ const Checkbox = styled.input`
   }
 `;
 
-export default function BookingBreakfastBox({ breakfast, setBreakfast }) {
+export default function BookingBreakfastBox({ hasBreakfast, setHasBreakfast }) {
   return (
     <BreakfastBox>
       <Label>Want breakfast?</Label>
@@ -50,8 +50,8 @@ export default function BookingBreakfastBox({ breakfast, setBreakfast }) {
           <Checkbox
             id='yes'
             type='checkbox'
-            onClick={() => setBreakfast(true)}
-            checked={breakfast}
+            onClick={() => setHasBreakfast(true)}
+            checked={hasBreakfast}
             readOnly
           />
         </div>
@@ -60,8 +60,8 @@ export default function BookingBreakfastBox({ breakfast, setBreakfast }) {
           <Checkbox
             id='no'
             type='checkbox'
-            onClick={() => setBreakfast(false)}
-            checked={!breakfast}
+            onClick={() => setHasBreakfast(false)}
+            checked={!hasBreakfast}
             readOnly
           />
         </div>

@@ -13,7 +13,7 @@ export const useCreateReview = () => {
       queryClient.invalidateQueries({ queryKey: ['rate'] });
     },
     onError: (err) => {
-      toast.error(err.message);
+      toast.error(err.response.data.error || 'Failed to create review');
     },
   });
 

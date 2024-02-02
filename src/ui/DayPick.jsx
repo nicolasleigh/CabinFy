@@ -101,12 +101,9 @@ export default function DayPick({
     return differenceInCalendarDays(date, new Date()) < 0;
   };
 
-  const isGreaterThanMaxBookingLength = (date) => {
-    return (
-      differenceInCalendarDays(selectedRange?.to, selectedRange?.from) + 1 >
-      maxBookingLength
-    );
-  };
+  // const afterMatcher = DateAfter(new Date(), new Date('2024-02-11'));
+  // const beforeMatcher = DateBefore(new Date(), new Date('2024-02-20'));
+  // const disabledDays = [afterMatcher, beforeMatcher, isPastDate];
 
   return (
     <DayPicker
@@ -114,6 +111,7 @@ export default function DayPick({
       selected={selectedRange}
       onSelect={handleRangeSelect}
       disabled={[isPastDate]}
+      // disabled={disabledDays}
       locale={zhCN}
       footer={
         <InputGroup>

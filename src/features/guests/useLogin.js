@@ -10,7 +10,7 @@ export function useLogin() {
       queryClient.setQueryData(['guest'], guest);
       toast.success('Guest successfully logged in!');
     },
-    onError: (err) => {
+    onError: () => {
       toast.error('Email or password are incorrect');
     },
   });

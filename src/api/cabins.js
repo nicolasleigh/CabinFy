@@ -13,7 +13,7 @@ export const getCabin = async (id) => {
 export const createCabin = async (cabin) => {
   const form = new FormData();
   form.append('name', cabin.name);
-  form.append('description', cabin.description);
+  form.append('location', cabin.location);
   form.append('regularPrice', cabin.regularPrice);
   form.append('discount', cabin.discount);
   form.append('image', cabin.image);
@@ -38,7 +38,7 @@ export const duplicateCabin = async (id) => {
 export const updateCabin = async (cabin, id) => {
   const form = new FormData();
   form.append('name', cabin.name);
-  form.append('description', cabin.description);
+  form.append('location', cabin.location);
   form.append('regularPrice', cabin.regularPrice);
   form.append('discount', cabin.discount);
   form.append('image', cabin.image);
@@ -46,6 +46,22 @@ export const updateCabin = async (cabin, id) => {
   cabin.images.map((e) => {
     form.append('images', e);
   });
+
+  if (!cabin.image && !cabin.images.length) {
+    form.delete('image');
+    form.delete('images');
+
+    const { data } = await client.patch(
+      `/api/cabins/without-image/${id}`,
+      form,
+      {
+        Headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      }
+    );
+    return data;
+  }
 
   const { data } = await client.patch(`/api/cabins/${id}`, form, {
     Headers: {

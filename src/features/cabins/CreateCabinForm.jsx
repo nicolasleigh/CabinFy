@@ -34,10 +34,22 @@ function CreateCabinForm({ cabinToEdit = {}, onCloseModal }) {
 
   function onSubmit(data) {
     const image = typeof data.image === 'string' ? data.image : data.image[0];
-    // console.log(data);
+    console.log(data);
     if (isEditSession)
       editCabin(
-        { newCabinData: { ...data, image }, id: editId },
+        {
+          newCabinData: {
+            ...data,
+            image: data.image[0],
+            images: [
+              data.images[0],
+              data.images[1],
+              data.images[2],
+              data.images[3],
+            ],
+          },
+          id: editId,
+        },
         {
           onSuccess: () => {
             reset();
@@ -50,7 +62,6 @@ function CreateCabinForm({ cabinToEdit = {}, onCloseModal }) {
         {
           ...data,
           image: data.image[0],
-          // images: data.images,
           images: [
             data.images[0],
             data.images[1],
@@ -140,6 +151,10 @@ function CreateCabinForm({ cabinToEdit = {}, onCloseModal }) {
           disabled={isWorking}
           {...register('discount', {
             required: 'This field is required',
+            min: {
+              value: 0,
+              message: 'Discount should not be negative ',
+            },
             validate: (value) =>
               value <= 50 || 'Discount should be less than 50%',
           })}

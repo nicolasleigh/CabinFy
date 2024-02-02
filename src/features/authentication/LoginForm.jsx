@@ -8,7 +8,6 @@ import SpinnerMini from '../../ui/SpinnerMini';
 import ButtonLink from '../../ui/ButtonLink';
 import ButtonGroup from '../../ui/ButtonGroup';
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
 
 const BackLink = styled(ButtonLink)`
   margin-top: 1rem;
@@ -63,7 +62,7 @@ function LoginForm() {
             {!isLoading ? 'Login' : <SpinnerMini />}
           </Button>
         </FormRowVertical>
-        <ButtonGroup between>
+        <ButtonGroup $between>
           <ButtonLink to='/admin/signup' state={{ email }}>
             Sign up
           </ButtonLink>

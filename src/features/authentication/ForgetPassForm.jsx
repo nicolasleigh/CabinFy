@@ -1,15 +1,13 @@
 import { useQueryClient } from '@tanstack/react-query';
-import { useForm } from 'react-hook-form';
-import { useLocation, useNavigate, useParams } from 'react-router-dom';
+import { useState } from 'react';
+import toast from 'react-hot-toast';
+import { useLocation, useNavigate } from 'react-router-dom';
 import Button from '../../ui/Button';
 import Form from '../../ui/Form';
 import FormRowVertical from '../../ui/FormRowVertical';
 import Input from '../../ui/Input';
-import { useResetPass } from './useResetPass';
-import { useForgetPass } from './useForgetPass';
-import { useEffect, useState } from 'react';
-import toast from 'react-hot-toast';
 import Timer from './Timer';
+import { useForgetPass } from './useForgetPass';
 
 export default function ForgetPassForm() {
   const { state } = useLocation();

@@ -7,7 +7,7 @@ import { LoginLayout } from '../ui/LoginLayout';
 function Login() {
   return (
     <LoginLayout>
-      <Logo large />
+      <Logo $large />
       <Heading as='h4'>Log in as administrator</Heading>
       <LoginForm />
     </LoginLayout>

@@ -7,7 +7,7 @@ import CheckoutButton from './CheckoutButton';
 
 const StyledTodayItem = styled.li`
   display: grid;
-  grid-template-columns: 9rem 1fr 7rem 9rem;
+  grid-template-columns: 9rem 1fr 8rem 9rem;
   gap: 1.2rem;
   align-items: center;
 
@@ -21,12 +21,12 @@ const StyledTodayItem = styled.li`
 
   @media (max-width: 900px) {
     grid-template-columns: 6rem 1fr 5rem 6rem;
-    /* gap: 0.8rem; */
     font-size: 1.2rem;
+    /* grid-template-columns: 9rem 1fr 9rem 9rem; */
 
     .btn {
-      font-size: 1rem;
-      padding: 0.3rem 0.5rem;
+      font-size: 0.8rem;
+      padding: 0.2rem 0.4rem;
     }
 
     .tag {
@@ -38,6 +38,12 @@ const StyledTodayItem = styled.li`
 
 const Guest = styled.div`
   font-weight: 500;
+`;
+
+const Nights = styled.div`
+  @media (max-width: 900px) {
+    font-size: 1rem;
+  }
 `;
 
 function TodayItem({ activity }) {
@@ -57,7 +63,7 @@ function TodayItem({ activity }) {
 
       {/* <Flag src={guests.countryFlag} alt={`Flag of ${guests.country}`} /> */}
       <Guest>{guest.fullName}</Guest>
-      <div>{numNights} nights</div>
+      <Nights>{numNights} nights</Nights>
 
       {status === 'unconfirmed' && (
         <Button
