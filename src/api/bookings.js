@@ -25,6 +25,11 @@ export const getBooking = async (bookingId) => {
   return data;
 };
 
+export const getBookingByCabinId = async (cabinId) => {
+  const { data } = await client.get(`/api/bookings/cabin/${cabinId}`);
+  return data;
+};
+
 export const updateBooking = async (bookingId, booking) => {
   const { data } = await client.patch(`/api/bookings/${bookingId}`, booking);
   return data;

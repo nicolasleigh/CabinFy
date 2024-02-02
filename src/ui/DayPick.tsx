@@ -1,11 +1,18 @@
-import 'react-day-picker/dist/style.css';
-import '../styles/day-picker.css';
-import { differenceInCalendarDays } from 'date-fns';
-import { useState } from 'react';
-import { format, isAfter, isBefore, isValid, parse } from 'date-fns';
-import { DayPicker } from 'react-day-picker';
+import {
+  differenceInCalendarDays,
+  format,
+  isAfter,
+  isBefore,
+  isValid,
+  parse,
+} from 'date-fns';
 import { zhCN } from 'date-fns/locale';
+import { DateRange, DayPicker } from 'react-day-picker';
+import 'react-day-picker/dist/style.css';
 import styled from 'styled-components';
+import '../styles/day-picker.css';
+import { useEffect } from 'react';
+import toast from 'react-hot-toast';
 
 const CheckIn = styled.input`
   text-transform: uppercase;
@@ -50,7 +57,9 @@ export default function DayPick({
   setToValue,
   fromValue,
   toValue,
+  minBookingLength,
   maxBookingLength,
+  booking,
 }) {
   // const [selectedRange, setSelectedRange] = useState();
   // const [fromValue, setFromValue] = useState('');
@@ -101,18 +110,52 @@ export default function DayPick({
     return differenceInCalendarDays(date, new Date()) < 0;
   };
 
-  // const afterMatcher = DateAfter(new Date(), new Date('2024-02-11'));
-  // const beforeMatcher = DateBefore(new Date(), new Date('2024-02-20'));
-  // const disabledDays = [afterMatcher, beforeMatcher, isPastDate];
+  const datesArr = booking?.map((book) => {
+    return [book.startDate, book.endDate];
+  });
+
+  const range = datesArr?.map((date) => {
+    const range: DateRange = {
+      from: new Date(date[0]),
+      to: new Date(date[1]),
+    };
+    return range;
+  });
+  // console.log(range);
+
+  let disabledDays;
+  if (range) {
+    disabledDays = [...range, isPastDate];
+  }
+
+  useEffect(() => {
+    if (fromValue && toValue) {
+      if (range) {
+        for (let i = 0; i < range.length; i++) {
+          if (
+            isBefore(new Date(fromValue), range[i].from) &&
+            isAfter(new Date(toValue), range[i].to)
+          ) {
+            toast.error('Please select a valid range');
+            setSelectedRange({ from: undefined, to: undefined });
+            setFromValue('');
+            setToValue('');
+            break;
+          }
+        }
+      }
+    }
+  }, [range, fromValue, toValue]);
 
   return (
     <DayPicker
       mode='range'
       selected={selectedRange}
       onSelect={handleRangeSelect}
-      disabled={[isPastDate]}
-      // disabled={disabledDays}
+      disabled={disabledDays}
       locale={zhCN}
+      min={minBookingLength >= 2 ? minBookingLength : undefined}
+      max={maxBookingLength}
       footer={
         <InputGroup>
           <CheckIn

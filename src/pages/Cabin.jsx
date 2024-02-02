@@ -12,6 +12,7 @@ import ReviewModal from '../ui/ReviewModal';
 import GuestLogin from './GuestLogin';
 import GuestSignup from './GuestSignup';
 import CabinTextInfo from '../ui/CabinTextInfo';
+import { useBookingByCabinId } from '../features/bookings/useBookingByCabinId';
 
 const ImageSection = styled.section`
   display: grid;
@@ -113,6 +114,7 @@ export default function Cabin() {
   const [hasBreakfast, setHasBreakfast] = useState(true);
 
   const { cabin, isLoading: isLoadingCabin } = useCabin();
+  const { booking, isLoading: isLoadingBooking } = useBookingByCabinId();
   const { image, images, bedroom, discount, name, regularPrice, location } =
     cabin || {
       images: [],
@@ -161,6 +163,7 @@ export default function Cabin() {
           discount={discount}
           regularPrice={regularPrice}
           cabinId={cabinId}
+          booking={booking}
         />
       </Container>
     </>

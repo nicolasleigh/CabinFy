@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import DayPick from '../../ui/DayPick';
+import DayPick from '../../ui/DayPick.tsx';
 import { formatCurrency } from '../../utils/helpers';
 import { useEffect, useState } from 'react';
 import { useCreateBooking } from './useCreateBooking';
@@ -196,13 +196,14 @@ export default function BookingForm({
   discount,
   regularPrice,
   cabinId,
+  booking,
 }) {
   const [selectedRange, setSelectedRange] = useState();
   const [totalPrice, setTotalPrice] = useState(0);
   const [priceBeforeDiscount, setPriceBeforeDiscount] = useState(0);
   const [fromValue, setFromValue] = useState('');
   const [toValue, setToValue] = useState('');
-  const { createBooking, isLoading } = useCreateBooking();
+  const { createBooking, isLoading } = useCreateBooking(cabinId);
   const { settings, isLoading: isLoadingSettings } = useSettings();
 
   const {
@@ -239,6 +240,9 @@ export default function BookingForm({
       isPaid: false,
       status: 'unconfirmed',
     });
+    setSelectedRange();
+    setToValue('');
+    setFromValue('');
   };
 
   useEffect(() => {
@@ -273,6 +277,8 @@ export default function BookingForm({
           toValue={toValue}
           setToValue={setToValue}
           maxBookingLength={maxBookingLength}
+          minBookingLength={minBookingLength}
+          booking={booking}
         />
         <GuestsNumberBox>
           <Label>Number of Guests</Label>

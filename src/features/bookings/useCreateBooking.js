@@ -2,7 +2,7 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { createBooking as createBookingApi } from '../../api/bookings';
 import toast from 'react-hot-toast';
 
-export const useCreateBooking = () => {
+export const useCreateBooking = (cabinId) => {
   const queryClient = useQueryClient();
 
   const { mutate: createBooking, isLoading } = useMutation({
@@ -10,6 +10,7 @@ export const useCreateBooking = () => {
     onSuccess: () => {
       toast.success('Booking successfully created');
       queryClient.invalidateQueries({ queryKey: ['bookings'] });
+      queryClient.invalidateQueries({ queryKey: ['booking-cabin', cabinId] });
     },
     onError: (err) => {
       toast.error(
