@@ -3,6 +3,7 @@ import {
   createBooking,
   deleteBooking,
   getBooking,
+  getBookingByCabinId,
   getBookings,
   getBookingsAfterDate,
   getStaysAfterDate,
@@ -17,6 +18,7 @@ router.get('/after-date', getBookingsAfterDate);
 router.get('/stays-after-date', getStaysAfterDate);
 router.get('/today-activity', getTodayActivity);
 router.get('/:id', getBooking);
+router.get('/cabin/:id', getBookingByCabinId);
 router.patch('/:id', updateBooking);
 router.post(
   '/',

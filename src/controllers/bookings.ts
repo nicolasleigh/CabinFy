@@ -278,3 +278,21 @@ export const getTodayActivity = async (
     res.status(400).json(error);
   }
 };
+
+export const getBookingByCabinId = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  try {
+    const { id } = req.params;
+    const bookings = await prisma.bookings.findMany({
+      where: {
+        cabinId: parseInt(id),
+      },
+    });
+    res.json(bookings);
+  } catch (error) {
+    res.status(400).json(error);
+  }
+};
