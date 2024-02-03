@@ -29,9 +29,12 @@ export const resizeImages = async (
   res: Response,
   next: NextFunction
 ) => {
+  // @ts-ignore
   const image = req.files?.image;
+  // @ts-ignore
   const images = req.files?.images;
   let coverPath;
+  // @ts-ignore
   let filePaths;
 
   // const filePath = path.join(__dirname, `../../uploads/${uuid()}.webp`);
@@ -55,6 +58,7 @@ export const resizeImages = async (
       .map(() => path.join(__dirname, `../../uploads/${uuid()}.webp`));
 
     await images.map((e: any, index: any) => {
+      // @ts-ignore
       sharp(e.path).resize(720, 480).webp().toFile(filePaths[index]);
     });
 

@@ -23,6 +23,7 @@ export const getReviews = async (req: Request, res: Response) => {
 };
 
 export const createReview = async (req: Request, res: Response) => {
+  // @ts-ignore
   const { uid } = req.user;
   if (!uid) return res.json({ error: 'Invalid user id' });
 

@@ -8,6 +8,7 @@ export const createBooking = async (
   next: NextFunction
 ) => {
   // console.log(req.user);
+  // @ts-ignore
   const { uid } = req.user;
   if (!uid) return res.json({ error: 'Invalid user' });
 

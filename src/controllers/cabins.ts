@@ -136,6 +136,7 @@ export const duplicateCabin = async (
         regularPrice: cabin.regularPrice,
         discount: cabin.discount,
         image: cabin.image,
+        // @ts-ignore
         images: cabin.images,
       },
     });

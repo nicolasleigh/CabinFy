@@ -1,14 +1,16 @@
 {
-  "name": "backend",
+  "name": "nicolas-hotel-backend",
   "version": "1.0.0",
   "description": "",
   "type": "module",
-  "main": "index.js",
+  "main": "app.js",
   "prisma": {
     "seed": "tsx prisma/seed.ts"
   },
   "scripts": {
-    "dev": "tsx watch --tsconfig tsconfig.json app.ts"
+    "dev": "tsx watch --tsconfig tsconfig.json app.ts",
+    "build": "npx tsc",
+    "start": "node build/app.js"
   },
   "keywords": [],
   "author": "",
