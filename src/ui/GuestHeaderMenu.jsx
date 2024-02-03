@@ -2,7 +2,7 @@
 import { FaUserCircle } from 'react-icons/fa';
 import { IoMdMenu } from 'react-icons/io';
 import { styled } from 'styled-components';
-import DropDown from './DropDown';
+import DropDown from './Dropdown';
 import { useLoginModal, useSignupModal } from '../hooks';
 import { useGuest } from '../features/guests/useGuest';
 import { useLogout } from '../features/guests/useLogout';

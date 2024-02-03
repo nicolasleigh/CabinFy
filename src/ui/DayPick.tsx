@@ -50,6 +50,18 @@ const InputGroup = styled.div`
   margin-top: 2rem;
 `;
 
+interface Props {
+  selectedRange: DateRange;
+  setSelectedRange: (range: DateRange) => void;
+  setFromValue: (value: string) => void;
+  setToValue: (value: string) => void;
+  fromValue: string;
+  toValue: string;
+  minBookingLength: number;
+  maxBookingLength: number;
+  booking: any;
+}
+
 export default function DayPick({
   selectedRange,
   setSelectedRange,
@@ -60,12 +72,12 @@ export default function DayPick({
   minBookingLength,
   maxBookingLength,
   booking,
-}) {
+}: Props) {
   // const [selectedRange, setSelectedRange] = useState();
   // const [fromValue, setFromValue] = useState('');
   // const [toValue, setToValue] = useState('');
 
-  const handleFromChange = (e) => {
+  const handleFromChange = (e: any) => {
     setFromValue(e.target.value);
     const date = parse(e.target.value, 'y-MM-dd', new Date());
     if (!isValid(date)) {
@@ -78,7 +90,7 @@ export default function DayPick({
     }
   };
 
-  const handleToChange = (e) => {
+  const handleToChange = (e: any) => {
     setToValue(e.target.value);
     const date = parse(e.target.value, 'y-MM-dd', new Date());
 
@@ -92,7 +104,7 @@ export default function DayPick({
     }
   };
 
-  const handleRangeSelect = (range) => {
+  const handleRangeSelect = (range: any) => {
     setSelectedRange(range);
     if (range?.from) {
       setFromValue(format(range.from, 'y-MM-dd'));
@@ -106,15 +118,15 @@ export default function DayPick({
     }
   };
 
-  const isPastDate = (date) => {
+  const isPastDate = (date: any) => {
     return differenceInCalendarDays(date, new Date()) < 0;
   };
 
-  const datesArr = booking?.map((book) => {
+  const datesArr = booking?.map((book: any) => {
     return [book.startDate, book.endDate];
   });
 
-  const range = datesArr?.map((date) => {
+  const range = datesArr?.map((date: any) => {
     const range: DateRange = {
       from: new Date(date[0]),
       to: new Date(date[1]),

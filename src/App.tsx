@@ -1,32 +1,28 @@
-import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
-import Dashboard from './pages/Dashboard';
-import Bookings from './pages/Bookings';
-import Cabins from './pages/Cabins';
-import Users from './pages/Users';
-import Settings from './pages/Settings';
-import Account from './pages/Account';
-import Login from './pages/Login';
-import PageNotFound from './pages/PageNotFound';
-import GlobalStyles from './styles/GlobalStyles';
-import AppLayout from './ui/AppLayout';
 import { Toaster } from 'react-hot-toast';
-import Booking from './pages/Booking';
-import Checkin from './pages/Checkin';
-import ProtectedRoute from './ui/ProtectedRoute';
+import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
+import { ContextProvider } from './context';
 import { DarkModeProvider } from './context/DarkModeContext';
-import GuestList from './features/guests/GuestList';
-import CreateGuestForm from './features/guests/CreateGuestForm';
-import Logup from './pages/Signup';
-import Signup from './pages/Signup';
-import ResetPassword from './pages/ResetPassword';
+// import CreateGuestForm from './features/guests/CreateGuestForm';
+import Account from './pages/Account';
+import Booking from './pages/Booking';
+import Bookings from './pages/Bookings';
+import Cabin from './pages/Cabin';
+import Cabins from './pages/Cabins';
+import Checkin from './pages/Checkin';
+import Dashboard from './pages/Dashboard';
 import ForgetPassword from './pages/ForgetPassword';
 import Home from './pages/Home';
+import Login from './pages/Login';
+import PageNotFound from './pages/PageNotFound';
+import ResetPassword from './pages/ResetPassword';
+import Settings from './pages/Settings';
+import Signup from './pages/Signup';
+import GlobalStyles from './styles/GlobalStyles';
+import AppLayout from './ui/AppLayout';
 import GuestLayout from './ui/GuestLayout';
-import Cabin from './pages/Cabin';
-import GuestSignup from './pages/GuestSignup';
-import { ContextProvider } from './context';
+import ProtectedRoute from './ui/ProtectedRoute';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -65,7 +61,7 @@ function App() {
                 {/* <Route path='users' element={<Users />} /> */}
                 <Route path='settings' element={<Settings />} />
                 <Route path='account' element={<Account />} />
-                <Route path='guests' element={<CreateGuestForm />} />
+                {/* <Route path='guests' element={<CreateGuestForm />} /> */}
                 {/* <Route path='guests' element={<GuestList />} /> */}
               </Route>
               <Route path='/admin/login' element={<Login />} />

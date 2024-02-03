@@ -9,6 +9,7 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
     <StyleSheetManager
       shouldForwardProp={() => true}
+      // @ts-ignore
       disableVendorPrefixes={false}
     >
       <ErrorBoundary
