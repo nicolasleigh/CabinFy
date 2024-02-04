@@ -7,7 +7,7 @@ import settings from './settings.js';
 import reviews from './reviews.js';
 
 const mountRoutes = (app: any) => {
-  app.use('/auth', auth);
+  app.use('/api/auth', auth);
   app.use('/api/users', users);
   app.use('/api/bookings', bookings);
   app.use('/api/cabins', cabins);
