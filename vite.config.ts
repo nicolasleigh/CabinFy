@@ -5,7 +5,7 @@ export default defineConfig({
   plugins: [react()],
   server: {
     host: true,
-    port: 5000, // This is the port which we will use in docker
+    port: 8081, // This is the port which we will use in docker
   },
   optimizeDeps: {
     exclude: ['js-big-decimal'],
