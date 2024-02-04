@@ -15,8 +15,8 @@ const BackLink = styled(ButtonLink)`
 `;
 
 function LoginForm() {
-  const [email, setEmail] = useState('jonas@example.com');
-  const [password, setPassword] = useState('112233');
+  const [email, setEmail] = useState('nicolas.leigh@qq.com');
+  const [password, setPassword] = useState('1234');
   const { login, isLoading } = useLogin();
 
   function handleSubmit(e) {
