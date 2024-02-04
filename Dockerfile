@@ -4,7 +4,7 @@ COPY package*.json ./
 RUN npm ci
 COPY ./ ./
 RUN npx prisma generate
-RUN npx prisma migrate deploy
 RUN npm run build
+RUN npx prisma migrate deploy
 EXPOSE 8080
 CMD ["npm","run","start"]
