@@ -122,7 +122,7 @@ export const signupGuest = async (
         // });
         res.cookie('jwt-access', accessToken, {
           httpOnly: true,
-          // secure: true,   //! for https
+          secure: true, //! for https
           maxAge: accessCookieExp,
         });
 
@@ -159,7 +159,7 @@ export const loginGuest = (req: Request, res: Response, next: NextFunction) => {
   // });
   res.cookie('jwt-access', accessToken, {
     httpOnly: true,
-    // secure: true,   //! for https
+    secure: true, //! for https
     maxAge: accessCookieExp,
   });
 

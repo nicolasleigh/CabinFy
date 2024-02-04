@@ -20,7 +20,7 @@ export const signOut = (req: Request, res: Response, next: NextFunction) => {
       } catch (error) {
         return reject(Error('Logout failed'));
       }
-      res.json({});
+      res.json({ message: 'You are logged out!' });
 
       return resolve({ value: true });
     });
