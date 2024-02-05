@@ -6,6 +6,9 @@ export default defineConfig({
   server: {
     host: true,
     port: 8081, // This is the port which we will use in docker
+    // hmr: {
+    //   clientPort: 443,
+    // },
   },
   optimizeDeps: {
     exclude: ['js-big-decimal'],
