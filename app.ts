@@ -31,10 +31,10 @@ passport.deserializeUser<any, any>((user, done) => {
   });
 });
 
-if (app.get('env') === 'production') {
-  app.set('trust proxy', 1);
-  config.cookie.secure = true;
-}
+// if (app.get('env') === 'production') {
+//   app.set('trust proxy', 1);
+//   config.cookie.secure = true;
+// }
 
 app.use(cors({ origin: true, credentials: true }));
 app.use(express.json());
