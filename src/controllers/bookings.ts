@@ -141,11 +141,12 @@ export const updateBooking = async (
   next: NextFunction
 ) => {
   const { id } = req.params;
-  const result = bookingSchema.safeParse(req.body);
-  if (!result.success) {
-    return res.status(400).json({ error: result.error.issues[0].message });
-  }
-  const { isPaid, status, hasBreakfast, extrasPrice, totalPrice } = result.data;
+  // const result = bookingSchema.safeParse(req.body);
+  // if (!result.success) {
+  //   return res.status(400).json({ error: result.error.issues[0].message });
+  // }
+  // const { isPaid, status, hasBreakfast, extrasPrice, totalPrice } = result.data;
+  const { isPaid, status, hasBreakfast, extrasPrice, totalPrice } = req.body;
   try {
     const booking = await prisma.bookings.update({
       where: {
