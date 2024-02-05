@@ -20,6 +20,7 @@ import ResetPassword from './pages/ResetPassword';
 import Settings from './pages/Settings';
 import Signup from './pages/Signup';
 import GlobalStyles from './styles/GlobalStyles';
+import GlobalFonts from './fonts/fonts';
 import AppLayout from './ui/AppLayout';
 import GuestLayout from './ui/GuestLayout';
 import ProtectedRoute from './ui/ProtectedRoute';
@@ -40,6 +41,7 @@ function App() {
       <ContextProvider>
         <QueryClientProvider client={queryClient}>
           <ReactQueryDevtools initialIsOpen={false} />
+          <GlobalFonts />
           <GlobalStyles />
           <BrowserRouter>
             <Routes>
