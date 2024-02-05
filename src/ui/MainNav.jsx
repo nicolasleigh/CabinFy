@@ -53,26 +53,27 @@ const StyledNavLink = styled(NavLink)`
 `;
 
 function MainNav({ setShowSidebar }) {
+  const handleCloseSidebar = () => {
+    setShowSidebar ? setShowSidebar(false) : null;
+  };
+
   return (
     <nav>
       <NavList>
-        <li onClick={() => setShowSidebar(false)}>
+        <li onClick={handleCloseSidebar}>
           <StyledNavLink to='/admin/dashboard'>
             <HiOutlineHome />
             <span>Home</span>
           </StyledNavLink>
         </li>
-        <li onClick={() => setShowSidebar(false)}>
+        <li onClick={handleCloseSidebar}>
           <StyledNavLink to='/admin/bookings'>
             <HiOutlineCalendarDays />
             <span>Bookings</span>
           </StyledNavLink>
         </li>
-        <li onClick={() => setShowSidebar(false)}>
-          <StyledNavLink
-            to='/admin/cabins'
-            // onClick={() => setShowSidebar(false)}
-          >
+        <li onClick={handleCloseSidebar}>
+          <StyledNavLink to='/admin/cabins'>
             <HiOutlineHomeModern />
             <span>Cabins</span>
           </StyledNavLink>
@@ -83,7 +84,7 @@ function MainNav({ setShowSidebar }) {
             <span>Users</span>
           </StyledNavLink>
         </li> */}
-        <li onClick={() => setShowSidebar(false)}>
+        <li onClick={handleCloseSidebar}>
           <StyledNavLink to='/admin/settings'>
             <HiOutlineCog6Tooth />
             <span>Settings</span>
