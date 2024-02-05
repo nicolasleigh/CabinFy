@@ -10,6 +10,21 @@ import { config } from './src/utils/sessionConfig.js';
 
 export const app = express();
 
+// if (app.get('env') === 'production') {
+//   app.set('trust proxy', 1);
+//   config.cookie.secure = true;
+// }
+
+app.use(cors({ origin: true, credentials: true }));
+app.use(express.json());
+app.use(cookieParser());
+app.use(morgan('dev'));
+app.use(express.urlencoded({ extended: false }));
+app.use(express.static('uploads'));
+app.use(session(config));
+app.use(passport.initialize());
+app.use(passport.session());
+
 passport.serializeUser<any, any>((user, done) => {
   // @ts-ignore
   done(null, {
@@ -30,21 +45,6 @@ passport.deserializeUser<any, any>((user, done) => {
     role: user.role,
   });
 });
-
-// if (app.get('env') === 'production') {
-//   app.set('trust proxy', 1);
-//   config.cookie.secure = true;
-// }
-
-app.use(cors({ origin: true, credentials: true }));
-app.use(express.json());
-app.use(cookieParser());
-app.use(morgan('dev'));
-app.use(express.urlencoded({ extended: false }));
-app.use(express.static('uploads'));
-app.use(session(config));
-app.use(passport.initialize());
-app.use(passport.session());
 
 mountRoutes(app);
 
