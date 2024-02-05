@@ -1,6 +1,30 @@
 import { createGlobalStyle } from 'styled-components';
 
 const GlobalStyles = createGlobalStyle`
+
+@font-face {
+  font-family: 'Poppins';
+  font-weight: 500;
+  src: local('Poppins'), url(./fonts/Poppins-Regular.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Poppins';
+  font-weight: 600;
+  src: local('Poppins'), url(./fonts/Poppins-Medium.ttf) format('truetype');
+}
+
+@font-face {
+    font-family: 'Sono';
+    font-weight: 500;
+    src: local('Sono'), url(./fonts/Sono-Regular.ttf) format('truetype');
+}
+
+@font-face {
+    font-family: 'Sono';
+    font-weight: 600;
+    src: local('Sono'), url(./fonts/Sono-Medium.ttf) format('truetype');
+}
+
 :root {
 
  &, &.light-mode {
@@ -196,7 +220,6 @@ img {
   max-width: 100%;
   filter: grayscale(var(--image-grayscale)) opacity(var(--image-opacity));
 }
-
 
 `;
 
