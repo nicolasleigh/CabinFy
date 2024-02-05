@@ -1,12 +1,11 @@
-import styled from 'styled-components';
-import { NavLink } from 'react-router-dom';
 import {
   HiOutlineCalendarDays,
   HiOutlineCog6Tooth,
   HiOutlineHome,
   HiOutlineHomeModern,
-  HiOutlineUsers,
 } from 'react-icons/hi2';
+import { NavLink } from 'react-router-dom';
+import styled from 'styled-components';
 
 const NavList = styled.ul`
   display: flex;

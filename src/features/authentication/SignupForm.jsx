@@ -1,14 +1,12 @@
+import { useQueryClient } from '@tanstack/react-query';
 import { useForm } from 'react-hook-form';
+import { useLocation, useNavigate } from 'react-router-dom';
 import Button from '../../ui/Button';
+import ButtonLink from '../../ui/ButtonLink';
 import Form from '../../ui/Form';
-import FormRow from '../../ui/FormRow';
+import FormRowVertical from '../../ui/FormRowVertical';
 import Input from '../../ui/Input';
 import { useSignup } from './useSignup';
-import FormRowVertical from '../../ui/FormRowVertical';
-import { useLocation, useNavigate } from 'react-router-dom';
-import { useQueryClient } from '@tanstack/react-query';
-import ButtonGroup from '../../ui/ButtonGroup';
-import ButtonLink from '../../ui/ButtonLink';
 
 // Email regex: /\S+@\S+\.\S+/
 const passwordLength = import.meta.env.VITE_PASS_LENGTH;

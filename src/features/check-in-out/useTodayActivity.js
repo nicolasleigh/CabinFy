@@ -1,5 +1,4 @@
 import { useQuery } from '@tanstack/react-query';
-// import { getStaysTodayActivity } from '../../services/apiBookings';
 import { getTodayActivity } from '../../api/bookings';
 
 export function useTodayActivity() {

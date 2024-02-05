@@ -1,9 +1,6 @@
 import styled from 'styled-components';
-// import { useGuests } from 'features/guests/useGuests';
-// import Pagination from '.ui/Pagination';
 import Spinner from '../../ui/Spinner';
 import GuestListItem from './GuestListItem';
-import Pagination from '../../ui/Pagination';
 import { useGuests } from './useGuests';
 
 const StyledGuestList = styled.div`
@@ -18,17 +15,17 @@ const StyledGuestList = styled.div`
 
 const List = styled.ul``;
 
-const PaginationContainer = styled.div`
-  border-top: 1px solid var(--color-grey-100);
-  background-color: var(--color-grey-50);
-  display: flex;
-  justify-content: center;
-  padding: 0.8rem;
+// const PaginationContainer = styled.div`
+//   border-top: 1px solid var(--color-grey-100);
+//   background-color: var(--color-grey-50);
+//   display: flex;
+//   justify-content: center;
+//   padding: 0.8rem;
 
-  &:not(:has(*)) {
-    display: none;
-  }
-`;
+//   &:not(:has(*)) {
+//     display: none;
+//   }
+// `;
 
 function GuestList({ onClick }) {
   // const { isLoading, guests, count } = useGuests();

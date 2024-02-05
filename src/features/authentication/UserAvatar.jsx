@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 import { useUser } from './useUser';
 import { imageBaseUrl } from '../../App';
-// import { useUser } from './useUser';
 
 const StyledUserAvatar = styled.div`
   display: flex;

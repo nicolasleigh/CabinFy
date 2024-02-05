@@ -2,7 +2,6 @@ import styled from 'styled-components';
 import GuestAddReview from './GuestAddReview';
 import GuestsReviews from './GuestsReviews';
 import Modal from './Modal';
-import { useAddReviewModal } from '../hooks';
 
 const ModalBox = styled.div`
   display: flex;

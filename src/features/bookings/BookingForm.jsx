@@ -69,32 +69,16 @@ const TotalPriceBox = styled.div`
   padding: 2rem 3rem;
 
   .beforeDiscount {
-    /* text-decoration: line-through;
-    text-decoration-thickness: 2px;
-    text-decoration-color: var(--color-grey-400); */
-    /* background: rgb(134, 24, 1);
-    background: linear-gradient(
-      85deg,
-      rgba(134, 24, 1, 0.9318321078431373) 0%,
-      rgba(226, 11, 11, 0.8702074579831933) 100%
-    );
-    background-repeat: no-repeat;
-    background-size: 100% 18%;
-    background-position: 50% 50%; */
     text-decoration: line-through;
 
     font-size: 1.7rem;
     @media (max-width: 900px) {
       font-size: 1.4rem;
     }
-    /* font-weight: 400; */
   }
 `;
 
 const BookingBox = styled.div`
-  /* display: flex;
-  align-items: center;
-  justify-content: space-between; */
   padding: 2rem 3rem;
 `;
 

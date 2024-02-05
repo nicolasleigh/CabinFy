@@ -1,7 +1,6 @@
-import { useQueryClient } from '@tanstack/react-query';
 import { useState } from 'react';
 import toast from 'react-hot-toast';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import Button from '../../ui/Button';
 import Form from '../../ui/Form';
 import FormRowVertical from '../../ui/FormRowVertical';
@@ -15,8 +14,6 @@ export default function ForgetPassForm() {
   const [disableBtn, setDisableBtn] = useState(false);
 
   const { forgetPass, isLoading } = useForgetPass();
-  const navigate = useNavigate();
-  const queryClient = useQueryClient();
 
   function handleSubmit(e) {
     e.preventDefault();

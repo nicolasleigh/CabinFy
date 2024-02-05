@@ -1,11 +1,9 @@
 import { useForm } from 'react-hook-form';
-import { useCreateGuest } from './useCreateGuest';
+import Button from '../../ui/Button';
 import Form from '../../ui/Form';
 import FormRow from '../../ui/FormRow';
 import Input from '../../ui/Input';
-import Select from '../../ui/Select';
-import Button from '../../ui/Button';
-import styled from 'styled-components';
+import { useCreateGuest } from './useCreateGuest';
 
 // With NEW modal
 // function CreateGuest({ onSuccessNewGuest, setIsOpenForm }) {

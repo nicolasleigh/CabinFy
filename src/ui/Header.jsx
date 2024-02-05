@@ -1,15 +1,13 @@
-import { styled } from 'styled-components';
-import HeaderMenu from './HeaderMenu';
-import UserAvatar from '../features/authentication/UserAvatar';
-import { IoIosList } from 'react-icons/io';
-import { GiHamburgerMenu } from 'react-icons/gi';
-import { LuMenu } from 'react-icons/lu';
-import ButtonIcon from './ButtonIcon';
-import ButtonGroup from './ButtonGroup';
 import { useState } from 'react';
-import { SidebarMenu } from './SidebarMenu';
-import { useOutsideClick } from '../hooks/useOutsideClick';
+import { LuMenu } from 'react-icons/lu';
 import { Link } from 'react-router-dom';
+import { styled } from 'styled-components';
+import UserAvatar from '../features/authentication/UserAvatar';
+import { useOutsideClick } from '../hooks/useOutsideClick';
+import ButtonGroup from './ButtonGroup';
+import ButtonIcon from './ButtonIcon';
+import HeaderMenu from './HeaderMenu';
+import { SidebarMenu } from './SidebarMenu';
 
 const StyledHeader = styled.header`
   background-color: var(--color-grey-0);

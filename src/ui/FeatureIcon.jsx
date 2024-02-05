@@ -1,16 +1,14 @@
-import { IoWifiOutline } from 'react-icons/io5';
-import { LuBath } from 'react-icons/lu';
-import { TbToolsKitchen2 } from 'react-icons/tb';
-import { TbWashMachine } from 'react-icons/tb';
 import { BiFridge } from 'react-icons/bi';
-import { TbAirConditioning } from 'react-icons/tb';
-import { TbIroning1 } from 'react-icons/tb';
-import { PiFirstAidKit } from 'react-icons/pi';
-import { PiFirstAidKitBold } from 'react-icons/pi';
 import { CgScreen } from 'react-icons/cg';
-import { PiFlowerTulip } from 'react-icons/pi';
-import { PiFlowerTulipBold } from 'react-icons/pi';
 import { IoWifiSharp } from 'react-icons/io5';
+import { LuBath } from 'react-icons/lu';
+import { PiFirstAidKitBold, PiFlowerTulipBold } from 'react-icons/pi';
+import {
+  TbAirConditioning,
+  TbIroning1,
+  TbToolsKitchen2,
+  TbWashMachine,
+} from 'react-icons/tb';
 import styled from 'styled-components';
 
 const Featured = styled.div`

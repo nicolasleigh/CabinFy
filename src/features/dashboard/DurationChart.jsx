@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react';
 import {
   Cell,
   Legend,
@@ -6,10 +7,9 @@ import {
   ResponsiveContainer,
   Tooltip,
 } from 'recharts';
-import styled, { css } from 'styled-components';
-import Heading from '../../ui/Heading';
+import styled from 'styled-components';
 import { useDarkMode } from '../../context/DarkModeContext';
-import { useEffect, useState } from 'react';
+import Heading from '../../ui/Heading';
 
 const ChartBox = styled.div`
   /* Box */

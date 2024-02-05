@@ -1,5 +1,4 @@
 import { client } from './client';
-// import Cookies from 'js-cookie';
 
 export const createBooking = async (booking) => {
   // console.log(booking);

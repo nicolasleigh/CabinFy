@@ -1,7 +1,6 @@
-import { IoMdStar } from 'react-icons/io';
+import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
 import { useReviews } from '../features/guests/useReviews';
-import { useParams } from 'react-router-dom';
 import GuestReviewItem from './GuestReviewItem';
 
 const Layout = styled.div`
