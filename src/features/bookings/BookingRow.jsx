@@ -82,7 +82,7 @@ const Dates = styled.div`
 `;
 
 const Amount = styled.div`
-  font-family: 'Sono';
+  /* font-family: 'Sono'; */
   font-weight: 500;
 
   @media (max-width: 880px) {

@@ -6,6 +6,8 @@ export function useUser() {
     queryKey: ['user'],
     queryFn: getUser,
     retry: false,
+    refetchOnMount: false,
+    refetchOnWindowFocus: false,
   });
 
   return {

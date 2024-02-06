@@ -9,6 +9,9 @@ export const useGuest = () => {
   } = useQuery({
     queryFn: getGuest,
     queryKey: ['guest'],
+    retry: false,
+    refetchOnMount: false,
+    refetchOnWindowFocus: false,
   });
 
   return { isLoading, guest, error };

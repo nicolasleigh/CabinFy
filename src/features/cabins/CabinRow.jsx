@@ -53,8 +53,8 @@ const Location = styled.div`
 `;
 
 const Price = styled.div`
-  font-family: 'Sono';
-  font-weight: 600;
+  /* font-family: 'Sono'; */
+  /* font-weight: 500; */
 
   @media (max-width: 500px) {
     font-weight: 500;

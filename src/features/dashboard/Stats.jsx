@@ -5,7 +5,7 @@
 //   HiOutlineChartBar,
 // } from 'react-icons/hi2';
 import { LuWallet, LuCalendarCheck2 } from 'react-icons/lu';
-import { AiOutlineTransaction, AiOutlineSignal } from 'react-icons/ai';
+import { AiOutlineTransaction, AiFillSignal } from 'react-icons/ai';
 import Stat from './Stat';
 import { formatCurrency } from '../../utils/helpers';
 import styled from 'styled-components';
@@ -86,7 +86,7 @@ function Stats({ bookings, confirmedStays, numDays, cabinCount }) {
           title='Occupancy rate'
           color='yellow'
           // icon={<HiOutlineChartBar />}
-          icon={<AiOutlineSignal />}
+          icon={<AiFillSignal />}
           value={Math.round(occupation * 100) + '%'}
           className='stat4'
         />
