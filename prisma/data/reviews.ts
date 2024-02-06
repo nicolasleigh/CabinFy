@@ -415,146 +415,146 @@ export const reviews = [
   },
 
   // cabin 9
-  {
-    rating: 4,
-    comment:
-      '对于喜欢当代设计的人来说，这家酒店是一个必游之地。极简主义的美学延伸到房间，营造出一个时尚而舒适的环境。楼顶酒吧提供了令人惊叹的城市景观。然而，办理入住手续的过程有些慢',
-    cabinId: 9,
-    guestId: '42e19861-a005-4a42-a23e-932ffc194556',
-  },
-  {
-    rating: 3,
-    comment:
-      '坐落在群山之间，这家酒店提供了一个宁静的避风港。附近的徒步小径令人愉悦，我们房间内的舒适壁炉增添了一抹迷人的风采。',
-    cabinId: 9,
-    guestId: '7fcb87c4-ab17-45b7-bbdf-fc1ee227d1bd',
-  },
-  {
-    rating: 2,
-    comment:
-      "The hotel's beach service was a nice touch. The only downside was the crowded pool area during peak hours.",
-    cabinId: 9,
-    guestId: '42e19861-a005-4a42-a23e-932ffc194532',
-  },
-  {
-    rating: 2,
-    comment:
-      'This historic hotel was a true gem. The architecture and decor transported us to a bygone era, while the modern amenities ensured a comfortable stay. ',
-    cabinId: 9,
-    guestId: '42e19861-a005-4a42-a23e-932ffc194533',
-  },
-  {
-    rating: 3,
-    comment:
-      'The on-site restaurant served delicious meals, and the staffs knowledge of local history added a unique touch. Highly recommend!',
-    cabinId: 9,
-    guestId: '42e19861-a005-4a42-a23e-932ffc194534',
-  },
-  {
-    rating: 4,
-    comment:
-      'For those who appreciate contemporary design, this hotel is a must-visit. ',
-    cabinId: 9,
-    guestId: '42e19861-a005-4a42-a23e-932ffc194535',
-  },
-  {
-    rating: 5,
-    comment:
-      "The hotel's beach service was a nice touch. The only downside was the crowded pool area during peak hours.",
-    cabinId: 9,
-    guestId: '42e19861-a005-4a42-a23e-932ffc194532',
-  },
-  {
-    rating: 3,
-    comment:
-      'This historic hotel was a true gem. The architecture and decor transported us to a bygone era, while the modern amenities ensured a comfortable stay. ',
-    cabinId: 9,
-    guestId: '42e19861-a005-4a42-a23e-932ffc194533',
-  },
-  {
-    rating: 2,
-    comment:
-      'The on-site restaurant served delicious meals, and the staffs knowledge of local history added a unique touch. Highly recommend!',
-    cabinId: 9,
-    guestId: '42e19861-a005-4a42-a23e-932ffc194534',
-  },
-  {
-    rating: 5,
-    comment:
-      'For those who appreciate contemporary design, this hotel is a must-visit. ',
-    cabinId: 9,
-    guestId: '42e19861-a005-4a42-a23e-932ffc194535',
-  },
-  {
-    rating: 5,
-    comment:
-      '在起伏的山丘和绿树环绕中，这家酒店提供了一个宁静的乡村体验。附近的户外活动，比如骑马，非常令人愉快。然而，该地区餐饮选择有限，需要一些旅行。',
-    cabinId: 9,
-    guestId: '1fe49aed-2a44-4838-9335-abb3a8dd177d',
-  },
-  {
-    rating: 4,
-    comment:
-      '位于城市中心，这家酒店非常适合探索当地景点。宽敞的房间和屋顶游泳池是亮点。工作人员提供的当地建议增强了我们的体验。然而，停车费有点高。',
-    cabinId: 9,
-    guestId: '0e66ca8a-12ec-4c83-9da7-eb39408ebb55',
-  },
+  // {
+  //   rating: 4,
+  //   comment:
+  //     '对于喜欢当代设计的人来说，这家酒店是一个必游之地。极简主义的美学延伸到房间，营造出一个时尚而舒适的环境。楼顶酒吧提供了令人惊叹的城市景观。然而，办理入住手续的过程有些慢',
+  //   cabinId: 9,
+  //   guestId: '42e19861-a005-4a42-a23e-932ffc194556',
+  // },
+  // {
+  //   rating: 3,
+  //   comment:
+  //     '坐落在群山之间，这家酒店提供了一个宁静的避风港。附近的徒步小径令人愉悦，我们房间内的舒适壁炉增添了一抹迷人的风采。',
+  //   cabinId: 9,
+  //   guestId: '7fcb87c4-ab17-45b7-bbdf-fc1ee227d1bd',
+  // },
+  // {
+  //   rating: 2,
+  //   comment:
+  //     "The hotel's beach service was a nice touch. The only downside was the crowded pool area during peak hours.",
+  //   cabinId: 9,
+  //   guestId: '42e19861-a005-4a42-a23e-932ffc194532',
+  // },
+  // {
+  //   rating: 2,
+  //   comment:
+  //     'This historic hotel was a true gem. The architecture and decor transported us to a bygone era, while the modern amenities ensured a comfortable stay. ',
+  //   cabinId: 9,
+  //   guestId: '42e19861-a005-4a42-a23e-932ffc194533',
+  // },
+  // {
+  //   rating: 3,
+  //   comment:
+  //     'The on-site restaurant served delicious meals, and the staffs knowledge of local history added a unique touch. Highly recommend!',
+  //   cabinId: 9,
+  //   guestId: '42e19861-a005-4a42-a23e-932ffc194534',
+  // },
+  // {
+  //   rating: 4,
+  //   comment:
+  //     'For those who appreciate contemporary design, this hotel is a must-visit. ',
+  //   cabinId: 9,
+  //   guestId: '42e19861-a005-4a42-a23e-932ffc194535',
+  // },
+  // {
+  //   rating: 5,
+  //   comment:
+  //     "The hotel's beach service was a nice touch. The only downside was the crowded pool area during peak hours.",
+  //   cabinId: 9,
+  //   guestId: '42e19861-a005-4a42-a23e-932ffc194532',
+  // },
+  // {
+  //   rating: 3,
+  //   comment:
+  //     'This historic hotel was a true gem. The architecture and decor transported us to a bygone era, while the modern amenities ensured a comfortable stay. ',
+  //   cabinId: 9,
+  //   guestId: '42e19861-a005-4a42-a23e-932ffc194533',
+  // },
+  // {
+  //   rating: 2,
+  //   comment:
+  //     'The on-site restaurant served delicious meals, and the staffs knowledge of local history added a unique touch. Highly recommend!',
+  //   cabinId: 9,
+  //   guestId: '42e19861-a005-4a42-a23e-932ffc194534',
+  // },
+  // {
+  //   rating: 5,
+  //   comment:
+  //     'For those who appreciate contemporary design, this hotel is a must-visit. ',
+  //   cabinId: 9,
+  //   guestId: '42e19861-a005-4a42-a23e-932ffc194535',
+  // },
+  // {
+  //   rating: 5,
+  //   comment:
+  //     '在起伏的山丘和绿树环绕中，这家酒店提供了一个宁静的乡村体验。附近的户外活动，比如骑马，非常令人愉快。然而，该地区餐饮选择有限，需要一些旅行。',
+  //   cabinId: 9,
+  //   guestId: '1fe49aed-2a44-4838-9335-abb3a8dd177d',
+  // },
+  // {
+  //   rating: 4,
+  //   comment:
+  //     '位于城市中心，这家酒店非常适合探索当地景点。宽敞的房间和屋顶游泳池是亮点。工作人员提供的当地建议增强了我们的体验。然而，停车费有点高。',
+  //   cabinId: 9,
+  //   guestId: '0e66ca8a-12ec-4c83-9da7-eb39408ebb55',
+  // },
 
-  // cabin 10
-  {
-    rating: 4,
-    comment:
-      '附近的徒步小径令人愉悦，我们房间内的舒适壁炉增添了一抹迷人的风采。',
-    cabinId: 10,
-    guestId: 'afd816ed-75c7-4438-8e30-072fe8093d65',
-  },
-  {
-    rating: 5,
-    comment:
-      'The green features, from solar panels to water conservation efforts, were commendable.',
-    cabinId: 10,
-    guestId: '05a35e35-224f-4500-8906-8f0733c6be27',
-  },
-  {
-    rating: 2,
-    comment:
-      'The hiking trails nearby were a highlight, and the cozy fireplace in our room added to the charm. ',
-    cabinId: 10,
-    guestId: '5fb50b4d-ba0e-485e-9560-ebd1b59fca93',
-  },
-  {
-    rating: 4,
-    comment:
-      '这家精品酒店充满了魅力和个性。独特的装饰和注重细节令人印象深刻。工作人员热情好客，为当地的餐饮和活动提供了出色的建议。',
-    cabinId: 10,
-    guestId: '42e19861-a005-4a42-a23e-932ffc194549',
-  },
-  {
-    rating: 3,
-    comment:
-      'This historic hotel was a true gem. The architecture and decor transported us to a bygone era, while the modern amenities ensured a comfortable stay. ',
-    cabinId: 10,
-    guestId: '42e19861-a005-4a42-a23e-932ffc194533',
-  },
-  {
-    rating: 2,
-    comment:
-      'The on-site restaurant served delicious meals, and the staffs knowledge of local history added a unique touch. Highly recommend!',
-    cabinId: 10,
-    guestId: '42e19861-a005-4a42-a23e-932ffc194534',
-  },
-  {
-    rating: 4,
-    comment:
-      '虽然房间很舒适，但缺少一些现代化的设施。总体来说，对于寻求更为亲密体验的人来说是一次令人愉快的经历。',
-    cabinId: 10,
-    guestId: '42e19861-a005-4a42-a23e-932ffc194550',
-  },
-  {
-    rating: 1,
-    comment:
-      'The on-site restaurant offered a variety of options for every palate. ',
-    cabinId: 10,
-    guestId: 'cfb88d98-f2fc-4b6a-b7a6-3cd43f9e7f35',
-  },
+  // // cabin 10
+  // {
+  //   rating: 4,
+  //   comment:
+  //     '附近的徒步小径令人愉悦，我们房间内的舒适壁炉增添了一抹迷人的风采。',
+  //   cabinId: 10,
+  //   guestId: 'afd816ed-75c7-4438-8e30-072fe8093d65',
+  // },
+  // {
+  //   rating: 5,
+  //   comment:
+  //     'The green features, from solar panels to water conservation efforts, were commendable.',
+  //   cabinId: 10,
+  //   guestId: '05a35e35-224f-4500-8906-8f0733c6be27',
+  // },
+  // {
+  //   rating: 2,
+  //   comment:
+  //     'The hiking trails nearby were a highlight, and the cozy fireplace in our room added to the charm. ',
+  //   cabinId: 10,
+  //   guestId: '5fb50b4d-ba0e-485e-9560-ebd1b59fca93',
+  // },
+  // {
+  //   rating: 4,
+  //   comment:
+  //     '这家精品酒店充满了魅力和个性。独特的装饰和注重细节令人印象深刻。工作人员热情好客，为当地的餐饮和活动提供了出色的建议。',
+  //   cabinId: 10,
+  //   guestId: '42e19861-a005-4a42-a23e-932ffc194549',
+  // },
+  // {
+  //   rating: 3,
+  //   comment:
+  //     'This historic hotel was a true gem. The architecture and decor transported us to a bygone era, while the modern amenities ensured a comfortable stay. ',
+  //   cabinId: 10,
+  //   guestId: '42e19861-a005-4a42-a23e-932ffc194533',
+  // },
+  // {
+  //   rating: 2,
+  //   comment:
+  //     'The on-site restaurant served delicious meals, and the staffs knowledge of local history added a unique touch. Highly recommend!',
+  //   cabinId: 10,
+  //   guestId: '42e19861-a005-4a42-a23e-932ffc194534',
+  // },
+  // {
+  //   rating: 4,
+  //   comment:
+  //     '虽然房间很舒适，但缺少一些现代化的设施。总体来说，对于寻求更为亲密体验的人来说是一次令人愉快的经历。',
+  //   cabinId: 10,
+  //   guestId: '42e19861-a005-4a42-a23e-932ffc194550',
+  // },
+  // {
+  //   rating: 1,
+  //   comment:
+  //     'The on-site restaurant offered a variety of options for every palate. ',
+  //   cabinId: 10,
+  //   guestId: 'cfb88d98-f2fc-4b6a-b7a6-3cd43f9e7f35',
+  // },
 ];
