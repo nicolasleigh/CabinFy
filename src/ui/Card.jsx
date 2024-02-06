@@ -70,7 +70,8 @@ const CardPriceText = styled.span`
 
 export default function Card({ id, src, name, bed, price, rate, discount }) {
   return (
-    <CardLayout to={`/cabin/${id}`} target='_blank' rel='noopener noreferrer'>
+    // <CardLayout to={`/cabin/${id}`} target='_blank' rel='noopener noreferrer'>
+    <CardLayout to={`/cabin/${id}`}>
       <CardImg src={src} alt={src} />
       <CardTextBox>
         <CardNameBox>
