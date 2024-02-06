@@ -1,5 +1,6 @@
 import styled from 'styled-components';
-import { FaStar } from 'react-icons/fa6';
+// import { FaStar } from 'react-icons/fa6';
+import { AiFillStar } from 'react-icons/ai';
 import { Link } from 'react-router-dom';
 
 const CardLayout = styled(Link)`
@@ -78,7 +79,8 @@ export default function Card({ id, src, name, bed, price, rate, discount }) {
           <div>{name}</div>
           {rate && (
             <CardRate>
-              <FaStar size={12} />
+              {/* <FaStar size={12} /> */}
+              <AiFillStar size={12} />
               {rate}
             </CardRate>
           )}

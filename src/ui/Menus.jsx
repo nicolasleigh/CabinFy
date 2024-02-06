@@ -1,6 +1,7 @@
 import { createContext, useContext, useState } from 'react';
 import { createPortal } from 'react-dom';
-import { HiEllipsisVertical } from 'react-icons/hi2';
+// import { HiEllipsisVertical } from 'react-icons/hi2';
+import { AiOutlineMore } from 'react-icons/ai';
 import styled from 'styled-components';
 import { useOutsideClick } from '../hooks/useOutsideClick';
 
@@ -119,7 +120,8 @@ function Toggle({ id }) {
   }
   return (
     <StyledToggle onClick={handleClick}>
-      <HiEllipsisVertical />
+      {/* <HiEllipsisVertical /> */}
+      <AiOutlineMore />
     </StyledToggle>
   );
 }

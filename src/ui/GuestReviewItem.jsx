@@ -1,4 +1,5 @@
-import { IoMdStar } from 'react-icons/io';
+// import { IoMdStar } from 'react-icons/io';
+import { AiFillStar } from 'react-icons/ai';
 import styled from 'styled-components';
 
 const ReviewItem = styled.div`
@@ -83,7 +84,8 @@ export default function GuestReviewItem({ reviews, limit }) {
                     {Array(review.rating)
                       .fill('')
                       .map((_, index) => (
-                        <IoMdStar key={index} />
+                        // <IoMdStar key={index} />
+                        <AiFillStar key={index} />
                       ))}
                   </p>
                 </figcaption>

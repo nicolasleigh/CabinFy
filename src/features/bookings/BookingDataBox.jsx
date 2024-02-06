@@ -4,6 +4,11 @@ import {
   HiOutlineCurrencyDollar,
   HiOutlineHomeModern,
 } from 'react-icons/hi2';
+import {
+  AiOutlineHome,
+  AiOutlineCheckCircle,
+  AiOutlineDollar,
+} from 'react-icons/ai';
 import styled from 'styled-components';
 
 import DataItem from '../../ui/DataItem';
@@ -171,7 +176,8 @@ function BookingDataBox({ booking }) {
     <StyledBookingDataBox>
       <Header>
         <div>
-          <HiOutlineHomeModern />
+          {/* <HiOutlineHomeModern /> */}
+          <AiOutlineHome />
           <p>
             {numNights} nights in Cabin <span>{cabinName}</span>
           </p>
@@ -205,12 +211,14 @@ function BookingDataBox({ booking }) {
           </DataItem>
         )} */}
 
-        <DataItem icon={<HiOutlineCheckCircle />} label='Breakfast included?'>
+        {/* <DataItem icon={<HiOutlineCheckCircle />} label='Breakfast included?'> */}
+        <DataItem icon={<AiOutlineCheckCircle />} label='Breakfast included?'>
           {hasBreakfast ? 'Yes' : 'No'}
         </DataItem>
 
         <Price $isPaid={isPaid}>
-          <DataItem icon={<HiOutlineCurrencyDollar />} label={`Total price`}>
+          {/* <DataItem icon={<HiOutlineCurrencyDollar />} label={`Total price`}> */}
+          <DataItem icon={<AiOutlineDollar />} label={`Total price`}>
             {formatCurrency(totalPrice)}
 
             {hasBreakfast &&

@@ -1,6 +1,7 @@
 /* eslint-disable react/jsx-key */
-import { FaUserCircle } from 'react-icons/fa';
-import { IoMdMenu } from 'react-icons/io';
+// import { FaUserCircle } from 'react-icons/fa';
+// import { IoMdMenu } from 'react-icons/io';
+import { AiOutlineMenu, AiOutlineUser } from 'react-icons/ai';
 import { styled } from 'styled-components';
 import DropDown from './Dropdown';
 import { useLoginModal, useSignupModal } from '../hooks';
@@ -88,11 +89,13 @@ function GuestHeaderMenu() {
         // setOpen={setOpen}
         trigger={
           <NavButton>
-            <IoMdMenu size={20} />
+            {/* <IoMdMenu size={20} /> */}
+            <AiOutlineMenu size={20} />
             {guest ? (
               <HeaderAvatar>{shortName}</HeaderAvatar>
             ) : (
-              <FaUserCircle />
+              // <FaUserCircle />
+              <AiOutlineUser />
             )}
           </NavButton>
         }

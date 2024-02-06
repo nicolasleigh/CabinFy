@@ -1,7 +1,8 @@
 import styled from 'styled-components';
 import Modal from './Modal';
 import GuestsReviews from './GuestsReviews';
-import { IoMdStar } from 'react-icons/io';
+// import { IoMdStar } from 'react-icons/io';
+import { AiFillStar } from 'react-icons/ai';
 import { Link } from 'react-router-dom';
 
 const GuestsFavorite = styled.div`
@@ -149,11 +150,16 @@ export default function GuestsFavoriteBox({ reviews }) {
             <Star>
               <p>{Math.ceil(averageRating * 10) / 10}</p>
               <p>
+                {/* <IoMdStar />
                 <IoMdStar />
                 <IoMdStar />
                 <IoMdStar />
-                <IoMdStar />
-                <IoMdStar />
+                <IoMdStar /> */}
+                <AiFillStar />
+                <AiFillStar />
+                <AiFillStar />
+                <AiFillStar />
+                <AiFillStar />
               </p>
             </Star>
             <Review>

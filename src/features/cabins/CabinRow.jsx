@@ -1,4 +1,5 @@
-import { HiPencil, HiSquare2Stack, HiTrash } from 'react-icons/hi2';
+// import { HiPencil, HiSquare2Stack, HiTrash } from 'react-icons/hi2';
+import { AiFillCopy, AiFillEdit, AiFillDelete } from 'react-icons/ai';
 import styled from 'styled-components';
 import { imageBaseUrl } from '../../App';
 import ConfirmDelete from '../../ui/ConfirmDelete';
@@ -102,7 +103,8 @@ function CabinRow({ cabin }) {
               <Menus.Toggle id={cabinId} />
               <Menus.List id={cabinId}>
                 <Menus.Button
-                  icon={<HiSquare2Stack />}
+                  // icon={<HiSquare2Stack />}
+                  icon={<AiFillCopy />}
                   onClick={handleDuplicate}
                   disabled={isDuplicating}
                 >
@@ -110,11 +112,13 @@ function CabinRow({ cabin }) {
                 </Menus.Button>
 
                 <Modal.Open opens='edit'>
-                  <Menus.Button icon={<HiPencil />}>Edit</Menus.Button>
+                  {/* <Menus.Button icon={<HiPencil />}>Edit</Menus.Button> */}
+                  <Menus.Button icon={<AiFillEdit />}>Edit</Menus.Button>
                 </Modal.Open>
 
                 <Modal.Open opens='delete'>
-                  <Menus.Button icon={<HiTrash />}>Delete</Menus.Button>
+                  {/* <Menus.Button icon={<HiTrash />}>Delete</Menus.Button> */}
+                  <Menus.Button icon={<AiFillDelete />}>Delete</Menus.Button>
                 </Modal.Open>
               </Menus.List>
 

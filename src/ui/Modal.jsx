@@ -6,7 +6,8 @@ import {
   useState,
 } from 'react';
 import { createPortal } from 'react-dom';
-import { HiXMark } from 'react-icons/hi2';
+// import { HiXMark } from 'react-icons/hi2';
+import { AiOutlineClose } from 'react-icons/ai';
 import styled from 'styled-components';
 import { useAddReviewModal } from '../hooks';
 import { useOutsideClick } from '../hooks/useOutsideClick';
@@ -130,7 +131,8 @@ function Window({ children, name }) {
     <Overlay>
       <StyledModal ref={ref}>
         <Button onClick={close}>
-          <HiXMark />
+          {/* <HiXMark /> */}
+          <AiOutlineClose />
         </Button>
         <div>{cloneElement(children, { onCloseModal: close })}</div>
       </StyledModal>

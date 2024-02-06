@@ -1,5 +1,6 @@
 import styled, { css } from 'styled-components';
-import { FaGithub } from 'react-icons/fa';
+// import { FaGithub } from 'react-icons/fa';
+import { AiFillGithub } from 'react-icons/ai';
 
 const StyledFooter = styled.footer`
   border-top: 1px solid var(--color-grey-400);
@@ -91,7 +92,8 @@ export default function GuestFooter({ $admin }) {
         https://github.com/NicolasLi2/hotel-app-frontend
         '
           >
-            <FaGithub />
+            {/* <FaGithub /> */}
+            <AiFillGithub />
           </a>
         </div>
 
@@ -104,7 +106,8 @@ export default function GuestFooter({ $admin }) {
         https://github.com/NicolasLi2/hotel-app-backend
         '
           >
-            <FaGithub />
+            {/* <FaGithub /> */}
+            <AiFillGithub />
           </a>
         </div>
       </GithubIconGroup>

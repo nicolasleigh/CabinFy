@@ -1,9 +1,15 @@
+// import {
+//   HiOutlineCalendarDays,
+//   HiOutlineCog6Tooth,
+//   HiOutlineHome,
+//   HiOutlineHomeModern,
+// } from 'react-icons/hi2';
 import {
-  HiOutlineCalendarDays,
-  HiOutlineCog6Tooth,
-  HiOutlineHome,
-  HiOutlineHomeModern,
-} from 'react-icons/hi2';
+  AiOutlineHome,
+  AiOutlineSchedule,
+  AiOutlineBarChart,
+  AiOutlineSetting,
+} from 'react-icons/ai';
 import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 
@@ -62,19 +68,21 @@ function MainNav({ setShowSidebar }) {
       <NavList>
         <li onClick={handleCloseSidebar}>
           <StyledNavLink to='/admin/dashboard'>
-            <HiOutlineHome />
-            <span>Home</span>
+            {/* <HiOutlineHome /> */}
+            <AiOutlineBarChart />
+            <span>Dashboard</span>
           </StyledNavLink>
         </li>
         <li onClick={handleCloseSidebar}>
           <StyledNavLink to='/admin/bookings'>
-            <HiOutlineCalendarDays />
+            {/* <HiOutlineCalendarDays /> */}
+            <AiOutlineSchedule />
             <span>Bookings</span>
           </StyledNavLink>
         </li>
         <li onClick={handleCloseSidebar}>
           <StyledNavLink to='/admin/cabins'>
-            <HiOutlineHomeModern />
+            <AiOutlineHome />
             <span>Cabins</span>
           </StyledNavLink>
         </li>
@@ -86,7 +94,8 @@ function MainNav({ setShowSidebar }) {
         </li> */}
         <li onClick={handleCloseSidebar}>
           <StyledNavLink to='/admin/settings'>
-            <HiOutlineCog6Tooth />
+            {/* <HiOutlineCog6Tooth /> */}
+            <AiOutlineSetting />
             <span>Settings</span>
           </StyledNavLink>
         </li>

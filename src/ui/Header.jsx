@@ -1,5 +1,6 @@
 import { useState } from 'react';
-import { LuMenu } from 'react-icons/lu';
+// import { LuMenu } from 'react-icons/lu';
+import { AiOutlineMenu } from 'react-icons/ai';
 import { Link } from 'react-router-dom';
 import { styled } from 'styled-components';
 import UserAvatar from '../features/authentication/UserAvatar';
@@ -72,7 +73,8 @@ function Header() {
   return (
     <StyledHeader ref={ref}>
       <ButtonIcon onClick={() => setShowSidebar(true)} className='menuBtn'>
-        <LuMenu />
+        {/* <LuMenu /> */}
+        <AiOutlineMenu />
       </ButtonIcon>
       <ButtonGroup>
         <GuestPageBtn to='/home'>Back to guest page</GuestPageBtn>

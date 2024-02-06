@@ -8,12 +8,19 @@ import { formatCurrency } from '../../utils/helpers';
 import { formatDistanceFromNow } from '../../utils/helpers';
 import { useNavigate } from 'react-router-dom';
 import Menus from '../../ui/Menus';
+// import {
+//   HiArrowDownOnSquare,
+//   HiArrowUpOnSquare,
+//   HiEye,
+//   HiTrash,
+// } from 'react-icons/hi2';
 import {
-  HiArrowDownOnSquare,
-  HiArrowUpOnSquare,
-  HiEye,
-  HiTrash,
-} from 'react-icons/hi2';
+  AiOutlineDelete,
+  AiOutlineDownload,
+  AiOutlineUpload,
+  AiOutlineEye,
+} from 'react-icons/ai';
+
 import { useCheckout } from '../check-in-out/useCheckout';
 import Modal from '../../ui/Modal';
 import ConfirmDelete from '../../ui/ConfirmDelete';
@@ -146,7 +153,8 @@ function BookingRow({
           <Menus.Toggle id={bookingId} />
           <Menus.List id={bookingId}>
             <Menus.Button
-              icon={<HiEye />}
+              // icon={<HiEye />}
+              icon={<AiOutlineEye />}
               onClick={() => navigate(`/admin/bookings/${bookingId}`)}
             >
               See details
@@ -154,7 +162,8 @@ function BookingRow({
 
             {status === 'unconfirmed' && (
               <Menus.Button
-                icon={<HiArrowDownOnSquare />}
+                // icon={<HiArrowDownOnSquare />}
+                icon={<AiOutlineDownload />}
                 onClick={() => navigate(`/admin/checkin/${bookingId}`)}
               >
                 Check in
@@ -162,7 +171,8 @@ function BookingRow({
             )}
             {status === 'checked-in' && (
               <Menus.Button
-                icon={<HiArrowUpOnSquare />}
+                // icon={<HiArrowUpOnSquare />}
+                icon={<AiOutlineUpload />}
                 onClick={() => {
                   checkout(bookingId);
                 }}
@@ -173,7 +183,10 @@ function BookingRow({
             )}
 
             <Modal.Open opens='delete'>
-              <Menus.Button icon={<HiTrash />}>Delete booking</Menus.Button>
+              {/* <Menus.Button icon={<HiTrash />}>Delete booking</Menus.Button> */}
+              <Menus.Button icon={<AiOutlineDelete />}>
+                Delete booking
+              </Menus.Button>
             </Modal.Open>
           </Menus.List>
         </Menus.Menu>

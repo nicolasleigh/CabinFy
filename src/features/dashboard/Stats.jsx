@@ -1,9 +1,11 @@
-import {
-  HiOutlineBanknotes,
-  HiOutlineBriefcase,
-  HiOutlineCalendarDays,
-  HiOutlineChartBar,
-} from 'react-icons/hi2';
+// import {
+//   HiOutlineBanknotes,
+//   HiOutlineBriefcase,
+//   HiOutlineCalendarDays,
+//   HiOutlineChartBar,
+// } from 'react-icons/hi2';
+import { LuWallet, LuCalendarCheck2 } from 'react-icons/lu';
+import { AiOutlineTransaction, AiOutlineSignal } from 'react-icons/ai';
 import Stat from './Stat';
 import { formatCurrency } from '../../utils/helpers';
 import styled from 'styled-components';
@@ -51,7 +53,8 @@ function Stats({ bookings, confirmedStays, numDays, cabinCount }) {
         <Stat
           title='Bookings'
           color='blue'
-          icon={<HiOutlineBriefcase />}
+          // icon={<HiOutlineBriefcase />}
+          icon={<LuWallet />}
           value={numBookings}
         />
       </Stat1>
@@ -60,7 +63,8 @@ function Stats({ bookings, confirmedStays, numDays, cabinCount }) {
         <Stat
           title='Sales'
           color='green'
-          icon={<HiOutlineBanknotes />}
+          // icon={<HiOutlineBanknotes />}
+          icon={<AiOutlineTransaction />}
           value={formatCurrency(sales)}
           className='stat2'
         />
@@ -70,7 +74,8 @@ function Stats({ bookings, confirmedStays, numDays, cabinCount }) {
         <Stat
           title='Check ins'
           color='indigo'
-          icon={<HiOutlineCalendarDays />}
+          // icon={<HiOutlineCalendarDays />}
+          icon={<LuCalendarCheck2 />}
           value={checkins}
           className='stat3'
         />
@@ -80,7 +85,8 @@ function Stats({ bookings, confirmedStays, numDays, cabinCount }) {
         <Stat
           title='Occupancy rate'
           color='yellow'
-          icon={<HiOutlineChartBar />}
+          // icon={<HiOutlineChartBar />}
+          icon={<AiOutlineSignal />}
           value={Math.round(occupation * 100) + '%'}
           className='stat4'
         />
