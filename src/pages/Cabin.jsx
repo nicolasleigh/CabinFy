@@ -13,8 +13,9 @@ import GuestLogin from './GuestLogin';
 import GuestSignup from './GuestSignup';
 import CabinTextInfo from '../ui/CabinTextInfo';
 import { useBookingByCabinId } from '../features/bookings/useBookingByCabinId';
+import CabinSkeleton from '../ui/CabinSkeleton';
 
-const ImageSection = styled.section`
+export const ImageSection = styled.section`
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 0.6rem;
@@ -38,7 +39,7 @@ const ImageLeft = styled.img`
     border-radius: var(--border-radius-xl);
   }
 `;
-const ImageRight = styled.div`
+export const ImageRight = styled.div`
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   grid-template-rows: repeat(2, 1fr);
@@ -56,7 +57,7 @@ const ImageRightCell = styled.img`
   object-fit: cover;
 `;
 
-const Container = styled.div`
+export const Container = styled.div`
   display: grid;
   grid-template-columns: 3fr 2fr;
   grid-template-rows: auto auto auto 1fr auto;
@@ -70,8 +71,6 @@ const Container = styled.div`
     row-gap: 2rem;
   }
 `;
-
-const TextSection = styled.div``;
 
 const ReviewBox = styled.div`
   display: grid;
@@ -122,6 +121,10 @@ export default function Cabin() {
 
   const { cabinId } = useParams();
   const { reviews, isLoading: isLoadingReview } = useReviews(cabinId);
+
+  if (isLoadingBooking || isLoadingCabin || isLoadingReview) {
+    return <CabinSkeleton />;
+  }
 
   return (
     <>

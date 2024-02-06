@@ -1,9 +1,9 @@
 import { format, isToday } from 'date-fns';
-import {
-  HiOutlineCheckCircle,
-  HiOutlineCurrencyDollar,
-  HiOutlineHomeModern,
-} from 'react-icons/hi2';
+// import {
+//   HiOutlineCheckCircle,
+//   HiOutlineCurrencyDollar,
+//   HiOutlineHomeModern,
+// } from 'react-icons/hi2';
 import {
   AiOutlineHome,
   AiOutlineCheckCircle,

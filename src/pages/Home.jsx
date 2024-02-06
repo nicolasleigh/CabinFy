@@ -4,8 +4,10 @@ import GuestSignup from './GuestSignup';
 import GuestLogin from './GuestLogin';
 import { useCabins } from '../features/cabins/useCabins';
 import { useRate } from '../features/guests/useRate';
+import CardSkeleton from '../ui/CardSkeleton';
+import HomeSkeleton from '../ui/HomeSkeleton';
 
-const HomeLayout = styled.div`
+export const HomeLayout = styled.div`
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   /* grid-template-rows: repeat(10, fit-content(100%)); */
@@ -29,7 +31,7 @@ const HomeLayout = styled.div`
 const imageURL = import.meta.env.VITE_IMAGE_URL;
 
 export default function Home() {
-  const { cabins, isLoading } = useCabins();
+  const { cabins, isLoading: isLoadingCabins } = useCabins();
   const { rate, isLoading: isLoadingRate } = useRate();
 
   // console.log(cabins);
@@ -37,8 +39,10 @@ export default function Home() {
   const avgRating = rate?.map((e) => {
     return Math.ceil(e._avg.rating * 10) / 10;
   });
-
   // console.log(avgRating);
+
+  if (isLoadingCabins || isLoadingRate) return <HomeSkeleton />;
+
   return (
     <>
       <GuestSignup />

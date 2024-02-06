@@ -2,6 +2,7 @@ import styled from 'styled-components';
 // import { FaStar } from 'react-icons/fa6';
 import { AiFillStar } from 'react-icons/ai';
 import { Link } from 'react-router-dom';
+import CardSkeleton from './CardSkeleton';
 
 const CardLayout = styled(Link)`
   width: 100%;

@@ -2,22 +2,13 @@
 import { AiOutlineLeft, AiOutlineRight } from 'react-icons/ai';
 import { useSearchParams } from 'react-router-dom';
 import styled from 'styled-components';
-import { PAGE_SIZE } from '../utils/constans';
+import { PAGE_SIZE } from '../utils/constants';
 
 const StyledPagination = styled.div`
   width: 100%;
   display: flex;
   align-items: center;
   justify-content: space-between;
-`;
-
-const P = styled.p`
-  font-size: 1.4rem;
-  margin-left: 0.8rem;
-
-  & span {
-    font-weight: 600;
-  }
 `;
 
 const Buttons = styled.div`
