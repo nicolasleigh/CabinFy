@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import Modal from './Modal';
+import Modal from '../../ui/Modal';
 import GuestsReviews from './GuestsReviews';
 // import { IoMdStar } from 'react-icons/io';
 import { AiFillStar } from 'react-icons/ai';

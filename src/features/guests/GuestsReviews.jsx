@@ -1,6 +1,6 @@
 import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
-import { useReviews } from '../features/guests/useReviews';
+import { useReviews } from './useReviews';
 import GuestReviewItem from './GuestReviewItem';
 
 const Layout = styled.div`

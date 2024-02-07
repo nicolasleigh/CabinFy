@@ -30,7 +30,8 @@ const CardLayout = styled(Link)`
 
 const CardImg = styled.img`
   display: block;
-  aspect-ratio: 1;
+  aspect-ratio: 3/2;
+  /* aspect-ratio: 1; */
   object-fit: cover;
   object-position: center;
   border-radius: var(--border-radius-md) var(--border-radius-md) 0 0;

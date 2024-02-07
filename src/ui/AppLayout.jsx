@@ -2,7 +2,7 @@ import { Outlet } from 'react-router-dom';
 import Sidebar from './Sidebar';
 import Header from './Header';
 import { styled } from 'styled-components';
-import GuestFooter from './GuestFooter';
+import GuestFooter from '../features/guests/GuestFooter';
 
 const StyledAppLayout = styled.div`
   display: grid;

@@ -4,7 +4,6 @@ import { Toaster } from 'react-hot-toast';
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 import { ContextProvider } from './context';
 import { DarkModeProvider } from './context/DarkModeContext';
-// import CreateGuestForm from './features/guests/CreateGuestForm';
 import Account from './pages/Account';
 import Booking from './pages/Booking';
 import Bookings from './pages/Bookings';
@@ -20,9 +19,8 @@ import ResetPassword from './pages/ResetPassword';
 import Settings from './pages/Settings';
 import Signup from './pages/Signup';
 import GlobalStyles from './styles/GlobalStyles';
-// import GlobalFonts from './fonts/fonts';
 import AppLayout from './ui/AppLayout';
-import GuestLayout from './ui/GuestLayout';
+import GuestLayout from './features/guests/GuestLayout';
 import ProtectedRoute from './ui/ProtectedRoute';
 
 const queryClient = new QueryClient({
@@ -41,7 +39,6 @@ function App() {
       <ContextProvider>
         <QueryClientProvider client={queryClient}>
           {/* <ReactQueryDevtools initialIsOpen={false} /> */}
-          {/* <GlobalFonts /> */}
           <GlobalStyles />
           <BrowserRouter>
             <Routes>
@@ -54,17 +51,13 @@ function App() {
                 }
               >
                 <Route index element={<Navigate replace to='dashboard' />} />
-                {/* <Route index element={<Dashboard />} /> */}
                 <Route path='dashboard' element={<Dashboard />} />
                 <Route path='bookings' element={<Bookings />} />
                 <Route path='bookings/:bookingId' element={<Booking />} />
                 <Route path='checkin/:bookingId' element={<Checkin />} />
                 <Route path='cabins' element={<Cabins />} />
-                {/* <Route path='users' element={<Users />} /> */}
                 <Route path='settings' element={<Settings />} />
                 <Route path='account' element={<Account />} />
-                {/* <Route path='guests' element={<CreateGuestForm />} /> */}
-                {/* <Route path='guests' element={<GuestList />} /> */}
               </Route>
               <Route path='/admin/login' element={<Login />} />
               <Route path='/admin/signup' element={<Signup />} />
@@ -81,11 +74,11 @@ function App() {
                 <Route index element={<Navigate replace to='home' />} />
                 <Route path='home' element={<Home />} />
                 <Route path='cabin/:cabinId' element={<Cabin />} />
-                {/* <Route path='signup' element={<GuestSignup />} /> */}
               </Route>
               <Route path='*' element={<PageNotFound />} />
             </Routes>
           </BrowserRouter>
+
           <Toaster
             position='top-center'
             gutter={12}

@@ -1,7 +1,7 @@
 import { styled } from 'styled-components';
 import GuestHeaderMenu from './GuestHeaderMenu';
 import { Link } from 'react-router-dom';
-import Logo from './Logo';
+import Logo from '../../ui/Logo';
 
 const StyledHeader = styled.header`
   background-color: var(--color-grey-0);

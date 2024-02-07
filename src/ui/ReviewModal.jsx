@@ -1,6 +1,6 @@
 import styled from 'styled-components';
-import GuestAddReview from './GuestAddReview';
-import GuestsReviews from './GuestsReviews';
+import GuestAddReview from '../features/guests/GuestAddReview';
+import GuestsReviews from '../features/guests/GuestsReviews';
 import Modal from './Modal';
 
 const ModalBox = styled.div`

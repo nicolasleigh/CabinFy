@@ -1,12 +1,12 @@
 import { useForm } from 'react-hook-form';
 import styled from 'styled-components';
-import { useSignup } from '../features/guests/useSignup';
-import { useSignupModal } from '../hooks';
-import { useOutsideClick } from '../hooks/useOutsideClick';
-import Button from '../ui/Button';
-import Form from '../ui/Form';
-import FormRowVertical from '../ui/FormRowVertical';
-import Input from '../ui/Input';
+import { useSignup } from './useSignup';
+import { useSignupModal } from '../../hooks';
+import { useOutsideClick } from '../../hooks/useOutsideClick';
+import Button from '../../ui/Button';
+import Form from '../../ui/Form';
+import FormRowVertical from '../../ui/FormRowVertical';
+import Input from '../../ui/Input';
 
 const Overlay = styled.div`
   position: fixed;

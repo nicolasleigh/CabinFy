@@ -1,10 +1,9 @@
 import styled from 'styled-components';
 import Card from '../ui/Card';
-import GuestSignup from './GuestSignup';
-import GuestLogin from './GuestLogin';
+import GuestSignup from '../features/guests/GuestSignup';
+import GuestLogin from '../features/guests/GuestLogin';
 import { useCabins } from '../features/cabins/useCabins';
 import { useRate } from '../features/guests/useRate';
-import CardSkeleton from '../ui/CardSkeleton';
 import HomeSkeleton from '../ui/HomeSkeleton';
 
 export const HomeLayout = styled.div`
