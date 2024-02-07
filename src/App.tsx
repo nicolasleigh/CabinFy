@@ -33,7 +33,7 @@ const queryClient = new QueryClient({
 
 export const imageBaseUrl = import.meta.env.VITE_IMAGE_URL;
 
-function App() {
+export default function App() {
   return (
     <DarkModeProvider>
       <ContextProvider>
@@ -42,67 +42,77 @@ function App() {
           <GlobalStyles />
           <BrowserRouter>
             <Routes>
-              <Route
-                path='/admin'
-                element={
-                  <ProtectedRoute>
-                    <AppLayout />
-                  </ProtectedRoute>
-                }
-              >
-                <Route index element={<Navigate replace to='dashboard' />} />
-                <Route path='dashboard' element={<Dashboard />} />
-                <Route path='bookings' element={<Bookings />} />
-                <Route path='bookings/:bookingId' element={<Booking />} />
-                <Route path='checkin/:bookingId' element={<Checkin />} />
-                <Route path='cabins' element={<Cabins />} />
-                <Route path='settings' element={<Settings />} />
-                <Route path='account' element={<Account />} />
-              </Route>
-              <Route path='/admin/login' element={<Login />} />
-              <Route path='/admin/signup' element={<Signup />} />
-              <Route
-                path='/admin/reset-password/:uid/:token'
-                element={<ResetPassword />}
-              />
-              <Route
-                path='/admin/forget-password'
-                element={<ForgetPassword />}
-              />
-
-              <Route path='/' element={<GuestLayout />}>
-                <Route index element={<Navigate replace to='home' />} />
-                <Route path='home' element={<Home />} />
-                <Route path='cabin/:cabinId' element={<Cabin />} />
-              </Route>
+              <Route path='/admin/*' element={<AdminApp />} />
+              <Route path='/*' element={<GuestApp />} />
               <Route path='*' element={<PageNotFound />} />
             </Routes>
           </BrowserRouter>
-
-          <Toaster
-            position='top-center'
-            gutter={12}
-            containerStyle={{ margin: '8px' }}
-            toastOptions={{
-              success: {
-                duration: 3000,
-              },
-              error: {
-                duration: 5000,
-              },
-              style: {
-                fontSize: '16px',
-                maxWidth: '500px',
-                padding: '16px 24px',
-                backgroundColor: 'var(--color-grey-0)',
-                color: 'var(--color-grey-700)',
-              },
-            }}
-          />
+          <Toast />
         </QueryClientProvider>
       </ContextProvider>
     </DarkModeProvider>
   );
 }
 
-export default App;
+const AdminApp = () => {
+  return (
+    <Routes>
+      <Route
+        element={
+          <ProtectedRoute>
+            <AppLayout />
+          </ProtectedRoute>
+        }
+      >
+        <Route index element={<Navigate replace to='dashboard' />} />
+        <Route path='dashboard' element={<Dashboard />} />
+        <Route path='bookings' element={<Bookings />} />
+        <Route path='bookings/:bookingId' element={<Booking />} />
+        <Route path='checkin/:bookingId' element={<Checkin />} />
+        <Route path='cabins' element={<Cabins />} />
+        <Route path='settings' element={<Settings />} />
+        <Route path='account' element={<Account />} />
+      </Route>
+      <Route path='login' element={<Login />} />
+      <Route path='signup' element={<Signup />} />
+      <Route path='reset-password/:uid/:token' element={<ResetPassword />} />
+      <Route path='forget-password' element={<ForgetPassword />} />
+    </Routes>
+  );
+};
+const GuestApp = () => {
+  return (
+    <Routes>
+      <Route element={<GuestLayout />}>
+        <Route index element={<Navigate replace to='home' />} />
+        <Route path='home' element={<Home />} />
+        <Route path='cabin/:cabinId' element={<Cabin />} />
+      </Route>
+    </Routes>
+  );
+};
+
+const Toast = () => {
+  return (
+    <Toaster
+      position='top-center'
+      gutter={12}
+      containerStyle={{ margin: '8px' }}
+      toastOptions={{
+        success: {
+          duration: 3000,
+        },
+        error: {
+          duration: 5000,
+        },
+        style: {
+          fontSize: '16px',
+          maxWidth: '500px',
+          padding: '16px 24px',
+          backgroundColor: 'var(--color-grey-0)',
+          color: 'var(--color-grey-700)',
+        },
+      }}
+    />
+  );
+};
