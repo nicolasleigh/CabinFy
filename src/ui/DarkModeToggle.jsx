@@ -7,7 +7,7 @@ function DarkModeToggle() {
   const { isDarkMode, toggleDarkMode } = useDarkMode();
 
   return (
-    <ButtonIcon onClick={toggleDarkMode}>
+    <ButtonIcon onClick={toggleDarkMode} aria-label='toggle dark mode'>
       {/* {isDarkMode ? <HiOutlineSun /> : <HiOutlineMoon />} */}
       {isDarkMode ? <LuSun /> : <LuMoon />}
     </ButtonIcon>

@@ -8,7 +8,7 @@ function Logout() {
   const { logout, isLoading } = useLogout();
 
   return (
-    <ButtonIcon disabled={isLoading} onClick={logout}>
+    <ButtonIcon disabled={isLoading} onClick={logout} aria-label='log out'>
       {/* {!isLoading ? <HiArrowRightOnRectangle /> : <SpinnerMini />} */}
       {!isLoading ? <AiOutlineLogout /> : <SpinnerMini />}
     </ButtonIcon>

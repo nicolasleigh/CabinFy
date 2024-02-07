@@ -17,7 +17,10 @@ function HeaderMenu() {
   return (
     <StyledHeaderMenu>
       <li>
-        <ButtonIcon onClick={() => navigate('/admin/account')}>
+        <ButtonIcon
+          onClick={() => navigate('/admin/account')}
+          aria-label='go to account page'
+        >
           {/* <HiOutlineUser /> */}
           <AiOutlineUser />
         </ButtonIcon>

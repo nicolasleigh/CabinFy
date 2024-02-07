@@ -29,7 +29,7 @@ const ReviewBtn = styled.button`
   background: none;
   padding: 1rem 2rem;
   font-size: 1.4rem;
-  color: var(--color-grey-400);
+  color: var(--color-grey-500);
 
   &:focus {
     outline: none;

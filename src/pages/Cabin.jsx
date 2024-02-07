@@ -136,12 +136,24 @@ export default function Cabin() {
       <NameSection>{name}</NameSection>
 
       <ImageSection>
-        <ImageLeft src={imageBaseUrl + image} />
+        <ImageLeft src={imageBaseUrl + image} alt='cabin cover photo' />
         <ImageRight>
-          <ImageRightCell src={imageBaseUrl + images[0]?.fileName} />
-          <ImageRightCell src={imageBaseUrl + images[1]?.fileName} />
-          <ImageRightCell src={imageBaseUrl + images[2]?.fileName} />
-          <ImageRightCell src={imageBaseUrl + images[3]?.fileName} />
+          <ImageRightCell
+            src={imageBaseUrl + images[0]?.fileName}
+            alt='cabin interior photo 1'
+          />
+          <ImageRightCell
+            src={imageBaseUrl + images[1]?.fileName}
+            alt='cabin interior photo 2'
+          />
+          <ImageRightCell
+            src={imageBaseUrl + images[2]?.fileName}
+            alt='cabin interior photo 3'
+          />
+          <ImageRightCell
+            src={imageBaseUrl + images[3]?.fileName}
+            alt='cabin interior photo 4'
+          />
         </ImageRight>
       </ImageSection>
 

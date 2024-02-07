@@ -54,16 +54,16 @@ const GuestPageBtn = styled(Link)`
   justify-content: center;
   text-decoration: underline;
   font-size: 1.2rem;
-  color: var(--color-grey-400);
+  color: var(--color-grey-500);
   margin-right: 2.4rem;
 
   @media (max-width: 500px) {
-    font-size: 1rem;
-    margin-right: 1rem;
+    font-size: 0.8rem;
+    margin-right: 0rem;
   }
   @media (max-width: 400px) {
-    font-size: 0.8rem;
-    margin-right: 0.5rem;
+    font-size: 0.7rem;
+    width: 3rem;
   }
 `;
 
