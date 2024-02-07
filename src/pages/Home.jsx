@@ -6,7 +6,7 @@ import { useCabins } from '../features/cabins/useCabins';
 import { useRate } from '../features/guests/useRate';
 import HomeSkeleton from '../ui/HomeSkeleton';
 
-export const HomeLayout = styled.div`
+const HomeLayout = styled.div`
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   /* grid-template-rows: repeat(10, fit-content(100%)); */

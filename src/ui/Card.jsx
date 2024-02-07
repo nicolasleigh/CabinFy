@@ -2,7 +2,6 @@ import styled from 'styled-components';
 // import { FaStar } from 'react-icons/fa6';
 import { AiFillStar } from 'react-icons/ai';
 import { Link } from 'react-router-dom';
-import CardSkeleton from './CardSkeleton';
 
 const CardLayout = styled(Link)`
   width: 100%;
@@ -62,13 +61,10 @@ const CardRate = styled.div`
 const CardTextBed = styled.div`
   display: flex;
   gap: 0.4rem;
-  color: var(--color-grey-400);
+  color: var(--color-grey-500);
 `;
 const CardPrice = styled.div`
   margin-top: 0.6rem;
-`;
-const CardPriceText = styled.span`
-  color: var(--color-grey-400);
 `;
 
 export default function Card({ id, src, name, bed, price, rate, discount }) {

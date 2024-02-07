@@ -1,8 +1,8 @@
 import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
-import { useState } from 'react';
+import { Suspense, lazy, useState } from 'react';
 import { imageBaseUrl } from '../App';
-import BookingForm from '../features/bookings/BookingForm';
+// import BookingForm from '../features/bookings/BookingForm';
 import { useCabin } from '../features/cabins/useCabin';
 import { useReviews } from '../features/guests/useReviews';
 import FeatureIcon from '../ui/FeatureIcon';
@@ -14,8 +14,11 @@ import GuestSignup from '../features/guests/GuestSignup';
 import CabinTextInfo from '../ui/CabinTextInfo';
 import { useBookingByCabinId } from '../features/bookings/useBookingByCabinId';
 import CabinSkeleton from '../ui/CabinSkeleton';
+import Skeleton from '../ui/Skeleton';
 
-export const ImageSection = styled.section`
+const BookingForm = lazy(() => import('../features/bookings/BookingForm'));
+
+const ImageSection = styled.section`
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 0.6rem;
@@ -39,7 +42,7 @@ const ImageLeft = styled.img`
     border-radius: var(--border-radius-xl);
   }
 `;
-export const ImageRight = styled.div`
+const ImageRight = styled.div`
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   grid-template-rows: repeat(2, 1fr);
@@ -57,7 +60,7 @@ const ImageRightCell = styled.img`
   object-fit: cover;
 `;
 
-export const Container = styled.div`
+const Container = styled.div`
   display: grid;
   grid-template-columns: 3fr 2fr;
   grid-template-rows: auto auto auto 1fr auto;
@@ -158,16 +161,18 @@ export default function Cabin() {
         <ReviewModal reviews={reviews} />
         {/* </TextSection> */}
 
-        <BookingForm
-          guestsNumber={guestsNumber}
-          setGuestsNumber={setGuestsNumber}
-          hasBreakfast={hasBreakfast}
-          setHasBreakfast={setHasBreakfast}
-          discount={discount}
-          regularPrice={regularPrice}
-          cabinId={cabinId}
-          booking={booking}
-        />
+        <Suspense fallback={<Skeleton height={700} />}>
+          <BookingForm
+            guestsNumber={guestsNumber}
+            setGuestsNumber={setGuestsNumber}
+            hasBreakfast={hasBreakfast}
+            setHasBreakfast={setHasBreakfast}
+            discount={discount}
+            regularPrice={regularPrice}
+            cabinId={cabinId}
+            booking={booking}
+          />
+        </Suspense>
       </Container>
     </>
   );

@@ -3,7 +3,7 @@ import styled, { css } from 'styled-components';
 import { AiFillGithub } from 'react-icons/ai';
 
 const StyledFooter = styled.footer`
-  border-top: 1px solid var(--color-grey-400);
+  border-top: 1px solid var(--color-grey-500);
   display: flex;
   gap: 2.4rem;
   align-items: center;
@@ -39,7 +39,7 @@ const StyledFooter = styled.footer`
 `;
 
 const Copyright = styled.div`
-  color: var(--color-grey-400);
+  color: var(--color-grey-500);
 `;
 
 const GithubIconGroup = styled.div`
@@ -57,7 +57,7 @@ const GithubIconGroup = styled.div`
   }
 
   span {
-    color: var(--color-grey-400);
+    color: var(--color-grey-500);
   }
 
   a {
@@ -80,12 +80,13 @@ export default function GuestFooter({ $admin }) {
   return (
     <StyledFooter $admin={$admin}>
       <Copyright>
-        <p>&copy; 2024 Nicolas Leigh.</p>
+        <p>&copy; 2024 Nicolas Leigh</p>
       </Copyright>
       <GithubIconGroup>
         <div>
           <span>Frontend:</span>
           <a
+            aria-label='Github'
             target='_blank'
             rel='noopener noreferrer'
             href='
@@ -100,6 +101,7 @@ export default function GuestFooter({ $admin }) {
         <div>
           <span>Backend:</span>
           <a
+            aria-label='Github'
             target='_blank'
             rel='noopener noreferrer'
             href='

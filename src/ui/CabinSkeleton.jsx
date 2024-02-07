@@ -1,9 +1,50 @@
 import styled from 'styled-components';
-import { Container, ImageRight, ImageSection } from '../pages/Cabin';
 import Skeleton from './Skeleton';
 import { useEffect, useState } from 'react';
 
+const ImageSection = styled.section`
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.6rem;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 0;
+  background-color: var(--color-grey-100);
+
+  @media (max-width: 450px) {
+    grid-template-columns: 1fr;
+  }
+`;
+
 const ImageLeft = styled.div``;
+
+const Container = styled.div`
+  display: grid;
+  grid-template-columns: 3fr 2fr;
+  grid-template-rows: auto auto auto 1fr auto;
+  column-gap: 5rem;
+
+  @media (max-width: 735px) {
+    column-gap: 1rem;
+  }
+
+  @media (max-width: 630px) {
+    row-gap: 2rem;
+  }
+`;
+
+const ImageRight = styled.div`
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  gap: 0.6rem;
+  border-radius: 0 var(--border-radius-xl) var(--border-radius-xl) 0;
+  overflow: hidden;
+
+  @media (max-width: 450px) {
+    border-radius: var(--border-radius-xl);
+  }
+`;
 
 const ReviewBox = styled.div`
   display: grid;

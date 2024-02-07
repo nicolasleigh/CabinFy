@@ -88,7 +88,7 @@ function GuestHeaderMenu() {
         // open={open}
         // setOpen={setOpen}
         trigger={
-          <NavButton>
+          <NavButton aria-label='user menu'>
             {/* <IoMdMenu size={20} /> */}
             <AiOutlineMenu size={20} />
             {guest ? (
