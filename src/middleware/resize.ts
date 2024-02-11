@@ -49,7 +49,7 @@ export const resizeImages = async (
   let filePaths;
 
   if (image) {
-    coverPath = path.join(__dirname, `../../uploads/cover-${uuid()}.webp`);
+    coverPath = path.join(__dirname, `../../cover-${uuid()}.webp`);
     const coverName = coverPath.split('/').pop();
 
     // await sharp(image[0].path).resize(720, 480).webp().toFile(coverPath);
@@ -86,7 +86,7 @@ export const resizeImages = async (
   if (images?.length) {
     filePaths = Array(4)
       .fill('')
-      .map(() => path.join(__dirname, `../../uploads/${uuid()}.webp`));
+      .map(() => path.join(__dirname, `../../${uuid()}.webp`));
 
     const fileNameJson = [
       { fileName: filePaths[0].split('/').pop() },
@@ -140,7 +140,7 @@ export const resizeAvatar = async (
   res: Response,
   next: NextFunction
 ) => {
-  const filePath = path.join(__dirname, `../../uploads/avatar-${uuid()}.webp`);
+  const filePath = path.join(__dirname, `../../avatar-${uuid()}.webp`);
   const avatarName = filePath.split('/').pop();
 
   // await sharp(req.file?.buffer).resize(240, 240).webp().toFile(filePath);
