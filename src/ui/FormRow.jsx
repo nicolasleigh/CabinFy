@@ -1,4 +1,4 @@
-import { styled } from 'styled-components';
+import { css, styled } from 'styled-components';
 
 const StyledFormRow = styled.div`
   display: grid;
@@ -39,9 +39,18 @@ const StyledFormRow = styled.div`
     gap: 1rem;
   }
   @media (max-width: 550px) {
-    grid-template-columns: 12rem 1fr 0.1fr;
+    grid-template-columns: 15rem 1fr 0.1fr;
     gap: 1rem;
   }
+
+  ${(props) =>
+    props.$isSetting &&
+    css`
+      @media (max-width: 550px) {
+        grid-template-columns: 1fr 1fr;
+        gap: 1rem;
+      }
+    `}
 `;
 
 const Label = styled.label`
@@ -53,9 +62,9 @@ const Error = styled.span`
   color: var(--color-red-700);
 `;
 
-function FormRow({ label, error, children }) {
+function FormRow({ label, error, children, $isSetting }) {
   return (
-    <StyledFormRow>
+    <StyledFormRow $isSetting={$isSetting}>
       {label && <Label htmlFor={children.props.id}>{label}</Label>}
       {children}
       {error && <Error>{error}</Error>}

@@ -31,7 +31,7 @@ function UpdateSettingsForm() {
   // This time we are using UNCONTROLLED fields, so we will NOT store state
   return (
     <Form>
-      <FormRow label='Minimum nights'>
+      <FormRow label='Minimum nights' $isSetting>
         <Input
           type='number'
           defaultValue={minBookingLength}
@@ -40,7 +40,7 @@ function UpdateSettingsForm() {
           disabled={isUpdating}
         />
       </FormRow>
-      <FormRow label='Maximum nights'>
+      <FormRow label='Maximum nights' $isSetting>
         <Input
           type='number'
           defaultValue={maxBookingLength}
@@ -49,7 +49,7 @@ function UpdateSettingsForm() {
           id='max-nights'
         />
       </FormRow>
-      <FormRow label='Maximum guests'>
+      <FormRow label='Maximum guests' $isSetting>
         <Input
           type='number'
           defaultValue={maxGuestsPerBooking}
@@ -58,7 +58,7 @@ function UpdateSettingsForm() {
           id='max-guests'
         />
       </FormRow>
-      <FormRow label='Breakfast price'>
+      <FormRow label='Breakfast price' $isSetting>
         <Input
           type='number'
           defaultValue={breakfastPrice}
