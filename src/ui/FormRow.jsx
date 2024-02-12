@@ -39,7 +39,7 @@ const StyledFormRow = styled.div`
     gap: 1rem;
   }
   @media (max-width: 550px) {
-    grid-template-columns: 15rem 1fr 0.1fr;
+    grid-template-columns: 12rem 1fr 0.1fr;
     gap: 1rem;
   }
 `;
