@@ -31,13 +31,13 @@ const filter = (
 const imagesUploader = multer({
   storage: imagesStorage,
   fileFilter: filter,
-  limits: { fileSize: 10000000 },
+  // limits: { fileSize: 10000000 },
 });
 
 const avatarUploader = multer({
   storage,
   fileFilter: filter,
-  limits: { fileSize: 1500000 },
+  // limits: { fileSize: 1500000 },
 });
 
 export const uploadFiles = (
