@@ -12,6 +12,7 @@ export function useUpdateUser() {
     onSuccess: ({ user }) => {
       toast.success('User account successfully updated');
       queryClient.invalidateQueries(['user']);
+      queryClient.refetchQueries(['user']);
       // queryClient.setQueryData(['user'], user);
     },
     onError: (err) => toast.error(err.response.data.error),
