@@ -64,6 +64,7 @@ export default function GuestLogin() {
           <FormRowVertical label='Email' error={errors?.email?.message}>
             <Input
               id='email'
+              defaultValue='test@e.com'
               {...register('email', { required: 'This field is required' })}
             />
           </FormRowVertical>
@@ -72,6 +73,7 @@ export default function GuestLogin() {
             <Input
               id='password'
               type='password'
+              defaultValue='1234'
               {...register('password', {
                 required: 'This field is required',
                 minLength: {
