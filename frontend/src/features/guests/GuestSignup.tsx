@@ -1,12 +1,12 @@
-import { useForm } from 'react-hook-form';
-import styled from 'styled-components';
-import { useSignup } from './useSignup';
-import { useSignupModal } from '../../hooks';
-import { useOutsideClick } from '../../hooks/useOutsideClick';
-import Button from '../../ui/Button';
-import Form from '../../ui/Form';
-import FormRowVertical from '../../ui/FormRowVertical';
-import Input from '../../ui/Input';
+import { useForm } from "react-hook-form";
+import styled from "styled-components";
+import { useSignup } from "./useSignup.ts";
+import { useSignupModal } from "../../hooks";
+import { useOutsideClick } from "../../hooks/useOutsideClick";
+import Button from "../../ui/Button";
+import Form from "../../ui/Form";
+import FormRowVertical from "../../ui/FormRowVertical";
+import Input from "../../ui/Input";
 
 const Overlay = styled.div`
   position: fixed;
@@ -64,25 +64,19 @@ export default function GuestSignup() {
       <StyledModal ref={ref}>
         <Form type='modal-small' onSubmit={handleSubmit(onSubmit)}>
           <FormRowVertical label='Full name' error={errors?.fullName?.message}>
-            <Input
-              id='fullName'
-              {...register('fullName', { required: 'This field is required' })}
-            />
+            <Input id='fullName' {...register("fullName", { required: "This field is required" })} />
           </FormRowVertical>
 
           <FormRowVertical label='Email' error={errors?.email?.message}>
-            <Input
-              id='email'
-              {...register('email', { required: 'This field is required' })}
-            />
+            <Input id='email' {...register("email", { required: "This field is required" })} />
           </FormRowVertical>
 
           <FormRowVertical label='Password' error={errors?.password?.message}>
             <Input
               id='password'
               type='password'
-              {...register('password', {
-                required: 'This field is required',
+              {...register("password", {
+                required: "This field is required",
                 minLength: {
                   value: passwordLength,
                   message: `at least ${passwordLength} characters`,
@@ -91,17 +85,13 @@ export default function GuestSignup() {
             />
           </FormRowVertical>
 
-          <FormRowVertical
-            label='Repeat password'
-            error={errors?.repeatPassword?.message}
-          >
+          <FormRowVertical label='Repeat password' error={errors?.repeatPassword?.message}>
             <Input
               id='repeat password'
               type='password'
-              {...register('repeatPassword', {
-                required: 'This field is required',
-                validate: (value) =>
-                  value === getValues().password || `Passwords doesn't match`,
+              {...register("repeatPassword", {
+                required: "This field is required",
+                validate: (value) => value === getValues().password || `Passwords doesn't match`,
               })}
             />
           </FormRowVertical>

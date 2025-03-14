@@ -1,14 +1,14 @@
-import { useState } from 'react';
+import { useState } from "react";
 // import { LuMenu } from 'react-icons/lu';
-import { AiOutlineMenu } from 'react-icons/ai';
-import { Link } from 'react-router-dom';
-import { styled } from 'styled-components';
-import UserAvatar from '../features/authentication/UserAvatar';
-import { useOutsideClick } from '../hooks/useOutsideClick';
-import ButtonGroup from './ButtonGroup';
-import ButtonIcon from './ButtonIcon';
-import HeaderMenu from './HeaderMenu';
-import { SidebarMenu } from './SidebarMenu';
+import { AiOutlineMenu } from "react-icons/ai";
+import { Link } from "react-router-dom";
+import { styled } from "styled-components";
+import UserAvatar from "../features/authentication/UserAvatar";
+import { useOutsideClick } from "../hooks/useOutsideClick";
+import ButtonGroup from "./ButtonGroup";
+import ButtonIcon from "./ButtonIcon";
+import HeaderMenu from "./HeaderMenu";
+import { SidebarMenu } from "./SidebarMenu";
 
 const StyledHeader = styled.header`
   background-color: var(--color-grey-0);
@@ -71,19 +71,32 @@ function Header() {
   const [showSidebar, setShowSidebar] = useState(false);
   const ref = useOutsideClick(() => setShowSidebar(false));
   return (
-    <StyledHeader ref={ref}>
-      <ButtonIcon onClick={() => setShowSidebar(true)} className='menuBtn'>
-        {/* <LuMenu /> */}
+    <div ref={ref}>
+      {/* <ButtonIcon onClick={() => setShowSidebar(true)} className='menuBtn'>
         <AiOutlineMenu />
-      </ButtonIcon>
-      <ButtonGroup>
+      </ButtonIcon> */}
+      <div className='flex gap-4 justify-end'>
         <GuestPageBtn to='/home'>Back to guest page</GuestPageBtn>
         <UserAvatar />
         <HeaderMenu />
-      </ButtonGroup>
-      <SidebarMenu $visible={showSidebar} setShowSidebar={setShowSidebar} />
-    </StyledHeader>
+      </div>
+      {/* <SidebarMenu $visible={showSidebar} setShowSidebar={setShowSidebar} /> */}
+    </div>
   );
+  // return (
+  //   <StyledHeader ref={ref}>
+  //     <ButtonIcon onClick={() => setShowSidebar(true)} className='menuBtn'>
+  //       {/* <LuMenu /> */}
+  //       <AiOutlineMenu />
+  //     </ButtonIcon>
+  //     <ButtonGroup>
+  //       <GuestPageBtn to='/home'>Back to guest page</GuestPageBtn>
+  //       <UserAvatar />
+  //       <HeaderMenu />
+  //     </ButtonGroup>
+  //     <SidebarMenu $visible={showSidebar} setShowSidebar={setShowSidebar} />
+  //   </StyledHeader>
+  // );
 }
 
 export default Header;

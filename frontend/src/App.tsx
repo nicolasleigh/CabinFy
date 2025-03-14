@@ -1,16 +1,10 @@
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 // import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
-import { Toaster } from 'react-hot-toast';
-import {
-  Navigate,
-  Route,
-  RouterProvider,
-  Routes,
-  createBrowserRouter,
-} from 'react-router-dom';
-import { ContextProvider } from './context';
-import { DarkModeProvider } from './context/DarkModeContext';
-import Account from './pages/Account';
+import { Toaster } from "react-hot-toast";
+import { Navigate, Route, RouterProvider, Routes, createBrowserRouter } from "react-router-dom";
+import { ContextProvider } from "./context";
+import { DarkModeProvider } from "./context/DarkModeContext";
+import Account from "./pages/Account";
 // import Booking from './pages/Booking';
 // import Bookings from './pages/Bookings';
 // import Cabin from './pages/Cabin';
@@ -18,28 +12,29 @@ import Account from './pages/Account';
 // import Checkin from './pages/Checkin';
 // import Dashboard from './pages/Dashboard';
 // import Home from './pages/Home';
-import ForgetPassword from './pages/ForgetPassword';
-import Login from './pages/Login';
-import PageNotFound from './pages/PageNotFound';
-import ResetPassword from './pages/ResetPassword';
-import Settings from './pages/Settings';
-import Signup from './pages/Signup';
-import GlobalStyles from './styles/GlobalStyles';
-import AppLayout from './ui/AppLayout';
-import GuestLayout from './features/guests/GuestLayout';
-import ProtectedRoute from './ui/ProtectedRoute';
-import { Suspense, lazy } from 'react';
-import Spinner from './ui/Spinner';
-import HomeSkeleton from './ui/HomeSkeleton';
-import CabinSkeleton from './ui/CabinSkeleton';
+import ForgetPassword from "./pages/ForgetPassword";
+import Login from "./pages/Login";
+import PageNotFound from "./pages/PageNotFound";
+import ResetPassword from "./pages/ResetPassword";
+import Settings from "./pages/Settings";
+import Signup from "./pages/Signup";
+import GlobalStyles from "./styles/GlobalStyles";
+import AppLayout from "./ui/AppLayout";
+import GuestLayout from "./features/guests/GuestLayout";
+import ProtectedRoute from "./ui/ProtectedRoute";
+import { Suspense, lazy } from "react";
+import Spinner from "./ui/Spinner";
+import HomeSkeleton from "./ui/HomeSkeleton";
+import CabinSkeleton from "./ui/CabinSkeleton";
+import { ThemeProvider } from "./components/theme-provider";
 
-const Dashboard = lazy(() => import('./pages/Dashboard'));
-const Bookings = lazy(() => import('./pages/Bookings'));
-const Booking = lazy(() => import('./pages/Booking'));
-const Checkin = lazy(() => import('./pages/Checkin'));
-const Cabins = lazy(() => import('./pages/Cabins'));
-const Cabin = lazy(() => import('./pages/Cabin'));
-const Home = lazy(() => import('./pages/Home'));
+const Dashboard = lazy(() => import("./pages/Dashboard"));
+const Bookings = lazy(() => import("./pages/Bookings"));
+const Booking = lazy(() => import("./pages/Booking"));
+const Checkin = lazy(() => import("./pages/Checkin"));
+const Cabins = lazy(() => import("./pages/Cabins"));
+const Cabin = lazy(() => import("./pages/Cabin"));
+const Home = lazy(() => import("./pages/Home"));
 
 export const imageBaseUrl = import.meta.env.VITE_IMAGE_URL;
 
@@ -58,7 +53,9 @@ export default function App() {
         <QueryClientProvider client={queryClient}>
           {/* <ReactQueryDevtools initialIsOpen={false} /> */}
           <GlobalStyles />
-          <RouterProvider router={router} />
+          <ThemeProvider>
+            <RouterProvider router={router} />
+          </ThemeProvider>
           <Toast />
         </QueryClientProvider>
       </ContextProvider>
@@ -66,7 +63,7 @@ export default function App() {
   );
 }
 
-const router = createBrowserRouter([{ path: '*', Component: Root }]);
+const router = createBrowserRouter([{ path: "*", Component: Root }]);
 
 function Root() {
   return (
@@ -185,7 +182,7 @@ const Toast = () => {
     <Toaster
       position='top-center'
       gutter={12}
-      containerStyle={{ margin: '8px' }}
+      containerStyle={{ margin: "8px" }}
       toastOptions={{
         success: {
           duration: 3000,
@@ -194,11 +191,11 @@ const Toast = () => {
           duration: 5000,
         },
         style: {
-          fontSize: '16px',
-          maxWidth: '500px',
-          padding: '16px 24px',
-          backgroundColor: 'var(--color-grey-0)',
-          color: 'var(--color-grey-700)',
+          fontSize: "16px",
+          maxWidth: "500px",
+          padding: "16px 24px",
+          backgroundColor: "var(--color-grey-0)",
+          color: "var(--color-grey-700)",
         },
       }}
     />

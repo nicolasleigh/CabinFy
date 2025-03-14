@@ -1,12 +1,12 @@
 /* eslint-disable react/jsx-key */
 // import { FaUserCircle } from 'react-icons/fa';
 // import { IoMdMenu } from 'react-icons/io';
-import { AiOutlineMenu, AiOutlineUser } from 'react-icons/ai';
-import { styled } from 'styled-components';
-import DropDown from '../../ui/Dropdown';
-import { useLoginModal, useSignupModal } from '../../hooks';
-import { useGuest } from './useGuest';
-import { useLogout } from './useLogout';
+import { AiOutlineMenu, AiOutlineUser } from "react-icons/ai";
+import { styled } from "styled-components";
+import DropDown from "../../ui/Dropdown";
+import { useLoginModal, useSignupModal } from "../../hooks";
+import { useGuest } from "./useGuest";
+import { useLogout } from "./useLogout";
 
 const StyledGuestHeaderMenu = styled.nav`
   display: flex;
