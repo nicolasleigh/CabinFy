@@ -1,10 +1,10 @@
-import { styled } from 'styled-components';
-import Logout from '../features/authentication/Logout';
-import ButtonIcon from './ButtonIcon';
-// import { HiOutlineUser } from 'react-icons/hi2';
-import { AiOutlineUser } from 'react-icons/ai';
-import { useNavigate } from 'react-router-dom';
-import DarkModeToggle from './DarkModeToggle';
+import { styled } from "styled-components";
+import Logout from "../features/authentication/Logout";
+import ButtonIcon from "./ButtonIcon";
+import { AiOutlineUser } from "react-icons/ai";
+import { useNavigate } from "react-router-dom";
+import DarkModeToggle from "./DarkModeToggle";
+import ThemeButton from "@/components/ThemeButton";
 
 const StyledHeaderMenu = styled.ul`
   display: flex;
@@ -15,23 +15,20 @@ function HeaderMenu() {
   const navigate = useNavigate();
 
   return (
-    <StyledHeaderMenu>
+    <ul className='flex gap-2'>
       <li>
-        <ButtonIcon
-          onClick={() => navigate('/admin/account')}
-          aria-label='go to account page'
-        >
-          {/* <HiOutlineUser /> */}
+        <ButtonIcon onClick={() => navigate("/admin/account")} aria-label='go to account page'>
           <AiOutlineUser />
         </ButtonIcon>
       </li>
       <li>
-        <DarkModeToggle />
+        {/* <DarkModeToggle /> */}
+        <ThemeButton />
       </li>
       <li>
         <Logout />
       </li>
-    </StyledHeaderMenu>
+    </ul>
   );
 }
 

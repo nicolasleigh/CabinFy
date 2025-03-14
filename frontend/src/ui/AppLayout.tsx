@@ -1,15 +1,15 @@
-import { Outlet } from 'react-router-dom';
-import Sidebar from './Sidebar';
-import Header from './Header';
-import { styled } from 'styled-components';
-import GuestFooter from '../features/guests/GuestFooter';
+import { Outlet } from "react-router-dom";
+import Sidebar from "./Sidebar";
+import Header from "./Header";
+import { styled } from "styled-components";
+import GuestFooter from "../features/guests/GuestFooter";
+import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
+import { AppSidebar } from "@/components/AppSidebar";
 
 const StyledAppLayout = styled.div`
   display: grid;
   grid-template-columns: 26rem 1fr;
-  /* grid-template-rows: auto 1fr; */
   grid-template-rows: auto 1fr auto;
-  /* height: 100%; */
   height: 100vh;
   background-color: var(--color-grey-50);
 `;
@@ -50,19 +50,38 @@ const Container = styled.div`
 
 function AppLayout() {
   return (
-    <StyledAppLayout>
-      <Header />
-      <Sidebar />
-      <Main>
-        <Container>
+    <SidebarProvider>
+      {/* <Sidebar /> */}
+      {/* <Main> */}
+      <AppSidebar />
+      <SidebarInset>
+        <Header />
+        {/* <Container> */}
+        <div className='mt-40 mx-10'>
           <Outlet />
-        </Container>
-      </Main>
-      <Footer>
+        </div>
+        {/* </Container> */}
+      </SidebarInset>
+      {/* </Main> */}
+      {/* <Footer>
         <GuestFooter $admin />
-      </Footer>
-    </StyledAppLayout>
+      </Footer> */}
+    </SidebarProvider>
   );
+  // return (
+  //   <StyledAppLayout>
+  //     <Header />
+  //     <Sidebar />
+  //     <Main>
+  //       <Container>
+  //         <Outlet />
+  //       </Container>
+  //     </Main>
+  //     <Footer>
+  //       <GuestFooter $admin />
+  //     </Footer>
+  //   </StyledAppLayout>
+  // );
 }
 
 export default AppLayout;

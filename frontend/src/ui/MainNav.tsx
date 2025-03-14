@@ -4,14 +4,9 @@
 //   HiOutlineHome,
 //   HiOutlineHomeModern,
 // } from 'react-icons/hi2';
-import {
-  AiOutlineHome,
-  AiOutlineSchedule,
-  AiOutlineBarChart,
-  AiOutlineSetting,
-} from 'react-icons/ai';
-import { NavLink } from 'react-router-dom';
-import styled from 'styled-components';
+import { AiOutlineHome, AiOutlineSchedule, AiOutlineBarChart, AiOutlineSetting } from "react-icons/ai";
+import { NavLink } from "react-router-dom";
+import styled from "styled-components";
 
 const NavList = styled.ul`
   display: flex;
