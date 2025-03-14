@@ -1,13 +1,13 @@
-import styled from 'styled-components';
-import DayPick from '../../ui/DayPick.tsx';
-import { formatCurrency } from '../../utils/helpers';
-import { useEffect, useState } from 'react';
-import { useCreateBooking } from './useCreateBooking';
-import { differenceInDays } from 'date-fns';
-import { useSettings } from '../settings/useSettings';
-import BookingBreakfastBox from '../../ui/BookingBreakfastBox';
-import toast from 'react-hot-toast';
-import { Label } from '../../ui/BookingFormLabel';
+import styled from "styled-components";
+import DayPick from "../../ui/DayPick.tsx";
+import { formatCurrency } from "../../utils/helpers.js";
+import { useEffect, useState } from "react";
+import { useCreateBooking } from "./useCreateBooking.js";
+import { differenceInDays } from "date-fns";
+import { useSettings } from "../settings/useSettings.js";
+import BookingBreakfastBox from "../../ui/BookingBreakfastBox.jsx";
+import toast from "react-hot-toast";
+import { Label } from "../../ui/BookingFormLabel.jsx";
 
 const Button = styled.button`
   border-radius: 50%;
@@ -89,11 +89,7 @@ const Booking = styled.button`
   border-radius: var(--border-radius-lg);
   border: none;
   background: rgb(195, 34, 34);
-  background: linear-gradient(
-    275deg,
-    #d72727ec 0%,
-    rgba(253, 45, 96, 0.9262298669467787) 100%
-  );
+  background: linear-gradient(275deg, #d72727ec 0%, rgba(253, 45, 96, 0.9262298669467787) 100%);
   color: var(--color-red-50);
   @keyframes pulse {
     0% {
@@ -185,20 +181,14 @@ export default function BookingForm({
   const [selectedRange, setSelectedRange] = useState();
   const [totalPrice, setTotalPrice] = useState(0);
   const [priceBeforeDiscount, setPriceBeforeDiscount] = useState(0);
-  const [fromValue, setFromValue] = useState('');
-  const [toValue, setToValue] = useState('');
+  const [fromValue, setFromValue] = useState("");
+  const [toValue, setToValue] = useState("");
   const { createBooking, isLoading } = useCreateBooking(cabinId);
   const { settings, isLoading: isLoadingSettings } = useSettings();
 
-  const {
-    minBookingLength,
-    maxBookingLength,
-    maxGuestsPerBooking,
-    breakfastPrice,
-  } = settings || {};
+  const { minBookingLength, maxBookingLength, maxGuestsPerBooking, breakfastPrice } = settings || {};
 
-  const numOfNights =
-    differenceInDays(selectedRange?.to, selectedRange?.from) + 1;
+  const numOfNights = differenceInDays(selectedRange?.to, selectedRange?.from) + 1;
 
   const cabinPrice = regularPrice * numOfNights;
 
@@ -206,7 +196,7 @@ export default function BookingForm({
     e.preventDefault();
 
     if (!selectedRange?.from || !selectedRange?.to) {
-      toast.error('Please select a date range');
+      toast.error("Please select a date range");
       return;
     }
     createBooking({
@@ -222,11 +212,11 @@ export default function BookingForm({
       discountPrice: discount ? cabinPrice * (discount / 100) : 0,
       cabinId,
       isPaid: false,
-      status: 'unconfirmed',
+      status: "unconfirmed",
     });
     setSelectedRange();
-    setToValue('');
-    setFromValue('');
+    setToValue("");
+    setFromValue("");
   };
 
   useEffect(() => {
@@ -234,22 +224,11 @@ export default function BookingForm({
     setPriceBeforeDiscount(0);
     if (numOfNights) {
       setTotalPrice(
-        regularPrice * numOfNights * (1 - discount / 100) +
-          (hasBreakfast ? breakfastPrice : 0) * guestsNumber
+        regularPrice * numOfNights * (1 - discount / 100) + (hasBreakfast ? breakfastPrice : 0) * guestsNumber
       );
-      setPriceBeforeDiscount(
-        regularPrice * numOfNights +
-          (hasBreakfast ? breakfastPrice : 0) * guestsNumber
-      );
+      setPriceBeforeDiscount(regularPrice * numOfNights + (hasBreakfast ? breakfastPrice : 0) * guestsNumber);
     }
-  }, [
-    numOfNights,
-    guestsNumber,
-    hasBreakfast,
-    breakfastPrice,
-    discount,
-    regularPrice,
-  ]);
+  }, [numOfNights, guestsNumber, hasBreakfast, breakfastPrice, discount, regularPrice]);
   return (
     <FormSection>
       <Form onSubmit={handleSubmit}>
@@ -267,11 +246,7 @@ export default function BookingForm({
         <GuestsNumberBox>
           <Label>Number of Guests</Label>
           <ButtonGroup>
-            <Button
-              type='button'
-              onClick={() => setGuestsNumber((cur) => cur - 1)}
-              disabled={guestsNumber === 1}
-            >
+            <Button type='button' onClick={() => setGuestsNumber((cur) => cur - 1)} disabled={guestsNumber === 1}>
               -
             </Button>
             <span className='number'>{guestsNumber}</span>
@@ -284,16 +259,11 @@ export default function BookingForm({
             </Button>
           </ButtonGroup>
         </GuestsNumberBox>
-        <BookingBreakfastBox
-          hasBreakfast={hasBreakfast}
-          setHasBreakfast={setHasBreakfast}
-        />
+        <BookingBreakfastBox hasBreakfast={hasBreakfast} setHasBreakfast={setHasBreakfast} />
         <TotalPriceBox>
           <Label>Total Price</Label>
           <div>
-            <div className='beforeDiscount'>
-              {Boolean(discount) && formatCurrency(priceBeforeDiscount)}
-            </div>
+            <div className='beforeDiscount'>{Boolean(discount) && formatCurrency(priceBeforeDiscount)}</div>
             <FancyText>{formatCurrency(totalPrice)}</FancyText>
           </div>
         </TotalPriceBox>

@@ -1,20 +1,20 @@
-import styled from 'styled-components';
-import BookingDataBox from '../../features/bookings/BookingDataBox';
+import styled from "styled-components";
+import BookingDataBox from "../bookings/BookingDataBox";
 
-import Row from '../../ui/Row';
-import Heading from '../../ui/Heading';
-import ButtonGroup from '../../ui/ButtonGroup';
-import Button from '../../ui/Button';
-import ButtonText from '../../ui/ButtonText';
+import Row from "../../ui/Row";
+import Heading from "../../ui/Heading";
+import ButtonGroup from "../../ui/ButtonGroup";
+import Button from "../../ui/Button";
+import ButtonText from "../../ui/ButtonText";
 
-import { useMoveBack } from '../../hooks/useMoveBack';
-import { useBooking } from '../bookings/useBooking';
-import Spinner from '../../ui/Spinner';
-import { useEffect, useState } from 'react';
-import Checkbox from '../../ui/Checkbox';
-import { formatCurrency } from '../../utils/helpers';
-import { useCheckin } from './useCheckin';
-import { useSettings } from '../settings/useSettings';
+import { useMoveBack } from "../../hooks/useMoveBack";
+import { useBooking } from "../bookings/useBooking";
+import Spinner from "../../ui/Spinner";
+import { useEffect, useState } from "react";
+import Checkbox from "../../ui/Checkbox";
+import { formatCurrency } from "../../utils/helpers";
+import { useCheckin } from "./useCheckin";
+import { useSettings } from "../settings/useSettings";
 
 const Box = styled.div`
   /* Box */
@@ -37,17 +37,9 @@ function CheckinBooking() {
 
   if (isLoading || isLoadingSettings) return <Spinner />;
 
-  const {
-    id: bookingId,
-    guest,
-    totalPrice,
-    numGuests,
-    hasBreakfast,
-    numNights,
-  } = booking;
+  const { id: bookingId, guest, totalPrice, numGuests, hasBreakfast, numNights } = booking;
 
-  const optionalBreakfastPrice =
-    settings.breakfastPrice * numNights * numGuests;
+  const optionalBreakfastPrice = settings.breakfastPrice * numNights * numGuests;
 
   function handleCheckin() {
     if (!confirmPaid) return;
@@ -96,12 +88,10 @@ function CheckinBooking() {
           disabled={confirmPaid || isCheckingIn}
           id='confirm'
         >
-          I confirm that {guest.fullName} has paid the total amount of{' '}
+          I confirm that {guest.fullName} has paid the total amount of{" "}
           {!addBreakfast
             ? formatCurrency(totalPrice)
-            : `${formatCurrency(
-                totalPrice + optionalBreakfastPrice
-              )} (${formatCurrency(totalPrice)} + ${formatCurrency(
+            : `${formatCurrency(totalPrice + optionalBreakfastPrice)} (${formatCurrency(totalPrice)} + ${formatCurrency(
                 optionalBreakfastPrice
               )})`}
         </Checkbox>
