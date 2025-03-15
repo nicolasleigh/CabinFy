@@ -33,7 +33,7 @@ export const columns: ColumnDef<Bookings>[] = [
     header: "Guest",
     cell: ({ row }) => {
       const guest = row.getValue("guest");
-      console.log(row.original);
+      // console.log(row.original);
       return (
         <div className='flex flex-col'>
           <span className='capitalize font-semibold text-[10px] sm:text-xs lg:text-sm'>{guest.fullName}</span>
@@ -85,7 +85,7 @@ export const columns: ColumnDef<Bookings>[] = [
   {
     id: "actions",
     cell: ({ row }) => {
-      return <BookingColumnAction />;
+      return <BookingColumnAction id={row.original.id} status={row.original.status} />;
     },
   },
 ];

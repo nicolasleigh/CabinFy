@@ -29,7 +29,7 @@ const Row = styled.div`
 
 function Bookings() {
   const { bookings, isLoading, count } = useBookings();
-  console.log(bookings);
+  // console.log(bookings);
   return (
     <>
       <div className='flex justify-between items-center gap-2 mb-4'>
@@ -40,7 +40,7 @@ function Bookings() {
         <BookingTableOperations />
       </div>
 
-      {/* <BookingTable /> */}
+      <BookingTable />
       <DataTable columns={columns} data={bookings || ""} count={count} />
     </>
   );

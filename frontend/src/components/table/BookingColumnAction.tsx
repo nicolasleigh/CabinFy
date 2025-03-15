@@ -1,106 +1,108 @@
-import { ExternalLink, Loader, MoreHorizontal, Pencil, Trash2 } from "lucide-react";
+import { useDeleteBooking } from "@/features/bookings/useDeleteBooking";
+import { useCheckout } from "@/features/check-in-out/useCheckout";
+import { Loader, MoreHorizontal } from "lucide-react";
+import { useState } from "react";
+import { AiOutlineDelete, AiOutlineDownload, AiOutlineEye, AiOutlineUpload } from "react-icons/ai";
+import { useNavigate } from "react-router-dom";
 import { Button } from "../ui/button";
 import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from "../ui/dropdown-menu";
-import {
   Dialog,
-  DialogClose,
   DialogContent,
   DialogDescription,
   DialogFooter,
   DialogHeader,
-  DialogOverlay,
   DialogPortal,
   DialogTitle,
   DialogTrigger,
 } from "../ui/dialog";
-import { forwardRef, useEffect, useRef, useState } from "react";
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "../ui/dropdown-menu";
 
-export default function BookingColumnAction({ id }) {
+export default function BookingColumnAction({ id, status }) {
   const [dropdownOpen, setDropdownOpen] = useState(false);
-  // const [hasOpenDialog, setHasOpenDialog] = useState(false);
-  const dropdownTriggerRef = useRef(null);
-  // const focusRef = useRef(null);
-  const [openEditDialog, setOpenEditDialog] = useState(false);
   const [openDeleteDialog, setOpenDeleteDialog] = useState(false);
-  const [busy, setBusy] = useState(false);
+
+  const navigate = useNavigate();
+  const { checkout, isCheckingOut } = useCheckout();
+  const { deleteBooking, isDeleting } = useDeleteBooking();
+
+  function handleOpenDelete(open) {
+    setOpenDeleteDialog(open);
+    if (open === false) {
+      setDropdownOpen(false);
+    }
+  }
 
   return (
     <DropdownMenu open={dropdownOpen} onOpenChange={setDropdownOpen}>
       <DropdownMenuTrigger asChild>
-        <Button
-          variant='ghost'
-          className='h-3 w-3 sm:w-8 sm:h-8 p-0'
-          // ref={dropdownTriggerRef}
-        >
+        <Button variant='ghost' className='h-3 w-3 sm:w-8 sm:h-8 p-0'>
           <span className='sr-only'>Open menu</span>
           <MoreHorizontal className='h-4 w-4' />
         </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent
-        align='end'
-        // hidden={hasOpenDialog}
-        hidden={openEditDialog || openDeleteDialog}
-        // onCloseAutoFocus={(event) => {
-        //   if (focusRef.current) {
-        //     focusRef.current.focus();
-        //     focusRef.current = null;
-        //     event.preventDefault();
-        //   }
-        // }}
-      >
-        <DropdownMenuItem>
+      <DropdownMenuContent align='end'>
+        <DropdownMenuItem onClick={() => navigate(`/admin/bookings/${id}`)}>
           <div className='flex items-center gap-3 w-full'>
-            <ExternalLink strokeWidth={0.9} size={20} />
-            <span>{"Open"}</span>
+            <AiOutlineEye strokeWidth={0.9} size={20} />
+            <span>{"Details"}</span>
           </div>
         </DropdownMenuItem>
-        {/* <Dialog>
-          <DialogTrigger className="w-full"> */}
-        <DialogItem
-          triggerChildren={
-            <div className='flex items-center gap-3'>
-              <Pencil strokeWidth={0.9} size={20} />
-              <span>{"Edit"}</span>
-            </div>
-          }
-          open={openEditDialog}
-          className='w-[900px]'
-        >
-          {/* <DialogHeader> */}
-          <DialogTitle>{"Edit Movie"}</DialogTitle>
-          {/* </DialogHeader> */}
-        </DialogItem>
 
-        <DropdownMenuSeparator />
+        {status === "unconfirmed" && (
+          <DropdownMenuItem onClick={() => navigate(`/admin/checkin/${id}`)}>
+            <div className='flex items-center gap-3 w-full'>
+              <AiOutlineDownload strokeWidth={0.9} size={20} />
+              <span>{"Check in"}</span>
+            </div>
+          </DropdownMenuItem>
+        )}
+
+        {status === "checked-in" && (
+          <DropdownMenuItem onClick={() => checkout(id)} disabled={isCheckingOut}>
+            <div className='flex items-center gap-3 w-full'>
+              <AiOutlineUpload strokeWidth={0.9} size={20} />
+              <span>{"Check out"}</span>
+            </div>
+          </DropdownMenuItem>
+        )}
+
         <DialogItem
           triggerChildren={
             <div className='flex items-center gap-3'>
-              <Trash2 strokeWidth={0.9} size={20} />
+              <AiOutlineDelete strokeWidth={0.9} size={20} />
               <span>{"Delete"}</span>
             </div>
           }
-          // onSelect={handleDialogItemSelect}
           open={openDeleteDialog}
-          // open={hasOpenDialog}
+          onOpenChange={handleOpenDelete}
           className='w-[500px]'
         >
           <DialogHeader>
             <DialogTitle>{"Are you sure?"}</DialogTitle>
-            <DialogDescription>{"This action will remove this movie permanently!"}</DialogDescription>
+            <DialogDescription>{"This action will remove this booking permanently!"}</DialogDescription>
           </DialogHeader>
           <DialogFooter>
-            <Button disabled={busy} onClick={() => setOpenDeleteDialog(false)} variant='secondary'>
+            <Button
+              disabled={isDeleting}
+              onClick={() => {
+                setOpenDeleteDialog(false);
+                setDropdownOpen(false);
+              }}
+              variant='secondary'
+            >
               {"Cancel"}
             </Button>
-            <Button onClick={() => {}} variant='destructive' disabled={busy}>
+            <Button
+              onClick={() => {
+                deleteBooking(id);
+                setOpenDeleteDialog(false);
+                setDropdownOpen(false);
+              }}
+              variant='destructive'
+              disabled={isDeleting}
+            >
               <span className='w-12 flex items-center justify-center'>
-                {busy ? <Loader className='animate-spin' /> : "Delete"}
+                {isDeleting ? <Loader className='animate-spin' /> : "Delete"}
               </span>
             </Button>
           </DialogFooter>
@@ -110,14 +112,13 @@ export default function BookingColumnAction({ id }) {
   );
 }
 
-const DialogItem = forwardRef((props, forwardedRef) => {
+const DialogItem = (props) => {
   const { triggerChildren, children, onSelect, onOpenChange, open, className, ...itemProps } = props;
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogTrigger asChild>
         <DropdownMenuItem
           {...itemProps}
-          // ref={forwardedRef}
           onSelect={(event) => {
             event.preventDefault();
             onSelect && onSelect();
@@ -138,4 +139,4 @@ const DialogItem = forwardRef((props, forwardedRef) => {
       </DialogPortal>
     </Dialog>
   );
-});
+};
