@@ -1,5 +1,7 @@
-import styled, { css } from 'styled-components';
-import { useSearchParams } from 'react-router-dom';
+import styled, { css } from "styled-components";
+import { useSearchParams } from "react-router-dom";
+import { Button } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
 
 const StyledFilter = styled.div`
   border: 1px solid var(--color-grey-100);
@@ -51,24 +53,43 @@ function Filter({ filterField, options }) {
 
   function handleClick(value) {
     searchParams.set(filterField, value);
-    if (searchParams.get('page')) searchParams.set('page', 1);
+    if (searchParams.get("page")) searchParams.set("page", 1);
     setSearchParams(searchParams);
   }
 
   return (
-    <StyledFilter>
+    <div className='flex gap-2'>
       {options.map((option) => (
-        <FilterButton
+        <Button
+          variant='ghost'
+          className={cn(
+            "hover:bg-cBrand-600 hover:text-cBrand-100 px-2 py-1 rounded-sm border",
+            option.value === currentFilter && "bg-cBrand-600 text-cBrand-100"
+          )}
           key={option.value}
           onClick={() => handleClick(option.value)}
-          $active={option.value === currentFilter}
           disabled={option.value === currentFilter}
         >
           {option.label}
-        </FilterButton>
+        </Button>
       ))}
-    </StyledFilter>
+    </div>
   );
+
+  // return (
+  //   <StyledFilter>
+  //     {options.map((option) => (
+  //       <FilterButton
+  //         key={option.value}
+  //         onClick={() => handleClick(option.value)}
+  //         $active={option.value === currentFilter}
+  //         disabled={option.value === currentFilter}
+  //       >
+  //         {option.label}
+  //       </FilterButton>
+  //     ))}
+  //   </StyledFilter>
+  // );
 }
 
 export default Filter;

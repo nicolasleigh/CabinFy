@@ -68,7 +68,9 @@ export const columns: ColumnDef<Bookings>[] = [
     enableHiding: true,
     cell: ({ row }) => {
       const status = row.getValue("status");
-      return <Badge className={cn("rounded-full capitalize", statusColor[status])}>{status.replace("-", " ")}</Badge>;
+      return (
+        <Badge className={cn("rounded-full", statusColor[status])}>{status.replace("-", " ").toUpperCase()}</Badge>
+      );
     },
   },
   {

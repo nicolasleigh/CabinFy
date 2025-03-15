@@ -32,15 +32,15 @@ function Bookings() {
   console.log(bookings);
   return (
     <>
-      <div className='flex justify-between items-center gap-2'>
+      <div className='flex justify-between items-center gap-2 mb-4'>
         {/* <Heading className='heading' as='h1'>
           All bookings
         </Heading> */}
-        <h1 className=''>All bookings</h1>
+        <h1 className='text-2xl font-semibold'>All bookings</h1>
         <BookingTableOperations />
       </div>
 
-      <BookingTable />
+      {/* <BookingTable /> */}
       <DataTable columns={columns} data={bookings || ""} count={count} />
     </>
   );

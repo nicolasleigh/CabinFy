@@ -84,11 +84,11 @@ function Pagination({ count }) {
     <div className='flex items-center justify-between my-4'>
       <p>
         Showing{" "}
-        <span className='bg-cBrand-500 text-cBrand-50 border rounded-md px-2 py-1'>
+        <span className='bg-cBrand-100 text-cBrand-700 font-semibold border rounded-md px-2 py-1'>
           {(currentPage - 1) * PAGE_SIZE + 1}
         </span>{" "}
         to{" "}
-        <span className='bg-cBrand-500 text-cBrand-50 border rounded-md px-2 py-1'>
+        <span className='bg-cBrand-100 text-cBrand-700 border font-semibold rounded-md px-2 py-1'>
           {currentPage === pageCount ? count : currentPage * PAGE_SIZE}
         </span>{" "}
         of <span>{count}</span> results
