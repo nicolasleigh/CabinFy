@@ -1,0 +1,89 @@
+import { ColumnDef } from "@tanstack/react-table";
+import BookingColumnAction from "./BookingColumnAction";
+import { format, isToday } from "date-fns";
+import { Badge } from "../ui/badge";
+import { formatCurrency, formatDistanceFromNow } from "@/utils/helpers";
+import { cn } from "@/lib/utils";
+
+export type Bookings = {
+  cabin: string;
+  guest: string;
+  status: "public" | "private";
+  date: string;
+  amount: number;
+};
+
+const statusColor = {
+  unconfirmed: "bg-cBlue-100 text-cBlue-700",
+  "checked-in": "bg-cGreen-100 text-cGreen-700",
+  "checked-out": "bg-cSilver-100 text-cSilver-700",
+};
+
+export const columns: ColumnDef<Bookings>[] = [
+  {
+    accessorKey: "cabin",
+    header: "Cabin",
+    cell: ({ row }) => {
+      const cabin = row.getValue("cabin");
+      return <div className='capitalize font-semibold text-[10px] sm:text-xs lg:text-sm'>{cabin.name}</div>;
+    },
+  },
+  {
+    accessorKey: "guest",
+    header: "Guest",
+    cell: ({ row }) => {
+      const guest = row.getValue("guest");
+      console.log(row.original);
+      return (
+        <div className='flex flex-col'>
+          <span className='capitalize font-semibold text-[10px] sm:text-xs lg:text-sm'>{guest.fullName}</span>
+          <span className='text-xs text-muted-foreground'>{guest.email}</span>
+        </div>
+      );
+    },
+  },
+  {
+    // accessorKey: "startDate",
+    header: "Dates",
+    cell: ({ row }) => {
+      const startDate = row.original.startDate;
+      const endDate = row.original.endDate;
+      const numNights = row.original.numNights;
+      return (
+        <div className='flex flex-col'>
+          <span className='font-semibold'>
+            {isToday(new Date(startDate)) ? "Today" : formatDistanceFromNow(startDate)} &rarr;{" "}
+            <span className='bg-cBrand-100 rounded-md px-1 py-[2px] text-cBrand-600'>{numNights}</span> night stay
+          </span>
+          <span className='text-xs text-muted-foreground'>
+            {format(new Date(startDate), "yyyy-MM-dd")} &mdash; {format(new Date(endDate), "yyyy-MM-dd")}
+          </span>
+        </div>
+      );
+    },
+  },
+  {
+    accessorKey: "status",
+    header: "Status",
+    enableHiding: true,
+    cell: ({ row }) => {
+      const status = row.getValue("status");
+      return <Badge className={cn("rounded-full capitalize", statusColor[status])}>{status.replace("-", " ")}</Badge>;
+    },
+  },
+  {
+    accessorKey: "totalPrice",
+    header: "Amount",
+    enableHiding: true,
+    cell: ({ row }) => {
+      const value = row.getValue("totalPrice");
+      return <div className='capitalize font-semibold text-xs lg:text-sm'>{formatCurrency(value)}</div>;
+    },
+  },
+  {
+    id: "actions",
+    cell: ({ row }) => {
+      return <BookingColumnAction />;
+    },
+  },
+];

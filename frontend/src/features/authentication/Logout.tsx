@@ -1,17 +1,15 @@
-// import { HiArrowRightOnRectangle } from 'react-icons/hi2';
-import { AiOutlineLogout } from 'react-icons/ai';
-import ButtonIcon from '../../ui/ButtonIcon';
-import { useLogout } from './useLogout';
-import SpinnerMini from '../../ui/SpinnerMini';
+import { AiOutlineLogout } from "react-icons/ai";
+import { useLogout } from "./useLogout";
+import { Loader2 } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 function Logout() {
   const { logout, isLoading } = useLogout();
 
   return (
-    <ButtonIcon disabled={isLoading} onClick={logout} aria-label='log out'>
-      {/* {!isLoading ? <HiArrowRightOnRectangle /> : <SpinnerMini />} */}
-      {!isLoading ? <AiOutlineLogout /> : <SpinnerMini />}
-    </ButtonIcon>
+    <Button disabled={isLoading} onClick={logout} aria-label='log out'>
+      {!isLoading ? <AiOutlineLogout /> : <Loader2 className='animate-spin' />}
+    </Button>
   );
 }
 

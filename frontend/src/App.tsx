@@ -52,7 +52,7 @@ export default function App() {
       <ContextProvider>
         <QueryClientProvider client={queryClient}>
           {/* <ReactQueryDevtools initialIsOpen={false} /> */}
-          <GlobalStyles />
+          {/* <GlobalStyles /> */}
           <ThemeProvider>
             <RouterProvider router={router} />
           </ThemeProvider>

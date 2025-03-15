@@ -1,8 +1,11 @@
-import Heading from '../ui/Heading';
+import Heading from "../ui/Heading";
 // import Row from '../ui/Row';
-import BookingTable from '../features/bookings/BookingTable';
-import BookingTableOperations from '../features/bookings/BookingTableOperations';
-import styled from 'styled-components';
+import BookingTable from "../features/bookings/BookingTable";
+import BookingTableOperations from "../features/bookings/BookingTableOperations";
+import styled from "styled-components";
+import { DataTable } from "@/components/table/DataTable";
+import { columns } from "@/components/table/BookingColumn";
+import { useBookings } from "@/features/bookings/useBookings";
 
 const Row = styled.div`
   display: flex;
@@ -25,16 +28,20 @@ const Row = styled.div`
 `;
 
 function Bookings() {
+  const { bookings, isLoading, count } = useBookings();
+  console.log(bookings);
   return (
     <>
-      <Row>
-        <Heading className='heading' as='h1'>
+      <div className='flex justify-between items-center gap-2'>
+        {/* <Heading className='heading' as='h1'>
           All bookings
-        </Heading>
+        </Heading> */}
+        <h1 className=''>All bookings</h1>
         <BookingTableOperations />
-      </Row>
+      </div>
 
       <BookingTable />
+      <DataTable columns={columns} data={bookings || ""} count={count} />
     </>
   );
 }
