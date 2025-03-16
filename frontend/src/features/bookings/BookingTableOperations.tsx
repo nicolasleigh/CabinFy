@@ -3,6 +3,8 @@ import Filter from "../../ui/Filter";
 import {
   ArrowDown,
   ArrowDownFromLine,
+  ArrowDownNarrowWide,
+  ArrowDownWideNarrow,
   ArrowUp,
   ArrowUpFromLine,
   CalendarArrowDown,
@@ -57,7 +59,7 @@ function BookingTableOperations() {
                   <span className=''>Sort by </span>
                   <span className='bg-cBrand-100 text-cBrand-700 px-1 py-[2px] rounded-sm'>Amount</span>
                 </p>
-                <ArrowDown strokeWidth={1.5} className='w-5' />
+                <ArrowDownWideNarrow strokeWidth={1.5} className='w-5' />
               </div>
             ),
           },
@@ -69,7 +71,7 @@ function BookingTableOperations() {
                   <span className=''>Sort by </span>
                   <span className='bg-cBrand-100 text-cBrand-700 px-1 py-[2px] rounded-sm'>Amount</span>
                 </p>
-                <ArrowUp strokeWidth={1.5} className='w-5' />
+                <ArrowDownNarrowWide strokeWidth={1.5} className='w-5' />
               </div>
             ),
           },

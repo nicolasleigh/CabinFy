@@ -1,9 +1,9 @@
-import styled from 'styled-components';
-import AddCabin from '../features/cabins/AddCabin';
-import CabinTable from '../features/cabins/CabinTable';
-import CabinTableOperations from '../features/cabins/CabinTableOperations';
-import Heading from '../ui/Heading';
-import Row from '../ui/Row';
+import styled from "styled-components";
+import AddCabin from "../features/cabins/AddCabin";
+import CabinTable from "../features/cabins/CabinTable";
+import CabinTableOperations from "../features/cabins/CabinTableOperations";
+import Heading from "../ui/Heading";
+import Row from "../ui/Row";
 
 const HeaderRow = styled.div`
   display: flex;
@@ -28,17 +28,15 @@ const HeaderRow = styled.div`
 function Cabins() {
   return (
     <>
-      <HeaderRow type='horizontal'>
-        <Heading as='h1' className='heading'>
-          All cabins
-        </Heading>
+      <div className='flex justify-between items-center gap-2 mb-4'>
+        <h1 className='text-2xl font-semibold'>All cabins</h1>
         <CabinTableOperations />
-      </HeaderRow>
+      </div>
 
-      <Row>
+      <div className='flex flex-col gap-4'>
         <CabinTable />
         <AddCabin />
-      </Row>
+      </div>
     </>
   );
 }

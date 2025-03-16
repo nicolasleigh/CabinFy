@@ -65,7 +65,6 @@ export const columns: ColumnDef<Bookings>[] = [
   {
     accessorKey: "status",
     header: "Status",
-    enableHiding: true,
     cell: ({ row }) => {
       const status = row.getValue("status");
       return (
@@ -76,7 +75,6 @@ export const columns: ColumnDef<Bookings>[] = [
   {
     accessorKey: "totalPrice",
     header: "Amount",
-    enableHiding: true,
     cell: ({ row }) => {
       const value = row.getValue("totalPrice");
       return <div className='capitalize font-semibold text-xs lg:text-sm'>{formatCurrency(value)}</div>;

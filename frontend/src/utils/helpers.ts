@@ -1,5 +1,5 @@
-import { formatDistance, parseISO } from 'date-fns';
-import { differenceInDays } from 'date-fns/esm';
+import { formatDistance, parseISO } from "date-fns";
+import { differenceInDays } from "date-fns/esm";
 
 // We want to make this function work for both Date objects and strings (which come from Supabase)
 export const subtractDates = (dateStr1, dateStr2) =>
@@ -9,8 +9,8 @@ export const formatDistanceFromNow = (dateStr) =>
   formatDistance(parseISO(dateStr), new Date(), {
     addSuffix: true,
   })
-    .replace('about ', '')
-    .replace('in', 'In');
+    .replace("about ", "")
+    .replace("in", "In");
 
 // Supabase needs an ISO date string. However, that string will be different on every render because the MS or SEC have changed, which isn't good. So we use this trick to remove any time
 export const getToday = function (options = {}) {
@@ -25,6 +25,15 @@ export const getToday = function (options = {}) {
 };
 
 export const formatCurrency = (value) =>
-  new Intl.NumberFormat('cn', { style: 'currency', currency: 'CNY' }).format(
-    value
-  );
+  new Intl.NumberFormat("cn", { style: "currency", currency: "CNY" }).format(value);
+
+export const numberInputOnWheelPreventChange = (e) => {
+  // Prevent the input value change
+  e.target.blur();
+  // Prevent the page/container scrolling
+  e.stopPropagation();
+  // Refocus immediately, on the next tick (after the current function is done)
+  setTimeout(() => {
+    e.target.focus();
+  }, 0);
+};

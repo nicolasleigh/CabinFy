@@ -33,15 +33,12 @@ function Bookings() {
   return (
     <>
       <div className='flex justify-between items-center gap-2 mb-4'>
-        {/* <Heading className='heading' as='h1'>
-          All bookings
-        </Heading> */}
         <h1 className='text-2xl font-semibold'>All bookings</h1>
         <BookingTableOperations />
       </div>
 
       <BookingTable />
-      <DataTable columns={columns} data={bookings || ""} count={count} />
+      <DataTable columns={columns} data={bookings || ""} count={count} showPagination={true} />
     </>
   );
 }

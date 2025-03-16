@@ -9,7 +9,12 @@ interface DataTableProps<TData, TValue> {
   data: TData[];
 }
 
-export function DataTable<TData, TValue>({ columns, data, count }: DataTableProps<TData, TValue>) {
+export function DataTable<TData, TValue>({
+  columns,
+  data,
+  count,
+  showPagination = false,
+}: DataTableProps<TData, TValue>) {
   const table = useReactTable({
     data,
     columns,
@@ -63,7 +68,7 @@ export function DataTable<TData, TValue>({ columns, data, count }: DataTableProp
           </TableBody>
         </Table>
       </div>
-      <Pagination count={count} />
+      {showPagination && <Pagination count={count} />}
     </div>
   );
 }
