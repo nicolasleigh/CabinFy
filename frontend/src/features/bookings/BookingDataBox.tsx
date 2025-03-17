@@ -1,19 +1,12 @@
-import { format, isToday } from 'date-fns';
-// import {
-//   HiOutlineCheckCircle,
-//   HiOutlineCurrencyDollar,
-//   HiOutlineHomeModern,
-// } from 'react-icons/hi2';
-import {
-  AiOutlineHome,
-  AiOutlineCheckCircle,
-  AiOutlineDollar,
-} from 'react-icons/ai';
-import styled from 'styled-components';
+import { format, isToday } from "date-fns";
+import { AiOutlineHome, AiOutlineCheckCircle, AiOutlineDollar } from "react-icons/ai";
+import styled from "styled-components";
 
-import DataItem from '../../ui/DataItem';
+import DataItem from "../../ui/DataItem";
 
-import { formatCurrency, formatDistanceFromNow } from '../../utils/helpers';
+import { formatCurrency, formatDistanceFromNow } from "../../utils/helpers";
+import { cn } from "@/lib/utils";
+import { CircleCheck, CircleX } from "lucide-react";
 
 const StyledBookingDataBox = styled.section`
   /* Box */
@@ -115,10 +108,8 @@ const Price = styled.div`
   border-radius: var(--border-radius-sm);
   margin-top: 2.4rem;
 
-  background-color: ${(props) =>
-    props.$isPaid ? 'var(--color-green-100)' : 'var(--color-yellow-100)'};
-  color: ${(props) =>
-    props.$isPaid ? 'var(--color-green-700)' : 'var(--color-yellow-700)'};
+  background-color: ${(props) => (props.$isPaid ? "var(--color-green-100)" : "var(--color-yellow-100)")};
+  color: ${(props) => (props.$isPaid ? "var(--color-green-700)" : "var(--color-yellow-700)")};
 
   & p:last-child {
     text-transform: uppercase;
@@ -173,65 +164,76 @@ function BookingDataBox({ booking }) {
   } = booking;
 
   return (
-    <StyledBookingDataBox>
-      <Header>
-        <div>
-          {/* <HiOutlineHomeModern /> */}
-          <AiOutlineHome />
-          <p>
-            {numNights} nights in Cabin <span>{cabinName}</span>
-          </p>
+    <div className=' bg-cGrey-50 rounded-md'>
+      <div className='rounded-t-md h-36 bg-cBrand-500 text-cBrand-100 px-4 flex flex-col justify-center gap-2'>
+        <div className='flex items-center justify-between '>
+          <div className='flex items-center text-3xl gap-4 '>
+            <AiOutlineHome />
+            <p>
+              {numNights} Nights in Cabin <span className='bg-cBrand-700 rounded-md px-2 py-1'>{cabinName}</span>
+            </p>
+          </div>
         </div>
-
-        <p>
-          {format(new Date(startDate), 'yyyy-MM-dd')} (
-          {isToday(new Date(startDate))
-            ? 'Today'
-            : formatDistanceFromNow(startDate)}
-          ) &mdash; {format(new Date(endDate), 'yyyy-MM-dd')}
+        <p className='text-2xl text-cBrand-200 self-end'>
+          From {format(new Date(startDate), "yyyy-MM-dd")} (
+          {isToday(new Date(startDate)) ? "Today" : formatDistanceFromNow(startDate)}) To{" "}
+          {format(new Date(endDate), "yyyy-MM-dd")}
         </p>
-      </Header>
+      </div>
 
-      <Section>
-        <Guest>
-          <p>
-            {guestName} {numGuests > 1 ? `+ ${numGuests - 1} guests` : ''}
+      <div className='pt-8 px-8 flex flex-col gap-5'>
+        <div className='flex gap-2 text-cGrey-500'>
+          <p className='text-cGrey-700 font-semibold'>
+            {guestName}
+            <span className='ml-2 text-muted-foreground font-normal'>
+              ( <span className='bg-cBrand-200 text-cBrand-700 px-1 py-[1px] rounded-sm'>{numGuests}</span>{" "}
+              {numGuests === 1 ? "Guest" : "Guests"})
+            </span>
           </p>
           <span>&bull;</span>
           <p>{email}</p>
-        </Guest>
+        </div>
 
-        {/* {observations && (
-          <DataItem
-            icon={<HiOutlineChatBubbleBottomCenterText />}
-            label='Observations'
+        <div className='flex items-center gap-4'>
+          {hasBreakfast ? (
+            <CircleCheck className='text-cBrand-600 w-6 h-6' />
+          ) : (
+            <CircleX className='text-cRed-600 w-6 h-6' />
+          )}
+
+          <p>Breakfast included?</p>
+          <span
+            className={cn(
+              hasBreakfast ? "bg-cBrand-500 text-cBlue-100" : "bg-cRed-600 text-cRed-100",
+              "font-semibold rounded-sm py-1 px-2 text-sm"
+            )}
           >
-            {observations}
-          </DataItem>
-        )} */}
+            {hasBreakfast ? "Yes" : "No"}
+          </span>
+        </div>
 
-        {/* <DataItem icon={<HiOutlineCheckCircle />} label='Breakfast included?'> */}
-        <DataItem icon={<AiOutlineCheckCircle />} label='Breakfast included?'>
-          {hasBreakfast ? 'Yes' : 'No'}
-        </DataItem>
-
-        <Price $isPaid={isPaid}>
-          {/* <DataItem icon={<HiOutlineCurrencyDollar />} label={`Total price`}> */}
-          <DataItem icon={<AiOutlineDollar />} label={`Total price`}>
+        <div
+          className={cn(
+            isPaid ? "bg-cGreen-100 text-cGreen-700" : "bg-cYellow-100 text-cYellow-700",
+            "py-8 px-5 rounded-sm flex justify-between"
+          )}
+        >
+          <div className='flex items-center gap-4'>
+            <AiOutlineDollar className={cn(isPaid ? "text-cGreen-700" : "text-cYellow-700 ", "w-6 h-6")} />
+            <span>Total price</span>
             {formatCurrency(totalPrice)}
 
-            {hasBreakfast &&
-              ` (${cabinPrice} cabin - ${discountPrice} discount + ${extrasPrice} breakfast)`}
-          </DataItem>
+            {hasBreakfast && ` (${cabinPrice} cabin - ${discountPrice} discount + ${extrasPrice} breakfast)`}
+          </div>
 
-          <p>{isPaid ? 'Paid' : 'Will pay at property'}</p>
-        </Price>
-      </Section>
+          <p className='text-lg font-semibold'>{isPaid ? "Paid" : "Will pay at property"}</p>
+        </div>
+      </div>
 
-      <Footer>
-        <p>Booked {format(new Date(created_at), 'EEEE, yyyy-MM-dd, p')}</p>
-      </Footer>
-    </StyledBookingDataBox>
+      <div className='text-end text-muted-foreground py-6 px-8 text-sm'>
+        <p>Booked {format(new Date(created_at), "EEEE, yyyy-MM-dd, p")}</p>
+      </div>
+    </div>
   );
 }
 

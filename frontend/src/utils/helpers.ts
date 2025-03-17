@@ -46,3 +46,9 @@ export const formatBytes = (bytes: number, decimals = 2) => {
   const i = Math.floor(Math.log(bytes) / Math.log(k));
   return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + " " + sizes[i];
 };
+
+export const statusColor = {
+  unconfirmed: "bg-cBlue-100 text-cBlue-700",
+  "checked-in": "bg-cGreen-100 text-cGreen-700",
+  "checked-out": "bg-cSilver-100 text-cSilver-700",
+};

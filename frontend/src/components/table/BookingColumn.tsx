@@ -2,7 +2,7 @@ import { ColumnDef } from "@tanstack/react-table";
 import BookingColumnAction from "./BookingColumnAction";
 import { format, isToday } from "date-fns";
 import { Badge } from "../ui/badge";
-import { formatCurrency, formatDistanceFromNow } from "@/utils/helpers";
+import { formatCurrency, formatDistanceFromNow, statusColor } from "@/utils/helpers";
 import { cn } from "@/lib/utils";
 
 export type Bookings = {
@@ -11,12 +11,6 @@ export type Bookings = {
   status: "public" | "private";
   date: string;
   amount: number;
-};
-
-const statusColor = {
-  unconfirmed: "bg-cBlue-100 text-cBlue-700",
-  "checked-in": "bg-cGreen-100 text-cGreen-700",
-  "checked-out": "bg-cSilver-100 text-cSilver-700",
 };
 
 export const columns: ColumnDef<Bookings>[] = [
