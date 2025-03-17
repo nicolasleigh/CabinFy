@@ -52,7 +52,7 @@ const Dropzone = React.forwardRef<HTMLDivElement, DropzoneProps>(
       }
     };
     return (
-      <div className='flex flex-col gap-4'>
+      <div className='flex flex-col'>
         <Card
           ref={ref}
           className={cn(
@@ -87,7 +87,7 @@ const Dropzone = React.forwardRef<HTMLDivElement, DropzoneProps>(
           {selectedImages &&
             selectedImages.length > 0 &&
             selectedImages.map((elem, i) => (
-              <div key={i}>
+              <div className='mt-2' key={i}>
                 <input
                   accept={accept}
                   onChange={(e) => onChange(e.target.files, i)}

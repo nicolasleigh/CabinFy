@@ -16,6 +16,7 @@ import {
   DialogTrigger,
 } from "../ui/dialog";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "../ui/dropdown-menu";
+import DialogItem from "./DialogItem";
 
 export default function BookingColumnAction({ id, status }) {
   const [dropdownOpen, setDropdownOpen] = useState(false);
@@ -111,32 +112,3 @@ export default function BookingColumnAction({ id, status }) {
     </DropdownMenu>
   );
 }
-
-const DialogItem = (props) => {
-  const { triggerChildren, children, onSelect, onOpenChange, open, className, ...itemProps } = props;
-  return (
-    <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogTrigger asChild>
-        <DropdownMenuItem
-          {...itemProps}
-          onSelect={(event) => {
-            event.preventDefault();
-            onSelect && onSelect();
-          }}
-        >
-          {triggerChildren}
-        </DropdownMenuItem>
-      </DialogTrigger>
-      <DialogPortal>
-        <DialogContent
-          className={className}
-          onInteractOutside={(e) => {
-            e.preventDefault();
-          }}
-        >
-          {children}
-        </DialogContent>
-      </DialogPortal>
-    </Dialog>
-  );
-};

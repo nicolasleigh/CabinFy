@@ -1,6 +1,6 @@
 import { useDeleteBooking } from "@/features/bookings/useDeleteBooking";
 import { useCheckout } from "@/features/check-in-out/useCheckout";
-import { Copy, Loader, MoreHorizontal, Trash } from "lucide-react";
+import { Copy, Loader, MoreHorizontal, Pencil, Trash } from "lucide-react";
 import { useState } from "react";
 import { AiOutlineDelete, AiOutlineDownload, AiOutlineEye, AiOutlineUpload } from "react-icons/ai";
 import { useNavigate } from "react-router-dom";
@@ -18,10 +18,13 @@ import {
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "../ui/dropdown-menu";
 import { useDeleteCabin } from "@/features/cabins/useDeleteCabin";
 import { useDuplicateCabin } from "@/features/cabins/useDuplicateCabin";
+import CabinForm from "@/features/cabins/CabinForm";
+import DialogItem from "./DialogItem";
 
-export default function CabinColumnAction({ id }) {
+export default function CabinColumnAction({ id, cabin }) {
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [openDeleteDialog, setOpenDeleteDialog] = useState(false);
+  const [openEditDialog, setOpenEditDialog] = useState(false);
 
   const navigate = useNavigate();
   const { isDeleting, deleteCabin } = useDeleteCabin();
@@ -55,6 +58,32 @@ export default function CabinColumnAction({ id }) {
             <span>{"Duplicate"}</span>
           </div>
         </DropdownMenuItem>
+
+        <DialogItem
+          triggerChildren={
+            <div className='flex items-center gap-3'>
+              <Pencil strokeWidth={0.9} size={20} />
+              <span>{"Edit"}</span>
+            </div>
+          }
+          open={openEditDialog}
+          onOpenChange={(open) => {
+            setOpenEditDialog(open);
+            if (open === false) {
+              setDropdownOpen(false);
+            }
+          }}
+        >
+          <DialogTitle>Edit Cabin</DialogTitle>
+          <CabinForm
+            isUpdate={true}
+            initialState={cabin}
+            onSubmit={() => {
+              setOpenEditDialog(false);
+              setDropdownOpen(false);
+            }}
+          />
+        </DialogItem>
 
         <DialogItem
           triggerChildren={
@@ -101,32 +130,3 @@ export default function CabinColumnAction({ id }) {
     </DropdownMenu>
   );
 }
-
-const DialogItem = (props) => {
-  const { triggerChildren, children, onSelect, onOpenChange, open, className, ...itemProps } = props;
-  return (
-    <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogTrigger asChild>
-        <DropdownMenuItem
-          {...itemProps}
-          onSelect={(event) => {
-            event.preventDefault();
-            onSelect && onSelect();
-          }}
-        >
-          {triggerChildren}
-        </DropdownMenuItem>
-      </DialogTrigger>
-      <DialogPortal>
-        <DialogContent
-          className={className}
-          onInteractOutside={(e) => {
-            e.preventDefault();
-          }}
-        >
-          {children}
-        </DialogContent>
-      </DialogPortal>
-    </Dialog>
-  );
-};

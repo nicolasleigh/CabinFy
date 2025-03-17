@@ -1,42 +1,147 @@
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
+import { useForm, UseFormProps, UseFormReturn } from "react-hook-form";
 import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import Dropzone from "@/components/DropZone";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import DropzoneMultiple from "@/components/DropzoneMultiple";
-import { numberInputOnWheelPreventChange } from "@/utils/helpers";
+import { formatBytes, numberInputOnWheelPreventChange } from "@/utils/helpers";
+import { useCreateCabin } from "./useCreateCabin";
+import { useEditCabin } from "./useEditCabin";
 
-const formSchema = z.object({
-  name: z.string().min(2).max(50),
-  location: z.string(),
+const MAX_IMAGE_SIZE = 1024 * 1024 * 10;
+const ACCEPTED_IMAGE_TYPES = ["image/jpeg", "image/png", "image/webp"];
+
+const validateImage = (file, ctx) => {
+  if (!file) return;
+  if (file.size > MAX_IMAGE_SIZE) {
+    ctx.addIssue({
+      code: z.ZodIssueCode.custom,
+      message: `Image cannot be greater than ${MAX_IMAGE_SIZE}`,
+      // message: i18n.t("posterTooLargeMessage", {
+      //   maxSize: formatBytes(MAX_IMAGE_SIZE),
+      // }),
+      fatal: true,
+    });
+  }
+  if (!ACCEPTED_IMAGE_TYPES.includes(file.type)) {
+    ctx.addIssue({
+      code: z.ZodIssueCode.custom,
+      message: "Please upload a valid image file (JPEG, PNG, or WebP)",
+      // message: i18n.t("Please upload a valid image file (JPEG, PNG, or WebP)"),
+      fatal: true,
+    });
+  }
+};
+
+const commonValidations = {
+  name: z.string().nonempty("Name cannot be empty").max(50, "Name cannot be greater than 50 characters"),
+  location: z.string().nonempty("Location cannot be empty").max(50, "Location cannot be greater than 50 characters"),
   bedroom: z.coerce.number().gt(0, "Must be above 0"),
   regularPrice: z.coerce.number().gt(0, "Must be above 0"),
-  discount: z.coerce.number().gt(0, "Must be above 0"),
-  image: z.any(),
-  images: z.any(),
+  discount: z.coerce.number().gte(0, "Must be or above 0"),
+};
+
+const formSchema = z.object({
+  ...commonValidations,
+  image: z
+    .instanceof(File, {
+      message: "Please select an image file",
+    })
+    .superRefine(validateImage),
+  images: z.instanceof(FileList, {
+    message: "Please select image files",
+  }),
 });
 
-export default function CabinForm() {
+const formUpdateSchema = z.object({
+  ...commonValidations,
+  image: z.any().optional().superRefine(validateImage),
+  images: z.any().optional(),
+});
+
+export default function CabinForm({ isUpdate = false, initialState, onSubmit }) {
   const [selectedImage, setSelectedImage] = useState("");
   const [selectedImages, setSelectedImages] = useState([]);
-  const form = useForm<z.infer<typeof formSchema>>({
-    resolver: zodResolver(formSchema),
-    defaultValues: {
-      name: "",
-      location: "",
-      bedroom: 0,
-      regularPrice: 0,
-      discount: 0,
-      image: "",
-      images: "",
-    },
-  });
+  const { isCreating, createCabin } = useCreateCabin();
+  const { isEditing, editCabin } = useEditCabin();
 
-  function onSubmit(values: z.infer<typeof formSchema>) {
+  let form: UseFormReturn<z.infer<typeof formSchema>>;
+  if (isUpdate) {
+    form = useForm<z.infer<typeof formUpdateSchema>>({
+      resolver: zodResolver(formUpdateSchema),
+      defaultValues: {
+        name: "",
+        location: "",
+        bedroom: 0,
+        regularPrice: 0,
+        discount: 0,
+        image: undefined,
+        images: [],
+      },
+    });
+  } else {
+    form = useForm<z.infer<typeof formSchema>>({
+      resolver: zodResolver(formSchema),
+      defaultValues: {
+        name: "",
+        location: "",
+        bedroom: 0,
+        regularPrice: 0,
+        discount: 0,
+        image: undefined,
+        images: [],
+      },
+    });
+  }
+
+  useEffect(() => {
+    if (initialState) {
+      form.setValue("name", initialState.name);
+      form.setValue("bedroom", initialState.bedroom);
+      form.setValue("discount", initialState.discount);
+      form.setValue("regularPrice", initialState.regularPrice);
+      form.setValue("location", initialState.location);
+      setSelectedImage(initialState.image);
+      setSelectedImages(initialState.images);
+    }
+  }, [initialState]);
+
+  // const handleSubmit = (values: z.infer<typeof formSchema>) => {
+  //   const formData = new FormData();
+  //   for (const [key, value] of Object.entries(values)) {
+  //     formData.append(key, value);
+  //   }
+  //   onSubmit(formData);
+  // };
+
+  function handleSubmit(values: z.infer<typeof formSchema>) {
     console.log(values);
+    if (isUpdate) {
+      // editCabin({ values,initialState.id },onSuccess:()=>form.reset());
+      editCabin(
+        {
+          newCabinData: {
+            ...values,
+          },
+          id: initialState.id,
+        },
+        {
+          onSuccess: () => {
+            form.reset();
+          },
+        }
+      );
+    } else {
+      createCabin(values, {
+        onSuccess: () => {
+          form.reset();
+        },
+      });
+    }
+    onSubmit();
   }
 
   const showSelectedImage = (file) => {
@@ -116,7 +221,7 @@ export default function CabinForm() {
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className='flex  gap-4'>
+      <form onSubmit={form.handleSubmit(handleSubmit)} className='flex  gap-4'>
         <div className='flex flex-col gap-4'>
           <FormField
             control={form.control}
@@ -248,7 +353,7 @@ export default function CabinForm() {
             )}
           />
           <Button type='submit' className='mt-4 w-full' variant='secondary'>
-            Add
+            {isUpdate ? "Edit" : "Add"}
           </Button>
         </div>
       </form>

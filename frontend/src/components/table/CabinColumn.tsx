@@ -62,7 +62,7 @@ export const columns: ColumnDef<Cabins>[] = [
   {
     id: "actions",
     cell: ({ row }) => {
-      return <CabinColumnAction id={row.original.id} />;
+      return <CabinColumnAction id={row.original.id} cabin={row.original} />;
     },
   },
 ];

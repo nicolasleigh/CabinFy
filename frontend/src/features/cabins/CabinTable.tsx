@@ -40,7 +40,7 @@ function CabinTable() {
 
   return (
     <>
-      <Menus>
+      {/* <Menus>
         <Table columns='0.6fr 1.8fr 2fr 1fr 1fr 1.5rem'>
           <Table.Header>
             <div></div>
@@ -50,10 +50,9 @@ function CabinTable() {
             <div>Discount</div>
             <div></div>
           </Table.Header>
-
           <Table.Body data={sortedCabins} render={(cabin) => <CabinRow cabin={cabin} key={cabin.id} />} />
         </Table>
-      </Menus>
+      </Menus> */}
       <DataTable columns={columns} data={sortedCabins} />
     </>
   );
