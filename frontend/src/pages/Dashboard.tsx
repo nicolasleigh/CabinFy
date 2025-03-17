@@ -1,17 +1,13 @@
 import DashboardFilter from "../features/dashboard/DashboardFilter";
 import DashboardLayout from "../features/dashboard/DashboardLayout";
-import Heading from "../ui/Heading";
-import Row from "../ui/Row";
 
 function Dashboard() {
   return (
     <>
-      <Row type='horizontal'>
-        <Heading as='h1'>
-          <span className=''>Dashboard</span>
-        </Heading>
+      <div className='flex justify-between mb-4'>
+        <h1 className='text-xl font-semibold'>Dashboard</h1>
         <DashboardFilter />
-      </Row>
+      </div>
 
       <DashboardLayout />
     </>

@@ -1,14 +1,9 @@
-// import {
-//   HiOutlineBanknotes,
-//   HiOutlineBriefcase,
-//   HiOutlineCalendarDays,
-//   HiOutlineChartBar,
-// } from 'react-icons/hi2';
-import { LuWallet, LuCalendarCheck2 } from 'react-icons/lu';
-import { AiOutlineTransaction, AiFillSignal } from 'react-icons/ai';
-import Stat from './Stat';
-import { formatCurrency } from '../../utils/helpers';
-import styled from 'styled-components';
+import { LuWallet, LuCalendarCheck2 } from "react-icons/lu";
+import { AiOutlineTransaction, AiFillSignal } from "react-icons/ai";
+import Stat from "./Stat";
+import { formatCurrency } from "../../utils/helpers";
+import styled from "styled-components";
+import { Wallet } from "lucide-react";
 
 const Stat1 = styled.div`
   @media (max-width: 500px) {
@@ -42,55 +37,36 @@ function Stats({ bookings, confirmedStays, numDays, cabinCount }) {
   const checkins = confirmedStays.length;
 
   // 4.
-  const occupation =
-    confirmedStays.reduce((acc, cur) => acc + cur.numNights, 0) /
-    (numDays * cabinCount);
+  const occupation = confirmedStays.reduce((acc, cur) => acc + cur.numNights, 0) / (numDays * cabinCount);
   // num checked in nights / all available nights (num days * num cabins)
 
   return (
     <>
-      <Stat1>
-        <Stat
-          title='Bookings'
-          color='blue'
-          // icon={<HiOutlineBriefcase />}
-          icon={<LuWallet />}
-          value={numBookings}
-        />
-      </Stat1>
+      <div>
+        <Stat title='Bookings' color='blue' icon={<LuWallet className='w-10 h-10' />} value={numBookings} />
+      </div>
 
-      <Stat2>
+      <div>
         <Stat
           title='Sales'
           color='green'
-          // icon={<HiOutlineBanknotes />}
-          icon={<AiOutlineTransaction />}
+          icon={<AiOutlineTransaction className='w-10 h-10' />}
           value={formatCurrency(sales)}
-          className='stat2'
         />
-      </Stat2>
+      </div>
 
-      <Stat3>
-        <Stat
-          title='Check ins'
-          color='indigo'
-          // icon={<HiOutlineCalendarDays />}
-          icon={<LuCalendarCheck2 />}
-          value={checkins}
-          className='stat3'
-        />
-      </Stat3>
+      <div>
+        <Stat title='Check ins' color='indigo' icon={<LuCalendarCheck2 className='w-10 h-10' />} value={checkins} />
+      </div>
 
-      <Stat4>
+      <div>
         <Stat
           title='Occupancy rate'
           color='yellow'
-          // icon={<HiOutlineChartBar />}
-          icon={<AiFillSignal />}
-          value={Math.round(occupation * 100) + '%'}
-          className='stat4'
+          icon={<AiFillSignal className='w-10 h-10' />}
+          value={Math.round(occupation * 100) + "%"}
         />
-      </Stat4>
+      </div>
     </>
   );
 }
