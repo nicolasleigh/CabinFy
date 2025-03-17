@@ -52,3 +52,8 @@ export const statusColor = {
   "checked-in": "bg-cGreen-100 text-cGreen-700",
   "checked-out": "bg-cSilver-100 text-cSilver-700",
 };
+
+export const isValidEmail = (email) => {
+  const isValid = /[^\s@]+@[^\s@]+\.[^\s@]+/gi;
+  return isValid.test(email);
+};
