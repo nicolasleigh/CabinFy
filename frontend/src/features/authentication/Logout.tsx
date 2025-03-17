@@ -7,7 +7,7 @@ function Logout() {
   const { logout, isLoading } = useLogout();
 
   return (
-    <Button disabled={isLoading} onClick={logout} aria-label='log out'>
+    <Button variant='destructive' className='px-3' disabled={isLoading} onClick={logout} aria-label='log out'>
       {!isLoading ? <AiOutlineLogout /> : <Loader2 className='animate-spin' />}
     </Button>
   );

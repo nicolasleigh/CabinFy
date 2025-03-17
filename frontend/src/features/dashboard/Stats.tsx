@@ -43,27 +43,27 @@ function Stats({ bookings, confirmedStays, numDays, cabinCount }) {
   return (
     <>
       <div>
-        <Stat title='Bookings' color='blue' icon={<LuWallet className='w-10 h-10' />} value={numBookings} />
+        <Stat title='Bookings' color='blue' icon={<LuWallet className='w-8 h-8' />} value={numBookings} />
       </div>
 
       <div>
         <Stat
           title='Sales'
           color='green'
-          icon={<AiOutlineTransaction className='w-10 h-10' />}
+          icon={<AiOutlineTransaction className='w-8 h-8' />}
           value={formatCurrency(sales)}
         />
       </div>
 
       <div>
-        <Stat title='Check ins' color='indigo' icon={<LuCalendarCheck2 className='w-10 h-10' />} value={checkins} />
+        <Stat title='Check ins' color='indigo' icon={<LuCalendarCheck2 className='w-8 h-8' />} value={checkins} />
       </div>
 
       <div>
         <Stat
           title='Occupancy rate'
           color='yellow'
-          icon={<AiFillSignal className='w-10 h-10' />}
+          icon={<AiFillSignal className='w-8 h-8' />}
           value={Math.round(occupation * 100) + "%"}
         />
       </div>

@@ -39,7 +39,7 @@ function DashboardLayout() {
   // console.log(bookings);
 
   return (
-    <div className='grid grid-cols-4 gap-x-2 gap-y-4 grid-rows-[auto_20rem_auto]'>
+    <div className='grid grid-cols-4 gap-x-2 gap-y-4 grid-rows-[auto_18rem_auto] mb-5'>
       <Stats bookings={bookings} confirmedStays={confirmedStays} numDays={numDays} cabinCount={cabins.length} />
       <TodayActivity />
       <DurationChart confirmedStays={confirmedStays} />

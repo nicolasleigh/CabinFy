@@ -160,7 +160,7 @@ function DurationChart({ confirmedStays }) {
   });
 
   return (
-    <div className='col-span-2 border rounded-md p-2 bg-cGrey-0'>
+    <div className='col-span-2 border rounded-md p-2 '>
       <h2 className='text-lg font-semibold'>Stay duration summary</h2>
       <ResponsiveContainer width={"100%"} height={matches ? 260 : 240}>
         <PieChart>

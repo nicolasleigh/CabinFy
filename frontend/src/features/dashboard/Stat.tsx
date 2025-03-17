@@ -101,7 +101,7 @@ function Stat({ icon, title, value, color }: { color: colorEnum }) {
   };
 
   return (
-    <div className='border rounded-md p-2 grid grid-cols-[64px_1fr] gap-x-2 gap-y-1 grid-rows-2 h-full bg-cGrey-0'>
+    <div className='border rounded-md p-2 grid grid-cols-[64px_1fr] gap-x-2 gap-y-1 grid-rows-2 h-full '>
       <div
         className={`${colorMap[color]} rounded-full w-16 h-16 row-span-full flex items-center justify-center self-center`}
       >

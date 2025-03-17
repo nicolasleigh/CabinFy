@@ -16,7 +16,7 @@ function AddCabin() {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button>Add new cabin</Button>
+        <Button className='bg-cBrand-600 text-cBrand-100 rounded-sm hover:bg-cBrand-700'>Add new cabin</Button>
       </DialogTrigger>
       <DialogContent>
         <DialogTitle>Add Cabin</DialogTitle>

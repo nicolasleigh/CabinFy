@@ -19,7 +19,12 @@ function HeaderMenu() {
     <ul className='flex gap-2'>
       <li>
         {/* <ButtonIcon onClick={() => navigate("/admin/account")} aria-label='go to account page'> */}
-        <Button onClick={() => navigate("/admin/account")} aria-label='go to account page'>
+        <Button
+          variant='outline'
+          className='px-[10px]'
+          onClick={() => navigate("/admin/account")}
+          aria-label='go to account page'
+        >
           <AiOutlineUser />
         </Button>
         {/* </ButtonIcon> */}

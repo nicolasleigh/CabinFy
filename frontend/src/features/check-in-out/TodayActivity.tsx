@@ -55,7 +55,7 @@ function TodayActivity() {
   const { activities, isLoading } = useTodayActivity();
 
   return (
-    <div className='border rounded-md flex flex-col col-span-2 bg-cGrey-0'>
+    <div className='border rounded-md flex flex-col col-span-2 '>
       <div>
         <h2 className='text-lg font-semibold p-2'>Today</h2>
       </div>
