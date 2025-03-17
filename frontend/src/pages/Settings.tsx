@@ -1,13 +1,11 @@
-import UpdateSettingsForm from '../features/settings/UpdateSettingsForm';
-import Heading from '../ui/Heading';
-import Row from '../ui/Row';
+import UpdateSettingsForm from "../features/settings/UpdateSettingsForm";
 
 function Settings() {
   return (
-    <Row>
-      <Heading as='h1'>Update hotel settings</Heading>
+    <div className='w-96 mx-auto border p-5 rounded-md'>
+      <h1 className='text-xl font-semibold mb-4'>Update Hotel Settings</h1>
       <UpdateSettingsForm />
-    </Row>
+    </div>
   );
 }
 

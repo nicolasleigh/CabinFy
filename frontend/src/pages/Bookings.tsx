@@ -37,7 +37,7 @@ function Bookings() {
         <BookingTableOperations />
       </div>
 
-      <BookingTable />
+      {/* <BookingTable /> */}
       <DataTable columns={columns} data={bookings || ""} count={count} showPagination={true} />
     </>
   );
