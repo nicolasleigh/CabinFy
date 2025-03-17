@@ -164,7 +164,7 @@ function BookingDataBox({ booking }) {
   } = booking;
 
   return (
-    <div className=' bg-cGrey-50 rounded-md'>
+    <div className=' bg-cGrey-50 '>
       <div className='rounded-t-md h-36 bg-cBrand-500 text-cBrand-100 px-4 flex flex-col justify-center gap-2'>
         <div className='flex items-center justify-between '>
           <div className='flex items-center text-3xl gap-4 '>
@@ -204,7 +204,7 @@ function BookingDataBox({ booking }) {
           <p>Breakfast included?</p>
           <span
             className={cn(
-              hasBreakfast ? "bg-cBrand-500 text-cBlue-100" : "bg-cRed-600 text-cRed-100",
+              hasBreakfast ? "bg-cBrand-500 text-cBrand-100" : "bg-cRed-600 text-cRed-50",
               "font-semibold rounded-sm py-1 px-2 text-sm"
             )}
           >
@@ -230,7 +230,7 @@ function BookingDataBox({ booking }) {
         </div>
       </div>
 
-      <div className='text-end text-muted-foreground py-6 px-8 text-sm'>
+      <div className='text-end text-muted-foreground py-4 px-8 text-sm'>
         <p>Booked {format(new Date(created_at), "EEEE, yyyy-MM-dd, p")}</p>
       </div>
     </div>
