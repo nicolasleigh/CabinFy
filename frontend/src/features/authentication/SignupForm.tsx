@@ -1,87 +1,147 @@
-import { useQueryClient } from '@tanstack/react-query';
-import { useForm } from 'react-hook-form';
-import { useLocation, useNavigate } from 'react-router-dom';
-import Button from '../../ui/Button';
-import ButtonLink from '../../ui/ButtonLink';
-import Form from '../../ui/Form';
-import FormRowVertical from '../../ui/FormRowVertical';
-import Input from '../../ui/Input';
-import { useSignup } from './useSignup';
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { cn } from "@/lib/utils";
+import { isValidEmail } from "@/utils/helpers";
+import { useQueryClient } from "@tanstack/react-query";
+import { useState } from "react";
+import toast from "react-hot-toast";
+import { useLocation, useNavigate } from "react-router-dom";
+import { useSignup } from "./useSignup";
 
-// Email regex: /\S+@\S+\.\S+/
 const passwordLength = import.meta.env.VITE_PASS_LENGTH;
 
-function SignupForm() {
+const validateUserInfo = ({ name, email, password }) => {
+  const isValidName = /^[a-z A-Z]+$/;
+
+  if (!name.trim()) {
+    return { ok: false, error: "Name is missing!" };
+  }
+  if (!isValidName.test(name)) {
+    return { ok: false, error: "Name is invalid!" };
+  }
+
+  if (!email.trim()) {
+    return { ok: false, error: "Email is missing!" };
+  }
+  if (!isValidEmail(email)) {
+    return { ok: false, error: "Invalid email!" };
+  }
+
+  if (!password.trim()) {
+    return { ok: false, error: "Password is missing!" };
+  }
+  if (password.length < 8) {
+    return { ok: false, error: "Password must be 8 characters!" };
+  }
+
+  return { ok: true };
+};
+
+export default function SignUpForm({ className, ...props }: React.ComponentPropsWithoutRef<"div">) {
+  const [userInfo, setUserInfo] = useState({
+    name: "",
+    email: "",
+    password: "",
+  });
   const { signup, isLoading } = useSignup();
   const { state } = useLocation();
-  const { register, formState, getValues, handleSubmit, reset } = useForm();
-  const { errors } = formState;
   const navigate = useNavigate();
   const queryClient = useQueryClient();
 
-  function onSubmit({ username, email, password }) {
+  const handleChange = ({ target }) => {
+    const { value, name } = target;
+    setUserInfo({ ...userInfo, [name]: value });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const { ok, error } = validateUserInfo(userInfo);
+    if (!ok) return toast.error(error as string);
+
     signup(
-      { username, email, password },
+      { username: userInfo.name, email: userInfo.email, password: userInfo.password },
       {
         onSettled: () => {
-          queryClient.invalidateQueries(['user']);
-          navigate('/admin');
+          queryClient.invalidateQueries(["user"]);
+          navigate("/admin");
+        },
+        onError: () => {
+          toast.error("Failed to sign up");
         },
       }
     );
-  }
+  };
 
   return (
-    <Form onSubmit={handleSubmit(onSubmit)}>
-      <FormRowVertical label='Full name' error={errors?.username?.message}>
-        <Input
-          type='text'
-          id='username'
-          disabled={isLoading}
-          {...register('username', { required: 'This field is required' })}
-        />
-      </FormRowVertical>
-
-      <FormRowVertical label='Email address' error={errors?.email?.message}>
-        <Input
-          type='email'
-          id='email'
-          disabled={isLoading}
-          defaultValue={state?.email || ''}
-          {...register('email', {
-            required: 'This field is required',
-            pattern: {
-              value: /\S+@\S+\.\S+/,
-              message: 'Please provide a valid email address',
-            },
-          })}
-        />
-      </FormRowVertical>
-
-      <FormRowVertical
-        label={`Password (min ${passwordLength} characters)`}
-        error={errors?.password?.message}
-      >
-        <Input
-          type='password'
-          id='password'
-          disabled={isLoading}
-          {...register('password', {
-            required: 'This field is required',
-            minLength: {
-              value: passwordLength,
-              message: `Password needs a minimum of ${passwordLength} characters`,
-            },
-          })}
-        />
-      </FormRowVertical>
-
-      <FormRowVertical>
-        <Button disabled={isLoading}>Create new user</Button>
-      </FormRowVertical>
-      <ButtonLink to='/admin/login'>Log in</ButtonLink>
-    </Form>
+    <div className={cn("flex flex-col gap-6", className)} {...props}>
+      <Card>
+        <CardHeader className='text-center'>
+          <CardTitle className='text-xl'>{"Welcome"}</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <form onSubmit={handleSubmit}>
+            <div className='grid gap-6'>
+              <div className='grid gap-6'>
+                <div className='grid gap-2'>
+                  <Label htmlFor='name'>{"Username"}</Label>
+                  <Input
+                    id='name'
+                    type='text'
+                    placeholder={"John Doe"}
+                    required
+                    name='name'
+                    onChange={handleChange}
+                    value={userInfo.name}
+                    disabled={isLoading}
+                  />
+                  <Label htmlFor='email'>{"Email"}</Label>
+                  <Input
+                    id='email'
+                    type='email'
+                    placeholder='m@example.com'
+                    required
+                    onChange={handleChange}
+                    name='email'
+                    value={userInfo.email}
+                    disabled={isLoading}
+                    // defaultValue={state?.email || ""}
+                  />
+                </div>
+                <div className='grid gap-2'>
+                  <div className='flex items-center'>
+                    <Label htmlFor='password'>{"Password"}</Label>
+                  </div>
+                  <Input
+                    id='password'
+                    type='password'
+                    required
+                    placeholder='****************'
+                    name='password'
+                    onChange={handleChange}
+                    value={userInfo.password}
+                    disabled={isLoading}
+                  />
+                </div>
+                <Button type='submit' className='w-full bg-cBrand-500 hover:bg-cBrand-600' disabled={isLoading}>
+                  {"Create New User"}
+                </Button>
+              </div>
+              <div className='text-center text-sm'>
+                {"Already have an account? "}
+                <Button
+                  variant='link'
+                  className='underline hover:no-underline'
+                  onClick={() => navigate("/admin/login")}
+                >
+                  Log in
+                </Button>
+              </div>
+            </div>
+          </form>
+        </CardContent>
+      </Card>
+    </div>
   );
 }
-
-export default SignupForm;

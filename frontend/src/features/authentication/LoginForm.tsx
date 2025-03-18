@@ -91,6 +91,7 @@ export default function LoginForm({
                     <Link
                       to='/admin/forget-password'
                       className='ml-auto text-sm underline-offset-4 underline hover:no-underline'
+                      tabIndex={1}
                     >
                       {"Forgot your password?"}
                     </Link>
@@ -106,7 +107,7 @@ export default function LoginForm({
                     disabled={isLoading}
                   />
                 </div>
-                <Button type='submit' className='w-full'>
+                <Button type='submit' className='w-full bg-cBrand-500 hover:bg-cBrand-600'>
                   {"Login"}
                 </Button>
               </div>

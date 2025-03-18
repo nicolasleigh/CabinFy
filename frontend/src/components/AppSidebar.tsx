@@ -13,6 +13,7 @@ import { Link, NavLink } from "react-router-dom";
 import { Button } from "./ui/button";
 import { AiOutlineBarChart, AiOutlineHome, AiOutlineSchedule, AiOutlineSetting } from "react-icons/ai";
 import { useTheme } from "./theme-provider";
+import { useLogout } from "@/features/authentication/useLogout";
 
 const items = [
   {
@@ -39,6 +40,7 @@ const items = [
 
 export function AppSidebar() {
   const { theme } = useTheme();
+  const { logout, isLoading } = useLogout();
   return (
     <Sidebar variant='inset'>
       <SidebarHeader className='mb-8'>
@@ -66,7 +68,12 @@ export function AppSidebar() {
       </SidebarContent>
       <SidebarRail />
       <SidebarFooter className='p-0'>
-        <Button variant='secondary' className='flex items-center justify-start w-full py-1 px-2'>
+        <Button
+          variant='secondary'
+          disabled={isLoading}
+          onClick={logout}
+          className='flex items-center justify-start w-full py-1 px-2'
+        >
           <LogOut size={18} />
           <span>{"Log out"}</span>
         </Button>
