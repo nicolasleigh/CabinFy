@@ -5,8 +5,7 @@ import { useQueryClient } from "@tanstack/react-query";
 import { useForm } from "react-hook-form";
 import { useNavigate, useParams } from "react-router-dom";
 import { useResetPass } from "./useResetPass";
-
-const passwordLength = import.meta.env.VITE_PASS_LENGTH;
+import { PASS_LENGTH } from "@/utils/constants";
 
 function ResetPassForm() {
   const { uid, token } = useParams();
@@ -40,8 +39,8 @@ function ResetPassForm() {
           {...register("password", {
             required: "This field is required",
             minLength: {
-              value: passwordLength,
-              message: `Password needs a minimum of ${passwordLength} characters`,
+              value: PASS_LENGTH,
+              message: `Password needs a minimum of ${PASS_LENGTH} characters`,
             },
           })}
         />

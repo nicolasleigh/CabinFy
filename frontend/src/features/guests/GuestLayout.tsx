@@ -1,7 +1,7 @@
-import { Outlet } from 'react-router-dom';
-import { styled } from 'styled-components';
-import GuestHeader from './GuestHeader';
-import GuestFooter from './GuestFooter';
+import { Outlet } from "react-router-dom";
+import { styled } from "styled-components";
+import GuestHeader from "./GuestHeader";
+import GuestFooter from "./GuestFooter";
 
 const StyledGuestLayout = styled.div`
   display: flex;
@@ -37,15 +37,15 @@ const Container = styled.div`
 
 function GuestLayout() {
   return (
-    <StyledGuestLayout>
+    <div className='bg-cGrey-100'>
       <GuestHeader />
-      <Main>
-        <Container>
+      <div className='pt-32 px-16 pb-20'>
+        <div className='max-w-[1200px] mx-auto'>
           <Outlet />
-        </Container>
-      </Main>
-      <GuestFooter />
-    </StyledGuestLayout>
+        </div>
+      </div>
+      {/* <GuestFooter /> */}
+    </div>
   );
 }
 

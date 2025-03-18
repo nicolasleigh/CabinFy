@@ -1,6 +1,6 @@
-import styled, { css } from 'styled-components';
+import styled, { css } from "styled-components";
 // import { FaGithub } from 'react-icons/fa';
-import { AiFillGithub } from 'react-icons/ai';
+import { AiFillGithub } from "react-icons/ai";
 
 const StyledFooter = styled.footer`
   border-top: 1px solid var(--color-grey-500);
@@ -78,41 +78,10 @@ const GithubIconGroup = styled.div`
 
 export default function GuestFooter({ $admin }) {
   return (
-    <StyledFooter $admin={$admin}>
-      <Copyright>
+    <div className=''>
+      <p className='text-cGrey-500'>
         <p>&copy; 2024 Nicolas Leigh</p>
-      </Copyright>
-      <GithubIconGroup>
-        <div>
-          <span>Frontend:</span>
-          <a
-            aria-label='Github'
-            target='_blank'
-            rel='noopener noreferrer'
-            href='
-        https://github.com/NicolasLi2/hotel-app-frontend
-        '
-          >
-            {/* <FaGithub /> */}
-            <AiFillGithub />
-          </a>
-        </div>
-
-        <div>
-          <span>Backend:</span>
-          <a
-            aria-label='Github'
-            target='_blank'
-            rel='noopener noreferrer'
-            href='
-        https://github.com/NicolasLi2/hotel-app-backend
-        '
-          >
-            {/* <FaGithub /> */}
-            <AiFillGithub />
-          </a>
-        </div>
-      </GithubIconGroup>
-    </StyledFooter>
+      </p>
+    </div>
   );
 }

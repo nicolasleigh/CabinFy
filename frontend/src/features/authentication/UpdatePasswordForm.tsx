@@ -8,7 +8,7 @@ import { useUpdateUser } from "./useUpdateUser";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-const passwordLength = import.meta.env.VITE_PASS_LENGTH;
+import { PASS_LENGTH } from "@/utils/constants";
 
 function UpdatePasswordForm() {
   const { register, handleSubmit, formState, getValues, reset } = useForm();
@@ -36,8 +36,8 @@ function UpdatePasswordForm() {
             {...register("password", {
               required: "This field is required",
               minLength: {
-                value: passwordLength,
-                message: ` Password needs a minimum of ${passwordLength}  characters`,
+                value: PASS_LENGTH,
+                message: ` Password needs a minimum of ${PASS_LENGTH}  characters`,
               },
             })}
           />
@@ -74,45 +74,6 @@ function UpdatePasswordForm() {
         </Button>
       </div>
     </form>
-  );
-
-  return (
-    <Form onSubmit={handleSubmit(onSubmit)}>
-      <FormRow label={`New Password (min ${passwordLength} chars)`} error={errors?.password?.message}>
-        <Input
-          type='password'
-          id='password'
-          autoComplete='current-password'
-          disabled={isUpdating}
-          {...register("password", {
-            required: "This field is required",
-            minLength: {
-              value: passwordLength,
-              message: ` Password needs a minimum of ${passwordLength}  characters`,
-            },
-          })}
-        />
-      </FormRow>
-
-      <FormRow label='Confirm password' error={errors?.passwordConfirm?.message}>
-        <Input
-          type='password'
-          autoComplete='new-password'
-          id='passwordConfirm'
-          disabled={isUpdating}
-          {...register("passwordConfirm", {
-            required: "This field is required",
-            validate: (value) => getValues().password === value || "Passwords need to match",
-          })}
-        />
-      </FormRow>
-      <FormRow>
-        <Button onClick={reset} type='reset' variation='secondary'>
-          Cancel
-        </Button>
-        <Button disabled={isUpdating}>Update password</Button>
-      </FormRow>
-    </Form>
   );
 }
 

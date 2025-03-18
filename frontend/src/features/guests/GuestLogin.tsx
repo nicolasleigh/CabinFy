@@ -1,12 +1,13 @@
-import { useForm } from 'react-hook-form';
-import styled from 'styled-components';
-import { useLogin } from './useLogin';
-import { useLoginModal } from '../../hooks';
-import { useOutsideClick } from '../../hooks/useOutsideClick';
-import Button from '../../ui/Button';
-import Form from '../../ui/Form';
-import FormRowVertical from '../../ui/FormRowVertical';
-import Input from '../../ui/Input';
+import { useForm } from "react-hook-form";
+import styled from "styled-components";
+import { useLogin } from "./useLogin";
+import { useLoginModal } from "../../hooks";
+import { useOutsideClick } from "../../hooks/useOutsideClick";
+import Button from "../../ui/Button";
+import Form from "../../ui/Form";
+import FormRowVertical from "../../ui/FormRowVertical";
+import Input from "../../ui/Input";
+import { PASS_LENGTH } from "@/utils/constants";
 
 const Overlay = styled.div`
   position: fixed;
@@ -31,8 +32,6 @@ const StyledModal = styled.div`
   padding: 3.2rem 4rem;
   transition: all 0.5s;
 `;
-
-const passwordLength = import.meta.env.VITE_PASS_LENGTH;
 
 export default function GuestLogin() {
   const { isOpen, setIsOpen } = useLoginModal();
@@ -65,7 +64,7 @@ export default function GuestLogin() {
             <Input
               id='email'
               defaultValue='test@e.com'
-              {...register('email', { required: 'This field is required' })}
+              {...register("email", { required: "This field is required" })}
             />
           </FormRowVertical>
 
@@ -74,11 +73,11 @@ export default function GuestLogin() {
               id='password'
               type='password'
               defaultValue='1234'
-              {...register('password', {
-                required: 'This field is required',
+              {...register("password", {
+                required: "This field is required",
                 minLength: {
-                  value: passwordLength,
-                  message: `at least ${passwordLength} characters`,
+                  value: PASS_LENGTH,
+                  message: `at least ${PASS_LENGTH} characters`,
                 },
               })}
             />

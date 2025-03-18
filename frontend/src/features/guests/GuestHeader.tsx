@@ -1,7 +1,8 @@
-import { styled } from 'styled-components';
-import GuestHeaderMenu from './GuestHeaderMenu';
-import { Link } from 'react-router-dom';
-import Logo from '../../ui/Logo';
+import { styled } from "styled-components";
+import GuestHeaderMenu from "./GuestHeaderMenu";
+import { Link } from "react-router-dom";
+import Logo from "../../ui/Logo";
+import ThemeButton from "@/components/ThemeButton";
 
 const StyledHeader = styled.header`
   background-color: var(--color-grey-0);
@@ -51,17 +52,18 @@ const StyledHeader = styled.header`
 
 function GuestHeader() {
   return (
-    <StyledHeader>
+    <div className='bg-cGrey-0 fixed top-0 left-0 z-30 w-full h-16 flex justify-between items-center px-10'>
       <Link to='/' className='logo'>
         <Logo />
       </Link>
-      <div className='right'>
-        <Link to='/admin' className='admin-link'>
-          Log in as admin user
+      <div className='flex items-center gap-6'>
+        <Link to='/admin' className='underline-offset-4 underline hover:no-underline'>
+          Log in as admin
         </Link>
+        <ThemeButton />
         <GuestHeaderMenu />
       </div>
-    </StyledHeader>
+    </div>
   );
 }
 

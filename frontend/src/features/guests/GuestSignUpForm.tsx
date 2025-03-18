@@ -38,7 +38,7 @@ const validateUserInfo = ({ name, email, password }) => {
   return { ok: true };
 };
 
-export default function SignUpForm({ className, ...props }: React.ComponentPropsWithoutRef<"div">) {
+export default function GuestSignUpForm({ className, setOpen, ...props }: React.ComponentPropsWithoutRef<"div">) {
   const [userInfo, setUserInfo] = useState({
     name: "",
     email: "",
@@ -60,11 +60,10 @@ export default function SignUpForm({ className, ...props }: React.ComponentProps
     if (!ok) return toast.error(error as string);
 
     signup(
-      { username: userInfo.name, email: userInfo.email, password: userInfo.password },
+      { fullName: userInfo.name, email: userInfo.email, password: userInfo.password },
       {
-        onSettled: () => {
-          queryClient.invalidateQueries(["user"]);
-          navigate("/admin");
+        onSuccess: () => {
+          setOpen(false);
         },
         onError: () => {
           toast.error("Failed to sign up");
@@ -74,7 +73,7 @@ export default function SignUpForm({ className, ...props }: React.ComponentProps
   };
 
   return (
-    <div className={cn("flex flex-col gap-6", className)} {...props}>
+    <div className={cn("flex flex-col gap-6 p-4", className)} {...props}>
       <Card>
         <CardHeader className='text-center'>
           <CardTitle className='text-xl'>{"Welcome"}</CardTitle>
@@ -84,7 +83,7 @@ export default function SignUpForm({ className, ...props }: React.ComponentProps
             <div className='grid gap-6'>
               <div className='grid gap-6'>
                 <div className='grid gap-2'>
-                  <Label htmlFor='name'>{"Username"}</Label>
+                  <Label htmlFor='name'>{"Full Name"}</Label>
                   <Input
                     id='name'
                     type='text'
@@ -123,18 +122,8 @@ export default function SignUpForm({ className, ...props }: React.ComponentProps
                     disabled={isLoading}
                   />
                 </div>
-                <Button type='submit' className='w-full bg-cBrand-500 hover:bg-cBrand-600' disabled={isLoading}>
+                <Button type='submit' className='w-full bg-cRed-500 hover:bg-cRed-600' disabled={isLoading}>
                   {"Create New User"}
-                </Button>
-              </div>
-              <div className='text-center text-sm'>
-                {"Already have an account? "}
-                <Button
-                  variant='link'
-                  className='underline hover:no-underline'
-                  onClick={() => navigate("/admin/login")}
-                >
-                  Log in
                 </Button>
               </div>
             </div>

@@ -1,5 +1,5 @@
-import styled, { css } from 'styled-components';
-import { useDarkMode } from '../context/DarkModeContext';
+import styled, { css } from "styled-components";
+import { useDarkMode } from "../context/DarkModeContext";
 
 const StyledLogo = styled.div`
   text-align: center;
@@ -27,12 +27,12 @@ const Img = styled.img`
 function Logo({ $large, $medium }) {
   const { isDarkMode } = useDarkMode();
 
-  const src = isDarkMode ? '/logo-dark.svg' : '/logo.svg';
+  const src = isDarkMode ? "/logo-dark.svg" : "/logo.svg";
 
   return (
-    <StyledLogo>
-      <Img src={src} $large={$large} $medium={$medium} alt='Logo' />
-    </StyledLogo>
+    <div>
+      <img className='' width={200} height={200} src={src} alt='Logo' />
+    </div>
   );
 }
 
