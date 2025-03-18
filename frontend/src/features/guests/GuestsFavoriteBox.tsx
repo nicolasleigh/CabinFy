@@ -1,9 +1,10 @@
-import styled from 'styled-components';
-import Modal from '../../ui/Modal';
-import GuestsReviews from './GuestsReviews';
+import styled from "styled-components";
+import Modal from "../../ui/Modal";
+import GuestsReviews from "./GuestsReviews";
 // import { IoMdStar } from 'react-icons/io';
-import { AiFillStar } from 'react-icons/ai';
-import { Link } from 'react-router-dom';
+import { AiFillStar } from "react-icons/ai";
+import { Link } from "react-router-dom";
+import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 
 const GuestsFavorite = styled.div`
   display: flex;
@@ -138,40 +139,33 @@ export default function GuestsFavoriteBox({ reviews }) {
       return acc + review?.rating;
     }, 0) / reviews?.length;
   return averageRating >= 3 ? (
-    <GuestsFavorite>
-      <Favorite>
+    <div className='border flex items-center gap-1 justify-between rounded-md px-5 py-4'>
+      <div className='text-cRed-600 font-semibold'>
         <span>🎉</span>
         <span>Guests favorite</span>
-      </Favorite>
-      <Text>One of the most loved cabins</Text>
-      <Modal>
-        <Modal.Open opens='reviews'>
-          <ReviewLayout>
-            <Star>
-              <p>{Math.ceil(averageRating * 10) / 10}</p>
-              <p>
-                {/* <IoMdStar />
-                <IoMdStar />
-                <IoMdStar />
-                <IoMdStar />
-                <IoMdStar /> */}
-                <AiFillStar />
-                <AiFillStar />
-                <AiFillStar />
-                <AiFillStar />
-                <AiFillStar />
+      </div>
+      <div className='font-semibold text-xl'>One of the most loved cabins</div>
+      <Dialog>
+        <DialogTrigger>
+          <div className='flex'>
+            <div className='flex justify-center flex-col border-r pr-2'>
+              <p className='text-2xl font-semibold'>{Math.ceil(averageRating * 10) / 10}</p>
+              <p className='flex'>
+                {Array.from([1, 2, 3, 4, 5]).map((e) => (
+                  <AiFillStar key={e} className='w-4 h-4' />
+                ))}
               </p>
-            </Star>
-            <Review>
-              <p>{reviews?.length}</p>
-              <p>Reviews</p>
-            </Review>
-          </ReviewLayout>
-        </Modal.Open>
-        <Modal.Window name='reviews'>
+            </div>
+            <div className='flex justify-center flex-col pl-2'>
+              <p className='text-2xl font-semibold'>{reviews?.length}</p>
+              <p className='font-semibold text-sm leading-none'>Reviews</p>
+            </div>
+          </div>
+        </DialogTrigger>
+        <DialogContent className='h-[600px] overflow-auto'>
           <GuestsReviews />
-        </Modal.Window>
-      </Modal>
-    </GuestsFavorite>
+        </DialogContent>
+      </Dialog>
+    </div>
   ) : null;
 }

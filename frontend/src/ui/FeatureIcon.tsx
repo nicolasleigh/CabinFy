@@ -1,14 +1,7 @@
 // import { BiFridge } from 'react-icons/bi';
 // import { CgScreen } from 'react-icons/cg';
 // import { IoWifiSharp } from 'react-icons/io5';
-import {
-  LuBath,
-  LuUtensilsCrossed,
-  LuSunSnow,
-  LuFlower2,
-  LuGamepad2,
-  LuSprayCan,
-} from 'react-icons/lu';
+import { LuBath, LuUtensilsCrossed, LuSunSnow, LuFlower2, LuGamepad2, LuSprayCan } from "react-icons/lu";
 // import { PiFirstAidKitBold, PiFlowerTulipBold } from 'react-icons/pi';
 // import {
 //   TbAirConditioning,
@@ -16,13 +9,8 @@ import {
 //   TbToolsKitchen2,
 //   TbWashMachine,
 // } from 'react-icons/tb';
-import {
-  AiOutlineCar,
-  AiOutlineDesktop,
-  AiOutlineWifi,
-  AiOutlineSkin,
-} from 'react-icons/ai';
-import styled from 'styled-components';
+import { AiOutlineCar, AiOutlineDesktop, AiOutlineWifi, AiOutlineSkin } from "react-icons/ai";
+import styled from "styled-components";
 
 const Featured = styled.div`
   display: grid;
@@ -107,71 +95,106 @@ const IconWithText = styled.div`
 `;
 
 export default function FeatureIcon() {
+  const iconWithText = [
+    {
+      icon: <AiOutlineWifi className='w-7 h-7' />,
+      text: "Wifi",
+    },
+    {
+      icon: <LuBath className='w-7 h-7' />,
+      text: "24 hours hot tub",
+    },
+    {
+      icon: <LuUtensilsCrossed className='w-7 h-7' />,
+      text: "Kitchen",
+    },
+    {
+      icon: <LuSprayCan className='w-7 h-7' />,
+      text: "Room cleaning service",
+    },
+    {
+      icon: <AiOutlineSkin className='w-7 h-7' />,
+      text: "Bedroom wardrobe",
+    },
+    {
+      icon: <LuSunSnow className='w-7 h-7' />,
+      text: "Air conditioning",
+    },
+    {
+      icon: <LuFlower2 className='w-7 h-7' />,
+      text: "Garden view",
+    },
+    {
+      icon: <LuGamepad2 className='w-7 h-7' />,
+      text: "Video game available",
+    },
+    {
+      icon: <AiOutlineDesktop className='w-7 h-7' />,
+      text: "32-Inch TV",
+    },
+    {
+      icon: <AiOutlineCar className='w-7 h-7' />,
+      text: "Parking lot",
+    },
+  ];
   return (
-    <Featured>
-      <p>What this cabin offer:</p>
-      <IconWithText>
-        {/* <IoWifiSharp /> */}
-        <AiOutlineWifi />
-        <span>Wifi</span>
-      </IconWithText>
-      <IconWithText>
-        <LuBath />
-        <span>24 hours hot tub</span>
-      </IconWithText>
-      <IconWithText>
-        {/* <TbToolsKitchen2 /> */}
-        <LuUtensilsCrossed />
-        <span>Kitchen</span>
-      </IconWithText>
-      {/* <IconWithText>
-        <TbWashMachine />
-        <span>Free washer</span>
-      </IconWithText> */}
-      <IconWithText>
-        <LuSprayCan />
-        <span>Room cleaning service </span>
-      </IconWithText>
-      {/* <IconWithText>
-        <BiFridge />
-        <span>Fridge available</span>
-      </IconWithText> */}
-      <IconWithText>
-        <AiOutlineSkin />
-        <span>Bedroom wardrobe</span>
-      </IconWithText>
-      <IconWithText>
-        {/* <TbAirConditioning /> */}
-        <LuSunSnow />
-        <span>Air conditioning</span>
-      </IconWithText>
-      {/* <IconWithText>
-        <TbIroning1 />
-        <span>Iron available</span>
-      </IconWithText> */}
-      <IconWithText>
-        <LuFlower2 />
-        <span>Garden view</span>
-      </IconWithText>
-      {/* <IconWithText>
-        <PiFirstAidKitBold />
-        <span>First aid kit</span>
-      </IconWithText> */}
-      <IconWithText>
-        <LuGamepad2 />
-        <span>Video game available</span>
-      </IconWithText>
-      <IconWithText>
-        {/* <CgScreen /> */}
-        <AiOutlineDesktop />
-        <span>32-Inch TV</span>
-      </IconWithText>
-      <IconWithText>
-        {/* <PiFlowerTulipBold />
-        <span>Garden view</span> */}
-        <AiOutlineCar />
-        <span>Parking lot</span>
-      </IconWithText>
-    </Featured>
+    <div className='grid grid-cols-2 grid-rows-[auto_1fr] mt-10 gap-y-4'>
+      <p className='col-span-2 text-xl font-semibold pb-2'>What this cabin offer:</p>
+      {iconWithText.map((e) => (
+        <div key={e.text} className='flex items-center gap-4'>
+          {e.icon}
+          <span className='text-lg'>{e.text}</span>
+        </div>
+      ))}
+    </div>
   );
+  // return (
+  //   <Featured>
+  //     <p>What this cabin offer:</p>
+  //     <IconWithText>
+  //       <AiOutlineWifi />
+  //       <span>Wifi</span>
+  //     </IconWithText>
+  //     <IconWithText>
+  //       <LuBath />
+  //       <span>24 hours hot tub</span>
+  //     </IconWithText>
+  //     <IconWithText>
+  //       <LuUtensilsCrossed />
+  //       <span>Kitchen</span>
+  //     </IconWithText>
+
+  //     <IconWithText>
+  //       <LuSprayCan />
+  //       <span>Room cleaning service </span>
+  //     </IconWithText>
+
+  //     <IconWithText>
+  //       <AiOutlineSkin />
+  //       <span>Bedroom wardrobe</span>
+  //     </IconWithText>
+  //     <IconWithText>
+  //       <LuSunSnow />
+  //       <span>Air conditioning</span>
+  //     </IconWithText>
+
+  //     <IconWithText>
+  //       <LuFlower2 />
+  //       <span>Garden view</span>
+  //     </IconWithText>
+
+  //     <IconWithText>
+  //       <LuGamepad2 />
+  //       <span>Video game available</span>
+  //     </IconWithText>
+  //     <IconWithText>
+  //       <AiOutlineDesktop />
+  //       <span>32-Inch TV</span>
+  //     </IconWithText>
+  //     <IconWithText>
+  //       <AiOutlineCar />
+  //       <span>Parking lot</span>
+  //     </IconWithText>
+  //   </Featured>
+  // );
 }

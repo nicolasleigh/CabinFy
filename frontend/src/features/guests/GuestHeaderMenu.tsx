@@ -22,6 +22,7 @@ import GuestSignUpForm from "./GuestSignUpForm";
 import { useState } from "react";
 import GuestLoginForm from "./GuestLoginForm";
 import { Link } from "react-router-dom";
+import { useQueryClient } from "@tanstack/react-query";
 
 const StyledGuestHeaderMenu = styled.nav`
   display: flex;
@@ -99,6 +100,7 @@ function GuestHeaderMenu() {
   const [openLogin, setOpenLogin] = useState(false);
 
   const shortName = guest?.fullName?.charAt(0);
+  const queryClient = useQueryClient();
 
   return (
     <div>
@@ -147,34 +149,20 @@ function GuestHeaderMenu() {
             />
           </DialogItem>
           <DropdownMenuItem>
-            <div onClick={() => logout()}>Log Out</div>
+            <div
+              onClick={() => {
+                logout();
+                // queryClient.invalidateQueries(["guest"]);
+                // queryClient.removeQueries(["guest"]);
+              }}
+            >
+              Log Out
+            </div>
           </DropdownMenuItem>
-          {/* <DropdownMenuSeparator />
-          <DropdownMenuItem>
-            <Link to='/admin'>Admin</Link>
-          </DropdownMenuItem> */}
         </DropdownMenuContent>
       </DropdownMenu>
     </div>
   );
-  // return (
-  //   <StyledGuestHeaderMenu>
-  //     <DropDown
-  //       trigger={
-  //         <NavButton aria-label='user menu'>
-  //           <AiOutlineMenu size={20} />
-  //           {guest ? <HeaderAvatar>{shortName}</HeaderAvatar> : <AiOutlineUser />}
-  //         </NavButton>
-  //       }
-  //       menu={[
-  //         <MenuButton onClick={() => setSignupOpen(true)}>Sign up</MenuButton>,
-  //         <MenuButton onClick={() => setLoginOpen(true)}>Log in</MenuButton>,
-  //         <MenuButton onClick={logout}>Log out</MenuButton>,
-  //         <MenuButton to='/admin'>Admin user</MenuButton>,
-  //       ]}
-  //     />
-  //   </StyledGuestHeaderMenu>
-  // );
 }
 
 export default GuestHeaderMenu;
