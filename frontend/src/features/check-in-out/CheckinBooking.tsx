@@ -4,7 +4,6 @@ import BookingDataBox from "../bookings/BookingDataBox";
 import Row from "../../ui/Row";
 import Heading from "../../ui/Heading";
 import ButtonGroup from "../../ui/ButtonGroup";
-import Button from "../../ui/Button";
 import ButtonText from "../../ui/ButtonText";
 
 import { useMoveBack } from "../../hooks/useMoveBack";
@@ -15,6 +14,9 @@ import Checkbox from "../../ui/Checkbox";
 import { formatCurrency } from "../../utils/helpers";
 import { useCheckin } from "./useCheckin";
 import { useSettings } from "../settings/useSettings";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 
 const Box = styled.div`
   /* Box */
@@ -60,16 +62,31 @@ function CheckinBooking() {
 
   return (
     <>
-      <Row type='horizontal'>
-        <Heading as='h1'>Check in booking #{bookingId}</Heading>
-        <ButtonText onClick={moveBack}>&larr; Back</ButtonText>
-      </Row>
+      <div className='flex justify-between items-center mb-2'>
+        <h1 className='text-2xl font-semibold'>Check in booking #{bookingId}</h1>
+        <Button variant='link' className='text-cBrand-500' onClick={moveBack}>
+          &larr; Back
+        </Button>
+      </div>
 
       <BookingDataBox booking={booking} />
 
       {!hasBreakfast && (
-        <Box>
-          <Checkbox
+        <div className='bg-cGrey-50 flex gap-2 items-center px-8 pb-4'>
+          <Input
+            id='breakfast'
+            type='checkbox'
+            className='w-7'
+            checked={addBreakfast}
+            onChange={() => {
+              setAddBreakfast((add) => !add);
+              setConfirmPaid(false);
+            }}
+          />
+          <Label htmlFor='breakfast' className='text-lg text-cGrey-700'>
+            Want to add breakfast for {formatCurrency(optionalBreakfastPrice)}?
+          </Label>
+          {/* <Checkbox
             checked={addBreakfast}
             onChange={() => {
               setAddBreakfast((add) => !add);
@@ -78,11 +95,27 @@ function CheckinBooking() {
             id='breakfast'
           >
             Want to add breakfast for {formatCurrency(optionalBreakfastPrice)}?
-          </Checkbox>
-        </Box>
+          </Checkbox> */}
+        </div>
       )}
-      <Box>
-        <Checkbox
+      <div className='bg-cGrey-50 flex gap-2 items-center px-8 pb-4'>
+        <Input
+          type='checkbox'
+          className='w-7'
+          checked={confirmPaid}
+          onChange={() => setConfirmPaid((confirm) => !confirm)}
+          disabled={confirmPaid || isCheckingIn}
+          id='confirm'
+        />
+        <Label htmlFor='confirm' className='text-lg text-cGrey-700'>
+          I confirm that {guest.fullName} has paid the total amount of{" "}
+          {!addBreakfast
+            ? formatCurrency(totalPrice)
+            : `${formatCurrency(totalPrice + optionalBreakfastPrice)} (${formatCurrency(totalPrice)} + ${formatCurrency(
+                optionalBreakfastPrice
+              )})`}
+        </Label>
+        {/* <Checkbox
           checked={confirmPaid}
           onChange={() => setConfirmPaid((confirm) => !confirm)}
           disabled={confirmPaid || isCheckingIn}
@@ -94,17 +127,21 @@ function CheckinBooking() {
             : `${formatCurrency(totalPrice + optionalBreakfastPrice)} (${formatCurrency(totalPrice)} + ${formatCurrency(
                 optionalBreakfastPrice
               )})`}
-        </Checkbox>
-      </Box>
+        </Checkbox> */}
+      </div>
 
-      <ButtonGroup>
-        <Button onClick={handleCheckin} disabled={!confirmPaid || isCheckingIn}>
+      <div className='flex items-center justify-end gap-2 mt-4'>
+        <Button
+          className='bg-cBrand-500 hover:bg-cBrand-600 text-cBrand-100'
+          onClick={handleCheckin}
+          disabled={!confirmPaid || isCheckingIn}
+        >
           Check in booking #{bookingId}
         </Button>
-        <Button variation='secondary' onClick={moveBack}>
+        <Button variant='secondary' onClick={moveBack}>
           Back
         </Button>
-      </ButtonGroup>
+      </div>
     </>
   );
 }

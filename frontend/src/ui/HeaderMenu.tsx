@@ -5,6 +5,7 @@ import { AiOutlineUser } from "react-icons/ai";
 import { useNavigate } from "react-router-dom";
 import DarkModeToggle from "./DarkModeToggle";
 import ThemeButton from "@/components/ThemeButton";
+import { Button } from "@/components/ui/button";
 
 const StyledHeaderMenu = styled.ul`
   display: flex;
@@ -17,9 +18,16 @@ function HeaderMenu() {
   return (
     <ul className='flex gap-2'>
       <li>
-        <ButtonIcon onClick={() => navigate("/admin/account")} aria-label='go to account page'>
+        {/* <ButtonIcon onClick={() => navigate("/admin/account")} aria-label='go to account page'> */}
+        <Button
+          variant='outline'
+          className='px-[10px]'
+          onClick={() => navigate("/admin/account")}
+          aria-label='go to account page'
+        >
           <AiOutlineUser />
-        </ButtonIcon>
+        </Button>
+        {/* </ButtonIcon> */}
       </li>
       <li>
         {/* <DarkModeToggle /> */}

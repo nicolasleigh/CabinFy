@@ -1,5 +1,5 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-// import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { Toaster } from "react-hot-toast";
 import { Navigate, Route, RouterProvider, Routes, createBrowserRouter } from "react-router-dom";
 import { ContextProvider } from "./context";
@@ -51,8 +51,8 @@ export default function App() {
     <DarkModeProvider>
       <ContextProvider>
         <QueryClientProvider client={queryClient}>
-          {/* <ReactQueryDevtools initialIsOpen={false} /> */}
-          <GlobalStyles />
+          <ReactQueryDevtools initialIsOpen={false} />
+          {/* <GlobalStyles /> */}
           <ThemeProvider>
             <RouterProvider router={router} />
           </ThemeProvider>
@@ -146,6 +146,7 @@ function AdminApp() {
       <Route path='login' element={<Login />} />
       <Route path='signup' element={<Signup />} />
       <Route path='reset-password/:uid/:token' element={<ResetPassword />} />
+      {/* <Route path='reset-password' element={<ResetPassword />} /> */}
       <Route path='forget-password' element={<ForgetPassword />} />
     </Routes>
   );

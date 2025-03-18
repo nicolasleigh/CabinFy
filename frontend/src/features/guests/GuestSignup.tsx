@@ -7,6 +7,7 @@ import Button from "../../ui/Button";
 import Form from "../../ui/Form";
 import FormRowVertical from "../../ui/FormRowVertical";
 import Input from "../../ui/Input";
+import { PASS_LENGTH } from "@/utils/constants.ts";
 
 const Overlay = styled.div`
   position: fixed;
@@ -31,8 +32,6 @@ const StyledModal = styled.div`
   padding: 3.2rem 4rem;
   transition: all 0.5s;
 `;
-
-const passwordLength = import.meta.env.VITE_PASS_LENGTH;
 
 export default function GuestSignup() {
   const { isOpen, setIsOpen } = useSignupModal();
@@ -78,8 +77,8 @@ export default function GuestSignup() {
               {...register("password", {
                 required: "This field is required",
                 minLength: {
-                  value: passwordLength,
-                  message: `at least ${passwordLength} characters`,
+                  value: PASS_LENGTH,
+                  message: `at least ${PASS_LENGTH} characters`,
                 },
               })}
             />

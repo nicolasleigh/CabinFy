@@ -1,7 +1,7 @@
 import { useState } from "react";
 // import { LuMenu } from 'react-icons/lu';
 import { AiOutlineMenu } from "react-icons/ai";
-import { Link } from "react-router-dom";
+import { Link, useNavigate, useNavigation } from "react-router-dom";
 import { styled } from "styled-components";
 import UserAvatar from "../features/authentication/UserAvatar";
 import { useOutsideClick } from "../hooks/useOutsideClick";
@@ -9,6 +9,8 @@ import ButtonGroup from "./ButtonGroup";
 import ButtonIcon from "./ButtonIcon";
 import HeaderMenu from "./HeaderMenu";
 import { SidebarMenu } from "./SidebarMenu";
+import { Button } from "@/components/ui/button";
+import { SidebarTrigger } from "@/components/ui/sidebar";
 
 const StyledHeader = styled.header`
   background-color: var(--color-grey-0);
@@ -68,19 +70,19 @@ const GuestPageBtn = styled(Link)`
 `;
 
 function Header() {
-  const [showSidebar, setShowSidebar] = useState(false);
-  const ref = useOutsideClick(() => setShowSidebar(false));
+  // const [showSidebar, setShowSidebar] = useState(false);
+  // const ref = useOutsideClick(() => setShowSidebar(false));
+  const navigate = useNavigate();
   return (
-    <div ref={ref}>
-      {/* <ButtonIcon onClick={() => setShowSidebar(true)} className='menuBtn'>
-        <AiOutlineMenu />
-      </ButtonIcon> */}
+    <div className='mt-4 mx-10 flex justify-between'>
+      <SidebarTrigger />
       <div className='flex gap-4 justify-end'>
-        <GuestPageBtn to='/home'>Back to guest page</GuestPageBtn>
+        <Button variant='link' onClick={() => navigate("/home")}>
+          Back to home page
+        </Button>
         <UserAvatar />
         <HeaderMenu />
       </div>
-      {/* <SidebarMenu $visible={showSidebar} setShowSidebar={setShowSidebar} /> */}
     </div>
   );
   // return (

@@ -12,6 +12,8 @@ import { Home, LogOut, MonitorPlay, UserRound } from "lucide-react";
 import { Link, NavLink } from "react-router-dom";
 import { Button } from "./ui/button";
 import { AiOutlineBarChart, AiOutlineHome, AiOutlineSchedule, AiOutlineSetting } from "react-icons/ai";
+import { useTheme } from "./theme-provider";
+import { useLogout } from "@/features/authentication/useLogout";
 
 const items = [
   {
@@ -37,11 +39,13 @@ const items = [
 ];
 
 export function AppSidebar() {
+  const { theme } = useTheme();
+  const { logout, isLoading } = useLogout();
   return (
     <Sidebar variant='inset'>
       <SidebarHeader className='mb-8'>
         <Link to='/'>
-          <img src='/logo.svg' alt='Hotel logo' className='w-full pt-2' />
+          <img src={theme === "light" ? "/logo.svg" : "/logo-dark.svg"} alt='Hotel logo' className='w-full pt-2' />
         </Link>
       </SidebarHeader>
       <SidebarContent className=''>
@@ -64,7 +68,12 @@ export function AppSidebar() {
       </SidebarContent>
       <SidebarRail />
       <SidebarFooter className='p-0'>
-        <Button variant='secondary' className='flex items-center justify-start w-full py-1 px-2'>
+        <Button
+          variant='secondary'
+          disabled={isLoading}
+          onClick={logout}
+          className='flex items-center justify-start w-full py-1 px-2'
+        >
           <LogOut size={18} />
           <span>{"Log out"}</span>
         </Button>

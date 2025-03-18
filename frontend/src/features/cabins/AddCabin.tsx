@@ -1,44 +1,39 @@
-import Button from '../../ui/Button';
-import Modal from '../../ui/Modal';
-import CreateCabinForm from './CreateCabinForm';
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
+
+import Modal from "../../ui/Modal";
+import CabinForm from "./CabinForm";
+import CreateCabinForm from "./CreateCabinForm";
+import { Button } from "@/components/ui/button";
 
 function AddCabin() {
   return (
-    <div>
-      <Modal>
-        <Modal.Open opens='cabin-form'>
-          <Button>Add new cabin</Button>
-        </Modal.Open>
-        <Modal.Window name='cabin-form'>
-          <CreateCabinForm />
-        </Modal.Window>
-
-        {/* <Modal.Open opens='table'>
-        <Button>Show table</Button>
-      </Modal.Open>
-      <Modal.Window name='table'>
-        <CabinTable />
-      </Modal.Window> */}
-      </Modal>
-    </div>
+    <Dialog>
+      <DialogTrigger asChild>
+        <Button className='bg-cBrand-600 text-cBrand-100 rounded-sm hover:bg-cBrand-700'>Add new cabin</Button>
+      </DialogTrigger>
+      <DialogContent>
+        <DialogTitle>Add Cabin</DialogTitle>
+        <CabinForm />
+      </DialogContent>
+    </Dialog>
+    // <div>
+    //   <Modal>
+    //     <Modal.Open opens='cabin-form'>
+    //       <Button>Add new cabin</Button>
+    //     </Modal.Open>
+    //     <Modal.Window name='cabin-form'>
+    //       <CreateCabinForm />
+    //     </Modal.Window>
+    //   </Modal>
+    // </div>
   );
 }
-
-// function AddCabin() {
-//   const [isOpenModal, setIsOpenModal] = useState(false);
-
-//   return (
-//     <div>
-//       <Button onClick={() => setIsOpenModal((show) => !show)}>
-//         Add new cabin
-//       </Button>
-//       {isOpenModal && (
-//         <Modal onClose={() => setIsOpenModal(false)}>
-//           <CreateCabinForm onCloseModal={() => setIsOpenModal(false)} />
-//         </Modal>
-//       )}
-//     </div>
-//   );
-// }
 
 export default AddCabin;

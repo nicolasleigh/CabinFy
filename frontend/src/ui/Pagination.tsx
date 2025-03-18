@@ -1,8 +1,9 @@
-// import { HiChevronLeft, HiChevronRight } from 'react-icons/hi2';
-import { AiOutlineLeft, AiOutlineRight } from 'react-icons/ai';
-import { useSearchParams } from 'react-router-dom';
-import styled from 'styled-components';
-import { PAGE_SIZE } from '../utils/constants';
+import { AiOutlineLeft, AiOutlineRight } from "react-icons/ai";
+import { useSearchParams } from "react-router-dom";
+import styled from "styled-components";
+import { PAGE_SIZE } from "../utils/constants";
+import { ChevronLeft, ChevronRight } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 const StyledPagination = styled.div`
   width: 100%;
@@ -17,9 +18,8 @@ const Buttons = styled.div`
 `;
 
 const PaginationButton = styled.button`
-  background-color: ${(props) =>
-    props.active ? ' var(--color-brand-600)' : 'var(--color-grey-50)'};
-  color: ${(props) => (props.active ? ' var(--color-brand-50)' : 'inherit')};
+  background-color: ${(props) => (props.active ? " var(--color-brand-600)" : "var(--color-grey-50)")};
+  color: ${(props) => (props.active ? " var(--color-brand-50)" : "inherit")};
   border: none;
   border-radius: var(--border-radius-sm);
   font-weight: 500;
@@ -63,51 +63,77 @@ const PaginationButton = styled.button`
 
 function Pagination({ count }) {
   const [searchParams, setSearchParams] = useSearchParams();
-  const currentPage = !searchParams.get('page')
-    ? 1
-    : Number(searchParams.get('page'));
+  const currentPage = !searchParams.get("page") ? 1 : Number(searchParams.get("page"));
 
   const pageCount = Math.ceil(count / PAGE_SIZE);
 
   function prevPage() {
     const prev = currentPage === 1 ? currentPage : currentPage - 1;
-    searchParams.set('page', prev);
+    searchParams.set("page", prev);
     setSearchParams(searchParams);
   }
   function nextPage() {
     const next = currentPage === pageCount ? currentPage : currentPage + 1;
-    searchParams.set('page', next);
+    searchParams.set("page", next);
     setSearchParams(searchParams);
   }
 
   if (pageCount <= 1) return null;
 
   return (
-    <StyledPagination>
+    <div className='flex items-center justify-between my-4'>
       <p>
-        Showing <span>{(currentPage - 1) * PAGE_SIZE + 1}</span> to{' '}
-        <span>
+        Showing{" "}
+        <span className='bg-cBrand-100 text-cBrand-700 font-semibold border rounded-md px-2 py-1'>
+          {(currentPage - 1) * PAGE_SIZE + 1}
+        </span>{" "}
+        to{" "}
+        <span className='bg-cBrand-100 text-cBrand-700 border font-semibold rounded-md px-2 py-1'>
           {currentPage === pageCount ? count : currentPage * PAGE_SIZE}
-        </span>{' '}
+        </span>{" "}
         of <span>{count}</span> results
       </p>
 
-      <Buttons>
-        <PaginationButton onClick={prevPage} disabled={currentPage === 1}>
-          {/* <HiChevronLeft /> <span>Previous</span> */}
-          <AiOutlineLeft /> <span>Previous</span>
-        </PaginationButton>
-        <PaginationButton
+      <div className='flex gap-4 items-center'>
+        <Button
+          onClick={prevPage}
+          disabled={currentPage === 1}
+          className='hover:bg-cBrand-500 hover:text-cBrand-50 pl-2 pr-4 gap-1 bg-muted'
+          variant='ghost'
+        >
+          <ChevronLeft />
+          <span>Prev</span>
+        </Button>
+        <Button
           onClick={nextPage}
           disabled={currentPage === pageCount}
+          className='hover:bg-cBrand-500 hover:text-cBrand-50 pl-4 pr-2 gap-1 bg-muted'
+          variant='ghost'
         >
           <span>Next</span>
-          {/* <HiChevronRight /> */}
-          <AiOutlineRight />
-        </PaginationButton>
-      </Buttons>
-    </StyledPagination>
+          <ChevronRight />
+        </Button>
+      </div>
+    </div>
   );
+  // return (
+  //   <StyledPagination>
+  //     <p>
+  //       Showing <span>{(currentPage - 1) * PAGE_SIZE + 1}</span> to{" "}
+  //       <span>{currentPage === pageCount ? count : currentPage * PAGE_SIZE}</span> of <span>{count}</span> results
+  //     </p>
+
+  //     <Buttons>
+  //       <PaginationButton onClick={prevPage} disabled={currentPage === 1}>
+  //         <AiOutlineLeft /> <span>Previous</span>
+  //       </PaginationButton>
+  //       <PaginationButton onClick={nextPage} disabled={currentPage === pageCount}>
+  //         <span>Next</span>
+  //         <AiOutlineRight />
+  //       </PaginationButton>
+  //     </Buttons>
+  //   </StyledPagination>
+  // );
 }
 
 export default Pagination;

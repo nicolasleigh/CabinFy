@@ -1,7 +1,7 @@
-import styled from 'styled-components';
-import Logo from '../ui/Logo';
-import Heading from '../ui/Heading';
-import ResetPassForm from '../features/authentication/ResetPassForm';
+import styled from "styled-components";
+import Logo from "../ui/Logo";
+import Heading from "../ui/Heading";
+import ResetPassForm from "../features/authentication/ResetPassForm";
 
 const LoginLayout = styled.main`
   min-height: 100vh;
@@ -15,10 +15,10 @@ const LoginLayout = styled.main`
 
 export default function ResetPassword() {
   return (
-    <LoginLayout>
+    <div className='max-w-[400px] mx-auto mt-40'>
       <Logo />
-      <Heading as='h4'>Enter your new password</Heading>
+      <h2 className='text-2xl font-semibold mb-5 text-center'>Enter your new password</h2>
       <ResetPassForm />
-    </LoginLayout>
+    </div>
   );
 }

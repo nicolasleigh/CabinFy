@@ -1,5 +1,5 @@
-import styled from 'styled-components';
-import { formatCurrency } from '../utils/helpers';
+import styled from "styled-components";
+import { formatCurrency } from "../utils/helpers";
 
 const Location = styled.div`
   display: flex;
@@ -33,22 +33,15 @@ const Location = styled.div`
   }
 `;
 
-export default function CabinTextInfo({
-  bedroom,
-  discount,
-  regularPrice,
-  location,
-}) {
+export default function CabinTextInfo({ bedroom, discount, regularPrice, location }) {
   return (
-    <Location>
-      <div>Located in: {location}</div>
+    <div className='flex flex-col gap-2 bg-cGrey-100 mb-8'>
+      <div className='text-2xl'>Located in: {location}</div>
 
-      <div>
-        {bedroom}{' '}
-        {Number(bedroom) === 1 ? <span>bedroom</span> : <span>bedrooms</span>}{' '}
-        {Boolean(discount) && <span> &bull; {discount}% discount</span>} &bull;{' '}
-        {formatCurrency(regularPrice)} night
+      <div className='text-cGrey-700 '>
+        {bedroom} {Number(bedroom) === 1 ? <span>bedroom</span> : <span>bedrooms</span>}{" "}
+        {Boolean(discount) && <span> &bull; {discount}% discount</span>} &bull; {formatCurrency(regularPrice)} night
       </div>
-    </Location>
+    </div>
   );
 }

@@ -1,13 +1,11 @@
-import { useQueryClient } from '@tanstack/react-query';
-import { useForm } from 'react-hook-form';
-import { useNavigate, useParams } from 'react-router-dom';
-import Button from '../../ui/Button';
-import Form from '../../ui/Form';
-import FormRowVertical from '../../ui/FormRowVertical';
-import Input from '../../ui/Input';
-import { useResetPass } from './useResetPass';
-
-const passwordLength = import.meta.env.VITE_PASS_LENGTH;
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { useQueryClient } from "@tanstack/react-query";
+import { useForm } from "react-hook-form";
+import { useNavigate, useParams } from "react-router-dom";
+import { useResetPass } from "./useResetPass";
+import { PASS_LENGTH } from "@/utils/constants";
 
 function ResetPassForm() {
   const { uid, token } = useParams();
@@ -23,53 +21,52 @@ function ResetPassForm() {
       { uid, token, password },
       {
         onSettled: () => {
-          queryClient.invalidateQueries(['user']);
-          navigate('/admin');
+          queryClient.invalidateQueries(["user"]);
+          navigate("/admin");
         },
       }
     );
   }
 
   return (
-    <Form onSubmit={handleSubmit(onSubmit)}>
-      <FormRowVertical
-        label={`Password (min ${passwordLength} characters)`}
-        error={errors?.password?.message}
-      >
+    <form onSubmit={handleSubmit(onSubmit)} className='border py-6 px-8 rounded-md flex flex-col gap-4 '>
+      <div>
+        <Label htmlFor='password'>Password</Label>
         <Input
           type='password'
           id='password'
           disabled={isLoading}
-          {...register('password', {
-            required: 'This field is required',
+          {...register("password", {
+            required: "This field is required",
             minLength: {
-              value: passwordLength,
-              message: `Password needs a minimum of ${passwordLength} characters`,
+              value: PASS_LENGTH,
+              message: `Password needs a minimum of ${PASS_LENGTH} characters`,
             },
           })}
         />
-      </FormRowVertical>
+        <p className='text-cRed-500 text-sm'>{errors?.password?.message}</p>
+      </div>
 
-      <FormRowVertical
-        label='Repeat password'
-        error={errors?.passwordConfirm?.message}
-      >
+      <div>
+        <Label htmlFor='passwordConfirm'>Repeat Password</Label>
         <Input
           type='password'
           id='passwordConfirm'
           disabled={isLoading}
-          {...register('passwordConfirm', {
-            required: 'This field is required',
-            validate: (value) =>
-              value === getValues().password || 'Passwords need to match',
+          {...register("passwordConfirm", {
+            required: "This field is required",
+            validate: (value) => value === getValues().password || "Passwords need to match",
           })}
         />
-      </FormRowVertical>
+        <p className='text-cRed-500 text-sm'>{errors?.passwordConfirm?.message}</p>
+      </div>
 
-      <FormRowVertical>
-        <Button disabled={isLoading}>Submit</Button>
-      </FormRowVertical>
-    </Form>
+      <div>
+        <Button className='bg-cBrand-500 hover:bg-cBrand-600' disabled={isLoading}>
+          Submit
+        </Button>
+      </div>
+    </form>
   );
 }
 

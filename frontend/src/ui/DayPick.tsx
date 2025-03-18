@@ -1,18 +1,11 @@
-import {
-  differenceInCalendarDays,
-  format,
-  isAfter,
-  isBefore,
-  isValid,
-  parse,
-} from 'date-fns';
-import { zhCN } from 'date-fns/locale';
-import { DateRange, DayPicker } from 'react-day-picker';
-import 'react-day-picker/dist/style.css';
-import styled from 'styled-components';
-import '../styles/day-picker.css';
-import { useEffect } from 'react';
-import toast from 'react-hot-toast';
+import { differenceInCalendarDays, format, isAfter, isBefore, isValid, parse } from "date-fns";
+import { zhCN } from "date-fns/locale";
+import { DateRange, DayPicker } from "react-day-picker";
+import "react-day-picker/dist/style.css";
+import styled from "styled-components";
+import "../styles/day-picker.css";
+import { useEffect } from "react";
+import toast from "react-hot-toast";
 
 const CheckIn = styled.input`
   text-transform: uppercase;
@@ -79,7 +72,7 @@ export default function DayPick({
 
   const handleFromChange = (e: any) => {
     setFromValue(e.target.value);
-    const date = parse(e.target.value, 'y-MM-dd', new Date());
+    const date = parse(e.target.value, "y-MM-dd", new Date());
     if (!isValid(date)) {
       return setSelectedRange({ from: undefined, to: undefined });
     }
@@ -92,7 +85,7 @@ export default function DayPick({
 
   const handleToChange = (e: any) => {
     setToValue(e.target.value);
-    const date = parse(e.target.value, 'y-MM-dd', new Date());
+    const date = parse(e.target.value, "y-MM-dd", new Date());
 
     if (!isValid(date)) {
       return setSelectedRange({ from: selectedRange?.from, to: undefined });
@@ -107,14 +100,14 @@ export default function DayPick({
   const handleRangeSelect = (range: any) => {
     setSelectedRange(range);
     if (range?.from) {
-      setFromValue(format(range.from, 'y-MM-dd'));
+      setFromValue(format(range.from, "y-MM-dd"));
     } else {
-      setFromValue('');
+      setFromValue("");
     }
     if (range?.to) {
-      setToValue(format(range.to, 'y-MM-dd'));
+      setToValue(format(range.to, "y-MM-dd"));
     } else {
-      setToValue('');
+      setToValue("");
     }
   };
 
@@ -144,14 +137,11 @@ export default function DayPick({
     if (fromValue && toValue) {
       if (range) {
         for (let i = 0; i < range.length; i++) {
-          if (
-            isBefore(new Date(fromValue), range[i].from) &&
-            isAfter(new Date(toValue), range[i].to)
-          ) {
-            toast.error('Please select a valid range');
+          if (isBefore(new Date(fromValue), range[i].from) && isAfter(new Date(toValue), range[i].to)) {
+            toast.error("Please select a valid range");
             setSelectedRange({ from: undefined, to: undefined });
-            setFromValue('');
-            setToValue('');
+            setFromValue("");
+            setToValue("");
             break;
           }
         }
@@ -169,23 +159,25 @@ export default function DayPick({
       min={minBookingLength >= 2 ? minBookingLength : undefined}
       max={maxBookingLength}
       footer={
-        <InputGroup>
-          <CheckIn
+        <div className='mt-5 '>
+          <input
+            className='border w-1/2 uppercase p-2 rounded-l-md text-cGrey-500'
             size={10}
-            placeholder='From Date'
+            placeholder='From'
             value={fromValue}
             onChange={handleFromChange}
             disabled={true}
           />
 
-          <CheckOut
+          <input
+            className='border w-1/2 uppercase p-2 rounded-r-md text-cGrey-500'
             size={10}
-            placeholder='To Date'
+            placeholder='To'
             value={toValue}
             onChange={handleToChange}
             disabled={true}
           />
-        </InputGroup>
+        </div>
       }
     />
   );

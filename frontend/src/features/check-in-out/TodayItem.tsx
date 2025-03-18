@@ -1,8 +1,11 @@
-import { Link } from 'react-router-dom';
-import styled from 'styled-components';
-import Button from '../../ui/Button';
-import Tag from '../../ui/Tag';
-import CheckoutButton from './CheckoutButton';
+import { Link, useNavigate } from "react-router-dom";
+import styled from "styled-components";
+// import Button from "../../ui/Button";
+import Tag from "../../ui/Tag";
+import CheckoutButton from "./CheckoutButton";
+import { Button } from "@/components/ui/button";
+import { useCheckout } from "./useCheckout";
+import { Badge } from "@/components/ui/badge";
 
 const StyledTodayItem = styled.li`
   display: grid;
@@ -47,35 +50,47 @@ const Nights = styled.div`
 
 function TodayItem({ activity }) {
   const { id, status, guest, numNights } = activity;
+  const navigate = useNavigate();
+  const { checkout, isCheckingOut } = useCheckout();
+
   return (
-    <StyledTodayItem>
-      {status === 'unconfirmed' && (
-        <Tag className='tag' type='green'>
-          Arriving
-        </Tag>
+    <li className='grid grid-cols-[6rem_1fr_8rem_6rem] px-2 '>
+      {status === "unconfirmed" && (
+        <div className='flex justify-center items-center'>
+          <div className='bg-cGreen-100 text-cGreen-700 rounded-full text-xs font-semibold px-2 py-1'>
+            <span>Arriving</span>
+          </div>
+        </div>
       )}
-      {status === 'checked-in' && (
-        <Tag className='tag' type='blue'>
-          Departing
-        </Tag>
+      {status === "checked-in" && (
+        <div className='flex justify-center items-center'>
+          <div className='bg-cBlue-100 text-cBlue-700 rounded-full text-xs font-semibold px-2 py-1'>
+            <span>Departing</span>
+          </div>
+        </div>
       )}
 
-      <Guest>{guest.fullName}</Guest>
-      <Nights>{numNights} nights</Nights>
+      <p className='font-semibold text-sm self-center'>{guest.fullName}</p>
+      <p className='text-sm self-center'>{numNights} nights</p>
 
-      {status === 'unconfirmed' && (
-        <Button
-          className='btn'
-          size='small'
-          variation='primary'
-          as={Link}
-          to={`/admin/checkin/${id}`}
+      {status === "unconfirmed" && (
+        <button
+          className='bg-cBrand-500 text-cBrand-50 text-sm hover:bg-cBrand-600 hover:text-cBrand-100 rounded-sm'
+          onClick={() => navigate(`/admin/checkin/${id}`)}
         >
           Check in
-        </Button>
+        </button>
       )}
-      {status === 'checked-in' && <CheckoutButton bookingId={id} />}
-    </StyledTodayItem>
+      {status === "checked-in" && (
+        <button
+          className='bg-cBrand-500 text-cBrand-50 text-sm hover:bg-cBrand-600 hover:text-cBrand-100 rounded-sm'
+          onClick={() => checkout(id)}
+          disabled={isCheckingOut}
+        >
+          Check out
+        </button>
+      )}
+    </li>
   );
 }
 

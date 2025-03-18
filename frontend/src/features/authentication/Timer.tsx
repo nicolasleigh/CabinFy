@@ -1,6 +1,7 @@
-import { useEffect, useState } from 'react';
-import styled from 'styled-components';
-import Button from '../../ui/Button';
+import { Button } from "@/components/ui/button";
+import { useEffect, useState } from "react";
+import styled from "styled-components";
+// import Button from '../../ui/Button';
 
 const StyledTimer = styled.span`
   display: inline-block;
@@ -32,9 +33,9 @@ export default function Timer({ setDisableBtn }) {
     <>
       <Button disabled={true}>
         Send password reset link
-        <StyledTimer>
+        <div>
           {minutes}:{seconds}
-        </StyledTimer>
+        </div>
       </Button>
     </>
   );

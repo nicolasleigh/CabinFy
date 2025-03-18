@@ -1,15 +1,17 @@
-import LoginForm from '../features/authentication/LoginForm';
-import Heading from '../ui/Heading';
-import { LoginLayout } from '../ui/LoginLayout';
-import Logo from '../ui/Logo';
+import LoginForm from "../features/authentication/LoginForm";
+import Heading from "../ui/Heading";
+import { LoginLayout } from "../ui/LoginLayout";
+import Logo from "../ui/Logo";
 
 function Login() {
   return (
-    <LoginLayout>
+    <div className='max-w-[400px] mx-auto mt-10'>
       <Logo $large />
-      <Heading as='h4'>Log in as administrator</Heading>
+      <h2 className='text-2xl font-semibold mb-5 text-center'>
+        Log in as <span className='bg-cRed-100 text-cRed-500 px-1 rounded-sm'>Admin</span>
+      </h2>
       <LoginForm />
-    </LoginLayout>
+    </div>
   );
 }
 
