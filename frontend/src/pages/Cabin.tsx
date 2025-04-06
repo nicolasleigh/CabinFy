@@ -1,7 +1,6 @@
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
 import { Suspense, lazy, useState } from "react";
-import { imageBaseUrl } from "../App";
 // import BookingForm from '../features/bookings/BookingForm';
 import { useCabin } from "../features/cabins/useCabin";
 import { useReviews } from "../features/guests/useReviews";
@@ -135,19 +134,21 @@ export default function Cabin() {
 
   return (
     <>
-      {/* <GuestSignup />
-      <GuestLogin /> */}
       <div className='text-3xl font-semibold'>{name}</div>
 
-      <ImageSection>
-        <ImageLeft src={imageBaseUrl + image} alt='cabin cover photo' />
-        <ImageRight>
-          <ImageRightCell src={imageBaseUrl + images[0]?.fileName} alt='cabin interior photo 1' />
-          <ImageRightCell src={imageBaseUrl + images[1]?.fileName} alt='cabin interior photo 2' />
-          <ImageRightCell src={imageBaseUrl + images[2]?.fileName} alt='cabin interior photo 3' />
-          <ImageRightCell src={imageBaseUrl + images[3]?.fileName} alt='cabin interior photo 4' />
-        </ImageRight>
-      </ImageSection>
+      <div className='grid grid-cols-1 gap-2 py-5 sm:grid-cols-2'>
+        <img
+          className='rounded-t-xl w-full h-full object-cover sm:rounded-none sm:rounded-l-xl'
+          src={image}
+          alt='cabin cover photo'
+        />
+        <div className='grid grid-cols-2 rounded-b-lg sm:rounded-none sm:rounded-r-xl overflow-hidden gap-[6px]'>
+          <img src={images[0]?.url} alt='cabin interior photo 1' />
+          <img src={images[1]?.url} alt='cabin interior photo 2' />
+          <img src={images[2]?.url} alt='cabin interior photo 3' />
+          <img src={images[3]?.url} alt='cabin interior photo 4' />
+        </div>
+      </div>
 
       <div className='grid grid-cols-[3fr_2fr] grid-rows-[auto_auto_auto_1fr_auto] gap-x-12'>
         <CabinTextInfo bedroom={bedroom} discount={discount} regularPrice={regularPrice} location={location} />

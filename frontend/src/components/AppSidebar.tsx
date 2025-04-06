@@ -39,13 +39,14 @@ const items = [
 ];
 
 export function AppSidebar() {
-  const { theme } = useTheme();
+  // const { theme } = useTheme();
   const { logout, isLoading } = useLogout();
   return (
     <Sidebar variant='inset'>
       <SidebarHeader className='mb-8'>
         <Link to='/'>
-          <img src={theme === "light" ? "/logo.svg" : "/logo-dark.svg"} alt='Hotel logo' className='w-full pt-2' />
+          {/* <img src={theme === "light" ? "/logo.svg" : "/logo-dark.svg"} alt='Cabin logo' className='w-full pt-2' /> */}
+          <img src={"/logo.svg"} alt='Cabin logo' className='w-full h-24 pt-2' />
         </Link>
       </SidebarHeader>
       <SidebarContent className=''>

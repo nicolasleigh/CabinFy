@@ -18,7 +18,7 @@ export const columns: ColumnDef<Cabins>[] = [
     header: "Image",
     cell: ({ row }) => {
       const image = row.getValue("image");
-      return <img src={image} alt='Image' />;
+      return <img src={image} className='w-32 h-20 rounded-sm' alt='Image' />;
     },
   },
   {

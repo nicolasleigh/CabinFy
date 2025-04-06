@@ -36,7 +36,7 @@ const Cabins = lazy(() => import("./pages/Cabins"));
 const Cabin = lazy(() => import("./pages/Cabin"));
 const Home = lazy(() => import("./pages/Home"));
 
-export const imageBaseUrl = import.meta.env.VITE_IMAGE_URL;
+// export const imageBaseUrl = import.meta.env.VITE_IMAGE_URL;
 
 const queryClient = new QueryClient({
   defaultOptions: {
