@@ -1,7 +1,5 @@
-FROM node:22-slim
+FROM node:20-alpine3.16
 WORKDIR /app
-# fix prisma error: Prisma failed to detect the libssl/openssl version to use
-RUN apt-get install -y openssl
 COPY package*.json ./
 COPY prisma ./prisma/
 RUN npm install
