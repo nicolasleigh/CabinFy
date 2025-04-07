@@ -1,12 +1,9 @@
-import { NextFunction, Request, Response } from 'express';
-import prisma from '../../prisma/client.js';
-import { cabinSchema } from '../../prisma/validation.js';
+import { NextFunction, Request, Response } from "express";
+import prisma from "../../prisma/client.js";
+import { cabinSchema } from "../../prisma/validation.js";
+import cloudinary from "../utils/cloudinary.js";
 
-export const getCabins = async (
-  req: Request,
-  res: Response,
-  next: NextFunction
-) => {
+export const getCabins = async (req: Request, res: Response, next: NextFunction) => {
   try {
     const cabins = await prisma.cabins.findMany();
     res.json(cabins);
@@ -15,11 +12,7 @@ export const getCabins = async (
   }
 };
 
-export const getCabin = async (
-  req: Request,
-  res: Response,
-  next: NextFunction
-) => {
+export const getCabin = async (req: Request, res: Response, next: NextFunction) => {
   try {
     const cabin = await prisma.cabins.findUnique({
       where: { id: parseInt(req.params.id) },
@@ -30,29 +23,45 @@ export const getCabin = async (
   }
 };
 
-export const createCabin = async (
-  req: Request,
-  res: Response,
-  next: NextFunction
-) => {
+export const createCabin = async (req: Request, res: Response, next: NextFunction) => {
+  if (!req.files) {
+    return res.status(400).json("File is missing");
+  }
+
   const result = cabinSchema.safeParse(req.body);
   if (!result.success) {
     return res.status(400).json({ error: result.error.issues[0].message });
   }
   const { name, location, bedroom, regularPrice, discount } = result.data;
-  const { filePaths, coverPath } = req.body;
-  let coverName;
-  let fileNameJson;
-  if (coverPath) {
-    coverName = coverPath.split('/').pop();
+  const files = req.files as { [fieldname: string]: Express.Multer.File[] };
+  const image = files.image;
+  const images = files.images;
+
+  let coverImageUrl = "";
+  let imagesUrlJson = [];
+
+  if (image[0]) {
+    const { secure_url: url } = await cloudinary.uploader.upload(image[0].path, {
+      transformation: {
+        width: 720,
+        height: 480,
+      },
+      folder: "cabins",
+    });
+    coverImageUrl = url;
   }
-  if (filePaths) {
-    fileNameJson = [
-      { fileName: filePaths[0].split('/').pop() },
-      { fileName: filePaths[1].split('/').pop() },
-      { fileName: filePaths[2].split('/').pop() },
-      { fileName: filePaths[3].split('/').pop() },
-    ];
+
+  if (images) {
+    for (let i = 0; i < images.length; i++) {
+      const { secure_url: url } = await cloudinary.uploader.upload(images[i].path, {
+        transformation: {
+          width: 720,
+          height: 480,
+        },
+        folder: "cabins",
+      });
+      imagesUrlJson.push({ url: url });
+    }
   }
 
   try {
@@ -63,8 +72,8 @@ export const createCabin = async (
         bedroom,
         regularPrice,
         discount,
-        image: coverName,
-        images: fileNameJson,
+        image: coverImageUrl,
+        images: imagesUrlJson,
       },
     });
     res.json(cabin);
@@ -73,30 +82,49 @@ export const createCabin = async (
   }
 };
 
-export const updateCabin = async (
-  req: Request,
-  res: Response,
-  next: NextFunction
-) => {
+export const updateCabin = async (req: Request, res: Response, next: NextFunction) => {
+  if (!req.files) {
+    return res.status(400).json("File is missing");
+  }
   const result = cabinSchema.safeParse(req.body);
+  const files = req.files as { [fieldname: string]: Express.Multer.File[] };
+  const image = files.image;
+  const images = files.images;
+
   if (!result.success) {
     return res.status(400).json({ error: result.error.issues[0].message });
   }
   const { name, location, bedroom, regularPrice, discount } = result.data;
-  const { filePaths, coverPath } = req.body;
+  // const { filePaths, coverPath } = req.body;
 
-  let coverName;
-  let fileNameJson;
-  if (coverPath) {
-    coverName = coverPath.split('/').pop();
+  const cabin = await prisma.cabins.findUnique({ where: { id: parseInt(req.params.id) } });
+
+  let coverImageUrl = cabin?.image;
+  let imagesUrls: { url: string }[] = cabin?.images as { url: string }[];
+
+  if (image && image[0]) {
+    const { secure_url: url } = await cloudinary.uploader.upload(image[0].path, {
+      transformation: {
+        width: 720,
+        height: 480,
+      },
+      folder: "cabins",
+    });
+    coverImageUrl = url;
   }
-  if (filePaths) {
-    fileNameJson = [
-      { fileName: filePaths[0].split('/').pop() },
-      { fileName: filePaths[1].split('/').pop() },
-      { fileName: filePaths[2].split('/').pop() },
-      { fileName: filePaths[3].split('/').pop() },
-    ];
+
+  if (images) {
+    imagesUrls = [];
+    for (let i = 0; i < images.length; i++) {
+      const { secure_url: url } = await cloudinary.uploader.upload(images[i].path, {
+        transformation: {
+          width: 720,
+          height: 480,
+        },
+        folder: "cabins",
+      });
+      imagesUrls.push({ url: url });
+    }
   }
 
   try {
@@ -108,8 +136,8 @@ export const updateCabin = async (
         bedroom,
         regularPrice,
         discount,
-        image: coverName,
-        images: fileNameJson,
+        image: coverImageUrl,
+        images: imagesUrls,
       },
     });
     res.json(cabin);
@@ -118,19 +146,40 @@ export const updateCabin = async (
   }
 };
 
-export const duplicateCabin = async (
-  req: Request,
-  res: Response,
-  next: NextFunction
-) => {
+export const updateCabinWithoutImage = async (req: Request, res: Response, next: NextFunction) => {
+  const result = cabinSchema.safeParse(req.body);
+
+  if (!result.success) {
+    return res.status(400).json({ error: result.error.issues[0].message });
+  }
+  const { name, location, bedroom, regularPrice, discount } = result.data;
+
+  try {
+    const cabin = await prisma.cabins.update({
+      where: { id: parseInt(req.params.id) },
+      data: {
+        name,
+        location,
+        bedroom,
+        regularPrice,
+        discount,
+      },
+    });
+    res.json(cabin);
+  } catch (error) {
+    res.status(400).json(error);
+  }
+};
+
+export const duplicateCabin = async (req: Request, res: Response, next: NextFunction) => {
   const cabin = await prisma.cabins.findUnique({
     where: { id: parseInt(req.params.id) },
   });
-  if (!cabin) return res.status(404).json({ error: 'Cabin not found' });
+  if (!cabin) return res.status(404).json({ error: "Cabin not found" });
   try {
     const newCabin = await prisma.cabins.create({
       data: {
-        name: cabin.name + ' Copy',
+        name: cabin.name + " Copy",
         location: cabin.location,
         bedroom: cabin.bedroom,
         regularPrice: cabin.regularPrice,
@@ -146,11 +195,7 @@ export const duplicateCabin = async (
   }
 };
 
-export const deleteCabin = async (
-  req: Request,
-  res: Response,
-  next: NextFunction
-) => {
+export const deleteCabin = async (req: Request, res: Response, next: NextFunction) => {
   try {
     const cabin = await prisma.cabins.delete({
       where: { id: parseInt(req.params.id) },

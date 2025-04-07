@@ -25,9 +25,10 @@ const Img = styled.img`
 `;
 
 function Logo({ $large, $medium }) {
-  const { isDarkMode } = useDarkMode();
+  // const { isDarkMode } = useDarkMode();
 
-  const src = isDarkMode ? "/logo-dark.svg" : "/logo.svg";
+  // const src = isDarkMode ? "/logo-dark.svg" : "/logo.svg";
+  const src = "/logo.svg";
 
   return (
     <div>

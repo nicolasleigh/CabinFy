@@ -27,13 +27,13 @@ const HomeLayout = styled.div`
   }
 `;
 
-const imageURL = import.meta.env.VITE_IMAGE_URL;
+// const imageURL = import.meta.env.VITE_IMAGE_URL;
 
 export default function Home() {
   const { cabins, isLoading: isLoadingCabins } = useCabins();
   const { rate, isLoading: isLoadingRate } = useRate();
 
-  // console.log(cabins);
+  console.log(cabins);
 
   const avgRating = rate?.map((e) => {
     return Math.ceil(e._avg.rating * 10) / 10;
@@ -53,13 +53,12 @@ export default function Home() {
               <Card
                 key={e.id}
                 id={e.id}
-                src={imageURL + e.image}
+                src={e.image}
                 name={e.name}
                 bed={e.bedroom}
                 discount={e.discount}
                 price={"CN¥ " + e.regularPrice}
                 rate={avgRating?.[e.id - 1]}
-                images={e.images}
               />
             );
           })}

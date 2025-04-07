@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import { useUser } from "./useUser";
-import { imageBaseUrl } from "../../App";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 const StyledUserAvatar = styled.div`
@@ -28,7 +27,7 @@ function UserAvatar() {
 
   return (
     <Avatar>
-      <AvatarImage src={avatar ? imageBaseUrl + avatar : "/default-user.jpg"} alt={`Avatar of ${username}`} />
+      <AvatarImage src={avatar ? avatar : "/default-user.jpg"} alt={`Avatar of ${username}`} />
     </Avatar>
   );
   // return (

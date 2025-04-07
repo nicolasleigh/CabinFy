@@ -4,7 +4,7 @@ import { useForm, UseFormProps, UseFormReturn } from "react-hook-form";
 import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import Dropzone from "@/components/DropZone";
+import Dropzone from "@/components/Dropzone";
 import { useEffect, useState } from "react";
 import DropzoneMultiple from "@/components/DropzoneMultiple";
 import { formatBytes, numberInputOnWheelPreventChange } from "@/utils/helpers";
@@ -105,9 +105,11 @@ export default function CabinForm({ isUpdate = false, initialState, onSubmit }) 
       form.setValue("regularPrice", initialState.regularPrice);
       form.setValue("location", initialState.location);
       setSelectedImage(initialState.image);
-      setSelectedImages(initialState.images);
+      const imageArr = initialState.images.map((elem) => elem.url);
+      // setSelectedImages(initialState.images);
+      setSelectedImages(imageArr);
     }
-  }, [initialState]);
+  }, []);
 
   // const handleSubmit = (values: z.infer<typeof formSchema>) => {
   //   const formData = new FormData();

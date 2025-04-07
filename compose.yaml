@@ -6,7 +6,7 @@ services:
     image: postgres:16
     container_name: cabinfy-postgres
     environment:
-      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_USER_FILE: /run/secrets/db_user
       POSTGRES_PASSWORD_FILE: /run/secrets/db_password
       POSTGRES_DB: cabinfy
     secrets:
@@ -21,11 +21,11 @@ services:
   backend:
     restart: on-failure:10
     build:
-      context: .
+      context: ./backend
       dockerfile: Dockerfile
     container_name: cabinfy-backend
     environment:
-      - NODE_ENV=production
+      NODE_ENV: production
     networks:
       - backend_network
     depends_on:
@@ -33,9 +33,22 @@ services:
     ports:
       - "127.0.0.1:8081:8081"
 
+  frontend:
+    restart: on-failure:10
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: cabinfy-frontend
+    depends_on:
+      - backend
+    ports:
+      - "5173:5173"
+
 secrets:
   db_password:
     file: db_password.txt
+  db_user:
+    file: db_user.txt
 
 volumes:
   postgres_data:
