@@ -16,6 +16,7 @@ export default defineConfig({
     hmr: {
       overlay: false, // This is to disable the overlay error message
     },
+    allowedHosts: ["cabin.linze.pro"],
   },
   optimizeDeps: {
     exclude: ["js-big-decimal"],
