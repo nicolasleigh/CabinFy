@@ -29,24 +29,18 @@ services:
       NODE_ENV: production
     networks:
       - backend_network
-      - frontend_network
     depends_on:
       - postgres
     ports:
       - "127.0.0.1:8081:8081"
 
   frontend:
-    restart: always
     build:
       context: ./frontend
       dockerfile: Dockerfile
     container_name: cabinfy-frontend
-    depends_on:
-      - backend
-    networks:
-      - frontend_network
-    ports:
-      - "5173:5173"
+    volumes:
+      - ./react-build:/dist
 
 secrets:
   db_user:
@@ -59,6 +53,4 @@ volumes:
 
 networks:
   backend_network:
-    driver: bridge
-  frontend_network:
     driver: bridge

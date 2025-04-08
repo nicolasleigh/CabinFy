@@ -1,9 +1,10 @@
-music.linze.pro {
-	reverse_proxy localhost:8080
-}
 cabin.linze.pro {
-	reverse_proxy localhost:5173
 	handle /api/* {
 		reverse_proxy localhost:8081
+	}
+	handle {
+		root * ~/CabinFy/react-build
+		try_files {path} /index.html
+		file_server
 	}
 }
