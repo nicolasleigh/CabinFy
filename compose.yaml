@@ -34,14 +34,6 @@ services:
     ports:
       - "127.0.0.1:8081:8081"
 
-  frontend:
-    build:
-      context: ./frontend
-      dockerfile: Dockerfile
-    container_name: cabinfy-frontend
-    volumes:
-      - ./react-build:/dist
-
 secrets:
   db_user:
     file: db_user.txt
