@@ -1,24 +1,16 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+// import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { Toaster } from "react-hot-toast";
 import { Navigate, Route, RouterProvider, Routes, createBrowserRouter } from "react-router-dom";
 import { ContextProvider } from "./context";
 import { DarkModeProvider } from "./context/DarkModeContext";
 import Account from "./pages/Account";
-// import Booking from './pages/Booking';
-// import Bookings from './pages/Bookings';
-// import Cabin from './pages/Cabin';
-// import Cabins from './pages/Cabins';
-// import Checkin from './pages/Checkin';
-// import Dashboard from './pages/Dashboard';
-// import Home from './pages/Home';
 import ForgetPassword from "./pages/ForgetPassword";
 import Login from "./pages/Login";
 import PageNotFound from "./pages/PageNotFound";
 import ResetPassword from "./pages/ResetPassword";
 import Settings from "./pages/Settings";
 import Signup from "./pages/Signup";
-import GlobalStyles from "./styles/GlobalStyles";
 import AppLayout from "./ui/AppLayout";
 import GuestLayout from "./features/guests/GuestLayout";
 import ProtectedRoute from "./ui/ProtectedRoute";
@@ -51,7 +43,7 @@ export default function App() {
     <DarkModeProvider>
       <ContextProvider>
         <QueryClientProvider client={queryClient}>
-          <ReactQueryDevtools initialIsOpen={false} />
+          {/* <ReactQueryDevtools initialIsOpen={false} /> */}
           {/* <GlobalStyles /> */}
           <ThemeProvider>
             <RouterProvider router={router} />

@@ -29,6 +29,7 @@ services:
       NODE_ENV: production
     networks:
       - backend_network
+      - frontend_network
     depends_on:
       - postgres
     ports:
@@ -42,6 +43,8 @@ services:
     container_name: cabinfy-frontend
     depends_on:
       - backend
+    networks:
+      - frontend_network
     ports:
       - "5173:5173"
 
@@ -56,4 +59,6 @@ volumes:
 
 networks:
   backend_network:
+    driver: bridge
+  frontend_network:
     driver: bridge
