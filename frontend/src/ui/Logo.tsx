@@ -24,15 +24,12 @@ const Img = styled.img`
     `}
 `;
 
-function Logo({ $large, $medium }) {
-  // const { isDarkMode } = useDarkMode();
-
-  // const src = isDarkMode ? "/logo-dark.svg" : "/logo.svg";
+function Logo({ large }) {
   const src = "/logo.svg";
 
   return (
     <div>
-      <img className='' width={200} height={200} src={src} alt='Logo' />
+      <img className='mx-auto' width={large ? 300 : 200} height={large ? 300 : 200} src={src} alt='Logo' />
     </div>
   );
 }

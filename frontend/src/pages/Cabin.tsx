@@ -138,15 +138,15 @@ export default function Cabin() {
 
       <div className='grid grid-cols-1 gap-2 py-5 sm:grid-cols-2'>
         <img
-          className='rounded-t-xl w-full h-full object-cover sm:rounded-none sm:rounded-l-xl'
+          className='rounded-t-xl w-full h-full object-cover sm:rounded-none sm:rounded-l-xl aspect-[3/2]'
           src={image}
           alt='cabin cover photo'
         />
         <div className='grid grid-cols-2 rounded-b-lg sm:rounded-none sm:rounded-r-xl overflow-hidden gap-[6px]'>
-          <img src={images[0]?.url} alt='cabin interior photo 1' />
-          <img src={images[1]?.url} alt='cabin interior photo 2' />
-          <img src={images[2]?.url} alt='cabin interior photo 3' />
-          <img src={images[3]?.url} alt='cabin interior photo 4' />
+          <img src={images[0]?.url} alt='cabin interior photo 1' className='aspect-[3/2]' />
+          <img src={images[1]?.url} alt='cabin interior photo 2' className='aspect-[3/2]' />
+          <img src={images[2]?.url} alt='cabin interior photo 3' className='aspect-[3/2]' />
+          <img src={images[3]?.url} alt='cabin interior photo 4' className='aspect-[3/2]' />
         </div>
       </div>
 

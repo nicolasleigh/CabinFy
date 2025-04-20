@@ -33,7 +33,7 @@ function Cabins() {
         <CabinTableOperations />
       </div>
 
-      <div className='flex flex-col gap-4'>
+      <div className='flex flex-col gap-4 mb-5'>
         <CabinTable />
         <div>
           <AddCabin />

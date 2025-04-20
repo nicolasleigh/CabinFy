@@ -33,7 +33,7 @@ export const cabins = [
     image: "https://res.cloudinary.com/dzociog3r/image/upload/v1743948716/cabins/cabin-002_zrucde.webp",
     images: [
       {
-        url: "https://res.cloudinary.com/dzociog3r/image/upload/v1743948716/cabins/cabin-002_zrucde.webp",
+        url: "https://res.cloudinary.com/dzociog3r/image/upload/v1743948716/cabins/e4369d66-1cbd-440f-a3b2-823a6b03c908_1_gnuduu.webp",
       },
       {
         url: "https://res.cloudinary.com/dzociog3r/image/upload/v1743948715/cabins/15e65039-003b-4c07-b03f-b305d020223a_ic16za.webp",

@@ -3,7 +3,7 @@ cabin.linze.pro {
 		reverse_proxy localhost:8081
 	}
 	handle {
-		root * ~/CabinFy/react-build
+		root * /home/nicolas/cabinfy/react-build/dist
 		try_files {path} /index.html
 		file_server
 	}

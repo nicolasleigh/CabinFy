@@ -66,7 +66,11 @@ export default function LoginForm({
     <div className={cn("flex flex-col gap-6", className)} {...props}>
       <Card>
         <CardHeader className='text-center'>
-          <CardTitle className='text-xl'>{title as string}</CardTitle>
+          <CardTitle className='text-xl'>
+            <h2 className='text-2xl font-semibold text-center'>
+              <span className='bg-cRed-100 text-cRed-500 px-1 rounded-sm'>Admin</span> Login
+            </h2>
+          </CardTitle>
         </CardHeader>
         <CardContent>
           <form onSubmit={handleSubmit}>
