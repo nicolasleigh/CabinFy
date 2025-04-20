@@ -101,14 +101,14 @@ function Stat({ icon, title, value, color }: { color: colorEnum }) {
   };
 
   return (
-    <div className='border rounded-md p-2 grid grid-cols-[64px_1fr] gap-x-2 gap-y-1 grid-rows-2 h-full '>
+    <div className='border rounded-md p-2 grid grid-cols-[64px_1fr] gap-x-2 max-lg:gap-x-0 gap-y-1 grid-rows-2 h-full '>
       <div
-        className={`${colorMap[color]} rounded-full w-16 h-16 row-span-full flex items-center justify-center self-center`}
+        className={`${colorMap[color]} rounded-full w-16 h-16 max-lg:w-12 max-lg:h-12 row-span-full flex items-center justify-center self-center`}
       >
         {icon}
       </div>
-      <p className='font-semibold text-lg text-cGrey-500 uppercase tracking-tight self-end'>{title}</p>
-      <p className='leading-6 font-semibold text-lg'>{value}</p>
+      <p className='font-semibold text-lg max-lg:text-base text-cGrey-500 uppercase tracking-tight self-end'>{title}</p>
+      <p className='leading-6 font-semibold text-lg max-lg:text-sm'>{value}</p>
     </div>
   );
 }

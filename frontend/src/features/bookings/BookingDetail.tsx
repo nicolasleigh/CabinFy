@@ -55,9 +55,9 @@ function BookingDetail() {
 
   return (
     <>
-      <div className='flex justify-between items-center mb-2'>
+      <div className='flex justify-between items-center mb-2 '>
         <div className='flex items-center gap-2'>
-          <h1 className='text-2xl font-semibold'>Booking #{bookingId}</h1>
+          <h1 className='text-xl max-md:text-lg font-semibold max-sm:text-base'>Booking #{bookingId}</h1>
           <Badge className={cn("rounded-full uppercase", statusColor[status])}>{status.replace("-", " ")}</Badge>
         </div>
         <Button variant='link' className='text-cBrand-500' onClick={moveBack}>
@@ -67,7 +67,7 @@ function BookingDetail() {
 
       <BookingDataBox booking={booking} />
 
-      <div className='mt-8 flex items-center justify-end gap-2'>
+      <div className='mt-8 flex items-center justify-end gap-2 mb-5'>
         {status === "unconfirmed" && (
           <Button
             className='bg-cBrand-500 hover:bg-cBrand-600 text-cBrand-100'

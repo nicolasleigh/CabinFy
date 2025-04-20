@@ -76,7 +76,7 @@ export default function BookingColumnAction({ id, status }) {
           }
           open={openDeleteDialog}
           onOpenChange={handleOpenDelete}
-          className='w-[500px]'
+          className='max-w-[500px]'
         >
           <DialogHeader>
             <DialogTitle>{"Are you sure?"}</DialogTitle>

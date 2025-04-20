@@ -32,7 +32,7 @@ function Bookings() {
   // console.log(bookings);
   return (
     <>
-      <div className='flex justify-between items-center gap-2 mb-4'>
+      <div className='flex justify-between  max-md:flex-col gap-2 mb-4'>
         <h1 className='text-2xl font-semibold'>All bookings</h1>
         <BookingTableOperations />
       </div>

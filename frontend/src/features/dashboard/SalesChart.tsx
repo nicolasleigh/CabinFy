@@ -90,14 +90,14 @@ function SalesChart({ bookings, numDays }) {
 
   return (
     <div className='col-span-full border p-2 rounded-md'>
-      <h2 className='text-lg font-semibold mb-2'>
+      <h2 className='text-lg font-semibold mb-2 max-sm:text-base'>
         Sales from {format(allDates.at(0), "yyyy-MM-dd ")} &mdash; {format(allDates.at(-1), "yyyy-MM-dd")}
       </h2>
       <ResponsiveContainer height={300} width='100%'>
         <AreaChart data={data} height={300} width={700}>
           <XAxis dataKey='label' tick={{ fill: colors.text }} tickLine={{ stroke: colors.text }} />
-          <YAxis unit='¥' tick={{ fill: colors.text }} tickLine={{ stroke: colors.text }} />
-          <CartesianGrid strokeDasharray='4' />
+          {/* <YAxis unit='¥' tick={{ fill: colors.text }} tickLine={{ stroke: colors.text }} /> */}
+          {/* <CartesianGrid strokeDasharray='1' /> */}
           <Tooltip contentStyle={{ background: colors.background }} />
           <Area
             dataKey='totalSales'

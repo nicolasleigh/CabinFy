@@ -5,7 +5,7 @@ import { ArrowDownAZ, ArrowDownNarrowWide, ArrowDownWideNarrow, ArrowDownZA } fr
 
 function CabinTableOperations() {
   return (
-    <div className='flex gap-2 items-center'>
+    <div className='flex gap-2  max-sm:flex-col'>
       <Filter
         filterField='discount'
         options={[

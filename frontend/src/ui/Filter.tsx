@@ -58,12 +58,12 @@ function Filter({ filterField, options }) {
   }
 
   return (
-    <div className='flex gap-2'>
+    <div className='flex gap-2 max-sm:gap-1'>
       {options.map((option) => (
         <Button
           variant='ghost'
           className={cn(
-            "hover:bg-cBrand-600 hover:text-cBrand-100 px-2 py-1 rounded-sm border",
+            "hover:bg-cBrand-600 hover:text-cBrand-100 px-2 py-1 rounded-sm border max-sm:font-normal",
             option.value === currentFilter && "bg-cBrand-600 text-cBrand-100"
           )}
           key={option.value}
@@ -75,21 +75,6 @@ function Filter({ filterField, options }) {
       ))}
     </div>
   );
-
-  // return (
-  //   <StyledFilter>
-  //     {options.map((option) => (
-  //       <FilterButton
-  //         key={option.value}
-  //         onClick={() => handleClick(option.value)}
-  //         $active={option.value === currentFilter}
-  //         disabled={option.value === currentFilter}
-  //       >
-  //         {option.label}
-  //       </FilterButton>
-  //     ))}
-  //   </StyledFilter>
-  // );
 }
 
 export default Filter;

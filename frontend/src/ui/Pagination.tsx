@@ -81,7 +81,7 @@ function Pagination({ count }) {
   if (pageCount <= 1) return null;
 
   return (
-    <div className='flex items-center justify-between my-4'>
+    <div className='flex items-center justify-between my-4 max-md:text-sm max-sm:text-[12px]'>
       <p>
         Showing{" "}
         <span className='bg-cBrand-100 text-cBrand-700 font-semibold border rounded-md px-2 py-1'>
@@ -94,20 +94,20 @@ function Pagination({ count }) {
         of <span>{count}</span> results
       </p>
 
-      <div className='flex gap-4 items-center'>
+      <div className='flex gap-4 max-sm:gap-2 items-center'>
         <Button
           onClick={prevPage}
           disabled={currentPage === 1}
-          className='hover:bg-cBrand-500 hover:text-cBrand-50 pl-2 pr-4 gap-1 bg-muted'
+          className='hover:bg-cBrand-500 hover:text-cBrand-50 pl-2 pr-4 gap-1 bg-muted max-sm:text-xs '
           variant='ghost'
         >
           <ChevronLeft />
-          <span>Prev</span>
+          <span className=''>Prev</span>
         </Button>
         <Button
           onClick={nextPage}
           disabled={currentPage === pageCount}
-          className='hover:bg-cBrand-500 hover:text-cBrand-50 pl-4 pr-2 gap-1 bg-muted'
+          className='hover:bg-cBrand-500 hover:text-cBrand-50 pl-4 pr-2 gap-1 bg-muted max-sm:text-xs'
           variant='ghost'
         >
           <span>Next</span>
@@ -116,24 +116,6 @@ function Pagination({ count }) {
       </div>
     </div>
   );
-  // return (
-  //   <StyledPagination>
-  //     <p>
-  //       Showing <span>{(currentPage - 1) * PAGE_SIZE + 1}</span> to{" "}
-  //       <span>{currentPage === pageCount ? count : currentPage * PAGE_SIZE}</span> of <span>{count}</span> results
-  //     </p>
-
-  //     <Buttons>
-  //       <PaginationButton onClick={prevPage} disabled={currentPage === 1}>
-  //         <AiOutlineLeft /> <span>Previous</span>
-  //       </PaginationButton>
-  //       <PaginationButton onClick={nextPage} disabled={currentPage === pageCount}>
-  //         <span>Next</span>
-  //         <AiOutlineRight />
-  //       </PaginationButton>
-  //     </Buttons>
-  //   </StyledPagination>
-  // );
 }
 
 export default Pagination;

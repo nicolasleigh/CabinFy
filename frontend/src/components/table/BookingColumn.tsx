@@ -19,7 +19,11 @@ export const columns: ColumnDef<Bookings>[] = [
     header: "Cabin",
     cell: ({ row }) => {
       const cabin = row.getValue("cabin");
-      return <div className='capitalize font-semibold text-[10px] sm:text-xs lg:text-sm'>{cabin.name}</div>;
+      return (
+        <div className='capitalize font-semibold text-[10px] sm:text-xs lg:text-sm max-md:font-normal'>
+          {cabin.name}
+        </div>
+      );
     },
   },
   {
@@ -30,7 +34,9 @@ export const columns: ColumnDef<Bookings>[] = [
       // console.log(row.original);
       return (
         <div className='flex flex-col'>
-          <span className='capitalize font-semibold text-[10px] sm:text-xs lg:text-sm'>{guest.fullName}</span>
+          <span className='capitalize font-semibold text-[10px] sm:text-xs lg:text-sm max-md:font-normal'>
+            {guest.fullName}
+          </span>
           <span className='text-xs text-muted-foreground'>{guest.email}</span>
         </div>
       );
@@ -39,17 +45,18 @@ export const columns: ColumnDef<Bookings>[] = [
   {
     // accessorKey: "startDate",
     header: "Dates",
+    // size: 200,
     cell: ({ row }) => {
       const startDate = row.original.startDate;
       const endDate = row.original.endDate;
       const numNights = row.original.numNights;
       return (
-        <div className='flex flex-col'>
-          <span className='font-semibold'>
+        <div className='flex flex-col min-w-[150px]'>
+          <span className='font-semibold max-md:font-normal max-md:text-xs'>
             {isToday(new Date(startDate)) ? "Today" : formatDistanceFromNow(startDate)} &rarr;{" "}
             <span className='bg-cBrand-100 rounded-md px-1 py-[2px] text-cBrand-600'>{numNights}</span> night stay
           </span>
-          <span className='text-xs text-muted-foreground'>
+          <span className='text-xs max-md:text-[10px] text-muted-foreground'>
             {format(new Date(startDate), "yyyy-MM-dd")} &mdash; {format(new Date(endDate), "yyyy-MM-dd")}
           </span>
         </div>
@@ -62,7 +69,9 @@ export const columns: ColumnDef<Bookings>[] = [
     cell: ({ row }) => {
       const status = row.getValue("status");
       return (
-        <Badge className={cn("rounded-full", statusColor[status])}>{status.replace("-", " ").toUpperCase()}</Badge>
+        <Badge className={cn("rounded-full max-md:font-normal max-md:text-[10px]", statusColor[status])}>
+          {status.replace("-", " ").toUpperCase()}
+        </Badge>
       );
     },
   },
@@ -71,7 +80,11 @@ export const columns: ColumnDef<Bookings>[] = [
     header: "Amount",
     cell: ({ row }) => {
       const value = row.getValue("totalPrice");
-      return <div className='capitalize font-semibold text-xs lg:text-sm'>{formatCurrency(value)}</div>;
+      return (
+        <div className='capitalize font-semibold text-xs lg:text-sm max-md:font-normal max-md:text-[10px]'>
+          {formatCurrency(value)}
+        </div>
+      );
     },
   },
   {

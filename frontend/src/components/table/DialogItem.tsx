@@ -18,7 +18,7 @@ export default function DialogItem(props) {
       </DialogTrigger>
       <DialogPortal>
         <DialogContent
-          className={className}
+          className={` ${className}`}
           onInteractOutside={(e) => {
             e.preventDefault();
           }}

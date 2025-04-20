@@ -94,7 +94,7 @@ export default function CabinColumnAction({ id, cabin }) {
           }
           open={openDeleteDialog}
           onOpenChange={handleOpenDelete}
-          className='w-[500px]'
+          className='max-w-[500px]'
         >
           <DialogHeader>
             <DialogTitle>{"Are you sure?"}</DialogTitle>

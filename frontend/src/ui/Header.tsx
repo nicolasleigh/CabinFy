@@ -74,11 +74,11 @@ function Header() {
   // const ref = useOutsideClick(() => setShowSidebar(false));
   const navigate = useNavigate();
   return (
-    <div className='mt-4 mx-10 flex justify-between'>
+    <div className='mt-4 mx-10 max-lg:mx-5 max-sm:mx-2 flex justify-between'>
       <SidebarTrigger />
       <div className='flex gap-4 justify-end'>
         <Button variant='link' onClick={() => navigate("/home")}>
-          Back to home page
+          Back
         </Button>
         <UserAvatar />
         <HeaderMenu />

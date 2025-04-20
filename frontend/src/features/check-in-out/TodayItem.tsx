@@ -54,7 +54,7 @@ function TodayItem({ activity }) {
   const { checkout, isCheckingOut } = useCheckout();
 
   return (
-    <li className='grid grid-cols-[6rem_1fr_8rem_6rem] px-2 '>
+    <li className='grid grid-cols-[6rem_1fr_5rem_6rem] px-2 '>
       {status === "unconfirmed" && (
         <div className='flex justify-center items-center'>
           <div className='bg-cGreen-100 text-cGreen-700 rounded-full text-xs font-semibold px-2 py-1'>

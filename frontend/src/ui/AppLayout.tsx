@@ -57,7 +57,7 @@ function AppLayout() {
       <SidebarInset>
         <Header />
         {/* <Container> */}
-        <div className='mt-10 mx-10'>
+        <div className='mt-10 mx-10 max-lg:mx-5 max-sm:mx-2'>
           <Outlet />
         </div>
         {/* </Container> */}

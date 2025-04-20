@@ -63,7 +63,7 @@ function CheckinBooking() {
   return (
     <>
       <div className='flex justify-between items-center mb-2'>
-        <h1 className='text-2xl font-semibold'>Check in booking #{bookingId}</h1>
+        <h1 className='text-xl font-semibold'>Check in booking #{bookingId}</h1>
         <Button variant='link' className='text-cBrand-500' onClick={moveBack}>
           &larr; Back
         </Button>
@@ -101,13 +101,13 @@ function CheckinBooking() {
       <div className='bg-cGrey-50 flex gap-2 items-center px-8 pb-4'>
         <Input
           type='checkbox'
-          className='w-7'
+          className='w-7 max-sm:w-5'
           checked={confirmPaid}
           onChange={() => setConfirmPaid((confirm) => !confirm)}
           disabled={confirmPaid || isCheckingIn}
           id='confirm'
         />
-        <Label htmlFor='confirm' className='text-lg text-cGrey-700'>
+        <Label htmlFor='confirm' className='text-lg max-md:text-base max-sm:text-sm text-cGrey-700'>
           I confirm that {guest.fullName} has paid the total amount of{" "}
           {!addBreakfast
             ? formatCurrency(totalPrice)
@@ -115,22 +115,9 @@ function CheckinBooking() {
                 optionalBreakfastPrice
               )})`}
         </Label>
-        {/* <Checkbox
-          checked={confirmPaid}
-          onChange={() => setConfirmPaid((confirm) => !confirm)}
-          disabled={confirmPaid || isCheckingIn}
-          id='confirm'
-        >
-          I confirm that {guest.fullName} has paid the total amount of{" "}
-          {!addBreakfast
-            ? formatCurrency(totalPrice)
-            : `${formatCurrency(totalPrice + optionalBreakfastPrice)} (${formatCurrency(totalPrice)} + ${formatCurrency(
-                optionalBreakfastPrice
-              )})`}
-        </Checkbox> */}
       </div>
 
-      <div className='flex items-center justify-end gap-2 mt-4'>
+      <div className='flex items-center justify-end gap-2 mt-4 mb-4'>
         <Button
           className='bg-cBrand-500 hover:bg-cBrand-600 text-cBrand-100'
           onClick={handleCheckin}

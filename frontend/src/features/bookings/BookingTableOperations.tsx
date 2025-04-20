@@ -14,7 +14,7 @@ import {
 
 function BookingTableOperations() {
   return (
-    <div className='flex gap-2 items-center'>
+    <div className='flex gap-2  max-sm:flex-col'>
       <Filter
         filterField='status'
         options={[

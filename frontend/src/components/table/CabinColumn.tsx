@@ -18,7 +18,7 @@ export const columns: ColumnDef<Cabins>[] = [
     header: "Image",
     cell: ({ row }) => {
       const image = row.getValue("image");
-      return <img src={image} className='w-32 h-20 rounded-sm' alt='Image' />;
+      return <img src={image} className='min-w-32 h-20 rounded-sm' alt='Image' />;
     },
   },
   {
@@ -26,7 +26,9 @@ export const columns: ColumnDef<Cabins>[] = [
     header: "Cabin",
     cell: ({ row }) => {
       const cabin = row.getValue("name");
-      return <div className='capitalize font-semibold text-[10px] sm:text-xs lg:text-sm'>{cabin}</div>;
+      return (
+        <div className='capitalize font-semibold text-[10px] sm:text-xs lg:text-sm max-sm:font-normal'>{cabin}</div>
+      );
     },
   },
   {
@@ -47,7 +49,11 @@ export const columns: ColumnDef<Cabins>[] = [
     header: "Price",
     cell: ({ row }) => {
       const value = row.getValue("regularPrice");
-      return <div className='capitalize font-semibold text-xs lg:text-sm'>{formatCurrency(value)}</div>;
+      return (
+        <div className='capitalize font-semibold text-[10px] sm:text-xs lg:text-sm max-sm:font-normal'>
+          {formatCurrency(value)}
+        </div>
+      );
     },
   },
   {
@@ -56,7 +62,11 @@ export const columns: ColumnDef<Cabins>[] = [
     // enableHiding: true,
     cell: ({ row }) => {
       const value = row.getValue("discount");
-      return <div className='capitalize font-semibold text-cGreen-700 text-xs lg:text-sm'>{value}%</div>;
+      return (
+        <div className='capitalize font-semibold text-cGreen-700 text-[10px] sm:text-xs lg:text-sm max-sm:font-normal'>
+          {value}%
+        </div>
+      );
     },
   },
   {

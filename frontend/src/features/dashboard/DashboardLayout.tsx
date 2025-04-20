@@ -39,22 +39,13 @@ function DashboardLayout() {
   // console.log(bookings);
 
   return (
-    <div className='grid grid-cols-4 gap-x-2 gap-y-4 grid-rows-[auto_18rem_auto] mb-5'>
+    <div className='grid grid-cols-4 max-md:grid-cols-2 gap-x-2 gap-y-4 grid-rows-[auto_18rem_auto] max-md:grid-rows-[auto_auto_18rem_auto] max-sm:grid-rows-[auto_auto_auto_auto_18rem_auto]  mb-5'>
       <Stats bookings={bookings} confirmedStays={confirmedStays} numDays={numDays} cabinCount={cabins.length} />
       <TodayActivity />
       <DurationChart confirmedStays={confirmedStays} />
       <SalesChart bookings={bookings} numDays={numDays} />
     </div>
   );
-
-  // return (
-  //   <StyledDashboardLayout>
-  //     <Stats bookings={bookings} confirmedStays={confirmedStays} numDays={numDays} cabinCount={cabins.length} />
-  //     <TodayActivity />
-  //     <DurationChart confirmedStays={confirmedStays} />
-  //     <SalesChart bookings={bookings} numDays={numDays} />
-  //   </StyledDashboardLayout>
-  // );
 }
 
 export default DashboardLayout;

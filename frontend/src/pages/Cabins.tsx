@@ -28,7 +28,7 @@ const HeaderRow = styled.div`
 function Cabins() {
   return (
     <>
-      <div className='flex justify-between items-center gap-2 mb-4'>
+      <div className='flex justify-between  gap-2 mb-4 max-sm:flex-col'>
         <h1 className='text-2xl font-semibold'>All cabins</h1>
         <CabinTableOperations />
       </div>
