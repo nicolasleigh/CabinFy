@@ -237,9 +237,9 @@ export default function BookingForm({
     "w-8 h-8 flex items-center justify-center rounded-full border bg-cBrand-500 text-cBrand-50 disabled:bg-cGrey-200 disabled:text-cGrey-400 disabled:cursor-not-allowed";
 
   return (
-    <div className='row-span-full col-start-2 mt-24'>
-      <form className='' onSubmit={handleSubmit}>
-        <div className='border-t border-l border-r border-cGrey-300 rounded-t-md'>
+    <div className='md:row-span-full md:col-start-2 mt-10 sm:mt-24'>
+      <form className='mb-10 max-w-[400px] mx-auto' onSubmit={handleSubmit}>
+        <div className='border-t pb-3 border-l border-r border-cGrey-300 rounded-t-md'>
           <DayPick
             selectedRange={selectedRange}
             setSelectedRange={setSelectedRange}

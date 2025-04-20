@@ -33,7 +33,7 @@ export default function Home() {
   const { cabins, isLoading: isLoadingCabins } = useCabins();
   const { rate, isLoading: isLoadingRate } = useRate();
 
-  console.log(cabins);
+  // console.log(cabins);
 
   const avgRating = rate?.map((e) => {
     return Math.ceil(e._avg.rating * 10) / 10;
@@ -44,9 +44,9 @@ export default function Home() {
 
   return (
     <>
-      <GuestSignup />
-      <GuestLogin />
-      <div className='grid grid-cols-4 gap-x-6 gap-y-8'>
+      {/* <GuestSignup />
+      <GuestLogin /> */}
+      <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-6 gap-y-8'>
         {cabins &&
           cabins.map((e) => {
             return (

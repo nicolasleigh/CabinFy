@@ -158,6 +158,7 @@ export default function DayPick({
       locale={zhCN}
       min={minBookingLength >= 2 ? minBookingLength : undefined}
       max={maxBookingLength}
+      className=''
       footer={
         <div className='mt-5 '>
           <input

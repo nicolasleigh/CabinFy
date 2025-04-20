@@ -134,7 +134,7 @@ export default function Cabin() {
 
   return (
     <>
-      <div className='text-3xl font-semibold'>{name}</div>
+      <div className='text-xl md:text-2xl lg:text-3xl font-semibold'>{name}</div>
 
       <div className='grid grid-cols-1 gap-2 py-5 sm:grid-cols-2'>
         <img
@@ -150,11 +150,11 @@ export default function Cabin() {
         </div>
       </div>
 
-      <div className='grid grid-cols-[3fr_2fr] grid-rows-[auto_auto_auto_1fr_auto] gap-x-12'>
+      <div className='grid grid-cols-1 md:grid-cols-[3fr_2fr] md:grid-rows-[auto_auto_auto_1fr_auto] md:gap-x-5 lg:gap-x-12'>
         <CabinTextInfo bedroom={bedroom} discount={discount} regularPrice={regularPrice} location={location} />
         <GuestsFavoriteBox reviews={reviews} />
         <FeatureIcon />
-        <div className='grid grid-cols-2 gap-x-6 gap-y-4 mt-16'>
+        <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-1 lg:grid-cols-2 sm:gap-x-6 gap-y-4 mt-10 sm:mt-16'>
           <GuestReviewItem reviews={reviews} limit={4} />
         </div>
         <div className='flex'>
@@ -164,7 +164,7 @@ export default function Cabin() {
                 See all reviews
               </Button>
             </DialogTrigger>
-            <DialogContent className='h-[600px] overflow-auto'>
+            <DialogContent className='h-[500px] overflow-auto'>
               <GuestsReviews />
             </DialogContent>
           </Dialog>

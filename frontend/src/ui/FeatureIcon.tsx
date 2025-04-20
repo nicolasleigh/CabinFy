@@ -97,104 +97,55 @@ const IconWithText = styled.div`
 export default function FeatureIcon() {
   const iconWithText = [
     {
-      icon: <AiOutlineWifi className='w-7 h-7' />,
+      icon: <AiOutlineWifi className='w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 lg:w-7 lg:h-7' />,
       text: "Wifi",
     },
     {
-      icon: <LuBath className='w-7 h-7' />,
+      icon: <LuBath className='w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 lg:w-7 lg:h-7' />,
       text: "24 hours hot tub",
     },
     {
-      icon: <LuUtensilsCrossed className='w-7 h-7' />,
+      icon: <LuUtensilsCrossed className='w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 lg:w-7 lg:h-7' />,
       text: "Kitchen",
     },
     {
-      icon: <LuSprayCan className='w-7 h-7' />,
+      icon: <LuSprayCan className='w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 lg:w-7 lg:h-7' />,
       text: "Room cleaning service",
     },
     {
-      icon: <AiOutlineSkin className='w-7 h-7' />,
+      icon: <AiOutlineSkin className='w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 lg:w-7 lg:h-7' />,
       text: "Bedroom wardrobe",
     },
     {
-      icon: <LuSunSnow className='w-7 h-7' />,
+      icon: <LuSunSnow className='w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 lg:w-7 lg:h-7' />,
       text: "Air conditioning",
     },
     {
-      icon: <LuFlower2 className='w-7 h-7' />,
+      icon: <LuFlower2 className='w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 lg:w-7 lg:h-7' />,
       text: "Garden view",
     },
     {
-      icon: <LuGamepad2 className='w-7 h-7' />,
+      icon: <LuGamepad2 className='w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 lg:w-7 lg:h-7' />,
       text: "Video game available",
     },
     {
-      icon: <AiOutlineDesktop className='w-7 h-7' />,
+      icon: <AiOutlineDesktop className='w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 lg:w-7 lg:h-7' />,
       text: "32-Inch TV",
     },
     {
-      icon: <AiOutlineCar className='w-7 h-7' />,
+      icon: <AiOutlineCar className='w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 lg:w-7 lg:h-7' />,
       text: "Parking lot",
     },
   ];
   return (
     <div className='grid grid-cols-2 grid-rows-[auto_1fr] mt-10 gap-y-4'>
-      <p className='col-span-2 text-xl font-semibold pb-2'>What this cabin offer:</p>
+      <p className='col-span-2 sm:text-lg md:text-xl font-semibold pb-2'>What this cabin offer:</p>
       {iconWithText.map((e) => (
         <div key={e.text} className='flex items-center gap-4'>
           {e.icon}
-          <span className='text-lg'>{e.text}</span>
+          <span className='text-sm sm:text-base lg:text-lg'>{e.text}</span>
         </div>
       ))}
     </div>
   );
-  // return (
-  //   <Featured>
-  //     <p>What this cabin offer:</p>
-  //     <IconWithText>
-  //       <AiOutlineWifi />
-  //       <span>Wifi</span>
-  //     </IconWithText>
-  //     <IconWithText>
-  //       <LuBath />
-  //       <span>24 hours hot tub</span>
-  //     </IconWithText>
-  //     <IconWithText>
-  //       <LuUtensilsCrossed />
-  //       <span>Kitchen</span>
-  //     </IconWithText>
-
-  //     <IconWithText>
-  //       <LuSprayCan />
-  //       <span>Room cleaning service </span>
-  //     </IconWithText>
-
-  //     <IconWithText>
-  //       <AiOutlineSkin />
-  //       <span>Bedroom wardrobe</span>
-  //     </IconWithText>
-  //     <IconWithText>
-  //       <LuSunSnow />
-  //       <span>Air conditioning</span>
-  //     </IconWithText>
-
-  //     <IconWithText>
-  //       <LuFlower2 />
-  //       <span>Garden view</span>
-  //     </IconWithText>
-
-  //     <IconWithText>
-  //       <LuGamepad2 />
-  //       <span>Video game available</span>
-  //     </IconWithText>
-  //     <IconWithText>
-  //       <AiOutlineDesktop />
-  //       <span>32-Inch TV</span>
-  //     </IconWithText>
-  //     <IconWithText>
-  //       <AiOutlineCar />
-  //       <span>Parking lot</span>
-  //     </IconWithText>
-  //   </Featured>
-  // );
 }

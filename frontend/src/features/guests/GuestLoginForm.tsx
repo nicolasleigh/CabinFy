@@ -63,7 +63,7 @@ export default function GuestLoginForm({
   };
 
   return (
-    <div className={cn("flex flex-col gap-6 p-4", className)} {...props}>
+    <div className={cn("p-2", className)} {...props}>
       <Card>
         <CardHeader className='text-center'>
           <CardTitle className='text-xl'>{title as string}</CardTitle>

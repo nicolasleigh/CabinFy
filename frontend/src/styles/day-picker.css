@@ -17,7 +17,7 @@
     --rdp-cell-size: 50px;
   }
 }
-@media (max-width: 450px) {
+@media (max-width: 390px) {
   .rdp {
     --rdp-cell-size: 40px;
   }

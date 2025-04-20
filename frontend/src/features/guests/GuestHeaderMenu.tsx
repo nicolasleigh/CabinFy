@@ -23,6 +23,7 @@ import { useState } from "react";
 import GuestLoginForm from "./GuestLoginForm";
 import { Link } from "react-router-dom";
 import { useQueryClient } from "@tanstack/react-query";
+import { Separator } from "@/components/ui/separator";
 
 const StyledGuestHeaderMenu = styled.nav`
   display: flex;
@@ -117,7 +118,7 @@ function GuestHeaderMenu() {
             )}
           </Button>
         </DropdownMenuTrigger>
-        <DropdownMenuContent className='min-w-0 w-24' align='end'>
+        <DropdownMenuContent className='min-w-0 w-28' align='end'>
           <DialogItem
             triggerChildren={<div>Sign Up</div>}
             open={openSignup}
@@ -158,6 +159,15 @@ function GuestHeaderMenu() {
             >
               Log Out
             </div>
+          </DropdownMenuItem>
+          <Separator />
+          <DropdownMenuItem className='px-0'>
+            <Link
+              to='/admin'
+              className='w-full text-center bg-red-600 text-white hover:bg-red-700 transition-colors rounded-sm px-1 py-1'
+            >
+              Admin Login
+            </Link>
           </DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>
