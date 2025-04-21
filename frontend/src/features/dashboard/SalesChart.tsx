@@ -1,23 +1,22 @@
 import styled from "styled-components";
-import DashboardBox from "./DashboardBox";
 import Heading from "../../ui/Heading";
 import { Area, AreaChart, CartesianGrid, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
 import { useDarkMode } from "../../context/DarkModeContext";
 import { eachDayOfInterval, format, isSameDay, subDays } from "date-fns";
 
-const StyledSalesChart = styled(DashboardBox)`
-  grid-column: 1 / -1;
+// const StyledSalesChart = styled(DashboardBox)`
+//   grid-column: 1 / -1;
 
-  @media (max-width: 500px) {
-    margin-top: 2rem;
-  }
+//   @media (max-width: 500px) {
+//     margin-top: 2rem;
+//   }
 
-  /* Hack to change grid line colors */
-  & .recharts-cartesian-grid-horizontal line,
-  & .recharts-cartesian-grid-vertical line {
-    stroke: var(--color-grey-300);
-  }
-`;
+//   /* Hack to change grid line colors */
+//   & .recharts-cartesian-grid-horizontal line,
+//   & .recharts-cartesian-grid-vertical line {
+//     stroke: var(--color-grey-300);
+//   }
+// `;
 
 const fakeData = [
   { label: "Jan 09", totalSales: 480, extrasSales: 20 },
