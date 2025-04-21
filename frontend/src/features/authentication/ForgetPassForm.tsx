@@ -1,16 +1,12 @@
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { isValidEmail } from "@/utils/helpers";
 import { useState } from "react";
 import toast from "react-hot-toast";
 import { Link, useLocation } from "react-router-dom";
-// import Button from "../../ui/Button";
-import Form from "../../ui/Form";
-import FormRowVertical from "../../ui/FormRowVertical";
-// import Input from "../../ui/Input";
 import Timer from "./Timer";
 import { useForgetPass } from "./useForgetPass";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { Button } from "@/components/ui/button";
-import { isValidEmail } from "@/utils/helpers";
 
 export default function ForgetPassForm() {
   const { state } = useLocation();

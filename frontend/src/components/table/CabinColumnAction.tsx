@@ -20,11 +20,13 @@ import { useDeleteCabin } from "@/features/cabins/useDeleteCabin";
 import { useDuplicateCabin } from "@/features/cabins/useDuplicateCabin";
 import CabinForm from "@/features/cabins/CabinForm";
 import DialogItem from "./DialogItem";
+import { useTranslation } from "react-i18next";
 
 export default function CabinColumnAction({ id, cabin }) {
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [openDeleteDialog, setOpenDeleteDialog] = useState(false);
   const [openEditDialog, setOpenEditDialog] = useState(false);
+  const { t } = useTranslation();
 
   const navigate = useNavigate();
   const { isDeleting, deleteCabin } = useDeleteCabin();
@@ -55,7 +57,7 @@ export default function CabinColumnAction({ id, cabin }) {
         <DropdownMenuItem onClick={handleDuplicate} disabled={isDuplicating}>
           <div className='flex items-center gap-3 w-full'>
             <Copy strokeWidth={0.9} size={20} />
-            <span>{"Duplicate"}</span>
+            <span>{t("duplicateCabin")}</span>
           </div>
         </DropdownMenuItem>
 
@@ -63,7 +65,7 @@ export default function CabinColumnAction({ id, cabin }) {
           triggerChildren={
             <div className='flex items-center gap-3'>
               <Pencil strokeWidth={0.9} size={20} />
-              <span>{"Edit"}</span>
+              <span>{t("tableEdit")}</span>
             </div>
           }
           open={openEditDialog}
@@ -74,7 +76,7 @@ export default function CabinColumnAction({ id, cabin }) {
             }
           }}
         >
-          <DialogTitle>Edit Cabin</DialogTitle>
+          <DialogTitle>{t("editCabinTitle")}</DialogTitle>
           <CabinForm
             isUpdate={true}
             initialState={cabin}
@@ -89,7 +91,7 @@ export default function CabinColumnAction({ id, cabin }) {
           triggerChildren={
             <div className='flex items-center gap-3'>
               <Trash strokeWidth={0.9} size={20} />
-              <span>{"Delete"}</span>
+              <span>{t("tableDelete")}</span>
             </div>
           }
           open={openDeleteDialog}
@@ -97,8 +99,8 @@ export default function CabinColumnAction({ id, cabin }) {
           className='max-w-[500px]'
         >
           <DialogHeader>
-            <DialogTitle>{"Are you sure?"}</DialogTitle>
-            <DialogDescription>{"This action will remove this cabin permanently!"}</DialogDescription>
+            <DialogTitle>{t("tableDeleteTitle")}</DialogTitle>
+            <DialogDescription>{t("tableCabinDeleteDesc")}</DialogDescription>
           </DialogHeader>
           <DialogFooter>
             <Button
@@ -109,7 +111,7 @@ export default function CabinColumnAction({ id, cabin }) {
               }}
               variant='secondary'
             >
-              {"Cancel"}
+              {t("tableDeleteCancel")}
             </Button>
             <Button
               onClick={() => {
@@ -121,7 +123,7 @@ export default function CabinColumnAction({ id, cabin }) {
               disabled={isDeleting}
             >
               <span className='w-12 flex items-center justify-center'>
-                {isDeleting ? <Loader className='animate-spin' /> : "Delete"}
+                {isDeleting ? <Loader className='animate-spin' /> : t("tableDelete")}
               </span>
             </Button>
           </DialogFooter>

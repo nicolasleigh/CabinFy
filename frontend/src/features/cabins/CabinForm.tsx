@@ -10,6 +10,7 @@ import DropzoneMultiple from "@/components/DropzoneMultiple";
 import { formatBytes, numberInputOnWheelPreventChange } from "@/utils/helpers";
 import { useCreateCabin } from "./useCreateCabin";
 import { useEditCabin } from "./useEditCabin";
+import { useTranslation } from "react-i18next";
 
 const MAX_IMAGE_SIZE = 1024 * 1024 * 10;
 const ACCEPTED_IMAGE_TYPES = ["image/jpeg", "image/png", "image/webp"];
@@ -67,6 +68,7 @@ export default function CabinForm({ isUpdate = false, initialState, onSubmit }) 
   const [selectedImages, setSelectedImages] = useState([]);
   const { isCreating, createCabin } = useCreateCabin();
   const { isEditing, editCabin } = useEditCabin();
+  const { t } = useTranslation();
 
   let form: UseFormReturn<z.infer<typeof formSchema>>;
   if (isUpdate) {
@@ -230,7 +232,7 @@ export default function CabinForm({ isUpdate = false, initialState, onSubmit }) 
             name='name'
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Cabin Name</FormLabel>
+                <FormLabel>{t("cabinName")}</FormLabel>
                 <FormControl>
                   <Input placeholder='' {...field} />
                 </FormControl>
@@ -243,7 +245,7 @@ export default function CabinForm({ isUpdate = false, initialState, onSubmit }) 
             name='location'
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Cabin Location</FormLabel>
+                <FormLabel>{t("cabinLocation")}</FormLabel>
                 <FormControl>
                   <Input placeholder='' {...field} />
                 </FormControl>
@@ -256,7 +258,7 @@ export default function CabinForm({ isUpdate = false, initialState, onSubmit }) 
             name='bedroom'
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Bedroom Quantity</FormLabel>
+                <FormLabel>{t("bedroomQuantity")}</FormLabel>
                 <FormControl>
                   <Input
                     placeholder=''
@@ -276,7 +278,7 @@ export default function CabinForm({ isUpdate = false, initialState, onSubmit }) 
             name='regularPrice'
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Cabin Price</FormLabel>
+                <FormLabel>{t("cabinPrice")}</FormLabel>
                 <FormControl>
                   <Input
                     placeholder=''
@@ -296,7 +298,7 @@ export default function CabinForm({ isUpdate = false, initialState, onSubmit }) 
             name='discount'
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Discount (%)</FormLabel>
+                <FormLabel>{t("cabinDiscount")} (%)</FormLabel>
                 <FormControl>
                   <Input
                     placeholder=''
@@ -319,11 +321,11 @@ export default function CabinForm({ isUpdate = false, initialState, onSubmit }) 
             name='image'
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Cover Photo</FormLabel>
+                <FormLabel>{t("coverPhoto")}</FormLabel>
                 <FormControl>
                   <Dropzone
                     {...field}
-                    dropMessage={"Drop or select 1 image"}
+                    dropMessage={t("DropzoneImage")}
                     handleOnDrop={handleOnDrop}
                     accept='image/*'
                     selectedImage={selectedImage}
@@ -338,11 +340,11 @@ export default function CabinForm({ isUpdate = false, initialState, onSubmit }) 
             name='images'
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Internal Photos</FormLabel>
+                <FormLabel>{t("internalPhotos")}</FormLabel>
                 <FormControl>
                   <DropzoneMultiple
                     {...field}
-                    dropMessage={"Drop or select 4 images"}
+                    dropMessage={t("DropzoneImages")}
                     handleOnDrop={handleOnDropMultiple}
                     accept='image/*'
                     multiple
@@ -355,7 +357,7 @@ export default function CabinForm({ isUpdate = false, initialState, onSubmit }) 
             )}
           />
           <Button type='submit' className='mt-4 w-full' variant='secondary'>
-            {isUpdate ? "Edit" : "Add"}
+            {isUpdate ? t("editButton") : t("addButton")}
           </Button>
         </div>
       </form>

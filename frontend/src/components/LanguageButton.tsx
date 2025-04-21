@@ -1,10 +1,10 @@
 import { Languages } from "lucide-react";
 import { Button } from "./ui/button";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "./ui/dropdown-menu";
-// import { useTranslation } from "react-i18next";
+import { useTranslation } from "react-i18next";
 
 export default function LanguageButton() {
-  // const { t, i18n } = useTranslation();
+  const { i18n } = useTranslation();
 
   return (
     <DropdownMenu>
@@ -15,10 +15,8 @@ export default function LanguageButton() {
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align='end' className='min-w-0 w-28'>
-        {/* <DropdownMenuItem onClick={() => i18n.changeLanguage("zh")}>简体中文</DropdownMenuItem>
-        <DropdownMenuItem onClick={() => i18n.changeLanguage("en")}>{t("English")}</DropdownMenuItem> */}
-        <DropdownMenuItem>简体中文</DropdownMenuItem>
-        <DropdownMenuItem>{"English"}</DropdownMenuItem>
+        <DropdownMenuItem onClick={() => i18n.changeLanguage("zh")}>简体中文</DropdownMenuItem>
+        <DropdownMenuItem onClick={() => i18n.changeLanguage("en")}>{"English"}</DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
   );

@@ -11,28 +11,22 @@ import Modal from "../../ui/Modal";
 import CabinForm from "./CabinForm";
 import CreateCabinForm from "./CreateCabinForm";
 import { Button } from "@/components/ui/button";
+import { useTranslation } from "react-i18next";
 
 function AddCabin() {
+  const { t } = useTranslation();
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button className='bg-cBrand-600 text-cBrand-100 rounded-sm hover:bg-cBrand-700'>Add new cabin</Button>
+        <Button className='bg-cBrand-600 text-cBrand-100 rounded-sm hover:bg-cBrand-700'>
+          {t("addNewCabinButton")}
+        </Button>
       </DialogTrigger>
       <DialogContent>
-        <DialogTitle>Add Cabin</DialogTitle>
+        <DialogTitle>{t("addCabin")}</DialogTitle>
         <CabinForm />
       </DialogContent>
     </Dialog>
-    // <div>
-    //   <Modal>
-    //     <Modal.Open opens='cabin-form'>
-    //       <Button>Add new cabin</Button>
-    //     </Modal.Open>
-    //     <Modal.Window name='cabin-form'>
-    //       <CreateCabinForm />
-    //     </Modal.Window>
-    //   </Modal>
-    // </div>
   );
 }
 

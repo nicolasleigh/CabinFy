@@ -4,6 +4,7 @@ import { Badge } from "../ui/badge";
 import { formatCurrency, formatDistanceFromNow } from "@/utils/helpers";
 import { cn } from "@/lib/utils";
 import CabinColumnAction from "./CabinColumnAction";
+import i18n from "@/i18n";
 
 export type Cabins = {
   name: string;
@@ -15,7 +16,7 @@ export type Cabins = {
 export const columns: ColumnDef<Cabins>[] = [
   {
     accessorKey: "image",
-    header: "Image",
+    header: i18n.t("cabinColImage"),
     cell: ({ row }) => {
       const image = row.getValue("image");
       return <img src={image} className='min-w-32 h-20 rounded-sm' alt='Image' />;
@@ -23,7 +24,7 @@ export const columns: ColumnDef<Cabins>[] = [
   },
   {
     accessorKey: "name",
-    header: "Cabin",
+    header: i18n.t("cabinColCabin"),
     cell: ({ row }) => {
       const cabin = row.getValue("name");
       return (
@@ -33,7 +34,7 @@ export const columns: ColumnDef<Cabins>[] = [
   },
   {
     accessorKey: "location",
-    header: "Location",
+    header: i18n.t("cabinColLocation"),
     cell: ({ row }) => {
       const location = row.getValue("location");
       // console.log(row.original);
@@ -46,7 +47,7 @@ export const columns: ColumnDef<Cabins>[] = [
   },
   {
     accessorKey: "regularPrice",
-    header: "Price",
+    header: i18n.t("cabinColPrice"),
     cell: ({ row }) => {
       const value = row.getValue("regularPrice");
       return (
@@ -58,7 +59,7 @@ export const columns: ColumnDef<Cabins>[] = [
   },
   {
     accessorKey: "discount",
-    header: "Discount",
+    header: i18n.t("cabinColDiscount"),
     // enableHiding: true,
     cell: ({ row }) => {
       const value = row.getValue("discount");

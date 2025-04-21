@@ -3,6 +3,7 @@ import { ColumnDef, flexRender, getCoreRowModel, getPaginationRowModel, useReact
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { useEffect, useMemo, useState } from "react";
 import Pagination from "@/ui/Pagination";
+import { useTranslation } from "react-i18next";
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
@@ -16,6 +17,7 @@ export function DataTable<TData, TValue>({
   showPagination = false,
 }: DataTableProps<TData, TValue>) {
   const newData = useMemo(() => [...data], [JSON.stringify(data)]);
+  const { t } = useTranslation();
   const table = useReactTable({
     data: newData,
     columns,
@@ -65,7 +67,7 @@ export function DataTable<TData, TValue>({
             ) : (
               <TableRow>
                 <TableCell colSpan={columns.length} className='h-24 text-center'>
-                  {"No results."}
+                  {t("tableNoResult")}
                 </TableCell>
               </TableRow>
             )}

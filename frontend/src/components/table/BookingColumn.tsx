@@ -4,6 +4,7 @@ import { format, isToday } from "date-fns";
 import { Badge } from "../ui/badge";
 import { formatCurrency, formatDistanceFromNow, statusColor } from "@/utils/helpers";
 import { cn } from "@/lib/utils";
+import i18n from "@/i18n";
 
 export type Bookings = {
   cabin: string;
@@ -16,7 +17,7 @@ export type Bookings = {
 export const columns: ColumnDef<Bookings>[] = [
   {
     accessorKey: "cabin",
-    header: "Cabin",
+    header: i18n.t("bookingColCabin"),
     cell: ({ row }) => {
       const cabin = row.getValue("cabin");
       return (
@@ -28,7 +29,7 @@ export const columns: ColumnDef<Bookings>[] = [
   },
   {
     accessorKey: "guest",
-    header: "Guest",
+    header: i18n.t("bookingColGuest"),
     cell: ({ row }) => {
       const guest = row.getValue("guest");
       // console.log(row.original);
@@ -44,7 +45,7 @@ export const columns: ColumnDef<Bookings>[] = [
   },
   {
     // accessorKey: "startDate",
-    header: "Dates",
+    header: i18n.t("bookingColDates"),
     // size: 200,
     cell: ({ row }) => {
       const startDate = row.original.startDate;
@@ -65,7 +66,7 @@ export const columns: ColumnDef<Bookings>[] = [
   },
   {
     accessorKey: "status",
-    header: "Status",
+    header: i18n.t("bookingColStatus"),
     cell: ({ row }) => {
       const status = row.getValue("status");
       return (
@@ -77,7 +78,7 @@ export const columns: ColumnDef<Bookings>[] = [
   },
   {
     accessorKey: "totalPrice",
-    header: "Amount",
+    header: i18n.t("bookingColAmount"),
     cell: ({ row }) => {
       const value = row.getValue("totalPrice");
       return (

@@ -4,11 +4,13 @@ import { useSettings } from "./useSettings";
 import { useUpdateSetting } from "./useUpdateSetting";
 import { Input } from "@/components/ui/input";
 import { useForm } from "react-hook-form";
+import { useTranslation } from "react-i18next";
 
 function UpdateSettingsForm() {
   const { isLoading, settings: { minBookingLength, maxBookingLength, maxGuestsPerBooking, breakfastPrice } = {} } =
     useSettings();
   const form = useForm();
+  const { t } = useTranslation();
 
   const { isUpdating, updateSetting } = useUpdateSetting();
 
@@ -29,7 +31,7 @@ function UpdateSettingsForm() {
           control={form.control}
           render={() => (
             <FormItem>
-              <FormLabel>Minimum nights</FormLabel>
+              <FormLabel>{t("minimumNights")}</FormLabel>
               <FormControl>
                 <Input
                   type='number'
@@ -48,7 +50,7 @@ function UpdateSettingsForm() {
           control={form.control}
           render={() => (
             <FormItem>
-              <FormLabel>Maximum nights</FormLabel>
+              <FormLabel>{t("maximumNights")}</FormLabel>
               <FormControl>
                 <Input
                   type='number'
@@ -67,7 +69,7 @@ function UpdateSettingsForm() {
           control={form.control}
           render={() => (
             <FormItem>
-              <FormLabel>Maximum guests</FormLabel>
+              <FormLabel>{t("maximumGuests")}</FormLabel>
               <FormControl>
                 <Input
                   type='number'
@@ -86,7 +88,7 @@ function UpdateSettingsForm() {
           control={form.control}
           render={() => (
             <FormItem>
-              <FormLabel>Breakfast price</FormLabel>
+              <FormLabel>{t("breakfastPrice")}</FormLabel>
               <FormControl>
                 <Input
                   type='number'

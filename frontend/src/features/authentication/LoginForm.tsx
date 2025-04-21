@@ -1,14 +1,14 @@
-import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { BsGoogle } from "react-icons/bs";
-import { useState } from "react";
-import { Link } from "react-router-dom";
+import { cn } from "@/lib/utils";
 import { isValidEmail } from "@/utils/helpers";
+import { useState } from "react";
 import toast from "react-hot-toast";
+import { Link } from "react-router-dom";
 import { useLogin } from "./useLogin";
+import { Trans, useTranslation } from "react-i18next";
 
 const validateUserInfo = ({ email, password }) => {
   if (!email.trim()) {
@@ -41,6 +41,7 @@ export default function LoginForm({
     password: defaultPass,
   });
   const { login, isLoading } = useLogin();
+  const { t } = useTranslation();
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -68,7 +69,7 @@ export default function LoginForm({
         <CardHeader className='text-center'>
           <CardTitle className='text-xl'>
             <h2 className='text-2xl font-semibold text-center'>
-              <span className='bg-cRed-100 text-cRed-500 px-1 rounded-sm'>Admin</span> Login
+              <span className='bg-cRed-100 text-cRed-500 px-1 rounded-sm'>{t("admin")}</span> {t("login")}
             </h2>
           </CardTitle>
         </CardHeader>
@@ -77,7 +78,7 @@ export default function LoginForm({
             <div className='grid gap-6'>
               <div className='grid gap-6'>
                 <div className='grid gap-2'>
-                  <Label htmlFor='email'>{"Email"}</Label>
+                  <Label htmlFor='email'>{t("emailAddress")}</Label>
                   <Input
                     id='email'
                     type='email'
@@ -91,13 +92,13 @@ export default function LoginForm({
                 </div>
                 <div className='grid gap-2'>
                   <div className='flex items-center'>
-                    <Label htmlFor='password'>{"Password"}</Label>
+                    <Label htmlFor='password'>{t("password")}</Label>
                     <Link
                       to='/admin/forget-password'
                       className='ml-auto text-sm underline-offset-4 underline hover:no-underline'
                       tabIndex={1}
                     >
-                      {"Forgot your password?"}
+                      {t("forgotPassword")}
                     </Link>
                   </div>
                   <Input
@@ -112,18 +113,18 @@ export default function LoginForm({
                   />
                 </div>
                 <Button type='submit' className='w-full bg-cBrand-500 hover:bg-cBrand-600'>
-                  {"Login"}
+                  {t("login")}
                 </Button>
               </div>
               <div className='text-sm '>
-                {`Don't have an account? `}
+                {t("dontHaveAccount")}
                 <Link to='/admin/signup ' className='ml-auto text-sm underline-offset-4 underline hover:no-underline'>
-                  {"Click here to sign up"}
+                  {t("clickSignup")}
                 </Link>
               </div>
               <div className='text-sm '>
                 <Link to='/home' className='ml-auto text-sm underline-offset-4 underline hover:no-underline'>
-                  Back to guest page
+                  {t("backToGuestPage")}
                 </Link>
               </div>
             </div>

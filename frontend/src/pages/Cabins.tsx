@@ -1,12 +1,14 @@
+import { useTranslation } from "react-i18next";
 import AddCabin from "../features/cabins/AddCabin";
 import CabinTable from "../features/cabins/CabinTable";
 import CabinTableOperations from "../features/cabins/CabinTableOperations";
 
 function Cabins() {
+  const { t } = useTranslation();
   return (
     <>
       <div className='flex justify-between  gap-2 mb-4 max-sm:flex-col'>
-        <h1 className='text-2xl font-semibold'>All cabins</h1>
+        <h1 className='text-2xl font-semibold'>{t("cabinHeader")}</h1>
         <CabinTableOperations />
       </div>
 

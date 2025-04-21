@@ -9,12 +9,14 @@ import { formatCurrency } from "../../utils/helpers";
 import { useBooking } from "../bookings/useBooking";
 import { useSettings } from "../settings/useSettings";
 import { useCheckin } from "./useCheckin";
+import { useTranslation } from "react-i18next";
 
 function CheckinBooking() {
   const [confirmPaid, setConfirmPaid] = useState(false);
   const [addBreakfast, setAddBreakfast] = useState(false);
   const { booking, isLoading } = useBooking();
   const { settings, isLoading: isLoadingSettings } = useSettings();
+  const { t } = useTranslation();
 
   useEffect(() => setConfirmPaid(booking?.isPaid ?? false), [booking]);
 
@@ -47,9 +49,9 @@ function CheckinBooking() {
   return (
     <>
       <div className='flex justify-between items-center mb-2'>
-        <h1 className='text-xl font-semibold'>Check in booking #{bookingId}</h1>
+        <h1 className='text-xl font-semibold'>{t("checkinBookingHeader", { bookingId })}</h1>
         <Button variant='link' className='text-cBrand-500' onClick={moveBack}>
-          &larr; Back
+          &larr; {t("backButton")}
         </Button>
       </div>
 
@@ -68,7 +70,8 @@ function CheckinBooking() {
             }}
           />
           <Label htmlFor='breakfast' className='text-lg text-cGrey-700'>
-            Want to add breakfast for {formatCurrency(optionalBreakfastPrice)}?
+            {t("wantToAddBreakfast", { price: formatCurrency(optionalBreakfastPrice) })}
+            {/* Want to add breakfast for {formatCurrency(optionalBreakfastPrice)}? */}
           </Label>
         </div>
       )}
@@ -82,7 +85,7 @@ function CheckinBooking() {
           id='confirm'
         />
         <Label htmlFor='confirm' className='text-lg max-md:text-base max-sm:text-sm text-cGrey-700'>
-          I confirm that {guest.fullName} has paid the total amount of{" "}
+          {t("confirmPayPrice", { name: guest.fullName })}
           {!addBreakfast
             ? formatCurrency(totalPrice)
             : `${formatCurrency(totalPrice + optionalBreakfastPrice)} (${formatCurrency(totalPrice)} + ${formatCurrency(
@@ -97,10 +100,10 @@ function CheckinBooking() {
           onClick={handleCheckin}
           disabled={!confirmPaid || isCheckingIn}
         >
-          Check in booking #{bookingId}
+          {t("checkinBookingButton", { bookingId })}
         </Button>
         <Button variant='secondary' onClick={moveBack}>
-          Back
+          {t("backButton")}
         </Button>
       </div>
     </>

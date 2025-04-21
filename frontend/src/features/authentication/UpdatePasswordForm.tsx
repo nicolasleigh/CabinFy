@@ -1,17 +1,15 @@
 import { useForm } from "react-hook-form";
-// import Button from "../../ui/Button";
-import Form from "../../ui/Form";
-import FormRow from "../../ui/FormRow";
-// import Input from "../../ui/Input";
 
-import { useUpdateUser } from "./useUpdateUser";
-import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 import { PASS_LENGTH } from "@/utils/constants";
+import { useUpdateUser } from "./useUpdateUser";
+import { useTranslation } from "react-i18next";
 
 function UpdatePasswordForm() {
   const { register, handleSubmit, formState, getValues, reset } = useForm();
+  const { t } = useTranslation();
   const { errors } = formState;
 
   const { updateUser, isUpdating } = useUpdateUser();
@@ -24,7 +22,7 @@ function UpdatePasswordForm() {
     <form onSubmit={handleSubmit(onSubmit)} className='flex flex-col gap-3 border py-6 px-10 rounded-md'>
       <div className='flex items-center mb-8'>
         <Label htmlFor='password' className='w-36'>
-          {`New Password`}
+          {t(`newPassword`)}
         </Label>
         <div className='relative'>
           <Input
@@ -47,7 +45,7 @@ function UpdatePasswordForm() {
 
       <div className='flex items-center mb-5'>
         <Label htmlFor='passwordConfirm' className='w-36'>
-          Confirm Password
+          {t("confirmPassword")}
         </Label>
         <div className='relative'>
           <Input
@@ -67,10 +65,10 @@ function UpdatePasswordForm() {
 
       <div className='flex gap-2 justify-end'>
         <Button className='hover:bg-cGrey-300' type='reset' variant='secondary' disabled={isUpdating} onClick={reset}>
-          Cancel
+          {t("cancelButton")}
         </Button>
         <Button className='bg-cBrand-500 hover:bg-cBrand-600 text-white' type='submit' disabled={isUpdating}>
-          Update password
+          {t("updatePassword")}
         </Button>
       </div>
     </form>

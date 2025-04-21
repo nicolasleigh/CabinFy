@@ -11,6 +11,7 @@ import { useUpdateUser } from "./useUpdateUser";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import { useTranslation } from "react-i18next";
 
 function UpdateUserDataForm() {
   // We don't need the loading state, and can immediately use the user data, because we know that it has already been loaded at this point
@@ -19,6 +20,7 @@ function UpdateUserDataForm() {
   } = useUser();
 
   const { updateUser, isUpdating } = useUpdateUser();
+  const { t } = useTranslation();
 
   const [username, setUsername] = useState(currentName);
   const [avatar, setAvatar] = useState(null);
@@ -45,13 +47,13 @@ function UpdateUserDataForm() {
   return (
     <form onSubmit={handleSubmit} className='flex flex-col gap-3 border py-6 px-10 rounded-md'>
       <div className='flex items-center'>
-        <Label className='w-36'>Email Address</Label>
+        <Label className='w-36'>{t("emailAddress")}</Label>
         <Input value={email} disabled className='bg-cGrey-100 w-56' />
       </div>
 
       <div className='flex items-center'>
         <Label htmlFor='username' className='w-36'>
-          Full Name
+          {t("fullName")}
         </Label>
         <Input
           type='text'
@@ -65,7 +67,7 @@ function UpdateUserDataForm() {
 
       <div className='flex items-center'>
         <Label htmlFor='avatar' className='w-36'>
-          Avatar Image
+          {t("avatarImage")}
         </Label>
         <Input
           type='file'
@@ -85,39 +87,14 @@ function UpdateUserDataForm() {
           disabled={isUpdating}
           onClick={handleCancel}
         >
-          Cancel
+          {t("cancelButton")}
         </Button>
         <Button className='bg-cBrand-500 hover:bg-cBrand-600 text-white' disabled={isUpdating}>
-          Update account
+          {t("updateAccountButton")}
         </Button>
       </div>
     </form>
   );
-  // return (
-  //   <Form onSubmit={handleSubmit}>
-  //     <FormRow label='Email address'>
-  //       <Input value={email} disabled />
-  //     </FormRow>
-  //     <FormRow label='Full name'>
-  //       <Input
-  //         type='text'
-  //         value={username}
-  //         onChange={(e) => setUsername(e.target.value)}
-  //         id='username'
-  //         disabled={isUpdating}
-  //       />
-  //     </FormRow>
-  //     <FormRow label='Avatar image'>
-  //       <FileInput id='avatar' accept='image/*' onChange={(e) => setAvatar(e.target.files[0])} disabled={isUpdating} />
-  //     </FormRow>
-  //     <FormRow>
-  //       <Button type='reset' variation='secondary' disabled={isUpdating} onClick={handleCancel}>
-  //         Cancel
-  //       </Button>
-  //       <Button disabled={isUpdating}>Update account</Button>
-  //     </FormRow>
-  //   </Form>
-  // );
 }
 
 export default UpdateUserDataForm;

@@ -1,9 +1,13 @@
+import { useTheme } from "@/components/theme-provider";
 import { eachDayOfInterval, format, isSameDay, subDays } from "date-fns";
+import { useTranslation } from "react-i18next";
 import { Area, AreaChart, ResponsiveContainer, Tooltip, XAxis } from "recharts";
-import { useDarkMode } from "../../context/DarkModeContext";
 
 function SalesChart({ bookings, numDays }) {
-  const { isDarkMode } = useDarkMode();
+  const { theme } = useTheme();
+  const isDarkMode = theme === "dark";
+
+  const { t } = useTranslation();
 
   const allDates = eachDayOfInterval({
     start: subDays(new Date(), numDays - 1),
@@ -41,7 +45,7 @@ function SalesChart({ bookings, numDays }) {
   return (
     <div className='col-span-full border p-2 rounded-md'>
       <h2 className='text-lg font-semibold mb-2 max-sm:text-base'>
-        Sales from {format(allDates.at(0), "yyyy-MM-dd ")} &mdash; {format(allDates.at(-1), "yyyy-MM-dd")}
+        {t("salesFrom")} {format(allDates.at(0), "yyyy-MM-dd ")} &mdash; {format(allDates.at(-1), "yyyy-MM-dd")}
       </h2>
       <ResponsiveContainer height={300} width='100%'>
         <AreaChart data={data} height={300} width={700}>
@@ -55,7 +59,7 @@ function SalesChart({ bookings, numDays }) {
             stroke={colors.totalSales.stroke}
             fill={colors.totalSales.fill}
             strokeWidth={2}
-            name='Total sales'
+            name={t("totalSales")}
             unit='¥'
           />
           <Area
@@ -64,7 +68,7 @@ function SalesChart({ bookings, numDays }) {
             stroke={colors.extrasSales.stroke}
             fill={colors.extrasSales.fill}
             strokeWidth={2}
-            name='Extras sales'
+            name={t("extraSales")}
             unit='¥'
           />
         </AreaChart>

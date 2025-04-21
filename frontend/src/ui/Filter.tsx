@@ -18,7 +18,7 @@ function Filter({ filterField, options }) {
         <Button
           variant='ghost'
           className={cn(
-            "hover:bg-cBrand-600 hover:text-cBrand-100 px-2 py-1 rounded-sm border max-sm:font-normal",
+            "hover:bg-cBrand-600 hover:text-cBrand-100 px-2 py-1 rounded-sm border font-normal",
             option.value === currentFilter && "bg-cBrand-600 text-cBrand-100"
           )}
           key={option.value}

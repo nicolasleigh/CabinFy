@@ -17,10 +17,12 @@ import {
 } from "../ui/dialog";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "../ui/dropdown-menu";
 import DialogItem from "./DialogItem";
+import { useTranslation } from "react-i18next";
 
 export default function BookingColumnAction({ id, status }) {
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [openDeleteDialog, setOpenDeleteDialog] = useState(false);
+  const { t } = useTranslation();
 
   const navigate = useNavigate();
   const { checkout, isCheckingOut } = useCheckout();
@@ -45,7 +47,7 @@ export default function BookingColumnAction({ id, status }) {
         <DropdownMenuItem onClick={() => navigate(`/admin/bookings/${id}`)}>
           <div className='flex items-center gap-3 w-full'>
             <AiOutlineEye strokeWidth={0.9} size={20} />
-            <span>{"Details"}</span>
+            <span>{t("tableDetails")}</span>
           </div>
         </DropdownMenuItem>
 
@@ -53,7 +55,7 @@ export default function BookingColumnAction({ id, status }) {
           <DropdownMenuItem onClick={() => navigate(`/admin/checkin/${id}`)}>
             <div className='flex items-center gap-3 w-full'>
               <AiOutlineDownload strokeWidth={0.9} size={20} />
-              <span>{"Check in"}</span>
+              <span>{t("tableCheckin")}</span>
             </div>
           </DropdownMenuItem>
         )}
@@ -62,7 +64,7 @@ export default function BookingColumnAction({ id, status }) {
           <DropdownMenuItem onClick={() => checkout(id)} disabled={isCheckingOut}>
             <div className='flex items-center gap-3 w-full'>
               <AiOutlineUpload strokeWidth={0.9} size={20} />
-              <span>{"Check out"}</span>
+              <span>{t("tableCheckout")}</span>
             </div>
           </DropdownMenuItem>
         )}
@@ -71,7 +73,7 @@ export default function BookingColumnAction({ id, status }) {
           triggerChildren={
             <div className='flex items-center gap-3'>
               <AiOutlineDelete strokeWidth={0.9} size={20} />
-              <span>{"Delete"}</span>
+              <span>{t("tableDelete")}</span>
             </div>
           }
           open={openDeleteDialog}
@@ -79,8 +81,8 @@ export default function BookingColumnAction({ id, status }) {
           className='max-w-[500px]'
         >
           <DialogHeader>
-            <DialogTitle>{"Are you sure?"}</DialogTitle>
-            <DialogDescription>{"This action will remove this booking permanently!"}</DialogDescription>
+            <DialogTitle>{t("tableDeleteTitle")}</DialogTitle>
+            <DialogDescription>{t("tableDeleteDescription")}</DialogDescription>
           </DialogHeader>
           <DialogFooter>
             <Button
@@ -91,7 +93,7 @@ export default function BookingColumnAction({ id, status }) {
               }}
               variant='secondary'
             >
-              {"Cancel"}
+              {t("tableDeleteCancel")}
             </Button>
             <Button
               onClick={() => {
@@ -103,7 +105,7 @@ export default function BookingColumnAction({ id, status }) {
               disabled={isDeleting}
             >
               <span className='w-12 flex items-center justify-center'>
-                {isDeleting ? <Loader className='animate-spin' /> : "Delete"}
+                {isDeleting ? <Loader className='animate-spin' /> : t("tableDelete")}
               </span>
             </Button>
           </DialogFooter>

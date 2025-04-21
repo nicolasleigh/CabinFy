@@ -21,6 +21,7 @@ import Spinner from "../../ui/Spinner";
 import { useCheckout } from "../check-in-out/useCheckout";
 import { useBooking } from "./useBooking";
 import { useDeleteBooking } from "./useDeleteBooking";
+import { useTranslation } from "react-i18next";
 
 function BookingDetail() {
   const navigate = useNavigate();
@@ -28,6 +29,7 @@ function BookingDetail() {
   const { checkout, isCheckingOut } = useCheckout();
   const { deleteBooking, isDeleting } = useDeleteBooking();
   const [open, setOpen] = useState(false);
+  const { t } = useTranslation();
 
   const moveBack = useMoveBack();
 
@@ -40,11 +42,13 @@ function BookingDetail() {
     <>
       <div className='flex justify-between items-center mb-2 '>
         <div className='flex items-center gap-2'>
-          <h1 className='text-xl max-md:text-lg font-semibold max-sm:text-base'>Booking #{bookingId}</h1>
+          <h1 className='text-xl max-md:text-lg font-semibold max-sm:text-base'>
+            {t("bookingDetailHeader", { bookingId })}
+          </h1>
           <Badge className={cn("rounded-full uppercase", statusColor[status])}>{status.replace("-", " ")}</Badge>
         </div>
         <Button variant='link' className='text-cBrand-500' onClick={moveBack}>
-          &larr; Back
+          &larr; {t("backButton")}
         </Button>
       </div>
 
@@ -56,7 +60,7 @@ function BookingDetail() {
             className='bg-cBrand-500 hover:bg-cBrand-600 text-cBrand-100'
             onClick={() => navigate(`/admin/checkin/${bookingId}`)}
           >
-            Check in
+            {t("tableCheckin")}
           </Button>
         )}
 
@@ -68,7 +72,7 @@ function BookingDetail() {
             }}
             disabled={isCheckingOut}
           >
-            Check out
+            {t("tableCheckout")}
           </Button>
         )}
 
@@ -81,14 +85,14 @@ function BookingDetail() {
               }}
               disabled={isDeleting}
             >
-              Delete booking
+              {t("deleteBooking")}
             </Button>
           </DialogTrigger>
 
           <DialogContent>
             <DialogHeader>
-              <DialogTitle>{"Are you sure?"}</DialogTitle>
-              <DialogDescription>{"This action will remove this booking permanently!"}</DialogDescription>
+              <DialogTitle>{t("tableDeleteTitle")}</DialogTitle>
+              <DialogDescription>{t("tableDeleteDescription")}</DialogDescription>
             </DialogHeader>
             <DialogFooter>
               <Button
@@ -98,7 +102,7 @@ function BookingDetail() {
                 }}
                 variant='secondary'
               >
-                {"Cancel"}
+                {t("tableDeleteCancel")}
               </Button>
               <Button
                 onClick={() => {
@@ -113,7 +117,7 @@ function BookingDetail() {
                 disabled={isDeleting}
               >
                 <span className='w-12 flex items-center justify-center'>
-                  {isDeleting ? <Loader className='animate-spin' /> : "Delete"}
+                  {isDeleting ? <Loader className='animate-spin' /> : t("tableDelete")}
                 </span>
               </Button>
             </DialogFooter>
@@ -121,7 +125,7 @@ function BookingDetail() {
         </Dialog>
 
         <Button variant='secondary' onClick={moveBack}>
-          Back
+          {t("backButton")}
         </Button>
       </div>
     </>

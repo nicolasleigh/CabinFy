@@ -2,8 +2,10 @@ import { AiFillSignal, AiOutlineTransaction } from "react-icons/ai";
 import { LuCalendarCheck2, LuWallet } from "react-icons/lu";
 import { formatCurrency } from "../../utils/helpers";
 import Stat from "./Stat";
+import { useTranslation } from "react-i18next";
 
 function Stats({ bookings, confirmedStays, numDays, cabinCount }) {
+  const { t } = useTranslation();
   // 1.
   const numBookings = bookings.length;
 
@@ -21,7 +23,7 @@ function Stats({ bookings, confirmedStays, numDays, cabinCount }) {
     <>
       <div className='max-sm:col-span-2'>
         <Stat
-          title='Bookings'
+          title={t("statBookings")}
           color='blue'
           icon={<LuWallet className='max-lg:w-6 max-lg:h-6 w-8 h-8' />}
           value={numBookings}
@@ -30,7 +32,7 @@ function Stats({ bookings, confirmedStays, numDays, cabinCount }) {
 
       <div className='max-sm:col-span-2'>
         <Stat
-          title='Sales'
+          title={t("statSales")}
           color='green'
           icon={<AiOutlineTransaction className='max-lg:w-6 max-lg:h-6 w-8 h-8' />}
           value={formatCurrency(sales)}
@@ -39,7 +41,7 @@ function Stats({ bookings, confirmedStays, numDays, cabinCount }) {
 
       <div className='max-sm:col-span-2'>
         <Stat
-          title='Check ins'
+          title={t("statCheckin")}
           color='indigo'
           icon={<LuCalendarCheck2 className='max-lg:w-6 max-lg:h-6 w-8 h-8' />}
           value={checkins}
@@ -48,7 +50,7 @@ function Stats({ bookings, confirmedStays, numDays, cabinCount }) {
 
       <div className='max-sm:col-span-2'>
         <Stat
-          title='Occupancy rate'
+          title={t("statOccupancyRate")}
           color='yellow'
           icon={<AiFillSignal className='max-lg:w-6 max-lg:h-6 w-8 h-8' />}
           value={Math.round(occupation * 100) + "%"}

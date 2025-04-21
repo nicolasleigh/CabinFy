@@ -18,6 +18,7 @@ import Spinner from "./ui/Spinner";
 import { ThemeProvider } from "./components/theme-provider";
 import HomeSkeleton from "./ui/HomeSkeleton";
 import CabinSkeleton from "./ui/CabinSkeleton";
+import "./i18n";
 
 const Dashboard = lazy(() => import("./pages/Dashboard"));
 const Bookings = lazy(() => import("./pages/Bookings"));

@@ -8,43 +8,42 @@ import {
   SidebarMenuItem,
   SidebarRail,
 } from "@/components/ui/sidebar";
-import { Home, LogOut, MonitorPlay, UserRound } from "lucide-react";
-import { Link, NavLink } from "react-router-dom";
-import { Button } from "./ui/button";
+import { useLogout } from "@/features/authentication/useLogout";
+import { LogOut } from "lucide-react";
+import { useTranslation } from "react-i18next";
 import {
   AiOutlineBarChart,
   AiOutlineHome,
-  AiOutlineLeft,
   AiOutlineLeftCircle,
   AiOutlineSchedule,
   AiOutlineSetting,
 } from "react-icons/ai";
-import { useTheme } from "./theme-provider";
-import { useLogout } from "@/features/authentication/useLogout";
+import { Link, NavLink } from "react-router-dom";
+import { Button } from "./ui/button";
 
 const items = [
   {
-    title: "Dashboard",
+    title: "sidebarDashboard",
     url: "/admin/dashboard",
     icon: <AiOutlineBarChart />,
   },
   {
-    title: "Bookings",
+    title: "sidebarBookings",
     url: "/admin/bookings",
     icon: <AiOutlineSchedule />,
   },
   {
-    title: "Cabins",
+    title: "sidebarCabins",
     url: "/admin/cabins",
     icon: <AiOutlineHome />,
   },
   {
-    title: "Settings",
+    title: "sidebarSettings",
     url: "/admin/settings",
     icon: <AiOutlineSetting />,
   },
   {
-    title: "Guest Page",
+    title: "sidebarGuestPage",
     url: "/home",
     icon: <AiOutlineLeftCircle />,
   },
@@ -53,6 +52,7 @@ const items = [
 export function AppSidebar() {
   // const { theme } = useTheme();
   const { logout, isLoading } = useLogout();
+  const { t } = useTranslation();
   return (
     <Sidebar variant='inset'>
       <SidebarHeader className='mb-8'>
@@ -70,7 +70,7 @@ export function AppSidebar() {
                   <Button variant='ghost' className='flex items-center justify-start w-full py-1 px-2' asChild>
                     <div>
                       {item.icon}
-                      <span>{item.title}</span>
+                      <span>{t(item.title)}</span>
                     </div>
                   </Button>
                 </NavLink>
@@ -88,7 +88,7 @@ export function AppSidebar() {
           className='flex items-center justify-start w-full py-1 px-2'
         >
           <LogOut size={18} />
-          <span>{"Log out"}</span>
+          <span>{t("sidebarLogout")}</span>
         </Button>
       </SidebarFooter>
     </Sidebar>

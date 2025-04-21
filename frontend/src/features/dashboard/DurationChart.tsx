@@ -1,45 +1,47 @@
 import { useTheme } from "@/components/theme-provider";
+import i18n from "@/i18n";
 import { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 import { Cell, Legend, Pie, PieChart, ResponsiveContainer, Tooltip } from "recharts";
 
 const startDataLight = [
   {
-    duration: "1 night",
+    duration: i18n.t("stayNightOne"),
     value: 0,
     color: "#ef4444",
   },
   {
-    duration: "2 nights",
+    duration: i18n.t("stayNights", { num: "2" }),
     value: 0,
     color: "#f97316",
   },
   {
-    duration: "3 nights",
+    duration: i18n.t("stayNights", { num: "3" }),
     value: 0,
     color: "#eab308",
   },
   {
-    duration: "4-5 nights",
+    duration: i18n.t("stayNights", { num: "4-5" }),
     value: 0,
     color: "#84cc16",
   },
   {
-    duration: "6-7 nights",
+    duration: i18n.t("stayNights", { num: "6-7" }),
     value: 0,
     color: "#22c55e",
   },
   {
-    duration: "8-14 nights",
+    duration: i18n.t("stayNights", { num: "8-14" }),
     value: 0,
     color: "#14b8a6",
   },
   {
-    duration: "15-21 nights",
+    duration: i18n.t("stayNights", { num: "15-21" }),
     value: 0,
     color: "#3b82f6",
   },
   {
-    duration: "21+ nights",
+    duration: i18n.t("stayNights", { num: "21+" }),
     value: 0,
     color: "#a855f7",
   },
@@ -47,42 +49,42 @@ const startDataLight = [
 
 const startDataDark = [
   {
-    duration: "1 night",
+    duration: i18n.t("stayNightOne"),
     value: 0,
     color: "#d04444",
   },
   {
-    duration: "2 nights",
+    duration: i18n.t("stayNights", { num: "2" }),
     value: 0,
     color: "#d86132",
   },
   {
-    duration: "3 nights",
+    duration: i18n.t("stayNights", { num: "3" }),
     value: 0,
     color: "#ae7627",
   },
   {
-    duration: "4-5 nights",
+    duration: i18n.t("stayNights", { num: "4-5" }),
     value: 0,
     color: "#7cbe25",
   },
   {
-    duration: "6-7 nights",
+    duration: i18n.t("stayNights", { num: "6-7" }),
     value: 0,
     color: "#16b852",
   },
   {
-    duration: "8-14 nights",
+    duration: i18n.t("stayNights", { num: "8-14" }),
     value: 0,
     color: "#13afa2",
   },
   {
-    duration: "15-21 nights",
+    duration: i18n.t("stayNights", { num: "15-21" }),
     value: 0,
     color: "#2c5de4",
   },
   {
-    duration: "21+ nights",
+    duration: i18n.t("stayNights", { num: "21+" }),
     value: 0,
     color: "#7e22ce",
   },
@@ -92,18 +94,19 @@ function prepareData(startData, stays) {
   function incArrayValue(arr, field) {
     return arr.map((obj) => (obj.duration === field ? { ...obj, value: obj.value + 1 } : obj));
   }
+  const { t } = useTranslation();
 
   const data = stays
     .reduce((arr, cur) => {
       const num = cur.numNights;
-      if (num === 1) return incArrayValue(arr, "1 night");
-      if (num === 2) return incArrayValue(arr, "2 nights");
-      if (num === 3) return incArrayValue(arr, "3 nights");
-      if ([4, 5].includes(num)) return incArrayValue(arr, "4-5 nights");
-      if ([6, 7].includes(num)) return incArrayValue(arr, "6-7 nights");
-      if (num >= 8 && num <= 14) return incArrayValue(arr, "8-14 nights");
-      if (num >= 15 && num <= 21) return incArrayValue(arr, "15-21 nights");
-      if (num >= 21) return incArrayValue(arr, "21+ nights");
+      if (num === 1) return incArrayValue(arr, t("stayNightOne"));
+      if (num === 2) return incArrayValue(arr, t("stayNights", { num: "2" }));
+      if (num === 3) return incArrayValue(arr, t("stayNights", { num: "3" }));
+      if ([4, 5].includes(num)) return incArrayValue(arr, t("stayNights", { num: "4-5" }));
+      if ([6, 7].includes(num)) return incArrayValue(arr, t("stayNights", { num: "6-7" }));
+      if (num >= 8 && num <= 14) return incArrayValue(arr, t("stayNights", { num: "8-14" }));
+      if (num >= 15 && num <= 21) return incArrayValue(arr, t("stayNights", { num: "15-21" }));
+      if (num >= 21) return incArrayValue(arr, t("stayNights", { num: "21+" }));
       return arr;
     }, startData)
     .filter((obj) => obj.value > 0);
@@ -114,6 +117,7 @@ function prepareData(startData, stays) {
 function DurationChart({ confirmedStays }) {
   const mediaMatch = window.matchMedia("(max-width: 800px)");
   const [matches, setMatches] = useState(mediaMatch.matches);
+  const { t } = useTranslation();
   const { theme } = useTheme();
   const startData = theme === "dark" ? startDataDark : startDataLight;
   const data = prepareData(startData, confirmedStays);
@@ -126,7 +130,7 @@ function DurationChart({ confirmedStays }) {
 
   return (
     <div className='col-span-2 border rounded-md p-2 '>
-      <h2 className='text-lg font-semibold'>Stay duration summary</h2>
+      <h2 className='text-lg font-semibold'>{t("stayDurationSummary")}</h2>
       <ResponsiveContainer width={"100%"} height={matches ? 260 : 240}>
         <PieChart>
           <Pie

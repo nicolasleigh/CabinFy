@@ -8,10 +8,12 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { useTranslation } from "react-i18next";
 import { useSearchParams } from "react-router-dom";
 
 function SortBy({ options }) {
   const [searchParams, setSearchParams] = useSearchParams();
+  const { t } = useTranslation();
   const sortBy = searchParams.get("sortBy") || "";
 
   function handleChange(value) {
@@ -22,7 +24,7 @@ function SortBy({ options }) {
   return (
     <Select onValueChange={handleChange} value={sortBy}>
       <SelectTrigger className='w-[180px]'>
-        <SelectValue placeholder='Sort by...' />
+        <SelectValue placeholder={t("sortByPlaceholder")} />
       </SelectTrigger>
       <SelectContent>
         {options.map((option) => {
