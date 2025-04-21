@@ -11,7 +11,14 @@ import {
 import { Home, LogOut, MonitorPlay, UserRound } from "lucide-react";
 import { Link, NavLink } from "react-router-dom";
 import { Button } from "./ui/button";
-import { AiOutlineBarChart, AiOutlineHome, AiOutlineSchedule, AiOutlineSetting } from "react-icons/ai";
+import {
+  AiOutlineBarChart,
+  AiOutlineHome,
+  AiOutlineLeft,
+  AiOutlineLeftCircle,
+  AiOutlineSchedule,
+  AiOutlineSetting,
+} from "react-icons/ai";
 import { useTheme } from "./theme-provider";
 import { useLogout } from "@/features/authentication/useLogout";
 
@@ -35,6 +42,11 @@ const items = [
     title: "Settings",
     url: "/admin/settings",
     icon: <AiOutlineSetting />,
+  },
+  {
+    title: "Guest Page",
+    url: "/home",
+    icon: <AiOutlineLeftCircle />,
   },
 ];
 

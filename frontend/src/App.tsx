@@ -7,7 +7,6 @@ import { DarkModeProvider } from "./context/DarkModeContext";
 import Account from "./pages/Account";
 import ForgetPassword from "./pages/ForgetPassword";
 import Login from "./pages/Login";
-import PageNotFound from "./pages/PageNotFound";
 import ResetPassword from "./pages/ResetPassword";
 import Settings from "./pages/Settings";
 import Signup from "./pages/Signup";
@@ -16,9 +15,9 @@ import GuestLayout from "./features/guests/GuestLayout";
 import ProtectedRoute from "./ui/ProtectedRoute";
 import { Suspense, lazy } from "react";
 import Spinner from "./ui/Spinner";
+import { ThemeProvider } from "./components/theme-provider";
 import HomeSkeleton from "./ui/HomeSkeleton";
 import CabinSkeleton from "./ui/CabinSkeleton";
-import { ThemeProvider } from "./components/theme-provider";
 
 const Dashboard = lazy(() => import("./pages/Dashboard"));
 const Bookings = lazy(() => import("./pages/Bookings"));
@@ -27,8 +26,6 @@ const Checkin = lazy(() => import("./pages/Checkin"));
 const Cabins = lazy(() => import("./pages/Cabins"));
 const Cabin = lazy(() => import("./pages/Cabin"));
 const Home = lazy(() => import("./pages/Home"));
-
-// export const imageBaseUrl = import.meta.env.VITE_IMAGE_URL;
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -61,7 +58,6 @@ function Root() {
     <Routes>
       <Route path='/admin/*' element={<AdminApp />} />
       <Route path='/*' element={<GuestApp />} />
-      <Route path='*' element={<PageNotFound />} />
     </Routes>
   );
 }

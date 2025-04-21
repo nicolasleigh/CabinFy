@@ -1,29 +1,8 @@
-import styled from 'styled-components';
-import CardSkeleton from './CardSkeleton';
-
-const HomeLayout = styled.div`
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  grid-auto-rows: 1fr;
-
-  column-gap: 2.4rem;
-  row-gap: 3.4rem;
-  margin-top: 2rem;
-
-  @media (max-width: 1120px) {
-    grid-template-columns: repeat(3, 1fr);
-  }
-  @media (max-width: 800px) {
-    grid-template-columns: repeat(2, 1fr);
-  }
-  @media (max-width: 600px) {
-    grid-template-columns: repeat(1, 1fr);
-  }
-`;
+import CardSkeleton from "./CardSkeleton";
 
 export default function HomeSkeleton() {
   return (
-    <HomeLayout>
+    <div className='grid grid-cols-4 gap-x-4 gap-y-8 mt-5 max-lg:grid-cols-3 max-md:grid-cols-2 max-sm:grid-cols-1'>
       <CardSkeleton />
       <CardSkeleton />
       <CardSkeleton />
@@ -32,6 +11,6 @@ export default function HomeSkeleton() {
       <CardSkeleton />
       <CardSkeleton />
       <CardSkeleton />
-    </HomeLayout>
+    </div>
   );
 }

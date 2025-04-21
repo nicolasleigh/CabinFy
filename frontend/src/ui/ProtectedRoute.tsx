@@ -1,16 +1,7 @@
-import { useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { styled } from 'styled-components';
-import { useUser } from '../features/authentication/useUser';
-import Spinner from './Spinner';
-
-const FullPage = styled.div`
-  height: 100vh;
-  background-color: var(--color-grey-50);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-`;
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { useUser } from "../features/authentication/useUser";
+import Spinner from "./Spinner";
 
 function ProtectedRoute({ children }) {
   const navigate = useNavigate();
@@ -22,7 +13,7 @@ function ProtectedRoute({ children }) {
   // 2. If there is NO authenticated user, redirect to the /login
   useEffect(
     function () {
-      if (!isAuthenticated && !isLoading) navigate('/admin/login');
+      if (!isAuthenticated && !isLoading) navigate("/admin/login");
     },
     [isAuthenticated, isLoading, navigate]
   );
@@ -30,9 +21,9 @@ function ProtectedRoute({ children }) {
   // 3. While loading, show a spinner
   if (isLoading)
     return (
-      <FullPage>
+      <div className='h-screen'>
         <Spinner />
-      </FullPage>
+      </div>
     );
 
   // 4. If there IS a user, render the app

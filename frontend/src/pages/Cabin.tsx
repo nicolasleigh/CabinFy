@@ -1,20 +1,18 @@
-import { Suspense, lazy, useState } from "react";
-import { useParams } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
+import BookingForm from "@/features/bookings/BookingForm";
 import GuestAddReview from "@/features/guests/GuestAddReview";
 import GuestsReviews from "@/features/guests/GuestsReviews";
+import CabinSkeleton from "@/ui/CabinSkeleton";
+import { useState } from "react";
+import { useParams } from "react-router-dom";
 import { useBookingByCabinId } from "../features/bookings/useBookingByCabinId";
 import { useCabin } from "../features/cabins/useCabin";
 import GuestReviewItem from "../features/guests/GuestReviewItem";
 import GuestsFavoriteBox from "../features/guests/GuestsFavoriteBox";
 import { useReviews } from "../features/guests/useReviews";
-import CabinSkeleton from "../ui/CabinSkeleton";
 import CabinTextInfo from "../ui/CabinTextInfo";
 import FeatureIcon from "../ui/FeatureIcon";
-import Skeleton from "../ui/Skeleton";
-
-const BookingForm = lazy(() => import("../features/bookings/BookingForm"));
 
 export default function Cabin() {
   const [guestsNumber, setGuestsNumber] = useState(1);
@@ -83,18 +81,16 @@ export default function Cabin() {
           </Dialog>
         </div>
 
-        <Suspense fallback={<Skeleton height={700} />}>
-          <BookingForm
-            guestsNumber={guestsNumber}
-            setGuestsNumber={setGuestsNumber}
-            hasBreakfast={hasBreakfast}
-            setHasBreakfast={setHasBreakfast}
-            discount={discount}
-            regularPrice={regularPrice}
-            cabinId={cabinId}
-            booking={booking}
-          />
-        </Suspense>
+        <BookingForm
+          guestsNumber={guestsNumber}
+          setGuestsNumber={setGuestsNumber}
+          hasBreakfast={hasBreakfast}
+          setHasBreakfast={setHasBreakfast}
+          discount={discount}
+          regularPrice={regularPrice}
+          cabinId={cabinId}
+          booking={booking}
+        />
       </div>
     </>
   );

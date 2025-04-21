@@ -10,9 +10,6 @@ function Header() {
     <div className='mt-4 mx-10 max-lg:mx-5 max-sm:mx-2 flex justify-between'>
       <SidebarTrigger />
       <div className='flex gap-4 justify-end'>
-        <Button variant='link' onClick={() => navigate("/home")}>
-          Back
-        </Button>
         <UserAvatar />
         <HeaderMenu />
       </div>

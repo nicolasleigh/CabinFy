@@ -1,7 +1,7 @@
 import { useCabins } from "../features/cabins/useCabins";
 import { useRate } from "../features/guests/useRate";
 import Card from "../ui/Card";
-import HomeSkeleton from "../ui/HomeSkeleton";
+import HomeSkeleton from "@/ui/HomeSkeleton";
 
 export default function Home() {
   const { cabins, isLoading: isLoadingCabins } = useCabins();
