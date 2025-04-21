@@ -1,31 +1,8 @@
-import Heading from "../ui/Heading";
 // import Row from '../ui/Row';
-import BookingTable from "../features/bookings/BookingTable";
-import BookingTableOperations from "../features/bookings/BookingTableOperations";
-import styled from "styled-components";
-import { DataTable } from "@/components/table/DataTable";
 import { columns } from "@/components/table/BookingColumn";
+import { DataTable } from "@/components/table/DataTable";
 import { useBookings } from "@/features/bookings/useBookings";
-
-const Row = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-
-  @media (max-width: 880px) {
-    flex-direction: column;
-    align-items: flex-end;
-    gap: 1rem;
-
-    .heading {
-      align-self: flex-start;
-    }
-  }
-
-  @media (max-width: 580px) {
-    gap: 0.3rem;
-  }
-`;
+import BookingTableOperations from "../features/bookings/BookingTableOperations";
 
 function Bookings() {
   const { bookings, isLoading, count } = useBookings();

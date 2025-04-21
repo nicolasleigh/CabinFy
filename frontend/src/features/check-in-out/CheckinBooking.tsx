@@ -1,30 +1,14 @@
-import styled from "styled-components";
 import BookingDataBox from "../bookings/BookingDataBox";
-
-import Row from "../../ui/Row";
-import Heading from "../../ui/Heading";
-import ButtonGroup from "../../ui/ButtonGroup";
-import ButtonText from "../../ui/ButtonText";
-
-import { useMoveBack } from "../../hooks/useMoveBack";
-import { useBooking } from "../bookings/useBooking";
-import Spinner from "../../ui/Spinner";
-import { useEffect, useState } from "react";
-import Checkbox from "../../ui/Checkbox";
-import { formatCurrency } from "../../utils/helpers";
-import { useCheckin } from "./useCheckin";
-import { useSettings } from "../settings/useSettings";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-
-const Box = styled.div`
-  /* Box */
-  background-color: var(--color-grey-0);
-  border: 1px solid var(--color-grey-100);
-  border-radius: var(--border-radius-md);
-  padding: 2.4rem 4rem;
-`;
+import { useEffect, useState } from "react";
+import { useMoveBack } from "../../hooks/useMoveBack";
+import Spinner from "../../ui/Spinner";
+import { formatCurrency } from "../../utils/helpers";
+import { useBooking } from "../bookings/useBooking";
+import { useSettings } from "../settings/useSettings";
+import { useCheckin } from "./useCheckin";
 
 function CheckinBooking() {
   const [confirmPaid, setConfirmPaid] = useState(false);
@@ -86,16 +70,6 @@ function CheckinBooking() {
           <Label htmlFor='breakfast' className='text-lg text-cGrey-700'>
             Want to add breakfast for {formatCurrency(optionalBreakfastPrice)}?
           </Label>
-          {/* <Checkbox
-            checked={addBreakfast}
-            onChange={() => {
-              setAddBreakfast((add) => !add);
-              setConfirmPaid(false);
-            }}
-            id='breakfast'
-          >
-            Want to add breakfast for {formatCurrency(optionalBreakfastPrice)}?
-          </Checkbox> */}
         </div>
       )}
       <div className='bg-cGrey-50 flex gap-2 items-center px-8 pb-4'>

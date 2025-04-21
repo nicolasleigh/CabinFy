@@ -1,16 +1,8 @@
-import { styled } from "styled-components";
-import Logout from "../features/authentication/Logout";
-import ButtonIcon from "./ButtonIcon";
-import { AiOutlineUser } from "react-icons/ai";
-import { useNavigate } from "react-router-dom";
-import DarkModeToggle from "./DarkModeToggle";
 import ThemeButton from "@/components/ThemeButton";
 import { Button } from "@/components/ui/button";
-
-const StyledHeaderMenu = styled.ul`
-  display: flex;
-  gap: 0.4rem;
-`;
+import { AiOutlineUser } from "react-icons/ai";
+import { useNavigate } from "react-router-dom";
+import Logout from "../features/authentication/Logout";
 
 function HeaderMenu() {
   const navigate = useNavigate();

@@ -1,47 +1,10 @@
 import { differenceInCalendarDays, format, isAfter, isBefore, isValid, parse } from "date-fns";
 import { zhCN } from "date-fns/locale";
+import { useEffect } from "react";
 import { DateRange, DayPicker } from "react-day-picker";
 import "react-day-picker/dist/style.css";
-import styled from "styled-components";
-import "../styles/day-picker.css";
-import { useEffect } from "react";
 import toast from "react-hot-toast";
-
-const CheckIn = styled.input`
-  text-transform: uppercase;
-  padding: 1rem 2rem;
-  border-radius: var(--border-radius-lg) 0 0 var(--border-radius-lg);
-  border: none;
-  border-right: 1px solid var(--color-grey-300);
-  width: 50%;
-
-  &:focus {
-    outline: none;
-  }
-
-  &:disabled {
-    background-color: var(--color-grey-200);
-  }
-`;
-const CheckOut = styled.input`
-  text-transform: uppercase;
-  padding: 1rem 2rem;
-  border-radius: 0 var(--border-radius-lg) var(--border-radius-lg) 0;
-  border: none;
-  width: 50%;
-
-  &:focus {
-    outline: none;
-  }
-
-  &:disabled {
-    background-color: var(--color-grey-200);
-  }
-`;
-
-const InputGroup = styled.div`
-  margin-top: 2rem;
-`;
+import "../styles/day-picker.css";
 
 interface Props {
   selectedRange: DateRange;
@@ -66,10 +29,6 @@ export default function DayPick({
   maxBookingLength,
   booking,
 }: Props) {
-  // const [selectedRange, setSelectedRange] = useState();
-  // const [fromValue, setFromValue] = useState('');
-  // const [toValue, setToValue] = useState('');
-
   const handleFromChange = (e: any) => {
     setFromValue(e.target.value);
     const date = parse(e.target.value, "y-MM-dd", new Date());

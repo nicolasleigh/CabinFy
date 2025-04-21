@@ -1,41 +1,6 @@
+import { useTheme } from "@/components/theme-provider";
 import { useEffect, useState } from "react";
 import { Cell, Legend, Pie, PieChart, ResponsiveContainer, Tooltip } from "recharts";
-import styled from "styled-components";
-import { useDarkMode } from "../../context/DarkModeContext";
-import Heading from "../../ui/Heading";
-import { useTheme } from "@/components/theme-provider";
-
-const ChartBox = styled.div`
-  /* Box */
-  background-color: var(--color-grey-0);
-  border: 1px solid var(--color-grey-100);
-  border-radius: var(--border-radius-md);
-  font-size: 1.3rem;
-
-  /* padding: 2.4rem 3.2rem; */
-  padding: 2.2rem;
-  grid-column: 3 / span 2;
-
-  @media (max-width: 650px) {
-    grid-column: 1 / -1;
-  }
-
-  @media (max-width: 500px) {
-    margin-top: 2rem;
-  }
-
-  & > *:first-child {
-    margin-bottom: 1.6rem;
-
-    @media (max-width: 800px) {
-      margin-bottom: 0.6rem;
-    }
-  }
-
-  & .recharts-pie-label-text {
-    font-weight: 600;
-  }
-`;
 
 const startDataLight = [
   {

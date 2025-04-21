@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import GlobalStyles from "../styles/GlobalStyles";
 
 const StyledErrorFallback = styled.main`
   height: 100vh;
@@ -34,7 +33,7 @@ const Box = styled.div`
 function ErrorFallback({ error, resetErrorBoundary }) {
   return (
     <>
-      <GlobalStyles />
+      {/* <GlobalStyles /> */}
       <StyledErrorFallback>
         <Box>
           <h1>Something went wrong 😟</h1>

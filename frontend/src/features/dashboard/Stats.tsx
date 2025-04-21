@@ -1,30 +1,7 @@
-import { LuWallet, LuCalendarCheck2 } from "react-icons/lu";
-import { AiOutlineTransaction, AiFillSignal } from "react-icons/ai";
-import Stat from "./Stat";
+import { AiFillSignal, AiOutlineTransaction } from "react-icons/ai";
+import { LuCalendarCheck2, LuWallet } from "react-icons/lu";
 import { formatCurrency } from "../../utils/helpers";
-import styled from "styled-components";
-import { Wallet } from "lucide-react";
-
-const Stat1 = styled.div`
-  @media (max-width: 500px) {
-    grid-column: 1 / 3;
-  }
-`;
-const Stat2 = styled.div`
-  @media (max-width: 500px) {
-    grid-column: 3 / 5;
-  }
-`;
-const Stat3 = styled.div`
-  @media (max-width: 500px) {
-    grid-column: 1 / 3;
-  }
-`;
-const Stat4 = styled.div`
-  @media (max-width: 500px) {
-    grid-column: 3 / 5;
-  }
-`;
+import Stat from "./Stat";
 
 function Stats({ bookings, confirmedStays, numDays, cabinCount }) {
   // 1.
