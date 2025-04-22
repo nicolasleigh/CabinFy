@@ -14,6 +14,7 @@ import GuestLoginForm from "./GuestLoginForm";
 import GuestSignUpForm from "./GuestSignUpForm";
 import { useGuest } from "./useGuest";
 import { useLogout } from "./useLogout";
+import { useTranslation } from "react-i18next";
 
 function GuestHeaderMenu() {
   const { guest, isLoading } = useGuest();
@@ -21,6 +22,7 @@ function GuestHeaderMenu() {
   const [openDropdown, setOpenDropdown] = useState(false);
   const [openSignup, setOpenSignup] = useState(false);
   const [openLogin, setOpenLogin] = useState(false);
+  const { t } = useTranslation();
 
   const shortName = guest?.fullName?.charAt(0);
 
@@ -41,7 +43,7 @@ function GuestHeaderMenu() {
         </DropdownMenuTrigger>
         <DropdownMenuContent className='min-w-0 w-28' align='end'>
           <DialogItem
-            triggerChildren={<div>Sign Up</div>}
+            triggerChildren={<div>{t("signup")}</div>}
             open={openSignup}
             onOpenChange={(open) => {
               setOpenSignup(open);
@@ -56,7 +58,7 @@ function GuestHeaderMenu() {
             />
           </DialogItem>
           <DialogItem
-            triggerChildren={<div>Log In</div>}
+            triggerChildren={<div>{t("login")}</div>}
             open={openLogin}
             onOpenChange={(open) => {
               setOpenLogin(open);
@@ -70,22 +72,14 @@ function GuestHeaderMenu() {
               }}
             />
           </DialogItem>
-          <DropdownMenuItem>
-            <div
-              onClick={() => {
-                logout();
-              }}
-            >
-              Log Out
-            </div>
-          </DropdownMenuItem>
+          <DropdownMenuItem onClick={() => logout()}>{t("logout")}</DropdownMenuItem>
           <Separator />
           <DropdownMenuItem className='px-0'>
             <Link
               to='/admin'
               className='w-full text-center bg-red-600 text-white hover:bg-red-700 transition-colors rounded-sm px-1 py-1'
             >
-              Admin Login
+              {t("adminLoginGuestPage")}
             </Link>
           </DropdownMenuItem>
         </DropdownMenuContent>

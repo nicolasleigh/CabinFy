@@ -30,8 +30,8 @@ const validateUserInfo = ({ email, password }) => {
 export default function LoginForm({
   className,
   title,
-  defaultEmail,
-  defaultPass,
+  defaultEmail = "test@e.com",
+  defaultPass = "123123123",
   ...props
 }: React.ComponentPropsWithoutRef<"div">) {
   // const [email, setEmail] = useState('nicolas.leigh@qq.com');

@@ -5,7 +5,7 @@ import Logo from "../ui/Logo";
 export default function ForgetPassword() {
   return (
     <div className='max-w-[300px] mx-auto mt-40'>
-      <Logo $medium />
+      <Logo />
       <ForgetPassForm />
     </div>
   );

@@ -13,11 +13,13 @@ import GuestsFavoriteBox from "../features/guests/GuestsFavoriteBox";
 import { useReviews } from "../features/guests/useReviews";
 import CabinTextInfo from "../ui/CabinTextInfo";
 import FeatureIcon from "../ui/FeatureIcon";
+import { useTranslation } from "react-i18next";
 
 export default function Cabin() {
   const [guestsNumber, setGuestsNumber] = useState(1);
   const [hasBreakfast, setHasBreakfast] = useState(true);
   const [addReviewOpen, setAddReviewOpen] = useState(false);
+  const { t } = useTranslation();
 
   const { cabin, isLoading: isLoadingCabin } = useCabin();
   const { booking, isLoading: isLoadingBooking } = useBookingByCabinId();
@@ -61,7 +63,7 @@ export default function Cabin() {
           <Dialog>
             <DialogTrigger asChild>
               <Button variant='link' className='flex pl-0 mt-1 underline hover:no-underline'>
-                See all reviews
+                {t("seeAllReview")}
               </Button>
             </DialogTrigger>
             <DialogContent className='h-[500px] overflow-auto'>
@@ -72,7 +74,7 @@ export default function Cabin() {
           <Dialog open={addReviewOpen} onOpenChange={setAddReviewOpen}>
             <DialogTrigger asChild>
               <Button variant='link' className='flex pl-0 mt-1 underline hover:no-underline'>
-                Add review
+                {t("addReview")}
               </Button>
             </DialogTrigger>
             <DialogContent className='max-w-[400px]'>

@@ -1,10 +1,11 @@
 import { differenceInCalendarDays, format, isAfter, isBefore, isValid, parse } from "date-fns";
-import { zhCN } from "date-fns/locale";
+import { zhCN, enUS } from "date-fns/locale";
 import { useEffect } from "react";
 import { DateRange, DayPicker } from "react-day-picker";
 import "react-day-picker/dist/style.css";
 import toast from "react-hot-toast";
 import "../styles/day-picker.css";
+import { useTranslation } from "react-i18next";
 
 interface Props {
   selectedRange: DateRange;
@@ -29,6 +30,7 @@ export default function DayPick({
   maxBookingLength,
   booking,
 }: Props) {
+  const { t, i18n } = useTranslation();
   const handleFromChange = (e: any) => {
     setFromValue(e.target.value);
     const date = parse(e.target.value, "y-MM-dd", new Date());
@@ -114,7 +116,7 @@ export default function DayPick({
       selected={selectedRange}
       onSelect={handleRangeSelect}
       disabled={disabledDays}
-      locale={zhCN}
+      locale={i18n.language === "zh" ? zhCN : enUS}
       min={minBookingLength >= 2 ? minBookingLength : undefined}
       max={maxBookingLength}
       className=''
@@ -123,7 +125,7 @@ export default function DayPick({
           <input
             className='border w-1/2 uppercase p-2 rounded-l-md text-cGrey-500'
             size={10}
-            placeholder='From'
+            placeholder={t("fromTime")}
             value={fromValue}
             onChange={handleFromChange}
             disabled={true}
@@ -132,7 +134,7 @@ export default function DayPick({
           <input
             className='border w-1/2 uppercase p-2 rounded-r-md text-cGrey-500'
             size={10}
-            placeholder='To'
+            placeholder={t("toTime")}
             value={toValue}
             onChange={handleToChange}
             disabled={true}

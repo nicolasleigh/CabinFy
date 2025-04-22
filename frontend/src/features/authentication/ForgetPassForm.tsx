@@ -7,11 +7,13 @@ import toast from "react-hot-toast";
 import { Link, useLocation } from "react-router-dom";
 import Timer from "./Timer";
 import { useForgetPass } from "./useForgetPass";
+import { useTranslation } from "react-i18next";
 
 export default function ForgetPassForm() {
   const { state } = useLocation();
   const [email, setEmail] = useState(state?.email || "");
   const [disableBtn, setDisableBtn] = useState(false);
+  const { t } = useTranslation();
 
   const { forgetPass, isLoading } = useForgetPass();
 
@@ -37,7 +39,7 @@ export default function ForgetPassForm() {
   return (
     <form onSubmit={handleSubmit} className='mt-6 border py-6 px-8 rounded-md'>
       <div className='flex flex-col gap-2 mb-5'>
-        <Label htmlFor='email'>Email Address</Label>
+        <Label htmlFor='email'>{t("emailAddress")}</Label>
         <Input type='email' id='email' value={email} onChange={(e) => setEmail(e.target.value)} disabled={disableBtn} />
       </div>
 
@@ -46,12 +48,12 @@ export default function ForgetPassForm() {
           <Timer setDisableBtn={setDisableBtn} />
         ) : (
           <Button className='bg-cBrand-500 hover:bg-cBrand-600' disabled={disableBtn}>
-            Send password reset link
+            {t("sendResetLink")}
           </Button>
         )}
       </div>
-      <Link className='text-sm underline hover:no-underline ' to='/admin/dashboard'>
-        Go back
+      <Link className='text-sm underline hover:no-underline underline-offset-4' to='/admin/dashboard'>
+        &larr; {t("backButton")}
       </Link>
     </form>
   );

@@ -9,6 +9,7 @@ import { Link } from "react-router-dom";
 import { isValidEmail } from "@/utils/helpers";
 import toast from "react-hot-toast";
 import { useLogin } from "./useLogin";
+import { useTranslation } from "react-i18next";
 
 const validateUserInfo = ({ email, password }) => {
   if (!email.trim()) {
@@ -30,8 +31,8 @@ const validateUserInfo = ({ email, password }) => {
 export default function GuestLoginForm({
   className,
   title,
-  defaultEmail,
-  defaultPass,
+  defaultEmail = "guest@e.com",
+  defaultPass = "123123123",
   setOpen,
   ...props
 }: React.ComponentPropsWithoutRef<"div">) {
@@ -42,6 +43,7 @@ export default function GuestLoginForm({
     password: defaultPass,
   });
   const { login, isLoading } = useLogin();
+  const { t } = useTranslation();
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -73,7 +75,7 @@ export default function GuestLoginForm({
             <div className='grid gap-6'>
               <div className='grid gap-6'>
                 <div className='grid gap-2'>
-                  <Label htmlFor='email'>{"Email"}</Label>
+                  <Label htmlFor='email'>{t("emailAddress")}</Label>
                   <Input
                     id='email'
                     type='email'
@@ -86,7 +88,7 @@ export default function GuestLoginForm({
                   />
                 </div>
                 <div className='grid gap-2'>
-                  <Label htmlFor='password'>{"Password"}</Label>
+                  <Label htmlFor='password'>{t("password")}</Label>
                   <Input
                     id='password'
                     type='password'
@@ -99,7 +101,7 @@ export default function GuestLoginForm({
                   />
                 </div>
                 <Button type='submit' className='w-full bg-cRed-500 hover:bg-cRed-600'>
-                  {"Login"}
+                  {t("login")}
                 </Button>
               </div>
             </div>

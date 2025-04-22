@@ -1,8 +1,10 @@
 import GuestsReviews from "./GuestsReviews";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
+import { useTranslation } from "react-i18next";
 import { AiFillStar } from "react-icons/ai";
 
 export default function GuestsFavoriteBox({ reviews }) {
+  const { t } = useTranslation();
   const averageRating =
     reviews?.reduce((acc, review) => {
       return acc + review?.rating;
@@ -11,9 +13,9 @@ export default function GuestsFavoriteBox({ reviews }) {
     <div className=' border flex items-center gap-1 justify-between rounded-md px-1 sm:px-5 py-1 sm:py-4'>
       <div className='text-xs font-medium text-cRed-600 sm:font-semibold flex flex-col items-center'>
         <span>🎉</span>
-        <span className='text-center'>Guests Favorite</span>
+        <span className='text-center'>{t("guestsFavorite")}</span>
       </div>
-      <div className='font-semibold text-center text-xs sm:text-base '>One of the most loved cabins</div>
+      <div className='font-semibold text-center text-xs sm:text-base '>{t("lovedCabins")}</div>
       <Dialog>
         <DialogTrigger>
           <div className='flex'>
@@ -27,7 +29,7 @@ export default function GuestsFavoriteBox({ reviews }) {
             </div>
             <div className='flex justify-center flex-col pl-2'>
               <p className='text-sm sm:text-lg md:text-xl font-semibold'>{reviews?.length}</p>
-              <p className='font-semibold text-xs md:text-sm leading-none'>reviews</p>
+              <p className='font-semibold text-xs md:text-sm leading-none'>{t("reviews")}</p>
             </div>
           </div>
         </DialogTrigger>

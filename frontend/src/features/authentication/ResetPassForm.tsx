@@ -6,9 +6,11 @@ import { useForm } from "react-hook-form";
 import { useNavigate, useParams } from "react-router-dom";
 import { useResetPass } from "./useResetPass";
 import { PASS_LENGTH } from "@/utils/constants";
+import { useTranslation } from "react-i18next";
 
 function ResetPassForm() {
   const { uid, token } = useParams();
+  const { t } = useTranslation();
 
   const { resetPass, isLoading } = useResetPass();
   const { register, formState, getValues, handleSubmit } = useForm();
@@ -31,7 +33,7 @@ function ResetPassForm() {
   return (
     <form onSubmit={handleSubmit(onSubmit)} className='border py-6 px-8 rounded-md flex flex-col gap-4 '>
       <div>
-        <Label htmlFor='password'>Password</Label>
+        <Label htmlFor='password'>{t("password")}</Label>
         <Input
           type='password'
           id='password'
@@ -48,7 +50,7 @@ function ResetPassForm() {
       </div>
 
       <div>
-        <Label htmlFor='passwordConfirm'>Repeat Password</Label>
+        <Label htmlFor='passwordConfirm'>{t("repeatPassword")}</Label>
         <Input
           type='password'
           id='passwordConfirm'
@@ -63,7 +65,7 @@ function ResetPassForm() {
 
       <div>
         <Button className='bg-cBrand-500 hover:bg-cBrand-600' disabled={isLoading}>
-          Submit
+          {t("submitButton")}
         </Button>
       </div>
     </form>

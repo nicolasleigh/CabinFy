@@ -8,6 +8,7 @@ import DayPick from "../../ui/DayPick.tsx";
 import { formatCurrency } from "../../utils/helpers.js";
 import { useSettings } from "../settings/useSettings.js";
 import { useCreateBooking } from "./useCreateBooking.js";
+import { useTranslation } from "react-i18next";
 
 export default function BookingForm({
   guestsNumber,
@@ -26,6 +27,7 @@ export default function BookingForm({
   const [toValue, setToValue] = useState("");
   const { createBooking, isLoading } = useCreateBooking(cabinId);
   const { settings, isLoading: isLoadingSettings } = useSettings();
+  const { t } = useTranslation();
 
   const { minBookingLength, maxBookingLength, maxGuestsPerBooking, breakfastPrice } = settings || {};
 
@@ -90,7 +92,7 @@ export default function BookingForm({
             booking={booking}
           />
           <div className='px-8 py-2 flex items-center gap-1 justify-between'>
-            <Label className='text-lg'>Number of Guests</Label>
+            <Label className='text-lg'>{t("numberOfGuests")}</Label>
             <div className='flex items-center gap-2'>
               <button
                 className={buttonGroupStyle}
@@ -116,11 +118,11 @@ export default function BookingForm({
           {/* <BookingBreakfastBox hasBreakfast={hasBreakfast} setHasBreakfast={setHasBreakfast} />
            */}
           <div className='px-8 py-2 flex items-center gap-1 justify-between'>
-            <Label className='text-lg'>Want breakfast?</Label>
+            <Label className='text-lg'>{t("wantBreakfast")}</Label>
             <div className='flex items-center gap-5'>
               <div className='flex items-center gap-2 '>
                 <Label htmlFor='yes' className='text-lg'>
-                  Yes
+                  {t("Yes")}
                 </Label>
                 <Input
                   id='yes'
@@ -133,7 +135,7 @@ export default function BookingForm({
               </div>
               <div className='flex items-center gap-2'>
                 <Label htmlFor='no' className='text-lg'>
-                  No
+                  {t("No")}
                 </Label>
                 <Input
                   id='no'
@@ -147,7 +149,7 @@ export default function BookingForm({
             </div>
           </div>
           <div className='px-8 py-2 flex items-center gap-1 justify-between'>
-            <Label className='text-lg'>Total Price</Label>
+            <Label className='text-lg'>{t("totalPrice")}</Label>
             <div className='space-y-1'>
               <div className='line-through text-cGrey-500 font-light text-center'>
                 {Boolean(discount) && formatCurrency(priceBeforeDiscount)}
@@ -157,7 +159,7 @@ export default function BookingForm({
           </div>
         </div>
         <Button className='bg-cRed-500 text-cRed-50 w-full h-16 rounded-t-none text-xl hover:bg-cRed-700' type='submit'>
-          Booking Now
+          {t("bookingNow")}
         </Button>
       </form>
     </div>

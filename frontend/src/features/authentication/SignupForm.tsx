@@ -10,6 +10,7 @@ import toast from "react-hot-toast";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useSignup } from "./useSignup";
 import { PASS_LENGTH } from "@/utils/constants";
+import { useTranslation } from "react-i18next";
 
 const validateUserInfo = ({ name, email, password }) => {
   const isValidName = /^[a-z A-Z]+$/;
@@ -48,6 +49,7 @@ export default function SignUpForm({ className, ...props }: React.ComponentProps
   const { state } = useLocation();
   const navigate = useNavigate();
   const queryClient = useQueryClient();
+  const { t } = useTranslation();
 
   const handleChange = ({ target }) => {
     const { value, name } = target;
@@ -80,7 +82,7 @@ export default function SignUpForm({ className, ...props }: React.ComponentProps
           <CardTitle className='text-xl'>
             {" "}
             <h2 className='text-2xl font-semibold  text-center'>
-              <span className='bg-cRed-100 text-cRed-500 px-1 rounded-sm'>Admin</span> Signup
+              <span className='bg-cRed-100 text-cRed-500 px-1 rounded-sm'>{t("admin")}</span> {t("signup")}
             </h2>
           </CardTitle>
         </CardHeader>
@@ -89,7 +91,7 @@ export default function SignUpForm({ className, ...props }: React.ComponentProps
             <div className='grid gap-6'>
               <div className='grid gap-6'>
                 <div className='grid gap-2'>
-                  <Label htmlFor='name'>{"Username"}</Label>
+                  <Label htmlFor='name'>{t("username")}</Label>
                   <Input
                     id='name'
                     type='text'
@@ -100,7 +102,7 @@ export default function SignUpForm({ className, ...props }: React.ComponentProps
                     value={userInfo.name}
                     disabled={isLoading}
                   />
-                  <Label htmlFor='email'>{"Email"}</Label>
+                  <Label htmlFor='email'>{t("emailAddress")}</Label>
                   <Input
                     id='email'
                     type='email'
@@ -115,7 +117,7 @@ export default function SignUpForm({ className, ...props }: React.ComponentProps
                 </div>
                 <div className='grid gap-2'>
                   <div className='flex items-center'>
-                    <Label htmlFor='password'>{"Password"}</Label>
+                    <Label htmlFor='password'>{t("password")}</Label>
                   </div>
                   <Input
                     id='password'
@@ -129,17 +131,17 @@ export default function SignUpForm({ className, ...props }: React.ComponentProps
                   />
                 </div>
                 <Button type='submit' className='w-full bg-cBrand-500 hover:bg-cBrand-600' disabled={isLoading}>
-                  {"Create New User"}
+                  {t("createNewUser")}
                 </Button>
               </div>
               <div className='text-center text-sm'>
-                {"Already have an account? "}
+                {t("alreadyHaveAccount")}
                 <Button
                   variant='link'
                   className='underline hover:no-underline'
                   onClick={() => navigate("/admin/login")}
                 >
-                  Log in
+                  {t("login")}
                 </Button>
               </div>
             </div>

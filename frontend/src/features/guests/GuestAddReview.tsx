@@ -8,6 +8,7 @@ import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { useQueryClient } from "@tanstack/react-query";
+import { useTranslation } from "react-i18next";
 
 export default function GuestAddReview({ setOpen }) {
   const createArray = (count) => {
@@ -20,6 +21,7 @@ export default function GuestAddReview({ setOpen }) {
   const [selectedRatings, setSelectedRatings] = useState([]);
   const [content, setContent] = useState("");
   const queryClient = useQueryClient();
+  const { t } = useTranslation();
 
   const loggedIn = !!queryClient.getQueryData(["guest"]);
 
@@ -62,7 +64,7 @@ export default function GuestAddReview({ setOpen }) {
   return (
     <form onSubmit={handleSubmit} className='flex flex-col gap-5'>
       <div className='space-y-1'>
-        <Label>Rating</Label>
+        <Label>{t("ratingAddReview")}</Label>
         <div className='flex relative'>
           <StarsOutlined ratings={ratings} onMouseEnter={handleMouseEnter} />
           <div className='flex absolute'>
@@ -72,12 +74,12 @@ export default function GuestAddReview({ setOpen }) {
       </div>
 
       <div className='space-y-1'>
-        <Label>Review</Label>
+        <Label>{t("reviewAddReview")}</Label>
         <Textarea value={content} className='h-32' onChange={handleChange} />
       </div>
 
       <Button type='submit' className='bg-cRed-500 hover:bg-cRed-600'>
-        Submit
+        {t("submitButton")}
       </Button>
     </form>
   );
