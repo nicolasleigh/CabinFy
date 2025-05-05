@@ -1,5 +1,6 @@
 import { Outlet } from "react-router-dom";
 import GuestHeader from "./GuestHeader";
+import GuestFooter from "./GuestFooter";
 
 function GuestLayout() {
   return (
@@ -10,7 +11,7 @@ function GuestLayout() {
           <Outlet />
         </div>
       </div>
-      {/* <GuestFooter /> */}
+      <GuestFooter />
     </div>
   );
 }

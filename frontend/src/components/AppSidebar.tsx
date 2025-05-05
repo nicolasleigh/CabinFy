@@ -13,6 +13,7 @@ import { LogOut } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import {
   AiOutlineBarChart,
+  AiOutlineExport,
   AiOutlineHome,
   AiOutlineLeftCircle,
   AiOutlineSchedule,
@@ -46,6 +47,11 @@ const items = [
     title: "sidebarGuestPage",
     url: "/home",
     icon: <AiOutlineLeftCircle />,
+  },
+  {
+    title: "sidebarBlog",
+    url: "https://linze.pro",
+    icon: <AiOutlineExport />,
   },
 ];
 

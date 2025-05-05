@@ -76,6 +76,7 @@
   "sidebarSettings": "设置",
   "sidebarGuestPage": "宾客页面",
   "sidebarLogout": "登出",
+  "sidebarBlog": "博客",
   "bookingDetailHeader": "订单 {{bookingId}} 号",
   "backButton": "后退",
   "deleteBooking": "删除订单",
@@ -151,5 +152,10 @@
   "logout": "登出",
   "welcome": "欢迎",
   "ratingAddReview": "评价",
-  "reviewAddReview": "评论"
+  "reviewAddReview": "评论",
+  "footer": {
+    "projects": "项目",
+    "about": "关于",
+    "admin": "管理员"
+  }
 }

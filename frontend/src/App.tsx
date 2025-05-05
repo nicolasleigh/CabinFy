@@ -41,7 +41,7 @@ export default function App() {
     <DarkModeProvider>
       <ContextProvider>
         <QueryClientProvider client={queryClient}>
-          <ReactQueryDevtools initialIsOpen={false} />
+          {/* <ReactQueryDevtools initialIsOpen={false} /> */}
           <ThemeProvider>
             <RouterProvider router={router} />
           </ThemeProvider>

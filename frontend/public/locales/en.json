@@ -76,6 +76,7 @@
   "sidebarSettings": "Settings",
   "sidebarGuestPage": "Guest Page",
   "sidebarLogout": "Logout",
+  "sidebarBlog": "Blog",
   "bookingDetailHeader": "Booking # {{bookingId}}",
   "backButton": "Back",
   "deleteBooking": "Delete Booking",
@@ -150,5 +151,10 @@
   "logout": "Logout",
   "welcome": "Welcome",
   "ratingAddReview": "Rating",
-  "reviewAddReview": "Review"
+  "reviewAddReview": "Review",
+  "footer": {
+    "projects": "Projects",
+    "about": "About",
+    "admin": "Admin"
+  }
 }
